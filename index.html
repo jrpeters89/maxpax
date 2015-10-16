@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Dashboard | MaxPax LLC</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet" >
+    <link href="css/bootstrap-sortable.css" rel="stylesheet" >
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	    .page_container {
+		    margin-top: 50px;
+		    display: none;
+	    }
+	    .page_header {
+		    margin-bottom: 20px;
+		    font-size: 20pt;
+	    }
+	    .panel {
+		    text-align: center;
+	    }
+	    #navbar .nav>li {
+		    display:none;
+	    }
+	    .sales_header {
+		    font-size: 14pt;
+		    font-weight: bold;
+	    }
+	    .sales_header p {
+		    margin-bottom: 0px;
+		    font-size: 10pt;
+		    font-weight: 200;
+	    }
+	    #ytd_sales,
+	    #mtd_sales {
+	    	padding: 0px;
+	    }
+	    #ytd_sales table,
+	    #mtd_sales table {
+	    	margin-bottom: 0px;
+	    }
+	    #ytd_sales table tr,
+	    #mtd_sales table tr {
+	    	border-top: 0px;
+	    }
+	    #ytd_sales table th,
+	    #mtd_sales table th {
+	    	text-align: center;
+	    	vertical-align: middle;
+	    }
+	    #ytd_sales table td.company_name,
+	    #mtd_sales table td.company_name {
+	    	text-align: right;
+	    	font-weight: bold;
+	    	width: 175px;
+	    }
+	    #ytd_sales table tr td:first-child,
+	    #mtd_sales table tr td:first-child {
+		    border-left: 0px;
+		}
+	    #ytd_sales table tr td,
+	    #mtd_sales table tr td {
+		    border-left: 1px solid #ddd;
+		    vertical-align: middle;
+		}
+		#ytd_sales table tr.total_row,
+	    #mtd_sales table tr.total_row {
+		    border-top: 2px solid #ddd;
+		}
+	    .list-group-item {
+		    white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+	    }
+	    .list-group-item i.fa-file-excel-o {
+		    color: #1abc9c;
+	    }
+	    .list-group-item i.fa-file-pdf-o {
+		    color: #c0392b;
+	    }
+	    .list-group-item i.fa-file-text-o {
+		    color: #3498db;
+	    }
+	    .edit_contain {
+			position: absolute;
+			top: 20px;
+			right: 15px;
+			height: 50px;
+			text-align: center;
+			width: 50px;
+			border-radius: 50px;
+			border: 3px solid #2980b9;
+			color: #2980b9;
+			font-size: 18pt;
+	    }
+	    .edit_contain i {
+		    vertical-align: -7px;
+	    }
+	    .user_item:hover .edit_contain {
+		    border-color: #3498db;
+		    color: #3498db
+	    }
+	    #loading {
+		    margin-top: 20px;
+		    width: 168px;
+		    height: 168px;
+		    margin: 0 auto;
+	    }
+	    .width_100 {
+		    min-width: 100px;
+	    }
+	    .width_110 {
+		    min-width: 110px;
+	    }
+	    .width_120 {
+		    min-width: 120px;
+	    }
+	    .width_130 {
+		    min-width: 130px;
+	    }
+	    .width_140 {
+		    min-width: 140px;
+	    }
+	    .width_150 {
+		    min-width: 150px;
+	    }
+	    .width_160 {
+		    min-width: 160px;
+	    }
+	    .width_170 {
+		    min-width: 170px;
+	    }
+	    .width_180 {
+		    min-width: 180px;
+	    }
+	    .text_right {
+		    text-align: right;
+	    }
+	</style>
+  </head>
+  <body id="app_body" style="display:none;">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" id="company_logo"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul id="main_menu" class="nav navbar-nav">
+            <li id="sales_link" class="menu_1"><a id="sales" href="#" data-link="sales">Sales</a></li>
+            <li id="documents_link" class="documents"><a id="documents" href="#" data-link="documents">Documents</a></li>
+            <li id="inventory_link" class="menu_3"><a id="inventory" href="#" data-link="inventory">Inventory</a></li>
+            <li id="production_link" class="menu_3"><a id="production" href="#" data-link="production">Production</a></li>
+            <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a></li>
+            <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
+            <li><a id="logout" href="#" data-link="logout" class="visible-xs">Logout</a></li>
+          </ul>
+          <a id="logout_btn" href="#" class="btn btn-primary pull-right hidden-xs logout" style="margin-top: 8px;">Logout</a>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div id="sales_container" class="page_container container company_1">
+
+		<h1 class="page_header">Sales Dashboard</h1>
+
+		<div class="panel panel-default">
+			<div class="panel-heading sales_header">
+				MTD Sales - <span class="cur_month">MONTH</span>
+				<p class="month_range">Date Range</p>
+			</div>
+			<div id="mtd_sales" class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="cur_year">YYYY</th>
+							<th class="prev_year">YYYY</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="company_name">MaxPax</td>
+							<td id="cur_mtd_0">--</td>
+							<td id="past_mtd_0">--</td>
+						</tr>
+						<tr>
+							<td class="company_name">US Packaging</td>
+							<td id="cur_mtd_1">--</td>
+							<td id="past_mtd_1">--</td>
+						</tr>
+						<tr class="total_row">
+							<td></td>
+							<td id="cur_mtd_total">--</td>
+							<td id="past_mtd_total">--</td>
+						</tr>
+					</tbody>
+				</table>					
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading sales_header">
+				YTD Sales
+			</div>
+			<div id="ytd_sales" class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="cur_year">YYYY</th>
+							<th class="prev_year">YYYY</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="company_name">MaxPax</td>
+							<td id="cur_ytd_0">--</td>
+							<td id="past_ytd_0">--</td>
+						</tr>
+						<tr>
+							<td class="company_name">US Packaging</td>
+							<td id="cur_ytd_1">--</td>
+							<td id="past_ytd_1">--</td>
+						</tr>
+						<tr class="total_row">
+							<td></td>
+							<td id="cur_ytd_total">--</td>
+							<td id="past_ytd_total">--</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+    </div> <!-- /container -->
+    
+    <div id="documents_container" class="page_container container">
+	    <h1 class="page_header">QC Docs</h1>
+	    <input id="search-docs" class="form-control" type="text" placeholder="Search Documents" style="display: none; margin-bottom: 10px;" />
+	    <div id="document_list" class="list-group">
+		    Loading...
+	    </div>
+	    <p id="no_doc_results" style="display:none;">No documents found</p>
+    </div>
+    
+	<div id="inventory_container" class="page_container container company_3">
+		<div class="row">
+		    <div class="col-xs-10">
+			    <h1 class="page_header">On-Hand Inventory</h1>
+		    </div>
+		    <div class="col-xs-2" style="text-align: right;">
+		    	<a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'inventory_list', 'Inventory');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+		    </div>
+		</div>
+	    <div id="inventory_list" class="table-responsive">
+		    Loading...
+	    </div>
+	    <p id="no_inv_results" style="display:none;">No inventory found</p>
+    </div>
+    
+	<div id="production_container" class="page_container container company_3">
+		<div class="row">
+		    <div class="col-xs-10">
+			    <h1 class="page_header">Production</h1>
+		    </div>
+		    <div class="col-xs-2" style="text-align: right;">
+		    	<a download="production.xls" onclick="return ExcellentExport.excel(this, 'production_list', 'Production');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+		    </div>
+		</div>
+	    <div id="production_list" class="table-responsive">
+		    Loading...
+	    </div>
+	    <p id="no_prod_results" style="display:none;">No items found</p>
+    </div>
+    
+	<div id="opensales_container" class="page_container container company_3">
+		<div class="row">
+		    <div class="col-xs-10">
+			    <h1 class="page_header">Open Sales</h1>
+		    </div>
+		    <div class="col-xs-2" style="text-align: right;">
+		    	<a download="opensales.xls" onclick="return ExcellentExport.excel(this, 'opensales_list', 'Open Sales');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+		    </div>
+		</div>
+	    <ul id="opensales_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+			<li id="tab_list" role="presentation" class="active"><a href="#" class="opensales_tab" data-tab="list">By Customer Ref</a></li>
+			<li id="tab_items" role="presentation"><a href="#" class="opensales_tab" data-tab="items">By Item</a></li>
+		</ul>
+	    <div id="opensales_list" class="table-responsive">
+		    Loading...
+	    </div>
+	    <p id="no_opensales_results" style="display:none;">No sales found</p>
+    </div>
+    
+    <div id="user_container" class="page_container container admin_container">
+	    <h1 class="page_header" style="display:inline-block;">Users</h1>
+	    <button id="new_user" class="btn btn-success pull-right" style="margin-top: 17px;">Add New User</button>
+	    <div id="user_list" class="list-group">
+		    Loading...
+	    </div>
+    </div>
+    
+	<div id="newUser" class="modal fade admin_container">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">New User</h4>
+				</div>
+				<div class="modal-body">
+					<form id="new_user_form">
+						<div class="form-group">
+							<label for="first_name">First Name</label>
+							<input type="text" class="form-control" id="user_first" name="first_name" placeholder="First name">
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name</label>
+							<input type="text" class="form-control" id="user_last" name="last_name" placeholder="Last name">
+						</div>
+						<div class="form-group">
+							<label for="email_addr">Email address</label>
+							<input type="email" class="form-control" id="user_email" name="email_addr" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="user_pass">Password</label>
+							<input type="password" class="form-control" id="user_pass" name="user_pass" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="company_id">Company</label>
+							<select id="company_id" name="company_id" class="form-control company_list" data-loaded="false">
+								<option>Loading...</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="access_level">Access Level</label>
+							<select id="access_level" name="access_level" class="form-control" data-loaded="false">
+								<option value="0">Basic User</option>
+								<option value="1">Admin User</option>
+							</select>
+						</div>
+						<button id="new_user_submit" class="btn btn-block btn-success" type="submit">Add User</button>
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<div id="updateUser" class="modal fade admin_container">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Update User</h4>
+				</div>
+				<div class="modal-body">
+					<form id="update_user_form">
+						<input id="update_user_id" type="hidden" name="user_id" value="0" />
+						<div class="form-group">
+							<label for="first_name">First Name</label>
+							<input type="text" class="form-control" id="user_first_update" name="first_name" placeholder="First name">
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name</label>
+							<input type="text" class="form-control" id="user_last_update" name="last_name" placeholder="Last name">
+						</div>
+						<div class="form-group">
+							<label for="email_addr">Email address</label>
+							<input type="email" class="form-control" id="user_email_update" name="email_addr" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="user_pass">Change Password</label>
+							<input type="password" class="form-control" id="user_pass_update" name="user_pass" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="company_id">Company</label>
+							<select id="company_id_update" name="company_id" class="form-control company_list" data-loaded="false">
+								<option>Loading...</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="access_level">Access Level</label>
+							<select id="access_level_update" name="access_level" class="form-control" data-loaded="false">
+								<option value="0">Basic User</option>
+								<option value="1">Admin User</option>
+							</select>
+						</div>
+						<button id="update_user_submit" class="btn btn-block btn-success" type="submit">Update User</button>
+						<button id="delete_user" class="btn btn-block btn-danger btn-sm" type="button">Delete User</button>
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/cookies.min.js"></script>
+    <script src="js/initialize.js"></script>
+    <script src="js/pages/users.js"></script>
+    <script src="js/pages/sales.js"></script>
+    <script src="js/pages/documents.js"></script>
+    <script src="js/pages/nourish.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap-sortable.js"></script>
+    <script src="js/excellentexport.min.js"></script>
+    <script>	
+	    var user_token = "";
+	    var company_list = false;
+		user_token = Cookies.get("user_token");
+		if(typeof user_token != 'undefined') {
+			$("#app_body").show();
+			companyInfo(user_token);
+		} else {
+			window.location.href = "login.html";
+		}		
+	</script>
+  </body>
+</html>
