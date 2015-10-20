@@ -51,9 +51,9 @@ function opensalesCheck(user_token,type) {
 			if(type == "items") {
 				var count = 0;
 				jQuery.each( sales.data, function( i, sale ) {
-					$("#opensales_list").append('<table id="item_'+count+'" class="table"><thead><tr><th>Item #</th><th colspan="7">Description</th></tr><tr><th>'+i+'</th><th colspan="7">'+sale.description+'</th></tr></thead><tbody><tr><td>Cust Ref</td><td>Sales Order</td><td>Customer</td><td>Unit</td><td class="text_right">Quantity</td><td class="text_right">Shipped</td><td class="text_right">Remainder</td><td>Delivery Address</td></tr></tbody></table>');
+					$("#opensales_list").append('<table id="item_'+count+'" class="table"><thead><tr><th>Item #</th><th colspan="7">Description</th></tr><tr><th>'+i+'</th><th colspan="7">'+sale.description+'</th></tr></thead><tbody><tr><td>Cust Ref</td><td>Sales Order</td><td>Unit</td><td class="text_right">Quantity</td><td class="text_right">Shipped</td><td class="text_right">Remainder</td><td>Delivery Address</td></tr></tbody></table>');
 					jQuery.each( sale.data, function( s, item ) {
-						$("#item_"+count+" tbody").append('<tr><td>'+item.CustomerRef+'</td><td>'+item.SalesId+'</td><td>'+item.CustName+'</td><td>'+item.SalesUnit+'</td><td class="text_right">'+item.SalesQty+'</td><td class="text_right">'+item.Shipped+'</td><td class="text_right">'+item.Remainder+'</td><td class="width_170">'+item.DeliveryAddress+'</td></tr>');
+						$("#item_"+count+" tbody").append('<tr><td>'+item.CustomerRef+'</td><td>'+item.SalesId+'</td><td>'+item.SalesUnit+'</td><td class="text_right">'+item.SalesQty+'</td><td class="text_right">'+item.Shipped+'</td><td class="text_right">'+item.Remainder+'</td><td class="width_170">'+item.DeliveryAddress+'</td></tr>');
 					});
 					count++;
 				});

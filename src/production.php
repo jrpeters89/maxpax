@@ -10,15 +10,15 @@ foreach($data as $prod) {
 		$scheduled = (!empty($prod['QtySched']) ? $prod['QtySched'] : 0);
 		$started = (!empty($prod['ReportedFinishedGood']) ? $prod['ReportedFinishedGood'] : 0);
 		$remainder = ($scheduled - $started);
-	
+
 		$production['data'][] = array(
 			'ItemId' => $prod['ItemId'],
 			'Name' => $prod['Name'],
 			'ProdId' => $prod['ProdId'],
 			'ProdStatus' => $prod['ProdStatus'],
-			'Scheduled' => number_format($scheduled,2,".",","),
-			'Started' => number_format($started,2,".",","),
-			'Remainder' => number_format($remainder,2,".",",")	
+			'Scheduled' => number_format($scheduled,0,".",","),
+			'Started' => number_format($started,0,".",","),
+			'Remainder' => number_format($remainder,0,".",",")	
 		);
 	}
 }
