@@ -9,6 +9,7 @@ foreach($data as $inv) {
 	//Item # = NOU
 	if(substr($inv['ItemId'], 0, 3) == "NOU") {
 		$inventory['data'][] = array(
+			'ItemGroupId' => $inv['ItemGroupId'],
 			'ItemId' => $inv['ItemId'],
 			'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
 			'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
