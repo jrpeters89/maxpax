@@ -69,14 +69,23 @@ function appSetup(company,callback) {
 
 	if(company.id > 0) {
 		if (company.id == 4) {
-			$.getScript("/js/pages/portion-pac.js", function(){ console.log("Portion Pac Script Loaded"); if(callback) callback(); });
+			$.getScript("/js/pages/portion-pac.js", function(){
+				console.log("Portion Pac Script Loaded");
+				callback();
+			});
 		} else if(company.id == 3) {
-			$.getScript("/js/pages/nourish.js", function(){ console.log("Nourish Script Loaded") if(callback) callback(); });
+			$.getScript("/js/pages/nourish.js", function(){
+				console.log("Nourish Script Loaded");
+				callback();
+			});
 		} else if (company.id == 1) {
-			$.getScript("/js/pages/sales.js", function(){ console.log("Sales Script Loaded") if(callback) callback(); });
+			$.getScript("/js/pages/sales.js", function(){
+				console.log("Sales Script Loaded");
+				callback();
+			});
 		} else {
 			//No Scripts to Load
-			if(callback) callback();
+			callback();
 		}
 	} else {
 		//Do nothing
