@@ -44,5 +44,8 @@ if(!empty($user_token)) {
 	} else {
 		$inventory['count'] = 0;
 	}
+} else {
+	$inventory['count'] = 0;
+}
 
 echo json_encode($inventory);
