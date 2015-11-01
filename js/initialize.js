@@ -57,7 +57,7 @@ function companyInfo(user_token) {
 				$(".documents, #documents_container").remove();
 			}
 			if(company.access > 0) {
-				$.getScript("/js/users.js", function(){ console.log("Admin Script Loaded") });
+				$.getScript("/js/pages/users.js", function(){ console.log("Admin Script Loaded") });
 				$(".admin").fadeIn();
 			} else {
 				$(".admin, .admin_container").remove();
