@@ -10,9 +10,11 @@ if(!empty($user_token)) {
 	if(mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_array($result);
 		if($row['company'] == 4) {
-
+			$item_type = "FG";
+			$item_pre = 2;
 		} else {
-
+			$item_type = "NOU";
+			$item_pre = 3;
 		}
 		$xml = simplexml_load_file("../Data/Onhand/onhandOverview.xml");
 		$json = json_encode($xml);
@@ -22,7 +24,7 @@ if(!empty($user_token)) {
 
 		foreach($data as $inv) {
 			//Item # = NOU
-			if(substr($inv['ItemId'], 0, 3) == "NOU") {
+			if(substr($inv['ItemId'], 0, $item_pre) == $item_type) {
 				$inventory['data'][] = array(
 					'ItemGroupId' => $inv['ItemGroupId'],
 					'ItemId' => $inv['ItemId'],
