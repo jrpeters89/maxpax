@@ -35,7 +35,7 @@ if(!empty($user_token)) {
 					'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
 					'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : ""),
 					'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
-					'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : "")
+					'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
 				);
 			}
 		}
