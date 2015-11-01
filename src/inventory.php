@@ -10,11 +10,11 @@ if(!empty($user_token)) {
 	if(mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_array($result);
 		if($row['company'] == 4) {
-			$item_search = $inv['ItemGroupId'];
+			$item_search = 'ItemGroupId';
 			$item_type = "FG";
 			$item_pre = 2;
 		} else {
-			$item_search = $inv['ItemId'];
+			$item_search = 'ItemId';
 			$item_type = "NOU";
 			$item_pre = 3;
 		}
@@ -26,7 +26,7 @@ if(!empty($user_token)) {
 
 		foreach($data as $inv) {
 			//Item # = NOU
-			if(substr($item_search, 0, $item_pre) == $item_type) {
+			if(substr($inv[$item_search], 0, $item_pre) == $item_type) {
 				$inventory['data'][] = array(
 					'ItemGroupId' => $inv['ItemGroupId'],
 					'ItemId' => $inv['ItemId'],
