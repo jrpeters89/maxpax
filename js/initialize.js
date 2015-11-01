@@ -41,6 +41,7 @@ function companyInfo(user_token) {
 		$("#company_logo").html('<img src="images/'+company.logo+'_logo.png" style="height: 20px; width: 162px;" />');
 		if(company.active == true) {
 			appSetup(company, function() {
+				console.log("Page Changed");
 				changePage(company.default_page);
 			});
 		} else {
@@ -72,6 +73,7 @@ function appSetup(company,callback) {
 	} else {
 		$(".admin, .admin_container").remove();
 	}
+	console.log("Setup Complete");
 	callback();
 }
 
