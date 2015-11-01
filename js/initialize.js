@@ -51,6 +51,7 @@ function companyInfo(user_token) {
 }
 
 function appSetup(company,callback) {
+
 	if (company.id == 4) {
 		$.getScript("/js/pages/portion-pac.js", function(){ console.log("Portion Pac Script Loaded") });
 	} else if(company.id == 3) {
@@ -74,7 +75,7 @@ function appSetup(company,callback) {
 		$(".admin, .admin_container").remove();
 	}
 	console.log("Setup Complete");
-	callback();
+	if(callback) callback();
 }
 
 $("body").on("click","#logout_btn",function(event) {
