@@ -52,15 +52,7 @@ function companyInfo(user_token) {
 
 function appSetup(company,callback) {
 
-	if (company.id == 4) {
-		$.getScript("/js/pages/portion-pac.js", function(){ console.log("Portion Pac Script Loaded") });
-	} else if(company.id == 3) {
-		$.getScript("/js/pages/nourish.js", function(){ console.log("Nourish Script Loaded") });
-	} else if (company.id == 1) {
-		$.getScript("/js/pages/sales.js", function(){ console.log("Sales Script Loaded") });
-	} else {
-		//No Scripts to Load
-	}
+	var callback_active = false;
 	$(".menu_"+company.id).fadeIn();
 	if(company.documents > 0) {
 		$.getScript("/js/pages/documents.js", function(){ console.log("Documents Script Loaded") });
@@ -74,8 +66,22 @@ function appSetup(company,callback) {
 	} else {
 		$(".admin, .admin_container").remove();
 	}
+
+	if(company.id > 0) {
+		if (company.id == 4) {
+			$.getScript("/js/pages/portion-pac.js", function(){ console.log("Portion Pac Script Loaded"); if(callback) callback(); });
+		} else if(company.id == 3) {
+			$.getScript("/js/pages/nourish.js", function(){ console.log("Nourish Script Loaded") if(callback) callback(); });
+		} else if (company.id == 1) {
+			$.getScript("/js/pages/sales.js", function(){ console.log("Sales Script Loaded") if(callback) callback(); });
+		} else {
+			//No Scripts to Load
+			if(callback) callback();
+		}
+	} else {
+		//Do nothing
+	}
 	console.log("Setup Complete");
-	if(callback) callback();
 }
 
 $("body").on("click","#logout_btn",function(event) {
