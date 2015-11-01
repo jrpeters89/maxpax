@@ -22,7 +22,7 @@ function changePage(page) {
 		} else if (page == "opensales") {
 			$("#opensales_tabs li").removeClass("active");
 			$("#tab_list").addClass("active");
-			opensalesCheck(user_token);	
+			opensalesCheck(user_token);
 		} else if(page == "documents") {
 			documentList(user_token);
 		} else if (page == "user") {
@@ -40,13 +40,24 @@ function companyInfo(user_token) {
 		var company = jQuery.parseJSON(result);
 		$("#company_logo").html('<img src="images/'+company.logo+'_logo.png" style="height: 20px; width: 162px;" />');
 		if(company.active == true) {
+			if (company.id == 4) {
+				$.getScript("/js/pages/portion-pac.js", function(){ console.log("Portion Pac Script Loaded") });
+			} else if(company.id == 3) {
+				$.getScript("/js/pages/nourish.js", function(){ console.log("Nourish Script Loaded") });
+			} else if (company.id == 1) {
+				$.getScript("/js/pages/sales.js", function(){ console.log("Sales Script Loaded") });
+			} else {
+				//No Scripts to Load
+			}
 			$(".menu_"+company.id).fadeIn();
 			if(company.documents > 0) {
+				$.getScript("/js/pages/documents.js", function(){ console.log("Documents Script Loaded") });
 				$(".documents").fadeIn();
 			} else {
 				$(".documents, #documents_container").remove();
 			}
 			if(company.access > 0) {
+				$.getScript("/js/users.js", function(){ console.log("Admin Script Loaded") });
 				$(".admin").fadeIn();
 			} else {
 				$(".admin, .admin_container").remove();
