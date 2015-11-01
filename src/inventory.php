@@ -26,7 +26,7 @@ if(!empty($user_token)) {
 
 		foreach($data as $inv) {
 			//Item # = NOU
-			if(substr($inv['ItemId'], 0, $item_pre) == $item_type) {
+			if(substr($item_search, 0, $item_pre) == $item_type) {
 				$inventory['data'][] = array(
 					'ItemGroupId' => $inv['ItemGroupId'],
 					'ItemId' => $inv['ItemId'],
