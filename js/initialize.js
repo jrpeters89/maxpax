@@ -42,7 +42,10 @@ function companyInfo(user_token) {
 		if(company.active == true) {
 			appSetup(company, function() {
 				console.log("Page Changed");
-				changePage(company.default_page);
+				$.getScript("/js/pages/documents.js", function(){
+					console.log("Documents Script Loaded");
+					changePage(company.default_page);
+				});
 			});
 		} else {
 			logout();
@@ -55,7 +58,6 @@ function appSetup(company,callback) {
 	var callback_active = false;
 	$(".menu_"+company.id).fadeIn();
 	if(company.documents > 0) {
-		$.getScript("/js/pages/documents.js", function(){ console.log("Documents Script Loaded") });
 		$(".documents").fadeIn();
 	} else {
 		$(".documents, #documents_container").remove();
