@@ -10,9 +10,11 @@ if(!empty($user_token)) {
 	if(mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_array($result);
 		if($row['company'] == 4) {
+			$item_search = $inv['ItemGroupId'];
 			$item_type = "FG";
 			$item_pre = 2;
 		} else {
+			$item_search = $inv['ItemId'];
 			$item_type = "NOU";
 			$item_pre = 3;
 		}
