@@ -126,3 +126,6 @@ font-size: 18pt;
 .text_right {
   text-align: right;
 }
+#inventory_list tfoot td {
+  font-weight: bold;
+}
