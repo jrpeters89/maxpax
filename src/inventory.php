@@ -32,7 +32,8 @@ if(!empty($user_token)) {
 						'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
 						'Case' => $case,
 						'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
-						'Pallet' => $pallet
+						'Pallet' => $pallet,
+						'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
 					);
 				}
 			}
