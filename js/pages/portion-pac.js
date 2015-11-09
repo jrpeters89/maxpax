@@ -6,10 +6,10 @@ function inventoryCheck(user_token) {
 		if(inventory.count > 0) {
 			$("#inventory_list").html('<table class="table sortable"><thead><tr><th class="width_180">Item #</th><th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th>Case</th><th>Sell UOM</th><th>Pallet</th><th>Location</th></tr></thead><tbody></tbody><tfoot></foot></table>');
 			jQuery.each( inventory.data, function( i, inv ) {
-				$("#inventory_list tbody").append('<tr><td class="width_180">'+inv.ItemId+'</td><td>'+inv.ItemName+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td>'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td>'+inv.Pallet+'</td><td>'+inv.Location+'</td><td></td></tr>');
+				$("#inventory_list tbody").append('<tr><td>'+inv.Location+'</td><td class="width_180">'+inv.ItemId+'</td><td>'+inv.ItemName+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td class="text_right">'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td class="text_right">'+inv.Pallet+'</td></tr>');
 			});
 			if(typeof inventory.total != "undefined") {
-				$("#inventory_list tfoot").append('<tr><td colspan="2">TOTAL</td><td>'+inventory.total.quantity+'</td><td></td><td>'+inventory.total.case+'</td><td></td><td>'+inventory.total.pallet+'</td></tr>');
+				$("#inventory_list tfoot").append('<tr><td colspan="3">TOTAL</td><td class="text_right">'+inventory.total.quantity+'</td><td></td><td class="text_right">'+inventory.total.case+'</td><td></td><td class="text_right">'+inventory.total.pallet+'</td></tr>');
 			}
 			$.bootstrapSortable(false);
 		} else {
