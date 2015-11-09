@@ -4,7 +4,7 @@ function inventoryCheck(user_token) {
 	$.get("/src/inventory.php?act=list&user_token="+user_token,function(result) {
 		var inventory = jQuery.parseJSON(result);
 		if(inventory.count > 0) {
-			$("#inventory_list").html('<table class="table sortable"><thead><tr><th>Location</th><th class="width_180">Item #</th><th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th>Case</th><th>Sell UOM</th><th>Pallet</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+			$("#inventory_list").html('<table class="table sortable"><thead><tr><th>Location</th><th class="width_180">Item #</th><th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th class="text_right">Case</th><th>Sell UOM</th><th class="text_right">Pallet</th></tr></thead><tbody></tbody><tfoot></foot></table>');
 			jQuery.each( inventory.data, function( i, inv ) {
 				$("#inventory_list tbody").append('<tr><td>'+inv.Location+'</td><td class="width_180">'+inv.ItemId+'</td><td>'+inv.ItemName+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td class="text_right">'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td class="text_right">'+inv.Pallet+'</td></tr>');
 			});
