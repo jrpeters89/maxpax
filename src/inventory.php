@@ -23,7 +23,7 @@ if(!empty($user_token)) {
 				$case = (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),2,".",",") : 0);
 				$case_total += $case;
 				$pallet = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),2,".",",") : 0);
-				$pallet_total = $pallet;
+				$pallet_total += $pallet;
 				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "Quarantine") {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
