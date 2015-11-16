@@ -46,8 +46,8 @@ if(!empty($user_token)) {
 						$i++;
 					} else {
 						$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'] = number_format((str_replace(",", "",$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']) + str_replace(",","",$quantity)),0,".",",");
-						$inventory['data'][$items[$inv['ItemId']]]['Case'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['CaseNum']) ? number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']/$inventory['data'][$items[$inv['ItemId']]]['CaseNum']),2,".",",") : 0);
-						$inventory['data'][$items[$inv['ItemId']]]['Pallet'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['PalletNum']) ? number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']/$inventory['data'][$items[$inv['ItemId']]]['PalletNum']),2,".",",") : 0);
+						$inventory['data'][$items[$inv['ItemId']]]['Case'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['CaseNum']) ? number_format((str_replace(",","",$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'])/$inventory['data'][$items[$inv['ItemId']]]['CaseNum']),2,".",",") : 0);
+						$inventory['data'][$items[$inv['ItemId']]]['Pallet'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['PalletNum']) ? number_format((str_replace(",","",$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'])/$inventory['data'][$items[$inv['ItemId']]]['PalletNum']),2,".",",") : 0);
 					}
 				}
 			}
