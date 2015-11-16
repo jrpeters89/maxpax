@@ -21,13 +21,13 @@ if(!empty($user_token)) {
 			foreach($data as $inv) {
 				//Item # = NOU
 				$quantity = (!empty($inv['AvailPhysical']) ? number_format($inv['AvailPhysical'],0,".",",") : 0);
-				$qty_total += $quantity;
+				$qty_total += str_replace(",","",$quantity);
 				$case_num = (!empty($inv['Case']) ? $inv['Case'] : 0);
 				$case = (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),2,".",",") : 0);
-				$case_total += $case;
+				$case_total += str_replace(",","",$case);
 				$pallet_num = (!empty($inv['Pallet']) ? $inv['Pallet'] : 0);
 				$pallet = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),2,".",",") : 0);
-				$pallet_total += $pallet;
+				$pallet_total += str_replace(",","",$pallet);
 				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "QUARANTINE") {
 					if(!isset($items[$inv['ItemId']])) {
 						$inventory['data'][$i] = array(
@@ -52,9 +52,9 @@ if(!empty($user_token)) {
 				}
 			}
 			$inventory['total'] = array(
-				'quantity' => $qty_total,
-				'case' => $case_total,
-				'pallet' => $pallet_total
+				'quantity' => number_format($qty_total,0,".",","),
+				'case' => number_format($case_total,2,".",","),
+				'pallet' => number_format($pallet_total,2,".",",")
 			);
 		} else {
 			foreach($data as $inv) {
