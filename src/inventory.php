@@ -45,7 +45,7 @@ if(!empty($user_token)) {
 						$items[$inv['ItemId']] = $i;
 						$i++;
 					} else {
-						$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'] = $inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']." + ".$quantity;
+						$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'] = number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'] + $quantity),0,".",",");
 						$inventory['data'][$items[$inv['ItemId']]]['Case'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['CaseNum']) ? number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']/$inventory['data'][$items[$inv['ItemId']]]['CaseNum']),2,".",",") : 0);
 						$inventory['data'][$items[$inv['ItemId']]]['Pallet'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['PalletNum']) ? number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']/$inventory['data'][$items[$inv['ItemId']]]['PalletNum']),2,".",",") : 0);
 					}
