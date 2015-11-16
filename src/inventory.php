@@ -20,7 +20,7 @@ if(!empty($user_token)) {
 			$items = array();
 			foreach($data as $inv) {
 				//Item # = NOU
-				$quantity = (!empty($inv['AvailPhysical']) ? ]$inv['AvailPhysical'] : 0);
+				$quantity = (!empty($inv['AvailPhysical']) ? $inv['AvailPhysical'] : 0);
 				$case_num = (!empty($inv['Case']) ? $inv['Case'] : 0);
 				$case = (!empty($inv['Case']) ? ($inv['AvailPhysical']/$inv['Case']) : 0);
 				$pallet_num = (!empty($inv['Pallet']) ? $inv['Pallet'] : 0);
