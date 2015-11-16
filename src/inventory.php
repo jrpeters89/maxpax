@@ -20,21 +20,31 @@ if(!empty($user_token)) {
 				//Item # = NOU
 				$quantity = (!empty($inv['AvailPhysical']) ? number_format($inv['AvailPhysical'],0,".",",") : 0);
 				$qty_total += $quantity;
+				$case_num = (!empty($inv['Case']) ? $inv['Case'] : 0);
 				$case = (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),2,".",",") : 0);
 				$case_total += $case;
+				$pallet_num = (!empty($inv['Pallet']) ? $inv['Pallet'] : 0);
 				$pallet = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),2,".",",") : 0);
 				$pallet_total += $pallet;
-				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "Quarantine") {
-					$inventory['data'][] = array(
-						'ItemId' => $inv['ItemId'],
-						'AvailPhysical' => $quantity,
-						'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
-						'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
-						'Case' => $case,
-						'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
-						'Pallet' => $pallet,
-						'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
-					);
+				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "QUARANTINE") {
+					if(!empty($inventory['data'][$inv['ItemId']])) {
+						$inventory['data'][$inv['ItemId']] = array(
+							'ItemId' => $inv['ItemId'],
+							'AvailPhysical' => $quantity,
+							'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
+							'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
+							'CaseNum' => $case_num,
+							'Case' => $case,
+							'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
+							'PalletNum' => $pallet_num,
+							'Pallet' => $pallet,
+							'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
+						);
+					} else {
+						$inventory['data'][$inv['ItemId']]['AvailPhysical'] += $quantity;
+						$inventory['data'][$inv['ItemId']]['Case'] = (!empty($inventory['data'][$inv['ItemId']]['CaseNum']) ? number_format(($inventory['data'][$inv['ItemId']]['AvailPhysical']/$inventory['data'][$inv['ItemId']]['CaseNum']),2,".",",") : 0);
+						$inventory['data'][$inv['ItemId']]['Pallet'] = (!empty($inventory['data'][$inv['ItemId']]['PalletNum']) ? number_format(($inventory['data'][$inv['ItemId']]['AvailPhysical']/$inventory['data'][$inv['ItemId']]['PalletNum']),2,".",",") : 0);
+					}
 				}
 			}
 			$inventory['total'] = array(
