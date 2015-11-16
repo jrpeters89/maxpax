@@ -16,6 +16,8 @@ if(!empty($user_token)) {
 		$data = $array['Body']['MessageParts']['MAX_InventOnhand']['MAX_InventOnhandTmp'];
 
 		if($row['company'] == 4) {
+			$i = 0;
+			$items = array();
 			foreach($data as $inv) {
 				//Item # = NOU
 				$quantity = (!empty($inv['AvailPhysical']) ? number_format($inv['AvailPhysical'],0,".",",") : 0);
@@ -27,8 +29,8 @@ if(!empty($user_token)) {
 				$pallet = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),2,".",",") : 0);
 				$pallet_total += $pallet;
 				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "QUARANTINE") {
-					if(!empty($inventory['data'][$inv['ItemId']])) {
-						$inventory['data'][$inv['ItemId']] = array(
+					if(isset($items[$inv['ItemId']])) {
+						$inventory['data'][$i] = array(
 							'ItemId' => $inv['ItemId'],
 							'AvailPhysical' => $quantity,
 							'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
@@ -40,10 +42,12 @@ if(!empty($user_token)) {
 							'Pallet' => $pallet,
 							'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
 						);
+						$items[$inv['ItemId']] = $i;
+						$i++;
 					} else {
-						$inventory['data'][$inv['ItemId']]['AvailPhysical'] += $quantity;
-						$inventory['data'][$inv['ItemId']]['Case'] = (!empty($inventory['data'][$inv['ItemId']]['CaseNum']) ? number_format(($inventory['data'][$inv['ItemId']]['AvailPhysical']/$inventory['data'][$inv['ItemId']]['CaseNum']),2,".",",") : 0);
-						$inventory['data'][$inv['ItemId']]['Pallet'] = (!empty($inventory['data'][$inv['ItemId']]['PalletNum']) ? number_format(($inventory['data'][$inv['ItemId']]['AvailPhysical']/$inventory['data'][$inv['ItemId']]['PalletNum']),2,".",",") : 0);
+						$inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'] = $inventory['data'][$items[$inv['ItemId']]]['AvailPhysical'] + $quantity;
+						$inventory['data'][$items[$inv['ItemId']]]['Case'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['CaseNum']) ? number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']/$inventory['data'][$items[$inv['ItemId']]]['CaseNum']),2,".",",") : 0);
+						$inventory['data'][$items[$inv['ItemId']]]['Pallet'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['PalletNum']) ? number_format(($inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']/$inventory['data'][$items[$inv['ItemId']]]['PalletNum']),2,".",",") : 0);
 					}
 				}
 			}
