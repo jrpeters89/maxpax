@@ -14,7 +14,7 @@ $not_due = $due_now = $due_30 = $due_60 = $due_90 = $due_180 = 0;
 foreach($data as $item) {
   $due_date = (!empty($item['DueDate']) ? $item['DueDate'] : "");
 
-  $cust_aging['data'][$item['ItemId']]['data'][] = array (
+  $cust_aging['data'][] = array (
     'AccountNum' => $item['AccountNum'],
     'AmountCur' => number_format($item['AmountCur'],2,".",","),
     'CompanyName' => $item['CompanyName'],
@@ -26,18 +26,18 @@ foreach($data as $item) {
   if(!empty($due_date)) {
     $cur_date = strtotime($due_date);
 
-    if($cur_date <= $due_180) {
-      $due_180++;
-    } else if ($cur_date <= $days_90 && $cur_date > $due_180) {
-      $due_90++;
-    } else if ($cur_date <= $days_60 && $cur_date > $due_90) {
-      $due_60++;
-    } else if ($cur_date <= $days_30 && $cur_date > $due_60) {
-      $due_30++;
-    } else if ($cur_date <= $today && $cur_date > $due_30) {
-      $due_now++;
-    } else {
+    if($cur_date > $today) {  //If selected date is in the future
       $not_due++;
+    } else if ($today >= $cur_date && $cur_date > $days_30) { //If selected date is within the last 30 days
+      $due_now++;
+    } else if ($days_30 >= $cur_date && $cur_date > $days_60) { //If selected date is within the last 60 days
+      $due_30++;
+    } else if ($days_60 >= $cur_date && $cur_date > $days_90) { //If selected date is within the last 90 days
+      $due_60++;
+    } else if ($days_90 >= $cur_date && $cur_date > $days_180) { //If selected date is within the last 180 days
+      $due_90++;
+    } else {
+      $due_180++;
     }
   } else {
     $not_due++;
