@@ -10,10 +10,11 @@ $days_90 = strtotime("-90 days", $today);
 $days_60 = strtotime("-60 days", $today);
 $days_30 = strtotime("-30 days", $today);
 $not_due = $due_now = $due_30 = $due_60 = $due_90 = $due_180 = 0;
+
 foreach($data as $item) {
   $due_date = (!empty($item['DueDate']) ? $item['DueDate'] : "");
 
-  $custaging['data'][$item['ItemId']]['data'][] = array (
+  $cust_aging['data'][$item['ItemId']]['data'][] = array (
     'AccountNum' => $item['AccountNum'],
     'AmountCur' => number_format($item['AmountCur'],2,".",","),
     'CompanyName' => $item['CompanyName'],
@@ -24,6 +25,9 @@ foreach($data as $item) {
 
   if(!empty($due_date)) {
     $cur_date = strtotime($due_date);
+
+    echo $cur_date."<br>";
+
     if($cur_date < 180) {
       $due_180++;
     } else if ($cur_date >= $days_90 && $cur_date < $due_180) {
