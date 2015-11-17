@@ -42,7 +42,7 @@ foreach($data as $item) {
     $array_insert = "not";
   }
 
-  $cust_aging['data']['due'][$array_insert]['items'] = array (
+  $cust_aging['data']['due'][$array_insert]['items'][] = array (
     'AccountNum' => $item['AccountNum'],
     'AmountCur' => number_format($item['AmountCur'],2,".",","),
     'CompanyName' => $item['CompanyName'],
@@ -51,5 +51,7 @@ foreach($data as $item) {
     'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
   );
 }
+
+$cust_aging['data']['total'] = $cust_aging['data']['due']['180']['count'] + $cust_aging['data']['due']['90']['count'] + $cust_aging['data']['due']['60']['count'] + $cust_aging['data']['due']['30']['count'] + $cust_aging['data']['due']['now']['count'] + $cust_aging['data']['due']['not']['count'];
 
 echo '<pre>'.print_r($cust_aging,true);
