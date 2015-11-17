@@ -26,17 +26,15 @@ foreach($data as $item) {
   if(!empty($due_date)) {
     $cur_date = strtotime($due_date);
 
-    echo $cur_date."<br>";
-
-    if($cur_date < 180) {
+    if($cur_date <= $due_180) {
       $due_180++;
-    } else if ($cur_date >= $days_90 && $cur_date < $due_180) {
+    } else if ($cur_date <= $days_90 && $cur_date > $due_180) {
       $due_90++;
-    } else if ($cur_date >= $days_60 && $cur_date < $due_90) {
+    } else if ($cur_date <= $days_60 && $cur_date > $due_90) {
       $due_60++;
-    } else if ($cur_date >= $days_30 && $cur_date < $due_60) {
+    } else if ($cur_date <= $days_30 && $cur_date > $due_60) {
       $due_30++;
-    } else if ($cur_date >= $today && $cur_date < $due_30) {
+    } else if ($cur_date <= $today && $cur_date > $due_30) {
       $due_now++;
     } else {
       $not_due++;
