@@ -15,7 +15,7 @@ if(!empty($user_token)) {
 		$array = json_decode($json,TRUE);
 		$data = $array['Body']['MessageParts']['MAX_InventOnhand']['MAX_InventOnhandTmp'];
 
-		if($row['company'] == 4) {
+		if($row['company'] == 4) {	//Portion Pac - Inventory Filter
 			$i = 0;
 			$items = array();
 			foreach($data as $inv) {
@@ -25,7 +25,7 @@ if(!empty($user_token)) {
 				$case = (!empty($inv['Case']) ? ($inv['AvailPhysical']/$inv['Case']) : 0);
 				$pallet_num = (!empty($inv['Pallet']) ? $inv['Pallet'] : 0);
 				$pallet = (!empty($inv['Pallet']) ? ($inv['AvailPhysical']/$inv['Pallet']) : 0);
-				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "QUARANTINE") {
+				if(substr($inv['ItemGroupId'], 0, 2) == "FG" && substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "QUARANTINE" && $inv['CompanyName'] == "MaxPax LLC") {
 					$qty_total = $qty_total + $quantity;
 					$case_total = $case_total + $case;
 					$pallet_total = $pallet_total + $pallet;
@@ -56,7 +56,7 @@ if(!empty($user_token)) {
 				'case' => number_format($case_total,2,".",","),
 				'pallet' => number_format($pallet_total,2,".",",")
 			);
-		} else {
+		} else {	// Nourish Snacks - Inventory Filter
 			foreach($data as $inv) {
 				//Item # = NOU
 				if(substr($inv['ItemId'], 0, 3) == "NOU") {
