@@ -35,14 +35,17 @@ function agingChart(user_token,company) {
 				    data: aging.data.chart,
 				    color: '#3498db'
 				 } ], {
-					points: { show: true },
-					lines: { show: true },
-						yaxis: {
-							axisLabel: y_label,
+					bars: {
+						show: true,
+					 	clickable: true
+					},
+					yaxis: {
+							axisLabel: "Amounts (Thousands)",
 							position: "right"
 					},
 					xaxis: {
-					 	show: false
+					 	show: true,
+						ticks: [[0, "Not Due"],[1,"Current"],[2,"30 Days"],[3,"60 Days"],[4,"90 Days"],[5,"180 & Over"]]
 					    //mode: "time",
 					    //timeformat: "%Y/%m/%d"
 					},
