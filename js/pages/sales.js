@@ -76,12 +76,13 @@ function agingChart(user_token,company) {
 			};
 			$("#aging_detail").html('');
 			jQuery.each( aging_data, function( t,  data) {
-				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h4>'+aging_times[t]+'</h4><table id="aging_table_'+t+'" class="table sortable"><thead><tr><th>Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table></div>');
+				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h4>'+aging_times[t]+'</h4><table id="aging_table_'+t+'" class="table sortable"><thead><tr><th data-defaultsort="asc">Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table></div>');
 				jQuery.each( data.items, function( i,  item) {
 					$("#aging_table_"+t+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
 				});
 				$("#aging_table_"+t+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
 			});
+			$.bootstrapSortable(false);
 		}
 	});
 }
