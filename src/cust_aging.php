@@ -78,4 +78,4 @@ if(mysqli_num_rows($result) > 0) {
   $cust_aging['data']['total'] = 0;
 }
 
-echo json_decode($cust_aging);
+echo json_encode($cust_aging);
