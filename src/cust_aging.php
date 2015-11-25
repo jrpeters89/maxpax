@@ -1,6 +1,8 @@
 <?php
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 include("C:/inetpub/protected/database_connect.php");
+error_reporting(E_ALL & ~E_NOTICE);
+ini_set('display_errors', 1);
 
 $user_token = $_GET['user_token'];
 $company = $_GET['company'];
