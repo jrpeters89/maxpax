@@ -105,6 +105,7 @@ $("body").on("click","#logout_btn",function(event) {
 function getScripts(scripts, callback) {
     var progress = 0;
     var internalCallback = function () {
+				console.log(scripts[progress] + "Loaded");
         if (++progress == scripts.length) { callback(); }
     };
 
