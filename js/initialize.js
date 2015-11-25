@@ -27,6 +27,8 @@ function changePage(page) {
 			documentList(user_token);
 		} else if (page == "user") {
 			userList(user_token);
+		} else if (page == "aging") {
+			agingChart(user_token);
 		} else if (page == "sales") {
 			salesData(user_token);
 		} else {

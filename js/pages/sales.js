@@ -22,3 +22,35 @@ function salesData(user_token) {
 		}
 	});
 }
+
+function agingChart(user_token,company) {
+	if(typeof company == "undefined") { company = "1"; }
+	$("#aging_container").show();
+	$.get("/src/cust_aging.php?user_token="+user_token+"&company="+company,function(result) {
+		var aging = jQuery.parseJSON(result);
+		console.log(aging);
+		if (aging.data.total > 0) {
+			var plot = $.plot($("#chart_box"), [ {
+				    hoverable: true,
+				    data: data.chart,
+				    color: '#3498db'
+				 } ], {
+					points: { show: true },
+					lines: { show: true },
+						yaxis: {
+							axisLabel: y_label,
+							position: "right"
+					},
+					xaxis: {
+					 	show: false
+					    //mode: "time",
+					    //timeformat: "%Y/%m/%d"
+					},
+					grid: {
+						hoverable: true,
+					}
+				}
+			);
+		}
+	});
+}

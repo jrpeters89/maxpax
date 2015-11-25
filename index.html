@@ -39,7 +39,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="main_menu" class="nav navbar-nav">
+            <!-- Add new menu items here -->
             <li id="sales_link" class="menu_1"><a id="sales" href="#" data-link="sales">Sales</a></li>
+            <li id="aging_link" class="menu_1"><a id="aging" href="#" data-link="aging">AR Aging</a></li>
             <li id="documents_link" class="documents"><a id="documents" href="#" data-link="documents">Documents</a></li>
             <li id="inventory_link" class="menu_3 menu_4"><a id="inventory" href="#" data-link="inventory">Inventory</a></li>
             <li id="production_link" class="menu_3"><a id="production" href="#" data-link="production">Production</a></li>
@@ -54,77 +56,82 @@
 
     <div id="sales_container" class="page_container container company_1">
 
-		<h1 class="page_header">Sales Dashboard</h1>
+  		<h1 class="page_header">Sales Dashboard</h1>
 
-		<div class="panel panel-default">
-			<div class="panel-heading sales_header">
-				MTD Sales - <span class="cur_month">MONTH</span>
-				<p class="month_range">Date Range</p>
-			</div>
-			<div id="mtd_sales" class="panel-body">
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th class="cur_year">YYYY</th>
-							<th class="prev_year">YYYY</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="company_name">MaxPax</td>
-							<td id="cur_mtd_0">--</td>
-							<td id="past_mtd_0">--</td>
-						</tr>
-						<tr>
-							<td class="company_name">US Packaging</td>
-							<td id="cur_mtd_1">--</td>
-							<td id="past_mtd_1">--</td>
-						</tr>
-						<tr class="total_row">
-							<td></td>
-							<td id="cur_mtd_total">--</td>
-							<td id="past_mtd_total">--</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+  		<div class="panel panel-default">
+  			<div class="panel-heading sales_header">
+  				MTD Sales - <span class="cur_month">MONTH</span>
+  				<p class="month_range">Date Range</p>
+  			</div>
+  			<div id="mtd_sales" class="panel-body">
+  				<table class="table">
+  					<thead>
+  						<tr>
+  							<th></th>
+  							<th class="cur_year">YYYY</th>
+  							<th class="prev_year">YYYY</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td class="company_name">MaxPax</td>
+  							<td id="cur_mtd_0">--</td>
+  							<td id="past_mtd_0">--</td>
+  						</tr>
+  						<tr>
+  							<td class="company_name">US Packaging</td>
+  							<td id="cur_mtd_1">--</td>
+  							<td id="past_mtd_1">--</td>
+  						</tr>
+  						<tr class="total_row">
+  							<td></td>
+  							<td id="cur_mtd_total">--</td>
+  							<td id="past_mtd_total">--</td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
 
-		<div class="panel panel-default">
-			<div class="panel-heading sales_header">
-				YTD Sales
-			</div>
-			<div id="ytd_sales" class="panel-body">
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th class="cur_year">YYYY</th>
-							<th class="prev_year">YYYY</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="company_name">MaxPax</td>
-							<td id="cur_ytd_0">--</td>
-							<td id="past_ytd_0">--</td>
-						</tr>
-						<tr>
-							<td class="company_name">US Packaging</td>
-							<td id="cur_ytd_1">--</td>
-							<td id="past_ytd_1">--</td>
-						</tr>
-						<tr class="total_row">
-							<td></td>
-							<td id="cur_ytd_total">--</td>
-							<td id="past_ytd_total">--</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+  		<div class="panel panel-default">
+  			<div class="panel-heading sales_header">
+  				YTD Sales
+  			</div>
+  			<div id="ytd_sales" class="panel-body">
+  				<table class="table">
+  					<thead>
+  						<tr>
+  							<th></th>
+  							<th class="cur_year">YYYY</th>
+  							<th class="prev_year">YYYY</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td class="company_name">MaxPax</td>
+  							<td id="cur_ytd_0">--</td>
+  							<td id="past_ytd_0">--</td>
+  						</tr>
+  						<tr>
+  							<td class="company_name">US Packaging</td>
+  							<td id="cur_ytd_1">--</td>
+  							<td id="past_ytd_1">--</td>
+  						</tr>
+  						<tr class="total_row">
+  							<td></td>
+  							<td id="cur_ytd_total">--</td>
+  							<td id="past_ytd_total">--</td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
     </div> <!-- /container -->
+
+    <div id="aging_container" class="page_container container company_1">
+      <h1 class="page_header">AR Aging Summary</h1>
+      <div id="chart_box" style="width: 100%; height: 250px;"></div>
+    </div>
 
     <div id="documents_container" class="page_container container">
 	    <h1 class="page_header">QC Docs</h1>
