@@ -20,7 +20,7 @@ if(mysqli_num_rows($result) > 0) {
   $days_90 = strtotime("-90 days", $today);
   $days_60 = strtotime("-60 days", $today);
   $days_30 = strtotime("-30 days", $today);
-  $cust_aging['data']['due']['180']['count'] = $cust_aging['data']['due']['90']['count'] = $cust_aging['data']['due']['60']['count'] = $cust_aging['data']['due']['30']['count'] = $cust_aging['data']['due']['now']['count'] = $cust_aging['data']['due']['not']['count'] = 0;
+  $cust_aging['data']['due'][5]['count'] = $cust_aging['data']['due'][4]['count'] = $cust_aging['data']['due'][3]['count'] = $cust_aging['data']['due'][2]['count'] = $cust_aging['data']['due'][1]['count'] = $cust_aging['data']['due'][0]['count'] = 0;
 
   foreach($data as $item) {
     $due_date = (!empty($item['DueDate']) ? $item['DueDate'] : "");
@@ -30,23 +30,23 @@ if(mysqli_num_rows($result) > 0) {
       $cur_date = strtotime($due_date);
 
       if($cur_date > $today) {  //If selected date is in the future
-        $cust_aging['data']['due']['not']['count']++;
-        $array_insert = "not";
+        $cust_aging['data']['due'][0]['count']++;
+        $array_insert = 0;
       } else if ($today >= $cur_date && $cur_date > $days_30) { //If selected date is within the last 30 days
-        $cust_aging['data']['due']['now']['count']++;
-        $array_insert = "now";
+        $cust_aging['data']['due'][1]['count']++;
+        $array_insert = 1;
       } else if ($days_30 >= $cur_date && $cur_date > $days_60) { //If selected date is within the last 60 days
-        $cust_aging['data']['due']['30']['count']++;
-        $array_insert = "30";
+        $cust_aging['data']['due'][2]['count']++;
+        $array_insert = 2;
       } else if ($days_60 >= $cur_date && $cur_date > $days_90) { //If selected date is within the last 90 days
-        $cust_aging['data']['due']['60']['count']++;
-        $array_insert = "60";
+        $cust_aging['data']['due'][3]['count']++;
+        $array_insert = 3;
       } else if ($days_90 >= $cur_date && $cur_date > $days_180) { //If selected date is within the last 180 days
-        $cust_aging['data']['due']['90']['count']++;
-        $array_insert = "90";
+        $cust_aging['data']['due'][4]['count']++;
+        $array_insert = 4;
       } else {
-        $cust_aging['data']['due']['180']['count']++;
-        $array_insert = "180";
+        $cust_aging['data']['due'][5]['count']++;
+        $array_insert = 5;
       }
     } else {
       $not_due++;
@@ -63,15 +63,15 @@ if(mysqli_num_rows($result) > 0) {
     );
   }
   $cust_aging['data']['chart'] = array(
-    0 => array(0,$cust_aging['data']['due']['not']['count']),
-    1 => array(1,$cust_aging['data']['due']['now']['count']),
-    2 => array(2,$cust_aging['data']['due']['30']['count']),
-    3 => array(3,$cust_aging['data']['due']['60']['count']),
-    4 => array(4,$cust_aging['data']['due']['90']['count']),
-    5 => array(5,$cust_aging['data']['due']['180']['count'])
+    0 => array(0,$cust_aging['data']['due'][0]['count']),
+    1 => array(1,$cust_aging['data']['due'][1]['count']),
+    2 => array(2,$cust_aging['data']['due'][2]['count']),
+    3 => array(3,$cust_aging['data']['due'][3]['count']),
+    4 => array(4,$cust_aging['data']['due'][4]['count']),
+    5 => array(5,$cust_aging['data']['due'][5]['count'])
   );
 
-  $cust_aging['data']['total'] = $cust_aging['data']['due']['180']['count'] + $cust_aging['data']['due']['90']['count'] + $cust_aging['data']['due']['60']['count'] + $cust_aging['data']['due']['30']['count'] + $cust_aging['data']['due']['now']['count'] + $cust_aging['data']['due']['not']['count'];
+  $cust_aging['data']['total'] = $cust_aging['data']['due'][5]['count'] + $cust_aging['data']['due'][4]['count'] + $cust_aging['data']['due'][3]['count'] + $cust_aging['data']['due'][2]['count'] + $cust_aging['data']['due'][1]['count'] + $cust_aging['data']['due'][0]['count'];
 
   //echo '<pre>'.print_r($cust_aging,true);
 } else {

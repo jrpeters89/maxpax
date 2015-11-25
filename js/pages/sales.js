@@ -49,8 +49,6 @@ function agingChart(user_token,company) {
 					xaxis: {
 					 	show: true,
 						ticks: [[0, "Not Due"],[1,"Current"],[2,"30 Days"],[3,"60 Days"],[4,"90 Days"],[5,"180 & Over"]]
-					    //mode: "time",
-					    //timeformat: "%Y/%m/%d"
 					},
 					grid: {
 						clickable: true,
@@ -61,8 +59,26 @@ function agingChart(user_token,company) {
 			$("#chart_box").bind("plotclick", function (event, pos, item) {
 			    if (item) {
 			        //highlight(item.series, item.datapoint);
+							agingDetails(data)
 			        console.log(item);
 			    }
+			});
+
+			var aging_data = aging.data.due;
+			var aging_times = {
+				0: "Not Due",
+				1: "Due Now",
+				2: "> 30 Days",
+				3: "> 60 Days",
+				4: "> 90 Days",
+				5: "> 180 Days",
+			};
+			$("#aging_detail").html('');
+			jQuery.each( aging_data, function( t,  items) {
+				$("#aging_detail").append('<h4>'+aging_times[t]+'</h4><table id="aging_group_'+t+'" class="table sortable"><thead><tr><th class="width_180">Item #</th><th>Due Date</th><th class="text_right">Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+				jQuery.each( items, function( i,  item) {
+					$("#aging_group_"+t+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
+				});
 			});
 		}
 	});
