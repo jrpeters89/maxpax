@@ -83,9 +83,12 @@ function appSetup(company,callback) {
 				callback();
 			});
 		} else if (company.id == 1) {
-			getScripts(["/js/pages/sales.js", "/js/jquery.flot.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js"], function () {
-				console.log("Sales Scripts Loaded");
-				callback();
+			$.getScript("/js/jquery.flot.js", function(){ //Load Main Chart JS First
+				console.log("Flot Charts Loaded");
+				getScripts(["/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js"], function () {
+					console.log("Sales Scripts Loaded");
+					callback();
+				});
 			});
 		} else {
 			//No Scripts to Load
