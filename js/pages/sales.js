@@ -53,18 +53,15 @@ function agingChart(user_token,company) {
 					    //timeformat: "%Y/%m/%d"
 					},
 					grid: {
-						hoverable: true,
+						clickable: true,
+						hoverable: true
 					}
 				}
 			);
 			$("#chart_box").bind("plotclick", function (event, pos, item) {
-			    alert("You clicked at " + pos.x + ", " + pos.y);
-			    // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
-			    // if you need global screen coordinates, they are pos.pageX, pos.pageY
-
 			    if (item) {
 			        highlight(item.series, item.datapoint);
-			        alert("You clicked a point!");
+			        console.log(item);
 			    }
 			});
 		}
