@@ -20,7 +20,11 @@ if(mysqli_num_rows($result) > 0) {
   $days_90 = strtotime("-90 days", $today);
   $days_60 = strtotime("-60 days", $today);
   $days_30 = strtotime("-30 days", $today);
-  $cust_aging['data']['due'][5]['count'] = $cust_aging['data']['due'][4]['count'] = $cust_aging['data']['due'][3]['count'] = $cust_aging['data']['due'][2]['count'] = $cust_aging['data']['due'][1]['count'] = $cust_aging['data']['due'][0]['count'] = 0;
+  $cust_aging['data']['total'] = 0;
+  for($a=0; $a <= 5; $a++) {
+    $cust_aging['data']['due'][$a]['count'] = 0;
+    $cust_aging['data']['due'][$a]['amount'] = 0;
+  }
 
   foreach($data as $item) {
     $due_date = (!empty($item['DueDate']) ? $item['DueDate'] : "");
@@ -58,9 +62,11 @@ if(mysqli_num_rows($result) > 0) {
       'AmountCur' => number_format($item['AmountCur'],2,".",","),
       'CompanyName' => $item['CompanyName'],
       'CustName' => $item['CustName'],
-      'DueDate' => $due_date,
+      'DueDate' => (!empty($due_date) ? date("m/d/Y",$cur_date) : ""),
       'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
     );
+
+    $cust_aging['data']['due'][$array_insert]['amount'] += $item['AmountCur'];
   }
   $cust_aging['data']['chart'] = array(
     0 => array(0,$cust_aging['data']['due'][0]['count']),
@@ -71,7 +77,12 @@ if(mysqli_num_rows($result) > 0) {
     5 => array(5,$cust_aging['data']['due'][5]['count'])
   );
 
-  $cust_aging['data']['total'] = $cust_aging['data']['due'][5]['count'] + $cust_aging['data']['due'][4]['count'] + $cust_aging['data']['due'][3]['count'] + $cust_aging['data']['due'][2]['count'] + $cust_aging['data']['due'][1]['count'] + $cust_aging['data']['due'][0]['count'];
+  for($b=0; $b <= 5; $b++) {
+    $cust_aging['data']['total'] += $cust_aging['data']['due'][$b]['count'];
+    if(!empty($cust_aging['data']['due'][$b]['amount'])) {
+      $cust_aging['data']['due'][$b]['amount'] = number_format($cust_aging['data']['due'][$b]['amount']);
+    }
+  }
 
   //echo '<pre>'.print_r($cust_aging,true);
 } else {

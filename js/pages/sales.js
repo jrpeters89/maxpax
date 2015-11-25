@@ -75,10 +75,11 @@ function agingChart(user_token,company) {
 			};
 			$("#aging_detail").html('');
 			jQuery.each( aging_data, function( t,  data) {
-				$("#aging_detail").append('<h4>'+aging_times[t]+'</h4><table id="aging_group_'+t+'" class="table sortable"><thead><tr><th>Due Date</th><th class="text_right">Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+				$("#aging_detail").append('<h4>'+aging_times[t]+'</h4><table id="aging_group_'+t+'" class="table sortable"><thead><tr><th>Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table>');
 				jQuery.each( data.items, function( i,  item) {
 					$("#aging_group_"+t+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
 				});
+				$("#aging_group_"+t+" tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+data.amount+'</td><td></tr>');
 			});
 		}
 	});
