@@ -32,7 +32,7 @@ function agingChart(user_token,company) {
 		if (aging.data.total > 0) {
 			var plot = $.plot($("#chart_box"), [ {
 				    hoverable: true,
-				    data: data.chart,
+				    data: aging.data.chart,
 				    color: '#3498db'
 				 } ], {
 					points: { show: true },
