@@ -105,11 +105,14 @@ $("body").on("click","#logout_btn",function(event) {
 function getScripts(scripts, callback) {
     var progress = 0;
     var internalCallback = function () {
-				console.log(scripts[progress] + "Loaded");
+				console.log(scripts[progress] + " Loaded");
         if (++progress == scripts.length) { callback(); }
     };
 
-    scripts.forEach(function(script) { $.getScript(script, internalCallback); });
+    scripts.forEach(function(script) {
+			console.log("Loading script: "+script);
+			$.getScript(script, internalCallback);
+		});
 };
 
 function logout() {
