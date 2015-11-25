@@ -24,6 +24,7 @@ function salesData(user_token) {
 }
 
 function agingChart(user_token,company) {
+	$("#chart_box").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	if(typeof company == "undefined") { company = "1"; }
 	$("#aging_container").show();
 	$.get("/src/cust_aging.php?user_token="+user_token+"&company="+company,function(result) {
@@ -37,11 +38,13 @@ function agingChart(user_token,company) {
 				 } ], {
 					bars: {
 						show: true,
-					 	clickable: true
+					 	clickable: true,
+						align: "center"
 					},
 					yaxis: {
+							show: true,
 							axisLabel: "Amounts (Thousands)",
-							position: "right"
+							position: "left"
 					},
 					xaxis: {
 					 	show: true,
