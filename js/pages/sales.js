@@ -60,7 +60,7 @@ function agingChart(user_token,company) {
 			    if (item) {
 			        //highlight(item.series, item.datapoint);
 							$(".aging_group").hide();
-							//$("#aging_group_"+item).show();
+							$("#aging_group_"+item.dataIndex).show();
 			        console.log(item);
 			    }
 			});
