@@ -83,18 +83,9 @@ function appSetup(company,callback) {
 				callback();
 			});
 		} else if (company.id == 1) {
-			$.when(
-			    $.getScript( "/js/pages/sales.js" ),
-			    $.getScript( "/js/jquery.flot.js" ),
-			    $.getScript( "/js/jquery.flot.resize.js" ),
-			    $.getScript( "/js/jquery.flot.time.js" ),
-			    $.Deferred(function( deferred ){
-			        $( deferred.resolve );
-			    })
-			).done(function(){
-			    //the scripts are all loaded
-					console.log("Sales Scripts Loaded");
-					callback();
+			getScripts(["/js/pages/sales.js", "/js/jquery.flot.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js"], function () {
+				console.log("Sales Scripts Loaded");
+				callback();
 			});
 		} else {
 			//No Scripts to Load
@@ -110,6 +101,15 @@ $("body").on("click","#logout_btn",function(event) {
 	event.preventDefault();
 	logout();
 });
+
+function getScripts(scripts, callback) {
+    var progress = 0;
+    var internalCallback = function () {
+        if (++progress == scripts.length) { callback(); }
+    };
+
+    scripts.forEach(function(script) { $.getScript(script, internalCallback); });
+};
 
 function logout() {
 	Cookies.expire("user_token");
