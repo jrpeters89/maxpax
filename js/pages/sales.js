@@ -60,7 +60,7 @@ function agingChart(user_token,company) {
 			);
 			$("#chart_box").bind("plotclick", function (event, pos, item) {
 			    if (item) {
-			        highlight(item.series, item.datapoint);
+			        //highlight(item.series, item.datapoint);
 			        console.log(item);
 			    }
 			});
