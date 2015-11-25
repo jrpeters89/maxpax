@@ -60,7 +60,7 @@ function agingChart(user_token,company) {
 			    if (item) {
 			        //highlight(item.series, item.datapoint);
 							$(".aging_group").hide();
-							$("#aging_group_"+item).show();
+							//$("#aging_group_"+item).show();
 			        console.log(item);
 			    }
 			});
@@ -76,7 +76,7 @@ function agingChart(user_token,company) {
 			};
 			$("#aging_detail").html('');
 			jQuery.each( aging_data, function( t,  data) {
-				$("#aging_detail").append('<h4 id="aging_group_'+t+'" class="aging_group">'+aging_times[t]+'</h4><table id="aging_table_'+t+'" class="table sortable"><thead><tr><th>Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h4>'+aging_times[t]+'</h4><table id="aging_table_'+t+'" class="table sortable"><thead><tr><th>Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table></div>');
 				jQuery.each( data.items, function( i,  item) {
 					$("#aging_table_"+t+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
 				});
