@@ -94,7 +94,7 @@ function agingChart(user_token,company) {
 					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+numeral(cust_total).format('0,0.00')+'</strong></td><td></tr>');
 					cur_cust++;
 				});
-				$("#aging_group_"+t).append('<h4><strong>Grand Total:<strong> '+numeral(group_total).format('0,0.00')+'</h4>');
+				$("#aging_group_"+t).append('<div class="row"><div class="col-xs-6"><h4>Grand Total:</h4></div><div class="col-xs-6"><h4>'+numeral(group_total).format('0,0.00')+'</h4></div></div>');
 			});
 			$.bootstrapSortable(false);
 		} else {
