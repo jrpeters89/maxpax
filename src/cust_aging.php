@@ -85,7 +85,7 @@ if(mysqli_num_rows($result) > 0) {
     );
 
     for($b=0; $b <= 5; $b++) {
-      ksort($cust_aging['data']['due'][$b]['items']);
+      ksort($cust_aging['data']['due'][$b]);
       $cust_aging['data']['total'] += $cust_aging['data']['due'][$b]['count'];
       if(!empty($cust_aging['data']['due'][$b]['amount'])) {
         $cust_aging['data']['due'][$b]['amount'] = number_format($cust_aging['data']['due'][$b]['amount'],2,".",",");
