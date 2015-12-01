@@ -61,8 +61,8 @@ if(mysqli_num_rows($result) > 0) {
           $array_insert = 5;
         }
       } else {
-        $not_due++;
-        $array_insert = "not";
+        $cust_aging['data']['due'][0]['count']++;
+        $array_insert = 0;
       }
 
       $cust_aging['data']['due'][$array_insert]['items'][$item['CustName']][] = array (
@@ -75,8 +75,9 @@ if(mysqli_num_rows($result) > 0) {
         'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
       );
 
-      $cust_aging['data']['due'][$array_insert]['amount'] += (int) $item['AmountCur'];
+      $cust_aging['data']['due'][$array_insert]['amount'] .= $item['AmountCur'].' + ';
     }
+
     $cust_aging['data']['chart'] = array(
       0 => array(0,$cust_aging['data']['due'][0]['amount']),
       1 => array(1,$cust_aging['data']['due'][1]['amount']),
