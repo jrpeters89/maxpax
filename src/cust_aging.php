@@ -79,17 +79,16 @@ if(mysqli_num_rows($result) > 0) {
       );
 
       $totals[$array_insert] += number_format($raw_num,0,"","");
-      $cust_aging['data']['due'][$array_insert]['amount'] += 1;
-      $cust_aging['data']['due'][$array_insert]['detail'] .= number_format($raw_num,0,"","").' + ';
+      $cust_aging['data']['due'][$array_insert]['amount'] += number_format($raw_num,2,".","");
     }
 
     $cust_aging['data']['chart'] = array(
-      0 => array(0,$cust_aging['data']['due'][0]['amount']),
-      1 => array(1,$cust_aging['data']['due'][1]['amount']),
-      2 => array(2,$cust_aging['data']['due'][2]['amount']),
-      3 => array(3,$cust_aging['data']['due'][3]['amount']),
-      4 => array(4,$cust_aging['data']['due'][4]['amount']),
-      5 => array(5,$cust_aging['data']['due'][5]['amount'])
+      0 => array(0,$totals[0]),
+      1 => array(1,$totals[1]),
+      2 => array(2,$totals[2]),
+      3 => array(3,$totals[3]),
+      4 => array(4,$totals[4]),
+      5 => array(5,$totals[5])
     );
 
     for($b=0; $b <= 5; $b++) {
@@ -101,7 +100,7 @@ if(mysqli_num_rows($result) > 0) {
     }
   }
 
-  $cust_aging['data']['raw'] = $totals;
+  //$cust_aging['data']['raw'] = $totals;
   //echo '<pre>'.print_r($cust_aging,true);
 } else {
   $cust_aging['data']['total'] = 0;
