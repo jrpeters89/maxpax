@@ -79,7 +79,7 @@ if(mysqli_num_rows($result) > 0) {
       );
 
       $totals[$array_insert] += number_format($raw_num,0,"","");
-      $cust_aging['data']['due'][$array_insert]['amount'] += number_format($raw_num,0,"","");
+      $cust_aging['data']['due'][$array_insert]['amount'] += 1;
       $cust_aging['data']['due'][$array_insert]['detail'] .= number_format($raw_num,0,"","").' + ';
     }
 
@@ -101,6 +101,7 @@ if(mysqli_num_rows($result) > 0) {
     }
   }
 
+  $cust_aging['data']['raw'] = $totals;
   //echo '<pre>'.print_r($cust_aging,true);
 } else {
   $cust_aging['data']['total'] = 0;
