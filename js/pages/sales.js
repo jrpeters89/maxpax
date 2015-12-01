@@ -85,7 +85,7 @@ function agingChart(user_token,company) {
 					cust_total = parseFloat("0.00");
 					jQuery.each( items, function( i,  item) {
 						$("#aging_table_"+t+"_"+cur_cust+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
-						cust_total = parseFloat(cust_total) + parseFloat(item.AmountCur);
+						cust_total = parseFloat(cust_total) + parseFloat(item.RawNum);
 					});
 					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
 					cur_cust++;
