@@ -78,12 +78,12 @@ if(mysqli_num_rows($result) > 0) {
       $cust_aging['data']['due'][$array_insert]['amount'] += str_replace(',', '', $item['AmountCur']);
     }
     $cust_aging['data']['chart'] = array(
-      0 => array(0,$cust_aging['data']['due'][0]['count']),
-      1 => array(1,$cust_aging['data']['due'][1]['count']),
-      2 => array(2,$cust_aging['data']['due'][2]['count']),
-      3 => array(3,$cust_aging['data']['due'][3]['count']),
-      4 => array(4,$cust_aging['data']['due'][4]['count']),
-      5 => array(5,$cust_aging['data']['due'][5]['count'])
+      0 => array(0,$cust_aging['data']['due'][0]['amount']),
+      1 => array(1,$cust_aging['data']['due'][1]['amount']),
+      2 => array(2,$cust_aging['data']['due'][2]['amount']),
+      3 => array(3,$cust_aging['data']['due'][3]['amount']),
+      4 => array(4,$cust_aging['data']['due'][4]['amount']),
+      5 => array(5,$cust_aging['data']['due'][5]['amount'])
     );
 
     for($b=0; $b <= 5; $b++) {
