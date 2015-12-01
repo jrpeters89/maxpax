@@ -87,7 +87,7 @@ function agingChart(user_token,company) {
 						$("#aging_table_"+t+"_"+cur_cust+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
 						cust_total = parseFloat(cust_total) + parseFloat(item.RawNum);
 					});
-					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+cust_total+'</strong></td><td></tr>');
+					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+numeral(cust_total).format('0,0.00')+'</strong></td><td></tr>');
 					cur_cust++;
 				});
 				//$("#aging_table_"+t+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
