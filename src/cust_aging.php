@@ -24,6 +24,7 @@ if(mysqli_num_rows($result) > 0) {
   for($a=0; $a <= 5; $a++) {
     $cust_aging['data']['due'][$a]['count'] = 0;
     $cust_aging['data']['due'][$a]['amount'] = 0;
+    $cust_aging['data']['due'][$a]['items'] = array();
   }
 
   if($company == 2) {
@@ -85,7 +86,7 @@ if(mysqli_num_rows($result) > 0) {
     );
 
     for($b=0; $b <= 5; $b++) {
-      ksort($cust_aging['data']['due'][$b]);
+      ksort($cust_aging['data']['due'][$b]['items']);
       $cust_aging['data']['total'] += $cust_aging['data']['due'][$b]['count'];
       if(!empty($cust_aging['data']['due'][$b]['amount'])) {
         $cust_aging['data']['due'][$b]['amount'] = number_format($cust_aging['data']['due'][$b]['amount'],2,".",",");
