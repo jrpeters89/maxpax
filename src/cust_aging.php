@@ -83,12 +83,12 @@ if(mysqli_num_rows($result) > 0) {
     }
 
     $cust_aging['data']['chart'] = array(
-      0 => array(0,$totals[0]),
-      1 => array(1,$totals[1]),
-      2 => array(2,$totals[2]),
-      3 => array(3,$totals[3]),
-      4 => array(4,$totals[4]),
-      5 => array(5,$totals[5])
+      0 => array(0,($totals[0]/1000)),
+      1 => array(1,($totals[1]/1000)),
+      2 => array(2,($totals[2]/1000)),
+      3 => array(3,($totals[3]/1000)),
+      4 => array(4,($totals[4]/1000)),
+      5 => array(5,($totals[5]/1000))
     );
 
     for($b=0; $b <= 5; $b++) {
