@@ -28,7 +28,7 @@ if(mysqli_num_rows($result) > 0) {
   }
 
   if($company == 2) {
-    $company_name = "US Packaging";
+    $company_name = "US Packaging LLC";
   } else {
     $company_name = "MaxPax LLC";
   }
