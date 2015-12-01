@@ -68,6 +68,7 @@ if(mysqli_num_rows($result) > 0) {
       $cust_aging['data']['due'][$array_insert]['items'][$item['CustName']][] = array (
         'AccountNum' => $item['AccountNum'],
         'AmountCur' => number_format($item['AmountCur'],2,".",","),
+        'RawNum' => number_format($item['AmountCur'],2,"."),
         'CompanyName' => $item['CompanyName'],
         'CustName' => $item['CustName'],
         'DueDate' => (!empty($due_date) ? date("m/d/Y",$cur_date) : ""),
