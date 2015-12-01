@@ -75,15 +75,22 @@ function agingChart(user_token,company) {
 				5: "> 180 Days",
 			};
 			$("#aging_detail").html('');
+			var cur_cust = 0;
+			var cust_total  = 0.00;
 			jQuery.each( aging_data, function( t,  data) {
-				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h4>'+aging_times[t]+'</h4><table id="aging_table_'+t+'" class="table sortable"><thead><tr><th data-defaultsort="asc" data-dateformat="MM/DD/YYYY">Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table></div>');
+				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h4>'+aging_times[t]+'</h4></div>');
+				cur_cust = 0;
 				jQuery.each( data.items, function( cust,  items) {
-					$("#aging_table_"+t+" tbody").append('<tr><td colspan="3"><strong>'+cust+'<strong></td></tr>');
+					$("#aging_group_"+t+"").append('<h5>'+cust+'<h5><table id="aging_table_'+t+'_'+cur_cust+'" class="table sortable"><thead><tr><th data-defaultsort="asc" data-dateformat="MM/DD/YYYY">Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+					cust_total = 0.00;
 					jQuery.each( items, function( i,  item) {
-						$("#aging_table_"+t+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
+						$("#aging_table_"+t+"_"+cur_cust+" tbody").append('<tr><td class="width_180">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
+						cust_total += item.AmountCur;
 					});
+					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
+					cur_cust++;
 				});
-				$("#aging_table_"+t+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
+				//$("#aging_table_"+t+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
 			});
 			$.bootstrapSortable(false);
 		}
