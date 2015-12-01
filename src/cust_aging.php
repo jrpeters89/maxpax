@@ -25,6 +25,7 @@ if(mysqli_num_rows($result) > 0) {
     $cust_aging['data']['due'][$a]['count'] = 0;
     $cust_aging['data']['due'][$a]['amount'] = 0;
     $cust_aging['data']['due'][$a]['items'] = array();
+    $totals[$a] = 0;
   }
 
   if($company == 2) {
@@ -65,17 +66,21 @@ if(mysqli_num_rows($result) > 0) {
         $array_insert = 0;
       }
 
+      $raw_num = number_format($item['AmountCur'],2,".","");
+
       $cust_aging['data']['due'][$array_insert]['items'][$item['CustName']][] = array (
         'AccountNum' => $item['AccountNum'],
         'AmountCur' => number_format($item['AmountCur'],2,".",","),
-        'RawNum' => number_format($item['AmountCur'],2,".",""),
+        'RawNum' => $raw_num,
         'CompanyName' => $item['CompanyName'],
         'CustName' => $item['CustName'],
         'DueDate' => (!empty($due_date) ? date("m/d/Y",$cur_date) : ""),
         'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
       );
 
-      $cust_aging['data']['due'][$array_insert]['amount'] .= $item['AmountCur'].' + ';
+      $totals[$array_insert] += (float) $raw_num;
+      $cust_aging['data']['due'][$array_insert]['amount'] += $item['AmountCur'];
+      $cust_aging['data']['due'][$array_insert]['detail'] .= $item['AmountCur'].' + ';
     }
 
     $cust_aging['data']['chart'] = array(
