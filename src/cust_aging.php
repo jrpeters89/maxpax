@@ -23,7 +23,7 @@ if(mysqli_num_rows($result) > 0) {
   $cust_aging['data']['total'] = 0;
   for($a=0; $a <= 5; $a++) {
     $cust_aging['data']['due'][$a]['count'] = 0;
-    $cust_aging['data']['due'][$a]['amount'] = 0;
+    $cust_aging['data']['due'][$a]['amount'] = 0.00;
     $cust_aging['data']['due'][$a]['items'] = array();
   }
 
@@ -75,7 +75,7 @@ if(mysqli_num_rows($result) > 0) {
         'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
       );
 
-      $cust_aging['data']['due'][$array_insert]['amount'] += str_replace(',', '', $item['AmountCur']);
+      $cust_aging['data']['due'][$array_insert]['amount'] += number_format($item['AmountCur'],2,".","");
     }
     $cust_aging['data']['chart'] = array(
       0 => array(0,$cust_aging['data']['due'][0]['amount']),
