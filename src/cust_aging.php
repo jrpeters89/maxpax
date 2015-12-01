@@ -75,7 +75,7 @@ if(mysqli_num_rows($result) > 0) {
         'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
       );
 
-      $cust_aging['data']['due'][$array_insert]['amount'] += $item['AmountCur'];
+      $cust_aging['data']['due'][$array_insert]['amount'] += str_replace(',', '', $item['AmountCur']);
     }
     $cust_aging['data']['chart'] = array(
       0 => array(0,$cust_aging['data']['due'][0]['count']),
