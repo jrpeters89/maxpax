@@ -78,20 +78,23 @@ function agingChart(user_token,company) {
 			$("#aging_detail").html('');
 			var cur_cust = 0;
 			var cust_total  = parseFloat("0.00");
+			var group_total  = parseFloat("0.00");
 			jQuery.each( aging_data, function( t,  data) {
 				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">'+aging_times[t]+'</h3></div>');
 				cur_cust = 0;
+				group_total = parseFloat("0.00");
 				jQuery.each( data.items, function( cust,  items) {
 					$("#aging_group_"+t+"").append('<h4>'+cust+'</h4><table id="aging_table_'+t+'_'+cur_cust+'" class="table sortable"><thead><tr><th data-defaultsort="asc">Due Date</th><th>Voucher/Invoice</th><th class="text_right">Amount</th></tr></thead><tbody></tbody><tfoot></foot></table>');
 					cust_total = parseFloat("0.00");
 					jQuery.each( items, function( i,  item) {
 						$("#aging_table_"+t+"_"+cur_cust+" tbody").append('<tr><td class="width_180"  data-dateformat="MM/DD/YYYY">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
 						cust_total = parseFloat(cust_total) + parseFloat(item.RawNum);
+						group_total = parseFloat(group_total) + parseFloat(item.RawNum);
 					});
 					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+numeral(cust_total).format('0,0.00')+'</strong></td><td></tr>');
 					cur_cust++;
 				});
-				//$("#aging_table_"+t+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+data.amount+'</strong></td><td></tr>');
+				$("#aging_group_"+t).append('<h4><strong>Grand Total:<strong> '+numeral(group_total).format('0,0.00')+'</h4>');
 			});
 			$.bootstrapSortable(false);
 		} else {
