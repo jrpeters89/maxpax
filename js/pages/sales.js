@@ -25,6 +25,7 @@ function salesData(user_token) {
 
 function agingChart(user_token,company) {
 	$("#chart_box").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#aging_detail").html('<center>Loading...</center>')
 	if(typeof company == "undefined") { company = "1"; }
 	$("#aging_container").show();
 	$.get("/src/cust_aging.php?user_token="+user_token+"&company="+company,function(result) {
@@ -96,3 +97,11 @@ function agingChart(user_token,company) {
 		}
 	});
 }
+
+$("body").on("click",".aging_tab",function(event) {
+	event.preventDefault();
+	var company = $(this).data("tab");
+	$("#aging_tabs li").removeClass("active");
+	$("#tab_company_"+company).addClass("active");
+	agingChart(user_token,company);
+});
