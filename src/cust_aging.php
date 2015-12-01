@@ -79,7 +79,7 @@ if(mysqli_num_rows($result) > 0) {
       );
 
       $totals[$array_insert] += number_format($raw_num,0,"","");
-      $cust_aging['data']['due'][$array_insert]['amount'] += $item['AmountCur'];
+      $cust_aging['data']['due'][$array_insert]['amount'] += number_format($raw_num,0,"","");
       $cust_aging['data']['due'][$array_insert]['detail'] .= number_format($raw_num,0,"","").' + ';
     }
 
