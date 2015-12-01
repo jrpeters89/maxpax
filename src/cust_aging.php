@@ -26,61 +26,69 @@ if(mysqli_num_rows($result) > 0) {
     $cust_aging['data']['due'][$a]['amount'] = 0;
   }
 
+  if($company == 2) {
+    $company_name = "US Packaging";
+  } else {
+    $company_name = "MaxPax LLC";
+  }
+
   foreach($data as $item) {
-    $due_date = (!empty($item['DueDate']) ? $item['DueDate'] : "");
+    if($item['CompanyName'] == $company_name) {
+      $due_date = (!empty($item['DueDate']) ? $item['DueDate'] : "");
 
 
-    if(!empty($due_date)) {
-      $cur_date = strtotime($due_date);
+      if(!empty($due_date)) {
+        $cur_date = strtotime($due_date);
 
-      if($cur_date > $today) {  //If selected date is in the future
-        $cust_aging['data']['due'][0]['count']++;
-        $array_insert = 0;
-      } else if ($today >= $cur_date && $cur_date > $days_30) { //If selected date is within the last 30 days
-        $cust_aging['data']['due'][1]['count']++;
-        $array_insert = 1;
-      } else if ($days_30 >= $cur_date && $cur_date > $days_60) { //If selected date is within the last 60 days
-        $cust_aging['data']['due'][2]['count']++;
-        $array_insert = 2;
-      } else if ($days_60 >= $cur_date && $cur_date > $days_90) { //If selected date is within the last 90 days
-        $cust_aging['data']['due'][3]['count']++;
-        $array_insert = 3;
-      } else if ($days_90 >= $cur_date && $cur_date > $days_180) { //If selected date is within the last 180 days
-        $cust_aging['data']['due'][4]['count']++;
-        $array_insert = 4;
+        if($cur_date > $today) {  //If selected date is in the future
+          $cust_aging['data']['due'][0]['count']++;
+          $array_insert = 0;
+        } else if ($today >= $cur_date && $cur_date > $days_30) { //If selected date is within the last 30 days
+          $cust_aging['data']['due'][1]['count']++;
+          $array_insert = 1;
+        } else if ($days_30 >= $cur_date && $cur_date > $days_60) { //If selected date is within the last 60 days
+          $cust_aging['data']['due'][2]['count']++;
+          $array_insert = 2;
+        } else if ($days_60 >= $cur_date && $cur_date > $days_90) { //If selected date is within the last 90 days
+          $cust_aging['data']['due'][3]['count']++;
+          $array_insert = 3;
+        } else if ($days_90 >= $cur_date && $cur_date > $days_180) { //If selected date is within the last 180 days
+          $cust_aging['data']['due'][4]['count']++;
+          $array_insert = 4;
+        } else {
+          $cust_aging['data']['due'][5]['count']++;
+          $array_insert = 5;
+        }
       } else {
-        $cust_aging['data']['due'][5]['count']++;
-        $array_insert = 5;
+        $not_due++;
+        $array_insert = "not";
       }
-    } else {
-      $not_due++;
-      $array_insert = "not";
-    }
 
-    $cust_aging['data']['due'][$array_insert]['items'][] = array (
-      'AccountNum' => $item['AccountNum'],
-      'AmountCur' => number_format($item['AmountCur'],2,".",","),
-      'CompanyName' => $item['CompanyName'],
-      'CustName' => $item['CustName'],
-      'DueDate' => (!empty($due_date) ? date("m/d/Y",$cur_date) : ""),
-      'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
+      $cust_aging['data']['due'][$array_insert]['items'][$item['CustName']][] = array (
+        'AccountNum' => $item['AccountNum'],
+        'AmountCur' => number_format($item['AmountCur'],2,".",","),
+        'CompanyName' => $item['CompanyName'],
+        'CustName' => $item['CustName'],
+        'DueDate' => (!empty($due_date) ? date("m/d/Y",$cur_date) : ""),
+        'InvoiceId' => (!empty($item['InvoiceId']) ? $item['InvoiceId'] : "")
+      );
+
+      $cust_aging['data']['due'][$array_insert]['amount'] += $item['AmountCur'];
+    }
+    $cust_aging['data']['chart'] = array(
+      0 => array(0,$cust_aging['data']['due'][0]['count']),
+      1 => array(1,$cust_aging['data']['due'][1]['count']),
+      2 => array(2,$cust_aging['data']['due'][2]['count']),
+      3 => array(3,$cust_aging['data']['due'][3]['count']),
+      4 => array(4,$cust_aging['data']['due'][4]['count']),
+      5 => array(5,$cust_aging['data']['due'][5]['count'])
     );
 
-    $cust_aging['data']['due'][$array_insert]['amount'] += $item['AmountCur'];
-  }
-  $cust_aging['data']['chart'] = array(
-    0 => array(0,$cust_aging['data']['due'][0]['count']),
-    1 => array(1,$cust_aging['data']['due'][1]['count']),
-    2 => array(2,$cust_aging['data']['due'][2]['count']),
-    3 => array(3,$cust_aging['data']['due'][3]['count']),
-    4 => array(4,$cust_aging['data']['due'][4]['count']),
-    5 => array(5,$cust_aging['data']['due'][5]['count'])
-  );
-
-  for($b=0; $b <= 5; $b++) {
-    $cust_aging['data']['total'] += $cust_aging['data']['due'][$b]['count'];
-    if(!empty($cust_aging['data']['due'][$b]['amount'])) {
-      $cust_aging['data']['due'][$b]['amount'] = number_format($cust_aging['data']['due'][$b]['amount'],2,".",",");
+    for($b=0; $b <= 5; $b++) {
+      $cust_aging['data']['total'] += $cust_aging['data']['due'][$b]['count'];
+      if(!empty($cust_aging['data']['due'][$b]['amount'])) {
+        $cust_aging['data']['due'][$b]['amount'] = number_format($cust_aging['data']['due'][$b]['amount'],2,".",",");
+      }
     }
   }
 
