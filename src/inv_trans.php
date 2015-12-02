@@ -21,6 +21,8 @@ if(!empty($user_token)) {
                 'CompanyId' => $data['CompanyId']
             );
         }
+
+        $inv_trans['count'] = count($inv_trans['data']);
     }
 
 }
