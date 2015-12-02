@@ -31,7 +31,10 @@ function changePage(page) {
 			agingChart(user_token);
 		} else if (page == "sales") {
 			salesData(user_token);
-		} else {
+		} else if(page == "transactions") {
+            inventoryTransactions(user_token);
+        } else
+        {
 			//Do Nothing
 		}
 	}
