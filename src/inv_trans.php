@@ -16,6 +16,11 @@ if(!empty($user_token)) {
 
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
+        foreach($data as $inv) {
+            $inv_trans['data'][] = array(
+                'CompanyId' => $data['CompanyId']
+            );
+        }
     }
 
 }
