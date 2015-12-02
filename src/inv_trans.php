@@ -18,7 +18,14 @@ if(!empty($user_token)) {
 
         foreach($data as $inv) {
             $inv_trans['data'][] = array(
-                'CompanyId' => $data['CompanyId']
+                'CompanyId' => $data['CompanyId'],
+                'DatePhysical' => $data['DatePhysical'],
+                'InventTransRefId' => $data['InventTransRefId'],
+                'InventTransType' => $data['InventTransType'],
+                'InventUnitId' => $data['InventUnitId'],
+                'ItemId' => $data['ItemId'],
+                'ItemName' => $data['ItemName'],
+                'Qty' => $data['Qty']
             );
         }
 
