@@ -72,7 +72,12 @@ function appSetup(company,callback) {
 	}
 
 	if(company.id > 0) {
-		if (company.id == 4) {
+        if (company.id == 5) {
+            $.getScript("/js/pages/adm.js", function() {
+               console.log("ADM Script Loaded");
+                callback();
+            });
+        } else if (company.id == 4) {
 			$.getScript("/js/pages/portion-pac.js", function(){
 				console.log("Portion Pac Script Loaded");
 				callback();
