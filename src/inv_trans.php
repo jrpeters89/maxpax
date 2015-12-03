@@ -17,7 +17,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
         foreach ($data as $item) {
-            if (substr($item['ItemId'], 0, 3) == "ADM") {
+            if (substr($item['ItemId'], 0, 3) == "ADM" && $item['InventTransRefId'] != null) {
 
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
