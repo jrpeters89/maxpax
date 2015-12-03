@@ -18,7 +18,7 @@ if (!empty($user_token)) {
 
         foreach ($data as $item) {
             if (substr($item['ItemId'], 0, 3) == "ADM") {
-                $inv_trans['ItemId'] = $item['ItemId'];
+                $inv_trans['data']['ItemId'] = $item['ItemId'];
                 $inv_trans['data']['items'][$item['ItemId']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
                     'Qty' => $item['Qty'],
