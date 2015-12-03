@@ -46,6 +46,7 @@
             <li id="inventory_link" class="menu_3 menu_4"><a id="inventory" href="#" data-link="inventory">Inventory</a></li>
             <li id="production_link" class="menu_3"><a id="production" href="#" data-link="production">Production</a></li>
             <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a></li>
+            <li id="shipments_link" class="menu_7"><a id="shipments" href="#" data-link="shipments">Shipments</a></li>
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
             <li><a id="logout" href="#" data-link="logout" class="visible-xs">Logout</a></li>
           </ul>
@@ -197,6 +198,21 @@
 	    </div>
 	    <p id="no_opensales_results" style="display:none;">No sales found</p>
     </div>
+
+    <div id="shipments_container" class="page_container container company_7">
+  		<div class="row">
+  		    <div class="col-xs-10">
+  			    <h1 class="page_header">Shipments</h1>
+  		    </div>
+  		    <div class="col-xs-2" style="text-align: right;">
+  		    	<a download="shipments.xls" onclick="return ExcellentExport.excel(this, 'shipments_list', 'Shipments');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+  		    </div>
+  		</div>
+  	    <div id="shipments_list" class="table-responsive">
+  		    Loading...
+  	    </div>
+  	    <p id="no_ship_results" style="display:none;">No Shipments found</p>
+      </div>
 
     <div id="user_container" class="page_container container admin_container">
 	    <h1 class="page_header" style="display:inline-block;">Users</h1>
