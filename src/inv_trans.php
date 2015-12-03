@@ -21,11 +21,7 @@ if (!empty($user_token)) {
                 $inv_trans['data'][] = array(
                     'ItemId' => $item['ItemId']
                 );
-                $inv_trans['data']['items'][$item['ItemId']][] = array(
-                    'ReferenceId' => $item['InventTransRefId'],
-                    'Qty' => $item['Qty'],
-                    'UOM' => $item['InventUnitId']
-                );
+
 
                 /*$inv_trans['data'][] = array(
                     'CompanyId' => $inv['CompanyId'],
