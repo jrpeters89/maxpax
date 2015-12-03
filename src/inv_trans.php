@@ -18,8 +18,8 @@ if (!empty($user_token)) {
 
         foreach ($data as $item) {
             if (substr($item['ItemId'], 0, 3) == "ADM") {
-                $inv_trans['data'][] = array(
-                    'ItemId' => $item['ItemId']
+                $inv_trans['data'][$item['ItemId']][] = array(
+                    'InventTransType' => $item['InventTransType']
                 );
 
 

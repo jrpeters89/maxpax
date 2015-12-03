@@ -7,6 +7,9 @@ function inventoryTransactions(user_token) {
             $("#inv_trans_list").html('<table class="table sortable"><thead><tr><th class="width_180">Company ID</th><th>Date Physical</th><th class="text_right">Invent Trans Ref Id</th><th>Invent Trans Type</th><th class="text_right">Invent Unit Id</th><th>Item Id</th><th class="text_right">Item Name</th><th>Qty</th></tr></thead><tbody></tbody><tfoot></foot></table>');
             jQuery.each( inventory.data, function( t, inv ) {
                 $("#inv_trans_list tbody").append('<tr><td class="width_180">'+inv.ItemId+'</td></tr>');
+                jQuery.each(inv, function (i, item) {
+                    $("#inv_trans_list tbody").append('<tr><td class="width_180">'+item.InventTransType+'</td></tr>');
+                });
 
             });
             /*if(typeof inventory.total != "undefined") {
