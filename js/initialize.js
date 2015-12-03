@@ -31,6 +31,8 @@ function changePage(page) {
 			agingChart(user_token);
 		} else if (page == "sales") {
 			salesData(user_token);
+		}	else if (page == "shipments") {
+			shippingData(user_token);
 		} else {
 			//Do Nothing
 		}
@@ -80,6 +82,11 @@ function appSetup(company,callback) {
 		} else if(company.id == 3) {
 			$.getScript("/js/pages/nourish.js", function(){
 				console.log("Nourish Script Loaded");
+				callback();
+			});
+		}	else if(company.id == 7) {
+			$.getScript("/js/pages/shipping.js", function(){
+				console.log("GoPicnic Script Loaded");
 				callback();
 			});
 		} else if (company.id == 1) {
