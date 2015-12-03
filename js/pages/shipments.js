@@ -1,6 +1,5 @@
 function shippingData(user_token) {
 	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
-	$("#shipments_list").html('<center>Loading...</center>');
 	$("#shipments_container").show();
 	$.get("/src/shipments.php?act=list&user_token="+user_token,function(result) {
 		var shipments = jQuery.parseJSON(result);
