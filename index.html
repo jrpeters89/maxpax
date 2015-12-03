@@ -46,7 +46,11 @@
             <li id="inventory_link" class="menu_3 menu_4"><a id="inventory" href="#" data-link="inventory">Inventory</a></li>
             <li id="production_link" class="menu_3"><a id="production" href="#" data-link="production">Production</a></li>
             <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a></li>
+<<<<<<< HEAD
             <li id="shipments_link" class="menu_7"><a id="shipments" href="#" data-link="shipments">Shipments</a></li>
+=======
+              <li id="inv_trans_link" class="menu_5"><a id="transactions" href="#" data-link="transactions">Transactions</a> </li>
+>>>>>>> origin/master
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
             <li><a id="logout" href="#" data-link="logout" class="visible-xs">Logout</a></li>
           </ul>
@@ -163,6 +167,21 @@
 		    Loading...
 	    </div>
 	    <p id="no_inv_results" style="display:none;">No inventory found</p>
+    </div>
+
+    <div id="inv_trans_container" class="page_container container company_5">
+        <div class="row">
+            <div class="col-xs-10">
+                <h1 class="page-header">Inventory Transactions</h1>
+            </div>
+            <div class="col-xs-2" style="...">
+                <a download="inv_trans.xls" onclick="return ExcellentExport.excel(this, 'inv_trans_list', 'Inventory Transactions');" class="btn btn-success" style="...">Excel</a>
+            </div>
+        </div>
+        <div id="inv_trans_list" class="table-responsive">
+            Loading...
+        </div>
+        <p id="no_inv_trans_results" style="...">No inventory transactions found</p>
     </div>
 
 	<div id="production_container" class="page_container container company_3">

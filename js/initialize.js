@@ -31,9 +31,16 @@ function changePage(page) {
 			agingChart(user_token);
 		} else if (page == "sales") {
 			salesData(user_token);
+<<<<<<< HEAD
 		}	else if (page == "shipments") {
 			shippingData(user_token);
 		} else {
+=======
+		} else if(page == "transactions") {
+            inventoryTransactions(user_token);
+        } else
+        {
+>>>>>>> origin/master
 			//Do Nothing
 		}
 	}
@@ -74,7 +81,12 @@ function appSetup(company,callback) {
 	}
 
 	if(company.id > 0) {
-		if (company.id == 4) {
+        if (company.id == 5) {
+            $.getScript("/js/pages/adm.js", function() {
+               console.log("ADM Script Loaded");
+                callback();
+            });
+        } else if (company.id == 4) {
 			$.getScript("/js/pages/portion-pac.js", function(){
 				console.log("Portion Pac Script Loaded");
 				callback();
