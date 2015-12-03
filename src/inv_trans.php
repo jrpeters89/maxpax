@@ -20,7 +20,7 @@ if (!empty($user_token)) {
             if (substr($item['ItemId'], 0, 3) == "ADM") {
                 if($item['InventTransType'] == "Production" || $item['InventTransType'] == "Sales")
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
-                    'ReferemceId' => $item['ReferenceId']
+                    'ReferemceId' => $item['InventTransRefId']
                 );
 
 

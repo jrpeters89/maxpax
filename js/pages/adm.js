@@ -8,7 +8,7 @@ function inventoryTransactions(user_token) {
             jQuery.each( inventory.data, function( t, inv ) {
                 $("#inv_trans_list tbody").append('<tr><td class="width_180">'+t+'</td></tr>');
                 jQuery.each(inv, function (i, item) {
-                    $("#inv_trans_list tbody").append('<tr><td class="width_180">'+item.InventTransType+'</td></tr>');
+                    $("#inv_trans_list tbody").append('<tr><td class="width_180">'+item+'</td></tr>');
                     jQuery.each(item, function (j, jtem) {
                         $("#inv_trans_list tbody").append('<tr><td class="width_180">'+jtem.ReferenceId+'</td></tr>');
                     });
