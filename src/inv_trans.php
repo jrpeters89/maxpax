@@ -4,7 +4,7 @@ include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
 
-if(!empty($user_token)) {
+if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
     $result = mysqli_query($conn, "SELECT `company` FROM `users` WHERE `token`='$user_token'") or die(mysqli_error($conn));
     if (mysqli_num_rows($result) > 0) {
@@ -16,13 +16,14 @@ if(!empty($user_token)) {
 
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
-        foreach($data as $item) {
-            if(substr($item['ItemId'], 0, 3) == "ADM") {
-                    $inv_trans['data']['items'][$item['ItemId']][] = array (
-                        'ReferenceId' => $item['InventTransRefId'],
-                        'Qty' => $item['Qty'],
-                        'UOM' => $item['InventUnitId']
-                    );
+        foreach ($data as $item) {
+            if (substr($item['ItemId'], 0, 3) == "ADM") {
+                $inv_trans['ItemId'] = $item['ItemId'];
+                $inv_trans['data']['items'][$item['ItemId']][] = array(
+                    'ReferenceId' => $item['InventTransRefId'],
+                    'Qty' => $item['Qty'],
+                    'UOM' => $item['InventUnitId']
+                );
 
                 /*$inv_trans['data'][] = array(
                     'CompanyId' => $inv['CompanyId'],
