@@ -26,7 +26,7 @@ if($type == "items") {
 				'CustName' => $sale['CustName'],
 				'SalesUnit' => $sale['SalesUnit'],
 				'SalesQty' => number_format($sales_qty,0,".",","),
-				'Shipped' => number_format($shipped,0,".",","),
+				 'Shipped' => number_format($shipped,0,".",","),
 				'Remainder' => number_format($remaining,0,".",","),
 				'DeliveryAddress' => (!empty($sale['DeliveryAddress']) ? $sale['DeliveryAddress'] : "")
 			);
