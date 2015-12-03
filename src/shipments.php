@@ -16,7 +16,7 @@ if(!empty($user_token)) {
 
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
 
-				foreach($data as $inv) {
+				foreach($data as $ship) {
 					$shipments['data'][] = array (
 									'CustomerRef' => $ship['CustomerRef'],
 									'BatchNumber' => $ship['BatchNumber'],
