@@ -27,39 +27,9 @@ if(!empty($user_token)) {
 									'SalesOrder' => $ship['SalesOrder']
             );
         }
+        $shipments['count'] = count($shipments['data']);
     }
 
 }
 
 echo(json_encode($shipments));
-
-//
-// <?php
-// $xml = simplexml_load_file("../Data/ShippingTransaction/ShippingTransactions.xml");
-// $json = json_encode($xml);
-// $array = json_decode($json,TRUE);
-//
-// $type = $_GET['type'];
-//
-// $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
-//
-// 	foreach($data as $ship) {
-// 		// if($ship['CustAccount'] == "USP-C000041") {
-//
-// 			$shipments['data'][] = array (
-// 				'CustomerRef' => $ship['CustomerRef'],
-// 				'BatchNumber' => $ship['BatchNumber'],
-// 				'ExpirationDate' => $ship['ExpirationDate'],
-// 				'Item' => $ship['Item'],
-// 				'Description' => $ship['Description'],
-// 				'Quantity' => $ship['Quantity'],
-// 				'SalesOrder' => $ship['SalesOrder'],
-//
-// 			);
-// 		// }
-// 	}
-//
-// $shipments['count'] = count($shipments['data']);
-//
-// echo json_encode($shipments);
-//echo '<pre>'.print_r($data,true);
