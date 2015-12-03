@@ -19,8 +19,8 @@ if (!empty($user_token)) {
         foreach ($data as $item) {
             if (substr($item['ItemId'], 0, 3) == "ADM") {
                 if($item['InventTransType'] == "Production" || $item['InventTransType'] == "Sales")
-                $inv_trans['data'][$item['ItemId']][] = array(
-                    'InventTransType' => $item['InventTransType']
+                $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
+                    'ReferemceId' => $item['ReferenceId']
                 );
 
 
