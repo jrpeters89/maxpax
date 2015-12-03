@@ -16,9 +16,15 @@ if(!empty($user_token)) {
 
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
-        foreach($data as $inv) {
-            if(substr($inv[], 0, 3) == "ADM") {
-                $inv_trans['data'][] = array(
+        foreach($data as $item) {
+            if(substr($item['ItemId'], 0, 3) == "ADM") {
+                    $inv_trans['data']['items'][$item['ItemId']][] = array (
+                        'ReferenceId' => $item['InventTransRefId'],
+                        'Qty' => $item['Qty'],
+                        'UOM' => $item['InventUnitId']
+                    );
+
+                /*$inv_trans['data'][] = array(
                     'CompanyId' => $inv['CompanyId'],
                     'DatePhysical' => $inv['DatePhysical'],
                     'InventTransRefId' => $inv['InventTransRefId'],
@@ -27,7 +33,7 @@ if(!empty($user_token)) {
                     'ItemId' => $inv['ItemId'],
                     'ItemName' => $inv['ItemName'],
                     'Qty' => $inv['Qty']
-                );
+                );*/
             }
         }
 
