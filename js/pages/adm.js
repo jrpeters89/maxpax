@@ -8,9 +8,8 @@ function inventoryTransactions(user_token) {
             jQuery.each( inventory.data, function( t, inv ) {
 
                 jQuery.each(inv.items, function(itemId, items){
-                    $("#inv_trans_list tbody").append('<tr><td class="width_180">'+items.ItemId+'</td></tr>');
                     jQuery.each(items, function(i, item){
-
+                        $("#inv_trans_list tbody").append('<tr><td class="width_180">'+item.ReferenceId+'</td></tr>');
                     });
                 });
             });
