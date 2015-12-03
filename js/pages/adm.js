@@ -14,6 +14,7 @@ function inventoryTransactions(user_token) {
                         $("#inv_rpt"+"i"+"_"+cur_trans+" tbody").append('<tr><td class="width_180">'+jtem.ReferenceId+'</td><td>'+jtem.Qty+'</td><td>'+jtem.UOM+'</td></tr>');
                     });
                 });
+                cur_trans++;
 
             });
             /*if(typeof inventory.total != "undefined") {
