@@ -31,16 +31,13 @@ function changePage(page) {
 			agingChart(user_token);
 		} else if (page == "sales") {
 			salesData(user_token);
-<<<<<<< HEAD
 		}	else if (page == "shipments") {
 			shippingData(user_token);
-		} else {
-=======
 		} else if(page == "transactions") {
-            inventoryTransactions(user_token);
+      inventoryTransactions(user_token);
         } else
         {
->>>>>>> origin/master
+
 			//Do Nothing
 		}
 	}
