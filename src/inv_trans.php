@@ -21,7 +21,7 @@ if (!empty($user_token)) {
                 if($item['InventTransType'] == "Production" || $item['InventTransType'] == "Sales")
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
-                    'Quantity' => $item['Qty'],
+                    'Quantity' => number_format($item['Qty'],2,".",","),
                     'UOM' => $item['InventUnitId']
                 );
 
