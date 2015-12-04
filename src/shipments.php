@@ -4,44 +4,43 @@ include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
 
-if(!empty($user_token)) {
+if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
     $result = mysqli_query($conn, "SELECT `company` FROM `users` WHERE `token`='$user_token'") or die(mysqli_error($conn));
     if (mysqli_num_rows($result) > 0) {
 
         $row = mysqli_fetch_array($result);
 
-        $xml = simplexml_load_file("../Data/ShippingTransactions/ShippingTransactions.xml");
-        $json = json_encode($xml);
+        $xml   = simplexml_load_file("../Data/ShippingTransactions/ShippingTransactions.xml");
+        $json  = json_encode($xml);
         $array = json_decode($json, TRUE);
 
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
         //if($data['CompanyName'] == "USP-C000030") {
-        				foreach($data as $item) {
-        					$shipments['data'][$item['PackingSlipId']][] = array (
-        									'CustomerRef' => $item['CustomerRef'],
-        									'ShipDate' => $item['ShipDate'],
-        									'Item' => $item['Item'],
-        									'Description' => $item['Description'],
-        									'SalesOrder' => $item['SalesOrder']
-                    );
+        foreach ($data as $item) {
+            $shipments['data'][$item['PackingSlipId']][] = array(
+                'CustomerRef' => $item['CustomerRef'],
+                'ShipDate' => $item['ShipDate'],
+                'Item' => $item['Item'],
+                'Description' => $item['Description'],
+                'SalesOrder' => $item['SalesOrder']
+            );
 
-                    // $Shipments['data'][$item['PackingSlipId']][] = array (
-                    //         'PackingSlipId' => $item['PackingSlipId'],
-          					// 				'BatchNumber' => $item['BatchNumber'],
-          					// 				'ExpirationDate' => $item['ExpirationDate'],
-          					// 				'Quantity' => $item['Quantity'],
-          					// 				'Unit' => $item['Unit']
-                    //   );
-                }
-            //  }
-              $shipments['count'] = count($shipments['data']);
-
-            }
-
+            // $Shipments['data'][$item['PackingSlipId']][] = array (
+            //         'PackingSlipId' => $item['PackingSlipId'],
+            // 				'BatchNumber' => $item['BatchNumber'],
+            // 				'ExpirationDate' => $item['ExpirationDate'],
+            // 				'Quantity' => $item['Quantity'],
+            // 				'Unit' => $item['Unit']
+            //   );
         }
+        //  }
+        $shipments['count'] = count($shipments['data']);        
+    }
 
-        echo(json_encode($shipments));
+}
+
+echo (json_encode($shipments));
 
 // //get all packing lists
 //         $packingListsXml = $array->xpath('Body/MessageParts/MAX_ShipTransAPP/MAX_ShipTransTmp/PackingSlipId')
