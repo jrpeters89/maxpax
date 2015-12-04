@@ -23,7 +23,8 @@ if (!empty($user_token)) {
                     'ReferenceId' => $item['InventTransRefId'],
                     'Qty' => number_format($item['Qty'],2,".",","),
                     'UOM' => $item['InventUnitId'],
-                    'Lot' => $item['InventBatchId']
+                    'Lot' => $item['InventBatchId'],
+                    'Date' => $item['DatePhysical']
                 );
 
 
