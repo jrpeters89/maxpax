@@ -44,9 +44,7 @@ if(!empty($user_token)) {
 
         echo(json_encode($shipments));
         echo (json_encode($subShipments));
-
-
-
+        
 // //get all packing lists
 //         $packingListsXml = $array->xpath('Body/MessageParts/MAX_ShipTransAPP/MAX_ShipTransTmp/PackingSlipId')
 //
