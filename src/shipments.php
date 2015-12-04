@@ -18,7 +18,7 @@ if(!empty($user_token)) {
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
         //if($data['CompanyName'] == "USP-C000030") {
         				foreach($data as $item) {
-        					$shipments['data'][$item['PackingSlipId']] = array (
+        					$shipments['data'][$item['PackingSlipId']][] = array (
         									'CustomerRef' => $item['CustomerRef'],
         									'ShipDate' => $item['ShipDate'],
         									'Item' => $item['Item'],
@@ -26,16 +26,15 @@ if(!empty($user_token)) {
         									'SalesOrder' => $item['SalesOrder']
                     );
 
-                    $subShipments['data'][$item['PackingSlipId']][] = array (
-                            'PackingSlipId' => $item['PackingSlipId'],
-          									'BatchNumber' => $item['BatchNumber'],
-          									'ExpirationDate' => $item['ExpirationDate'],
-          									'Quantity' => $item['Quantity'],
-          									'Unit' => $item['Unit']
-                      );
+                    // $Shipments['data'][$item['PackingSlipId']][] = array (
+                    //         'PackingSlipId' => $item['PackingSlipId'],
+          					// 				'BatchNumber' => $item['BatchNumber'],
+          					// 				'ExpirationDate' => $item['ExpirationDate'],
+          					// 				'Quantity' => $item['Quantity'],
+          					// 				'Unit' => $item['Unit']
+                    //   );
                 }
             //  }
-
               $shipments['count'] = count($shipments['data']);
 
             }
@@ -43,8 +42,7 @@ if(!empty($user_token)) {
         }
 
         echo(json_encode($shipments));
-        echo (json_encode($subShipments));
-        
+
 // //get all packing lists
 //         $packingListsXml = $array->xpath('Body/MessageParts/MAX_ShipTransAPP/MAX_ShipTransTmp/PackingSlipId')
 //
