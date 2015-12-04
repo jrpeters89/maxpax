@@ -35,7 +35,8 @@ if (!empty($user_token)) {
             //   );
         }
         //  }
-        $shipments['count'] = count($shipments['data']);        
+        $shipments['count'] = count($shipments['data']);
+        var_dump($shipments['count']);    
     }
 
 }
