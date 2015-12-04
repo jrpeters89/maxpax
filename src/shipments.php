@@ -40,7 +40,7 @@ if (!empty($user_token)) {
     }
 
 }
-var_dump($shipments['count']);
+
 echo (json_encode($shipments));
 
 // //get all packing lists
