@@ -4,7 +4,7 @@ function shippingData(user_token) {
     $.get("/src/shipments.php?act=list&user_token=" + user_token, function(result) {
         var shipments = jQuery.parseJSON(result);
         if (shipments.count > 0) {
-            ("#shipments_list").html('<table class="table sortable"><thead><tr><th class="text_right">Packing Slip #</tr></thead><tbody></tbody><tfoot></foot></table>');
+            $("#shipments_list").html('<table class="table sortable"><thead><tr><th class="text_right">Packing Slip #</tr></thead><tbody></tbody><tfoot></foot></table>');
             //$("#shipments_list").html('<table class="table sortable"><thead><tr><th class="text_right">Packing Slip #</th><th>Ship Date</th><th>Item #</th><th>Description</th><th class="text_right">Sales Order #</th><th class="text_right">Customer Ref</th></tr></thead><tbody></tbody><tfoot></foot></table>');
             jQuery.each(shipments.data, function(i, psId) {
                 $("#shipments_list tbody").append('<tr><td>' + psId.PackingSlipId + '</td></tr>');
