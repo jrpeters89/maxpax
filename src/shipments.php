@@ -25,7 +25,7 @@ if (!empty($user_token)) {
                 'Description' => $item['Description'],
                 'SalesOrder' => $item['SalesOrder']
 
-                var_dump($item['Item']);
+
             );
 
 
@@ -39,6 +39,7 @@ if (!empty($user_token)) {
         }
         //  }
         $shipments['count'] = count($shipments['data']);
+        var_dump($shipments['count']);
     }
 
 }
