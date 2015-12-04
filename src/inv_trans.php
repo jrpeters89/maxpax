@@ -22,7 +22,8 @@ if (!empty($user_token)) {
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
                     'Qty' => number_format($item['Qty'],2,".",","),
-                    'UOM' => $item['InventUnitId']
+                    'UOM' => $item['InventUnitId'],
+                    'Lot' => $item['InventBatchId']
                 );
 
 
