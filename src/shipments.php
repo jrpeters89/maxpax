@@ -24,10 +24,7 @@ if (!empty($user_token)) {
                 'Item' => $item['Item'],
                 'Description' => $item['Description'],
                 'SalesOrder' => $item['SalesOrder']
-
-
             );
-
 
             // $Shipments['data'][$item['PackingSlipId']][] = array (
             //         'PackingSlipId' => $item['PackingSlipId'],
@@ -38,8 +35,7 @@ if (!empty($user_token)) {
             //   );
         }
         //  }
-        $shipments['count'] = count($shipments['data']);
-        var_dump($shipments['count']);
+        $shipments['count'] = count($shipments['data']);        
     }
 
 }
