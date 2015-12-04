@@ -15,53 +15,62 @@ if(!empty($user_token)) {
         $json = json_encode($xml);
         $array = json_decode($json, TRUE);
 
-//get all packing lists
-        $packingListsXml = $array->xpath('Body/MessageParts/MAX_ShipTransAPP/MAX_ShipTransTmp/PackingSlipId')
+        $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
+        //if($data['CompanyName'] == "USP-C000030") {
+        				foreach($data as $item) {
+        					$shipments['data'][$item['PackingSlipId']] = array (
+        									'CustomerRef' => $item['CustomerRef'],
+        									'ShipDate' => $item['ShipDate'],
+        									'Item' => $item['Item'],
+        									'Description' => $item['Description'],
+        									'SalesOrder' => $item['SalesOrder']
+                    );
 
-        if (!empty($packingListsXml)){
-          $allPackingLists = array();
-//add them to an array
-          foreach ($packingListsXml as $list) {
-            $allPackingLists[] = $list;
-          }
-//remove duplicates
-          $allPackingLists = array_unique($allPackingLists);
+                    $subShipments['data'][$item['PackingSlipId']][] = array (
+                            'PackingSlipId' => $item['PackingSlipId'],
+          									'BatchNumber' => $item['BatchNumber'],
+          									'ExpirationDate' => $item['ExpirationDate'],
+          									'Quantity' => $item['Quantity'],
+          									'Unit' => $item['Unit']
+                      );
+                }
+            //  }
 
-//put them back together?
-          $shipments = array();
-          foreach ($allPackingLists as $slipId) {
-            $data = $array->xpath('MAX_ShipTransTmp[PackingSlipId = "' . $slipId .'"]');
-            if (!empty($data)) {
-              foreach ($data as $info) {
-                $shipments[$slipId][] = $info->Item . ' - ' / $info->BatchNumber;
+              $shipments['count'] = count($shipments['data']);
 
-                $shipments['count'] = count($shipments['data']);
-              }
             }
-          }
 
-          echo(json_encode($shipments));
         }
 
-//         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
-// if($data['CustAccount'] == "USP-C000030") {
-// 				foreach($data as $ship) {
-// 					$shipments['data'][] = array (
-// 									'CustomerRef' => $ship['CustomerRef'],
-// 									'BatchNumber' => $ship['BatchNumber'],
-// 									'ExpirationDate' => $ship['ExpirationDate'],
-// 									'Item' => $ship['Item'],
-// 									'Description' => $ship['Description'],
-// 									'Quantity' => $ship['Quantity'],
-// 									'SalesOrder' => $ship['SalesOrder']
-//             );
+        echo(json_encode($shipments));
+        echo (json_encode($subShipments));
+
+
+
+// //get all packing lists
+//         $packingListsXml = $array->xpath('Body/MessageParts/MAX_ShipTransAPP/MAX_ShipTransTmp/PackingSlipId')
+//
+//         if (!empty($packingListsXml)){
+//           $allPackingLists = array();
+// //add them to an array
+//           foreach ($packingListsXml as $list) {
+//             $allPackingLists[] = $list;
+//           }
+// //remove duplicates
+//           $allPackingLists = array_unique($allPackingLists);
+//
+// //put them back together?
+//           $shipments = array();
+//           foreach ($allPackingLists as $slipId) {
+//             $data = $array->xpath('MAX_ShipTransTmp[PackingSlipId = "' . $slipId .'"]');
+//             if (!empty($data)) {
+//               foreach ($data as $info) {
+//                 $shipments[$slipId][] = $info->Item . ' - ' / $info->BatchNumber;
+//
+//                 $shipments['count'] = count($shipments['data']);
+//               }
+//             }
+//           }
+//
+//           echo(json_encode($shipments));
 //         }
-//       }
-//
-//       $shipments['count'] = count($shipments['data']);
-//
-//     }
-//
-// }
-//
-// echo(json_encode($shipments));
