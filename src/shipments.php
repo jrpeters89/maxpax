@@ -24,9 +24,11 @@ if (!empty($user_token)) {
                 'Item' => $item['Item'],
                 'Description' => $item['Description'],
                 'SalesOrder' => $item['SalesOrder']
+
+                var_dump($item['Item']);
             );
 
-var_dump($shipments);
+
             // $Shipments['data'][$item['PackingSlipId']][] = array (
             //         'PackingSlipId' => $item['PackingSlipId'],
             // 				'BatchNumber' => $item['BatchNumber'],
