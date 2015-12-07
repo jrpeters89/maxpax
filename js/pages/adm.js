@@ -15,11 +15,7 @@ function inventoryTransactions(user_token) {
     var startDate = yyyy + '-' + mm + '-' + dd;
     var startDateTxt = document.getElementById("startDatePicker");
     startDateTxt.value = startDate;
-    $('#startDatePicker').datepicker({
-      onRender: function() {
-          return now.valueOf();
-      }
-    }).on('changeDate', function (ev) {
+    $('#startDatePicker').datepicker().on('changeDate', function (ev) {
 
         });
     $('#startDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
