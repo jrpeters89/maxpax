@@ -2,6 +2,17 @@ function inventoryTransactions(user_token) {
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
     var startDate = new Date();
+    var dd = startDate.getDate();
+    var mm = startDate.getMonth();
+    var yyyy = startDate.getFullYear();
+    if(dd < 10) {
+        dd = '0' + dd;
+    }
+    if(mm < 10) {
+        mm = '0' + mm;
+    }
+
+    startDate = mm + '/' + dd + '/' + yyyy;
     $('#startDatePicker').value = startDate;
     $('#startDatePicker').datepicker({
       onRender: function() {
