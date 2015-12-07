@@ -65,6 +65,9 @@ function inventoryTransactions(user_token) {
 }
 
 function refreshInvTransDates() {
+    $("#inv_trans_list").html('');
+    $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#inv_trans_container").show();
     var startDateTxt = document.getElementById("startDatePicker");
     var endDateTxt = document.getElementById("endDatePicker");
     startDateTxt.value = startDate;
