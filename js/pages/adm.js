@@ -64,7 +64,7 @@ function inventoryTransactions(user_token) {
     });
 }
 
-function refreshInvTransDates() {
+function refreshInvTransDates(user_token) {
     $("#inv_trans_list").html('');
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
