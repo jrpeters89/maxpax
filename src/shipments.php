@@ -37,10 +37,11 @@ if (!empty($user_token)) {
         //  }
         $shipments['count'] = count($shipments['data']);
 
+
     }
 
 }
-
+(print $shipments);
 echo (json_encode($shipments));
 
 // //get all packing lists
