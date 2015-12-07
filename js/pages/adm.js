@@ -1,8 +1,12 @@
 function inventoryTransactions(user_token) {
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
-    $('#startDatePicker').datepicker()
-        .on('changeDate', function (ev) {
+    var now = new Date();
+    $('#startDatePicker').datepicker({
+      onRender: function(date) {
+          return now.valueOf();
+      }
+    }).on('changeDate', function (ev) {
 
         });
     $.get("/src/inv_trans.php?act=list&user_token="+user_token,function(result) {
