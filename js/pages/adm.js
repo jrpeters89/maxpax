@@ -1,7 +1,7 @@
 function inventoryTransactions(user_token) {
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
-    var startDate = new Date();
+    //var startDate = new Date();
     var dd = startDate.getDate();
     var mm = startDate.getMonth();
     var yyyy = startDate.getFullYear();
@@ -12,7 +12,7 @@ function inventoryTransactions(user_token) {
         mm = '0' + mm;
     }
 
-    startDate = mm + '/' + dd + '/' + yyyy;
+    var startDate = yyyy + '-' + mm + '-' + dd;
     $('#startDatePicker').value = startDate;
     $('#startDatePicker').datepicker({
       onRender: function() {
