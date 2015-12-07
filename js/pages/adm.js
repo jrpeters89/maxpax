@@ -13,7 +13,7 @@ function inventoryTransactions(user_token) {
     }
 
     var startDate = yyyy + '-' + mm + '-' + dd;
-    Document.write(startDate);
+
     $('#startDatePicker').value = startDate;
     $('#startDatePicker').datepicker({
       onRender: function() {
