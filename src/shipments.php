@@ -41,7 +41,7 @@ if (!empty($user_token)) {
     }
 
 }
-(print $shipments);
+
 echo (json_encode($shipments));
 
 // //get all packing lists
