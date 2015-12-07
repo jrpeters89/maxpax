@@ -4,6 +4,7 @@ include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
 $start_date = $_GET[start_date];
+$end_date = $_GET[end_date];
 
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
@@ -18,7 +19,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
         foreach ($data as $item) {
-            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] > $start_date)) {
+            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] >= $start_date) && ($item['DatePhysical'] <= $end_date)) {
 
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
