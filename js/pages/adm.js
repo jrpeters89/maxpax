@@ -13,8 +13,8 @@ function inventoryTransactions(user_token) {
     }
 
     var startDate = yyyy + '-' + mm + '-' + dd;
-
-    $('#startDatePicker').value = startDate;
+    var startDateTxt = document.getElementById("startDatePicker");
+    startDateTxt.value = startDate;
     $('#startDatePicker').datepicker({
       onRender: function() {
           return now.valueOf();
