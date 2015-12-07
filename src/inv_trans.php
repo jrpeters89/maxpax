@@ -3,8 +3,8 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
-$start_date = $_GET[startDate];
-echo $start_date;
+$start_date = $_GET[start_date];
+
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
     $result = mysqli_query($conn, "SELECT `company` FROM `users` WHERE `token`='$user_token'") or die(mysqli_error($conn));
