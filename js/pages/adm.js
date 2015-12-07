@@ -15,7 +15,7 @@ function inventoryTransactions(user_token) {
     var startDate = yyyy + '-' + mm + '-' + dd;
     var startDateTxt = document.getElementById("startDatePicker");
     startDateTxt.value = startDate;
-    $('#startDatePicker').datepicker();
+    $('#startDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
     $('#endDatePicker').datepicker();
     $('#endDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
     $.get("/src/inv_trans.php?act=list&user_token="+user_token+"&start_date="+startDateTxt.value,function(result) {
