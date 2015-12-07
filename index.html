@@ -348,20 +348,19 @@
     <script src="js/bootstrap-datepicker.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
-	    var user_token = "";
-	    var company_list = false;
-		user_token = Cookies.get("user_token");
-		if(typeof user_token != 'undefined') {
-			$("#app_body").show();
-			companyInfo(user_token);
-		} else {
-			window.location.href = "login.html";
-		}
-	</script>
-  <script>
-	  $(function() {
-		 $("#startDatePicker").datepicker();
-	  });
-  </script>
+        var user_token = "";
+        var company_list = false;
+        user_token = Cookies.get("user_token");
+        if (typeof user_token != 'undefined') {
+            $("#app_body").show();
+            companyInfo(user_token);
+        } else {
+            window.location.href = "login.html";
+        }
+
+        $("#startDatePicker").datepicker();
+
+
+    </script>
   </body>
 </html>
