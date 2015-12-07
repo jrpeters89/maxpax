@@ -13,8 +13,11 @@ function inventoryTransactions(user_token) {
     }
 
     var startDate = yyyy + '-' + mm + '-' + dd;
+    var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
     var startDateTxt = document.getElementById("startDatePicker");
+    var endDateTxt = document.getElementById("endDatePicker");
     startDateTxt.value = startDate;
+    endDateTxt.value = endDate;
     $('#startDatePicker').datepicker({
       onRender: function() {
           return now.valueOf();
@@ -22,7 +25,7 @@ function inventoryTransactions(user_token) {
     }).on('changeDate', function (ev) {
         $('#startDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
         });
-    $('#endDatePicker').datepicker("dateFormat", "yy-mm-dd");
+    $('#endDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
     //$('#endDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
     $.get("/src/inv_trans.php?act=list&user_token="+user_token+"&start_date="+startDateTxt.value,function(result) {
         var inventory = jQuery.parseJSON(result);
