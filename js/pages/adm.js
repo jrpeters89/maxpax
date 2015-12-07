@@ -25,6 +25,10 @@ function inventoryTransactions(user_token) {
             /*if(typeof inventory.total != "undefined") {
                 $("#inv_trans_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+inventory.total.quantity+'</td><td></td><td class="text_right">'+inventory.total.case+'</td><td></td><td class="text_right">'+inventory.total.pallet+'</td></tr>');
             }*/
+            $('#startDatePicker').datepicker()
+                .on('changeDate', function (ev) {
+
+                });
             $.bootstrapSortable(false);
         } else {
             $("#inv_trans_list").html("No Inventory Transactions Available");
