@@ -22,7 +22,7 @@ function inventoryTransactions(user_token) {
     }).on('changeDate', function (ev) {
         $('#startDatePicker').datepicker("option", "dateFormat", "yyyy-mm-dd");
         });
-    $('#endDatePicker').datepicker();
+    $('#endDatePicker').datepicker("option", "dateFormat", "yyyy-mm-dd");
     $.get("/src/inv_trans.php?act=list&user_token="+user_token+"&start_date="+startDateTxt.value,function(result) {
         var inventory = jQuery.parseJSON(result);
         if(inventory.count > 0) {
