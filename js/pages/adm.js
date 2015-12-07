@@ -1,8 +1,8 @@
 function inventoryTransactions(user_token) {
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
-    var now = new Date();
-    $('#startDatePicker').value = now;
+    var startDate = new Date();
+    $('#startDatePicker').value = startDate;
     $('#startDatePicker').datepicker({
       onRender: function() {
           return now.valueOf();
@@ -10,7 +10,7 @@ function inventoryTransactions(user_token) {
     }).on('changeDate', function (ev) {
 
         });
-    $.get("/src/inv_trans.php?act=list&user_token="+user_token,function(result) {
+    $.get("/src/inv_trans.php?act=list&user_token="+user_token+"&start_date="+startDate,function(result) {
         var inventory = jQuery.parseJSON(result);
         if(inventory.count > 0) {
             $("#inv_trans_list").html('');

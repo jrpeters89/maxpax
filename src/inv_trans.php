@@ -3,7 +3,7 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
-
+$start_date = $_GET[startDate];
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
     $result = mysqli_query($conn, "SELECT `company` FROM `users` WHERE `token`='$user_token'") or die(mysqli_error($conn));
@@ -17,7 +17,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
         foreach ($data as $item) {
-            if (substr($item['ItemId'], 0, 3) == "ADM" && $item['InventTransRefId'] != null) {
+            if (substr($item['ItemId'], 0, 3) == "ADM" && $item['InventTransRefId'] != null && $item['DatePhysical'] == $start_date) {
 
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
