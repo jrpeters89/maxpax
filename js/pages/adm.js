@@ -2,8 +2,9 @@ function inventoryTransactions(user_token) {
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
     var now = new Date();
+    $('#startDatePicker').value = now;
     $('#startDatePicker').datepicker({
-      onRender: function(date) {
+      onRender: function() {
           return now.valueOf();
       }
     }).on('changeDate', function (ev) {
