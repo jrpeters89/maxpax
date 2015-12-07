@@ -1,10 +1,10 @@
 function inventoryTransactions(user_token) {
     $("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inv_trans_container").show();
-    //var startDate = new Date();
-    var dd = startDate.getDate();
-    var mm = startDate.getMonth();
-    var yyyy = startDate.getFullYear();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth();
+    var yyyy = today.getFullYear();
     if(dd < 10) {
         dd = '0' + dd;
     }
