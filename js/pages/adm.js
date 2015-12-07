@@ -6,9 +6,9 @@ function inventoryTransactions(user_token) {
         if(inventory.count > 0) {
             $("#inv_trans_list").html('');
             //$("#inv_trans_list").append('<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">');
-            $("#inv_trans_list").append('<script src="http://code.jquery.com/jquery-1.10.2.js"></script>');
-            $("#inv_trans_list").append('<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>');
-            $("#inv_trans_list").append('<script>$(function() { $("#datepicker").datepicker();});</script>');
+            //$("#inv_trans_list").append('<script src="http://code.jquery.com/jquery-1.10.2.js"></script>');
+            //$("#inv_trans_list").append('<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>');
+            //$("#inv_trans_list").append('<script>$(function() { $("#datepicker").datepicker();});</script>');
             $("#inv_trans_list").append('<p>Start Date: <input type="text" id="datepicker"></p> ');
             jQuery.each( inventory.data, function( t, inv ) {
                 $("#inv_trans_list").append('<div id="inv_report'+t+'" class="table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">'+t+'</h3></div>');
