@@ -358,7 +358,10 @@
             window.location.href = "login.html";
         }
 
-        $("#startDatePicker").datepicker();
+        $('#startDatePicker').datepicker()
+                .on('changeDate', function (ev) {
+                    
+                });
 
 
     </script>
