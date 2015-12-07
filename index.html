@@ -175,6 +175,9 @@
                     <a download="inv_trans.xls" onclick="return ExcellentExport.excel(this, 'inv_trans_list', 'Inventory Transactions');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
                 </div>
             </div>
+        <div>
+            <p>Start Date: <input type="text" id="startDatePicker"></p>
+        </div>
 
         <div id="inv_trans_list" class="table-responsive">
             Loading...
@@ -357,12 +360,6 @@
         } else {
             window.location.href = "login.html";
         }
-
-        $('#startDatePicker').datepicker()
-                .on('changeDate', function (ev) {
-                    
-                });
-
 
     </script>
   </body>
