@@ -18,14 +18,15 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
         foreach ($data as $item) {
-            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null) &&  ($item['DatePhysical'] === $start_date)) {
+            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)){///} &&  ($item['DatePhysical'] === $start_date)) {
 
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
                     'Qty' => number_format($item['Qty'],2,".",","),
                     'UOM' => $item['InventUnitId'],
                     'Lot' => $item['InventBatchId'],
-                    'Date' => $item['DatePhysical']
+                    //'Date' => $item['DatePhysical']
+                    'Date' => $start_date
                 );
 
 
