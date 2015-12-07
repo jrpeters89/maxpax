@@ -3,7 +3,7 @@ function inventoryTransactions(user_token) {
     $("#inv_trans_container").show();
     var today = new Date();
     var dd = 1;
-    var mm = today.getMonth() + 1;
+    var mm = today.getMonth();
     var yyyy = today.getFullYear();
     if (dd < 10) {
         dd = '0' + dd;
