@@ -36,7 +36,7 @@ if (!empty($user_token)) {
          */
 
         $val = print_r($inv_trans, true);
-        $fp = fopen('test.xml');
+        $fp = fopen('test.txt');
         fwrite($fp, $val);
         fclose($fp);
 
