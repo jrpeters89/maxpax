@@ -30,6 +30,16 @@ if (!empty($user_token)) {
             }
         }
 
+        /*
+         *
+         * Writing array to file to see where data is being duplicated
+         */
+
+        $val = print_r($inv_trans, true);
+        $fp = fopen('test.xml');
+        fwrite($fp, $val);
+        fclose($fp);
+
         $inv_trans['count'] = count($inv_trans['data']);
     }
 
