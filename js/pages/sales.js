@@ -43,7 +43,7 @@ function agingChart(user_token,company) {
 						align: "center",
 						numbers: {
 							show: true,
-							yAlign: function (y) { return y + 4; }
+							yAlign: function (y) { return y + 20; }
 						}
 					},
 					yaxis: {
