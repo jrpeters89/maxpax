@@ -70,8 +70,8 @@ function refreshInvTransDates(user_token) {
     $("#inv_trans_container").show();
     var startDateTxt = document.getElementById("startDatePicker");
     var endDateTxt = document.getElementById("endDatePicker");
-    startDateTxt.value = startDate;
-    endDateTxt.value = endDate;
+    //startDateTxt.value = startDate;
+    //endDateTxt.value = endDate;
 
     $.get("/src/inv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
         var inventory = jQuery.parseJSON(result);
