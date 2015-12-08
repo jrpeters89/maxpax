@@ -43,10 +43,8 @@ function inventoryTransactions(user_token) {
                 $("#inv_trans_list").append('<div id="inv_report' + t + '" class="table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">' + t + '</h3></div>');
                 jQuery.each(inv, function (i, item) {
                     $("#inv_report" + t + "").append('<h4>' + i + '</h4><table id="inv_rpt_tbl_' + i + '" class="table sortable"><thead><tr><th data-defaultsort="asc">Lot # / Reference</th><th>Qty</th><th>UOM</th><th>Date</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
-                    jQuery.each(item, function (test, test1){
-                    jQuery.each(test1, function (j, jtem) {
+                    jQuery.each(item, function (j, jtem) {
                         $("#inv_rpt_tbl_" + i + " tbody").append('<tr><td class="width_180">' + jtem.Lot + ' / ' + jtem.ReferenceId + '</td><td>' + jtem.Qty + '</td><td>' + jtem.UOM + '</td><td>' + jtem.Date + '</td></tr>');
-                    });
                     });
                 });
             });
