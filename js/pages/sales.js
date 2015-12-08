@@ -49,7 +49,7 @@ function agingChart(user_token,company) {
 					},
 					xaxis: {
 					 	show: true,
-						ticks: [[0, "Not Due \r\n ("+aging.data.chart[0]+")"],[1,"Current \r\n ("+aging.data.chart[1]+")"],[2,"30 Days \r\n ("+aging.data.chart[2]+")"],[3,"60 Days \r\n ("+aging.data.chart[3]+")"],[4,"90 Days \r\n ("+aging.data.chart[4]+")"],[5,"180 & Over \r\n ("+aging.data.chart[5]+")"]]
+						ticks: [[0, "Not Due \r\n ("+Math.round(aging.data.chart[0][1])+")"],[1,"Current \r\n ("+Math.round(aging.data.chart[1][1])+")"],[2,"30 Days \r\n ("+Math.round(aging.data.chart[2][1])+")"],[3,"60 Days \r\n ("+Math.round(aging.data.chart[3][1])+")"],[4,"90 Days \r\n ("+Math.round(aging.data.chart[4][1])+")"],[5,"180 & Over \r\n ("+Math.round(aging.data.chart[5][1])+")"]]
 					},
 					grid: {
 						clickable: true,
