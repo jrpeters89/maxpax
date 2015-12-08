@@ -36,7 +36,7 @@ if (!empty($user_token)) {
          */
 
         $val = print_r($inv_trans, true);
-        $fp = fopen('test.txt');
+        $fp = fopen('test.txt','a+');
         fwrite($fp, $val);
         fclose($fp);
 
