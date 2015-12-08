@@ -180,3 +180,21 @@
   width: 16px;
   height: 16px;
 }
+
+/* styling for jQuery datepicker */
+.ui-datepicker a {
+  text-decoration: none;
+}
+
+.ui-datepicker-header {
+  color: #e0e0e0;
+  font-weight: bold;
+  text-shadow: 1px -1px 0px #000;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #111;
+}
+
+.ui-datepicker-title {
+  text-align: center;
+}
