@@ -35,6 +35,8 @@ if (!empty($user_token)) {
         $inv_trans['count'] = count($inv_trans['data']);
     }
 
+    $inv_result = array_values(array_unique($inv_trans));
+
 }
 
-echo(json_encode($inv_trans));
+echo(json_encode($inv_result));
