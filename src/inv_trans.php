@@ -32,6 +32,7 @@ if (!empty($user_token)) {
             }
         }
 
+        $inv_trans['count'] = count($inv_trans['data']);
     }
 
 }
