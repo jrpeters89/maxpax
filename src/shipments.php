@@ -16,8 +16,9 @@ if (!empty($user_token)) {
         $array = json_decode($json, TRUE);
 
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
-        //if($data['CompanyName'] == "USP-C000030") {
+
         foreach ($data as $item) {
+            if($item['CompanyName'] == "US Packaging LLC")
             $shipments['data'][$item['PackingSlipId']][] = array(
                 'CustomerRef' => $item['CustomerRef'],
                 'ShipDate' => $item['ShipDate'],
@@ -26,13 +27,6 @@ if (!empty($user_token)) {
                 'SalesOrder' => $item['SalesOrder']
             );
 
-            // $Shipments['data'][$item['PackingSlipId']][] = array (
-            //         'PackingSlipId' => $item['PackingSlipId'],
-            // 				'BatchNumber' => $item['BatchNumber'],
-            // 				'ExpirationDate' => $item['ExpirationDate'],
-            // 				'Quantity' => $item['Quantity'],
-            // 				'Unit' => $item['Unit']
-            //   );
         }
         //  }
         $shipments['count'] = count($shipments['data']);

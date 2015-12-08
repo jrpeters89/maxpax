@@ -20,7 +20,6 @@ if (!empty($user_token)) {
 
         foreach ($data as $item) {
             if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
-
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
                     'Qty' => number_format($item['Qty'],2,".",","),
@@ -28,18 +27,6 @@ if (!empty($user_token)) {
                     'Lot' => $item['InventBatchId'],
                     'Date' => $item['DatePhysical']
                 );
-
-
-                /*$inv_trans['data'][] = array(
-                    'CompanyId' => $inv['CompanyId'],
-                    'DatePhysical' => $inv['DatePhysical'],
-                    'InventTransRefId' => $inv['InventTransRefId'],
-                    'InventTransType' => $inv['InventTransType'],
-                    'InventUnitId' => $inv['InventUnitId'],
-                    'ItemId' => $inv['ItemId'],
-                    'ItemName' => $inv['ItemName'],
-                    'Qty' => $inv['Qty']
-                );*/
             }
         }
 
