@@ -26,7 +26,8 @@ if (!empty($user_token)) {
                         'UOM' => $item['InventUnitId'],
                         'Lot' => $item['InventBatchId'],
                         'Date' => $item['DatePhysical'],
-                        'item' => $item['ItemId']
+                        'ItemId' => $item['ItemId'],
+                        'TransType' => $item['InventTransType']
                     );
 
             }
