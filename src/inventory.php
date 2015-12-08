@@ -18,7 +18,7 @@ if(!empty($user_token)) {
 		if($row['company'] == 7) {	//GoPicnic - Inventory Filter
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(substr($inv['ItemId'], 0, 3) == "GBP") {
+				if(substr($inv['ItemId'], 0, 3) == "GPB" && $inv['CompanyName'] == "US Packaging LLC") {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
 						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
