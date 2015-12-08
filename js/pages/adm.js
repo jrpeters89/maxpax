@@ -81,9 +81,9 @@ function refreshInvTransDates(user_token) {
                 /*var cur_trans = 0;*/
                 jQuery.each(transType, function (key, item) {
                     $("#inv_report" + itemId + "").append('<h4>' + key + '</h4><table id="inv_rpt_tbl_' + key + '" class="table sortable"><thead><tr><th data-defaultsort="asc">Lot # / Reference</th><th>Qty</th><th>UOM</th><th>Date</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
-                    jQuery.each(key, function (j, jtem) {
-                        $("#inv_rpt_tbl_" + j + " tbody").append('<tr><td class="width_180">' + jtem + ' / ' + item.Lot + ' / ' + jtem.ReferenceId + '</td><td>' + jtem.Qty + '</td><td>' + jtem.UOM + '</td><td>' + jtem.Date + '</td></tr>');
-                    });
+                    //jQuery.each(key, function (j, jtem) {
+                        $("#inv_rpt_tbl_" + key + " tbody").append('<tr><td class="width_180">' + item + ' / ' + item.Lot + ' / ' + jtem.ReferenceId + '</td><td>' + jtem.Qty + '</td><td>' + jtem.UOM + '</td><td>' + jtem.Date + '</td></tr>');
+                    //});
 
                 });
                 /*cur_trans++;*/
