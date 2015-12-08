@@ -83,7 +83,7 @@ function refreshInvTransDates(user_token) {
                     $("#inv_report" + itemId + "").append('<h4>' + key + '</h4><table id="inv_rpt_tbl_' + key + '" class="table sortable"><thead><tr><th data-defaultsort="asc">Lot # / Reference</th><th>Qty</th><th>UOM</th><th>Date</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
                      jQuery.each(item, function (index, value) {
                         $("#inv_rpt_tbl_" + key + " tbody").append('<tr><td class="width_180">' + value.Lot + ' / ' + value.ReferenceId + '</td><td>' + value.Qty + '</td><td>' + value.UOM + '</td><td>' + value.Date + '</td></tr>');
-                    //});
+                    });
 
                 });
                 /*cur_trans++;*/
