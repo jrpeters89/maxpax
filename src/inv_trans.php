@@ -26,7 +26,7 @@ if (!empty($user_token)) {
                         'ReferenceId' => $item['InventTransRefId'],
                         'Qty' => number_format($item['Qty'], 2, ".", ","),
                         'UOM' => $item['InventUnitId'],
-                        'Lot' => $key + ". " + $item['InventBatchId'],
+                        'Lot' => $key . ". " . $item['InventBatchId'],
                         'Date' => $item['DatePhysical'],
                         'ItemId' => $item['ItemId'],
                         'TransType' => $item['InventTransType']
