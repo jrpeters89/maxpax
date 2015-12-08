@@ -79,6 +79,7 @@ function agingChart(user_token,company) {
 			var cur_cust = 0;
 			var cust_total  = parseFloat("0.00");
 			var group_total  = parseFloat("0.00");
+			var final_total  = parseFloat("0.00");
 			jQuery.each( aging_data, function( t,  data) {
 				$("#aging_detail").append('<div id="aging_group_'+t+'" class="aging_group table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">'+aging_times[t]+'</h3></div>');
 				cur_cust = 0;
@@ -90,13 +91,14 @@ function agingChart(user_token,company) {
 						$("#aging_table_"+t+"_"+cur_cust+" tbody").append('<tr><td class="width_180"  data-dateformat="MM/DD/YYYY">'+item.DueDate+'</td><td>'+item.InvoiceId+'</td><td class="text_right">'+item.AmountCur+'</td></tr>');
 						cust_total = parseFloat(cust_total) + parseFloat(item.RawNum);
 						group_total = parseFloat(group_total) + parseFloat(item.RawNum);
+						final_total = parseFloat(group_total) + parseFloat(item.RawNum);
 					});
 					$("#aging_table_"+t+"_"+cur_cust+" tfoot").append('<tr><td colspan="2"><strong>TOTAL</strong></td><td class="text_right"><strong>'+numeral(cust_total).format('0,0.00')+'</strong></tr>');
 					cur_cust++;
 				});
 				$("#aging_group_"+t).append('<div class="row" style="margin-left: 0px; margin-right: 0px;"><div class="col-xs-6"><h4 style="margin-top: 0px;"><strong>Grand Total:</strong></h4></div><div class="col-xs-6" style="text-align: right;"><h4 style="margin-top: 0px;"><strong>'+numeral(group_total).format('0,0.00')+'</strong></h4></div></div>');
 			});
-			$("#chart_box").append('<center><style="font-size: 8px;">Grand Total: '+numeral(group_total).format('0,0')+'</span></center>');
+			$("#chart_box").append('<div style="margin-top: 220px; text-align: center; font-size: 8px;">Grand Total: '+numeral(Math.round(aging.data.chart[0][1] + aging.data.chart[1][1] + aging.data.chart[2][1] + aging.data.chart[3][1] + aging.data.chart[4][1] + aging.data.chart[5][1] )).format('0,0')+'</div>');
 			$.bootstrapSortable(false);
 		} else {
 			$("#chart_box").html('');
