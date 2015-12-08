@@ -49,7 +49,7 @@ function agingChart(user_token,company) {
 					},
 					xaxis: {
 					 	show: true,
-						ticks: [[0, "Not Due \r\n ("+Math.round(aging.data.chart[0][1])+")"],[1,"Current \r\n ("+Math.round(aging.data.chart[1][1])+")"],[2,"30 Days \r\n ("+Math.round(aging.data.chart[2][1])+")"],[3,"60 Days \r\n ("+Math.round(aging.data.chart[3][1])+")"],[4,"90 Days \r\n ("+Math.round(aging.data.chart[4][1])+")"],[5,"180 & Over \r\n ("+Math.round(aging.data.chart[5][1])+")"]]
+						ticks: [[0, "Not Due \r\n ("+numeral(Math.round(aging.data.chart[0][1])).format('0,0')+")"],[1,"Current \r\n ("+numeral(Math.round(aging.data.chart[1][1])).format('0,0')+")"],[2,"30 Days \r\n ("+numeral(Math.round(aging.data.chart[2][1])).format('0,0')+")"],[3,"60 Days \r\n ("+numeral(Math.round(aging.data.chart[3][1])).format('0,0')+")"],[4,"90 Days \r\n ("+numeral(Math.round(aging.data.chart[4][1])).format('0,0')+")"],[5,"180 & Over \r\n ("+numeral(Math.round(aging.data.chart[5][1])).format('0,0')+")"]]
 					},
 					grid: {
 						clickable: true,
@@ -96,6 +96,7 @@ function agingChart(user_token,company) {
 				});
 				$("#aging_group_"+t).append('<div class="row" style="margin-left: 0px; margin-right: 0px;"><div class="col-xs-6"><h4 style="margin-top: 0px;"><strong>Grand Total:</strong></h4></div><div class="col-xs-6" style="text-align: right;"><h4 style="margin-top: 0px;"><strong>'+numeral(group_total).format('0,0.00')+'</strong></h4></div></div>');
 			});
+			$("#chart_box").append('<center><style="font-size: 8px;">Grand Total: '+numeral(group_total).format('0,0')+'</span></center>');
 			$.bootstrapSortable(false);
 		} else {
 			$("#chart_box").html('');
