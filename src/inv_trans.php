@@ -20,7 +20,7 @@ if (!empty($user_token)) {
 
         foreach ($data as $item) {
             if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['CompanyId'] === "usp") && ($item['Qty'] != null) && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
-                    $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
+                    $inv_trans['data'][$item['ItemId']][$item['InventTransType']][$item['InventBatchId']][] = array(
                         'ReferenceId' => $item['InventTransRefId'],
                         'Qty' => number_format($item['Qty'], 2, ".", ","),
                         'UOM' => $item['InventUnitId'],
@@ -35,8 +35,6 @@ if (!empty($user_token)) {
         $inv_trans['count'] = count($inv_trans['data']);
     }
 
-    $inv_result = array_values(array_unique($inv_trans));
-
 }
 
-echo(json_encode($inv_result));
+echo(json_encode($inv_trans));
