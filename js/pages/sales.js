@@ -49,7 +49,7 @@ function agingChart(user_token,company) {
 					},
 					xaxis: {
 					 	show: true,
-						ticks: [[0, "Not Due"],[1,"Current"],[2,"30 Days"],[3,"60 Days"],[4,"90 Days"],[5,"180 & Over"]]
+						ticks: [[0, "Not Due \r\n ("+aging.data.chart[0]+")"],[1,"Current \r\n ("+aging.data.chart[1]+")"],[2,"30 Days \r\n ("+aging.data.chart[2]+")"],[3,"60 Days \r\n ("+aging.data.chart[3]+")"],[4,"90 Days \r\n ("+aging.data.chart[4]+")"],[5,"180 & Over \r\n ("+aging.data.chart[5]+")"]]
 					},
 					grid: {
 						clickable: true,
@@ -68,12 +68,12 @@ function agingChart(user_token,company) {
 
 			var aging_data = aging.data.due;
 			var aging_times = {
-				0: "Not Due \r\n ("+aging.data.chart[0]+")",
-				1: "Due Now \r\n ("+aging.data.chart[1]+")",
-				2: "> 30 Days \r\n ("+aging.data.chart[2]+")",
-				3: "> 60 Days \r\n ("+aging.data.chart[3]+")",
-				4: "> 90 Days \r\n ("+aging.data.chart[4]+")",
-				5: "> 180 Days \r\n ("+aging.data.chart[5]+")",
+				0: "Not Due",
+				1: "Due Now",
+				2: "> 30 Days",
+				3: "> 60 Days",
+				4: "> 90 Days",
+				5: "> 180 Days",
 			};
 			$("#aging_detail").html('');
 			var cur_cust = 0;
