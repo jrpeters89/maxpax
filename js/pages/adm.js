@@ -15,7 +15,7 @@ function inventoryTransactions(user_token) {
     var startDate = yyyy + '-' + mm + '-' + dd;
     var endDate;
     if (mm == 12) {
-        endDate = yyyy + '-01-' + dd;
+        endDate = (yyyy + 1) + '-01-' + dd;
     } else {
         mm = mm + 1;
         if (mm < 10) {
