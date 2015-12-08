@@ -94,8 +94,8 @@ function appSetup(company,callback) {
 				callback();
 			});
 		}	else if(company.id == 7) {
-			$.getScript("/js/pages/shipments.js", function(){
-				console.log("GoPicnic Script Loaded");
+			getScripts(["/js/pages/gopicnic.js", "/js/pages/shipments.js"], function () {
+				console.log("GoPicnic Scripts Loaded");
 				callback();
 			});
 		} else if (company.id == 1) {
