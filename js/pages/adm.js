@@ -82,7 +82,7 @@ function refreshInvTransDates(user_token) {
                 jQuery.each(transType, function (i, item) {
                     $("#inv_report" + itemId + "").append('<h4>' + i + '</h4><table id="inv_rpt_tbl_' + i + '" class="table sortable"><thead><tr><th data-defaultsort="asc">Lot # / Reference</th><th>Qty</th><th>UOM</th><th>Date</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
                     //jQuery.each(item, function (j, jtem) {
-                        $("#inv_rpt_tbl_" + i + " tbody").append('<tr><td class="width_180">' + j + ' / ' + item.Lot + ' / ' + item.ReferenceId + '</td><td>' + item.Qty + '</td><td>' + item.UOM + '</td><td>' + item.Date + '</td></tr>');
+                        $("#inv_rpt_tbl_" + i + " tbody").append('<tr><td class="width_180">' + i + ' / ' + item.Lot + ' / ' + item.ReferenceId + '</td><td>' + item.Qty + '</td><td>' + item.UOM + '</td><td>' + item.Date + '</td></tr>');
                     //});
 
                 });
