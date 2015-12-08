@@ -77,7 +77,7 @@ function refreshInvTransDates(user_token) {
 
             //$("#inv_trans_list").append('<p>Start Date: <input type="text" id="startDatePicker"></p> ');
             jQuery.each(inventory.data, function (itemId, transType) {
-                $("#inv_trans_list").append('<div id="inv_report' + itemId + '" class="table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">' + itemId + '</h3></div>');
+                $("#inv_trans_list").append('<div id="inv_report_' + itemId + '" class="table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">' + itemId + '</h3></div>');
                 /*var cur_trans = 0;*/
                 jQuery.each(transType, function (key, item) {
                     $("#inv_report_" + itemId + "").append('<h4>' + key + '</h4><table id="inv_rpt_tbl_' + itemId + "_" + key + '" class="table sortable"><thead><tr><th data-defaultsort="asc">Lot # / Reference</th><th>Qty</th><th>UOM</th><th>Date</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
