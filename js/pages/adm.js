@@ -79,7 +79,7 @@ function refreshInvTransDates(user_token) {
             jQuery.each(inventory.data, function (itemId, transType) {
                 $("#inv_trans_list").append('<div id="inv_report' + itemId + '" class="table-responsive"><h3 style="border-bottom: 1px solid #bbb; padding-bottom: 10px;">' + itemId + '</h3></div>');
                 /*var cur_trans = 0;*/
-                jQuery.each(transType, function (key, item) {
+                jQuery.each(itemId, function (key, item) {
                     $("#inv_report" + itemId + "").append('<h4>' + key + '</h4><table id="inv_rpt_tbl_' + key + '" class="table sortable"><thead><tr><th data-defaultsort="asc">Lot # / Reference</th><th>Qty</th><th>UOM</th><th>Date</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
                     //jQuery.each(item, function (j, jtem) {
                         $("#inv_rpt_tbl_" + key + " tbody").append('<tr><td class="width_180">' + item + ' / ' + item.Lot + ' / ' + item.ReferenceId + '</td><td>' + item.Qty + '</td><td>' + item.UOM + '</td><td>' + item.Date + '</td></tr>');
