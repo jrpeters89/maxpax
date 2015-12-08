@@ -53,7 +53,7 @@ function agingChart(user_token,company) {
 					},
 					xaxis: {
 					 	show: true,
-						ticks: [[0, "Not Due \r\n ("+numeral(Math.round(aging.data.chart[0][1])).format('0,0')+")"],[1,"Current \r\n ("+numeral(Math.round(aging.data.chart[1][1])).format('0,0')+")"],[2,"30 Days \r\n ("+numeral(Math.round(aging.data.chart[2][1])).format('0,0')+")"],[3,"60 Days \r\n ("+numeral(Math.round(aging.data.chart[3][1])).format('0,0')+")"],[4,"90 Days \r\n ("+numeral(Math.round(aging.data.chart[4][1])).format('0,0')+")"],[5,"180 & Over \r\n ("+numeral(Math.round(aging.data.chart[5][1])).format('0,0')+")"]]
+						ticks: [[0, "Not Due \r\n ("+numeral(Math.round(aging.data.chart[0][1])).format('0,0')+")"],[1,"Current<br>("+numeral(Math.round(aging.data.chart[1][1])).format('0,0')+")"],[2,"30 Days \r\n ("+numeral(Math.round(aging.data.chart[2][1])).format('0,0')+")"],[3,"60 Days \r\n ("+numeral(Math.round(aging.data.chart[3][1])).format('0,0')+")"],[4,"90 Days \r\n ("+numeral(Math.round(aging.data.chart[4][1])).format('0,0')+")"],[5,"180 & Over \r\n ("+numeral(Math.round(aging.data.chart[5][1])).format('0,0')+")"]]
 					},
 					grid: {
 						clickable: true,
