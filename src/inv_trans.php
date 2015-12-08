@@ -19,7 +19,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
         foreach ($data as $item) {
-            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
+            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['CompanyId'] === "usp") && ($item['Qty'] != null) && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
                 $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                     'ReferenceId' => $item['InventTransRefId'],
                     'Qty' => number_format($item['Qty'],2,".",","),
@@ -29,16 +29,6 @@ if (!empty($user_token)) {
                 );
             }
         }
-
-        /*
-         *
-         * Writing array to file to see where data is being duplicated
-         */
-
-        $val = print_r($inv_trans, true);
-        $fp = fopen('test.txt','a+');
-        fwrite($fp, $val);
-        fclose($fp);
 
         $inv_trans['count'] = count($inv_trans['data']);
     }
