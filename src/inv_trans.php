@@ -32,17 +32,6 @@ if (!empty($user_token)) {
             }
         }
 
-        $dup = array();
-        for($i = 0; $i < count($inv_trans['data'][$item['ItemId']][$item['InventTransType']]); $i++){
-            if(in_array($inv_trans['data'][$item['ItemId']][$item['InventTransType']][$i], $dup)) {
-                unset($inv_trans['data'][$item['ItemId']][$item['InventTransType']][$i]);
-            } else {
-                $dup[] = $inv_trans['data'][$item['ItemId']][$item['InventTransType']][$i];
-            }
-        }
-
-        $inv_trans = $dup;
-        $inv_trans['count'] = count($inv_trans['data']);
     }
 
 }
