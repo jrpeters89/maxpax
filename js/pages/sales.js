@@ -40,7 +40,11 @@ function agingChart(user_token,company) {
 					bars: {
 						show: true,
 					 	clickable: true,
-						align: "center"
+						align: "center",
+						numbers: {
+							show: true,
+							yAlign: function (y) { return y + 1.5; }
+						}
 					},
 					yaxis: {
 							show: true,
@@ -98,7 +102,7 @@ function agingChart(user_token,company) {
 				});
 				$("#aging_group_"+t).append('<div class="row" style="margin-left: 0px; margin-right: 0px;"><div class="col-xs-6"><h4 style="margin-top: 0px;"><strong>Grand Total:</strong></h4></div><div class="col-xs-6" style="text-align: right;"><h4 style="margin-top: 0px;"><strong>'+numeral(group_total).format('0,0.00')+'</strong></h4></div></div>');
 			});
-			$("#chart_box").append('<div style="margin-top: 220px; text-align: center; font-size: 8px;">Grand Total: '+numeral(Math.round(aging.data.chart[0][1] + aging.data.chart[1][1] + aging.data.chart[2][1] + aging.data.chart[3][1] + aging.data.chart[4][1] + aging.data.chart[5][1] )).format('0,0')+'</div>');
+			$("#chart_box").append('<div style="margin-top: 255px; text-align: center; font-size: 12px;">Grand Total: '+numeral(Math.round(aging.data.chart[0][1] + aging.data.chart[1][1] + aging.data.chart[2][1] + aging.data.chart[3][1] + aging.data.chart[4][1] + aging.data.chart[5][1] )).format('0,0')+'</div>');
 			$.bootstrapSortable(false);
 		} else {
 			$("#chart_box").html('');

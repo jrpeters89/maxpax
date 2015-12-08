@@ -101,7 +101,7 @@ function appSetup(company,callback) {
 		} else if (company.id == 1) {
 			$.getScript("/js/jquery.flot.js", function(){ //Load Main Chart JS First
 				console.log("Flot Charts Loaded");
-				getScripts(["/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function () {
+				getScripts(["/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js", "/js/jquery.flot.barnumbers.js"], function () {
 					console.log("Sales Scripts Loaded");
 					callback();
 				});
