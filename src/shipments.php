@@ -18,15 +18,21 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
 
         foreach ($data as $item) {
-            if($item['CompanyName'] == "US Packaging LLC")
-            $shipments['data'][$item['PackingSlipId']][] = array(
-                'CustomerRef' => $item['CustomerRef'],
-                'ShipDate' => $item['ShipDate'],
-                'Item' => $item['Item'],
-                'Description' => $item['Description'],
-                'SalesOrder' => $item['SalesOrder']
-            );
+            if($item['CompanyName'] == "US Packaging LLC") {
+                $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = $item['PackingSlipId'];
+                $shipments['data'][$item['PackingSlipId']]['ShipDate'] = $item['ShipDate'];
+                $shipments['data'][$item['PackingSlipId']]['Item'] = $item['Item'];
+                $shipments['data'][$item['PackingSlipId']]['Description'] = $item['Description'];
+                $shipments['data'][$item['PackingSlipId']]['SalesOrder'] = $item['SalesOrder'];
+                $shipments['data'][$item['PackingSlipId']]['CustomerRef'] = $item['CustomerRef'];
 
+                $shipments['data'][$item['PackingSlipId']][] = array(
+                    'Lot' => $item['BatchNumber'],
+                    'ExpirationDate' => $item['ExpirationDate'],
+                    'Delivered' => $item['Quantity'],
+                    'UOM' => $item['Unit']
+                );
+            }
         }
         //  }
         $shipments['count'] = count($shipments['data']);
@@ -38,30 +44,3 @@ if (!empty($user_token)) {
 
 echo (json_encode($shipments));
 
-// //get all packing lists
-//         $packingListsXml = $array->xpath('Body/MessageParts/MAX_ShipTransAPP/MAX_ShipTransTmp/PackingSlipId')
-//
-//         if (!empty($packingListsXml)){
-//           $allPackingLists = array();
-// //add them to an array
-//           foreach ($packingListsXml as $list) {
-//             $allPackingLists[] = $list;
-//           }
-// //remove duplicates
-//           $allPackingLists = array_unique($allPackingLists);
-//
-// //put them back together?
-//           $shipments = array();
-//           foreach ($allPackingLists as $slipId) {
-//             $data = $array->xpath('MAX_ShipTransTmp[PackingSlipId = "' . $slipId .'"]');
-//             if (!empty($data)) {
-//               foreach ($data as $info) {
-//                 $shipments[$slipId][] = $info->Item . ' - ' / $info->BatchNumber;
-//
-//                 $shipments['count'] = count($shipments['data']);
-//               }
-//             }
-//           }
-//
-//           echo(json_encode($shipments));
-//         }
