@@ -18,7 +18,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
 
         foreach ($data as $item) {
-            //if($item['CompanyName'] === "US Packaging LLC") {
+            if($item['CompanyName'] === "US Packaging LLC") {
                 $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = $item['PackingSlipId'];
                 $shipments['data'][$item['PackingSlipId']]['ShipDate'] = $item['ShipDate'];
                 $shipments['data'][$item['PackingSlipId']]['Item'] = $item['Item'];
@@ -32,7 +32,7 @@ if (!empty($user_token)) {
                     'Delivered' => $item['Quantity'],
                     'UOM' => $item['Unit']
                 );
-            //}
+            }
         }
 
         $shipments['count'] = count($shipments['data']);
