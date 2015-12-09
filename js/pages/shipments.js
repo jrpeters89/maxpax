@@ -12,7 +12,7 @@ function shippingData(user_token) {
                 //$("slip_id_table_" + psId.PackingSlipId + "tbody").append('<tr><td>' + x + '</td><td>' + psId.ShipDate + '</td> <td>' + psId.Item + '</td><td>' + psId.Description + '</td><td>' + psId.SalesOrder + '</td><td>' + psId.CustomerRef + '</td></tr>');
                 $("#shipments_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Delivered</th><th>UOM</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
                 jQuery.each(psId, function (z, det) {
-                    $("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td class="width_180">' + det.Lot + '</td><td class="text_right">' + det.ExpirationDate + '</td><td class="text_right">' + det.Delivered + '</td><td>' + det.UOM + '</td></tr>');
+                    $("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpirationDate + '</td><td>' + det.Delivered + '</td><td>' + det.UOM + '</td></tr>');
                 });
             });
             // if(typeof shipments.total != "undefined") {
