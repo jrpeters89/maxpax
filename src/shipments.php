@@ -19,18 +19,18 @@ if (!empty($user_token)) {
 
         foreach ($data as $item) {
             if($item['CompanyName'] === "US Packaging LLC") {
-                $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = $item['PackingSlipId'];
-                $shipments['data'][$item['PackingSlipId']]['ShipDate'] = $item['ShipDate'];
-                $shipments['data'][$item['PackingSlipId']]['Item'] = $item['Item'];
-                $shipments['data'][$item['PackingSlipId']]['Description'] = $item['Description'];
-                $shipments['data'][$item['PackingSlipId']]['SalesOrder'] = $item['SalesOrder'];
-                $shipments['data'][$item['PackingSlipId']]['CustomerRef'] = $item['CustomerRef'];
+                $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
+                $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
+                $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
+                $shipments['data'][$item['PackingSlipId']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
+                $shipments['data'][$item['PackingSlipId']]['SalesOrder'] = ($item['SalesOrder'] != null ? $item['SalesOrder'] : "");
+                $shipments['data'][$item['PackingSlipId']]['CustomerRef'] = ($item['CustomerRef'] != null ? $item['CustomerRef'] : "");
 
                 $shipments['data'][$item['PackingSlipId']][] = array(
-                    'Lot' => $item['BatchNumber'],
-                    'ExpirationDate' => $item['ExpirationDate'],
-                    'Delivered' => $item['Quantity'],
-                    'UOM' => $item['Unit']
+                    'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
+                    'ExpirationDate' => ($item['ExpirationDate'] != null ? $item['ExpirationDate'] : ""),
+                    'Delivered' => ($item['Quantity'] != null ? $item['Quantity'] : ""),
+                    'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
                 );
             }
         }
