@@ -9,7 +9,7 @@ function shippingData(user_token) {
             jQuery.each(shipments.data, function (x, psId) {
                 $("#shipments_list tbody").append('<tr><td>' + x + '</td> <td>' + psId.Item + '</td></tr>');
                 jQuery.each(psId, function (z, det) {
-                    $("#shipments_list tbody").append('<tr><td>' + det.ShipDate + '</td><td class="text_right">' + det.Item + '</td><td class="text_right">' + det.Description + '</td><td>' + det.SalesOrder + '</td><td class="text_right">' + det.CustomerRef + '</td></tr>');
+                    $("#shipments_list tbody").append('<tr><td>' + det.Lot + '</td><td class="text_right">' + det.ExpirationDate + '</td><td class="text_right">' + det.Delivered + '</td><td>' + det.UOM + '</td></tr>');
                 });
             });
             // if(typeof shipments.total != "undefined") {
