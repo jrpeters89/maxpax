@@ -3,6 +3,8 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
+$start_date = $_GET[start_date];
+$end_date = $_GET[end_date];
 
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
@@ -18,7 +20,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
 
         foreach ($data as $item) {
-            if($item['CompanyName'] === "US Packaging LLC") {
+            if(($item['CompanyName'] === "US Packaging LLC") &&  ($item['ShipDate'] > $start_date) && ($item['ShipDate'] < $end_date)) {
                 $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                 $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
                 $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
