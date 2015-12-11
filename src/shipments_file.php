@@ -15,6 +15,7 @@ if(!empty($user_token)) {
             $filename = glob($file . "*.pdf");
             //foreach(glob($file."*.pdf") as $filename) {
             if(file_exists($filename[0]) && is_file($filename[0])){
+                echo('<script>alert("'.$filename[0].'");</script>');
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/octet-stream');
                 header('Content-Disposition: attachment; filename='.basename($filename[0]));
