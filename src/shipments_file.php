@@ -12,7 +12,7 @@ if(!empty($user_token)) {
         if(!empty($file)) {
             //if (file_exists($file)) {
             //if(glob($file.'-*.pdf')){
-            $test = $file . "*";
+            $test = $file . '*';
             //$filename = glob($file . '?*.pdf');
             $filename = glob($test);
             echo('<script>alert("'.$file.'");</script>');
