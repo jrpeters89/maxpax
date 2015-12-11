@@ -24,6 +24,8 @@ if(!empty($user_token)) {
                 header('Content-Length: ' . filesize($filename[0]));
                 readfile($filename[0]);
                 exit;
+            } else {
+                die($filename[0]);
             }
         } else {
             echo "Invalid file path";
