@@ -17,6 +17,7 @@ if(!empty($user_token)) {
             $filename = glob($test);
             echo('<script>alert("'.$file.'");</script>');
             echo('<script>alert("'.$test.'");</script>');
+            echo('<script>alert("'.count($filename).'");</script>');
             echo('<script>alert("'.$filename[0].'");</script>');
             //foreach(glob($file."*.pdf") as $filename) {
             if(file_exists($filename[0]) && is_file($filename[0])){
