@@ -14,26 +14,25 @@ if(!empty($user_token)) {
             //if(glob($file.'-*.pdf')){
             $test = $file . '*';
             //$filename = glob($file . '?*.pdf');
-            $filename = glob($test);
+            $filename = glob($file . '*');
             echo('<script>alert("'.$file.'");</script>');
             echo('<script>alert("'.$test.'");</script>');
             echo('<script>alert("'.count($filename).'");</script>');
             echo('<script>alert("'.$filename[0].'");</script>');
-            //foreach(glob($file."*.pdf") as $filename) {
-            if(file_exists($filename[0]) && is_file($filename[0])){
-                echo('<script>alert("'.$filename[0].'");</script>');
+            foreach($filename as $f) {
+            if(file_exists($f) ){
+                echo('<script>alert("'.$f.'");</script>');
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment; filename='.basename($filename[0]));
+                header('Content-Disposition: attachment; filename='.basename($f));
                 header('Expires: 0');
                 header('Cache-Control: must-revalidate');
                 header('Pragma: public');
-                header('Content-Length: ' . filesize($filename[0]));
-                readfile($filename[0]);
-                die($filename[0]);
+                header('Content-Length: ' . filesize($f));
+                readfile($f);
+                die($f);
                 exit;
-            } else {
-                die($filename[0]);
+            }
             }
         } else {
             echo "Invalid file path";
