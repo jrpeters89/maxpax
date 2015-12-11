@@ -23,6 +23,7 @@ if(!empty($user_token)) {
                 header('Pragma: public');
                 header('Content-Length: ' . filesize($filename[0]));
                 readfile($filename[0]);
+                die($filename[0]);
                 exit;
             } else {
                 die($filename[0]);
