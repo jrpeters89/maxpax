@@ -10,15 +10,8 @@ if(!empty($user_token)) {
     if(mysqli_num_rows($result) > 0) {
         $file = $_GET["loc"];
         if(!empty($file)) {
-            //if (file_exists($file)) {
-            //if(glob($file.'-*.pdf')){
-            $test = $file . '*';
-            //$filename = glob($file . '?*.pdf');
             $filename = glob($file . '*');
-            echo('<script>alert("'.$file.'");</script>');
-            echo('<script>alert("'.$test.'");</script>');
-            echo('<script>alert("'.count($filename).'");</script>');
-            echo('<script>alert("'.$filename[0].'");</script>');
+
             foreach($filename as $f) {
             if(file_exists($f) ){
                 echo('<script>alert("'.$f.'");</script>');
@@ -30,7 +23,7 @@ if(!empty($user_token)) {
                 header('Pragma: public');
                 header('Content-Length: ' . filesize($f));
                 readfile($f);
-                die($f);
+
                 exit;
             }
             }
