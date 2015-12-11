@@ -14,7 +14,7 @@ if(!empty($user_token)) {
             //if(glob($file.'-*.pdf')){
             $filename = glob($file . "?*.pdf");
             echo('<script>alert("'.$file.'");</script>');
-            echo('<script>alert("'.$filename[0].'");</script>');
+            echo('<script>alert("'.$filename.'");</script>');
             //foreach(glob($file."*.pdf") as $filename) {
             if(file_exists($filename[0]) && is_file($filename[0])){
                 echo('<script>alert("'.$filename[0].'");</script>');
