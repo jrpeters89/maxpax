@@ -34,6 +34,25 @@ if(!empty($user_token)) {
 					);
 				}
 			}
+		} else if($row['company'] == 6) {	//Energems - Inventory Filter
+			foreach($data as $inv) {
+				//Item # = NOU
+				if(substr($inv['ItemId'], 0, 3) == "ENE" && $inv['CompanyName'] == "US Packaging LLC") {
+					$inventory['data'][] = array(
+						'ItemId' => $inv['ItemId'],
+						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
+						'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
+						'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
+						'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
+						'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
+						'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
+						'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
+						'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : ""),
+						'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
+						'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
+					);
+				}
+			}
 		} else if($row['company'] == 4) {	//Portion Pac - Inventory Filter
 			$i = 0;
 			$items = array();
