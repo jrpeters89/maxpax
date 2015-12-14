@@ -15,12 +15,12 @@ if (!empty($user_token)) {
                 if (file_exists($filename[0])) {
                     header('Content-Description: File Transfer');
                     header('Content-Type: application/octet-stream');
-                    header('Content-Disposition: attachment; filename=' . basename($f));
+                    header('Content-Disposition: attachment; filename=' . basename($filename[0]));
                     header('Expires: 0');
                     header('Cache-Control: must-revalidate');
                     header('Pragma: public');
-                    header('Content-Length: ' . filesize($f));
-                    readfile($f);
+                    header('Content-Length: ' . filesize($filename[0]));
+                    readfile($filename[0]);
 
                     exit;
                 }
