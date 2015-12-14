@@ -20,7 +20,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['MAX_ShipTransAPP']['MAX_ShipTransTmp'];
 
         foreach ($data as $item) {
-            if(($item['CompanyName'] === "US Packaging LLC") &&  ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
+            if(($item['CompanyName'] === "US Packaging LLC") && ($item['CustomerNumber'] === "USP-C000030") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
                 $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                 $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
                 $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
