@@ -78,12 +78,22 @@ function appSetup(company,callback) {
 	}
 
 	if(company.id > 0) {
-        if (company.id == 5) {
-            $.getScript("/js/pages/adm.js", function() {
-               console.log("ADM Script Loaded");
-                callback();
-            });
-        } else if (company.id == 4) {
+		if(company.id == 7) {
+			getScripts(["/js/pages/gopicnic.js", "/js/pages/shipments.js"], function () {
+				console.log("GoPicnic Scripts Loaded");
+				callback();
+			});
+    } else if(company.id == 6) {
+			getScripts(["/js/pages/energems.js"], function () {
+				console.log("Energems Scripts Loaded");
+				callback();
+			});
+		} else if (company.id == 5) {
+        $.getScript("/js/pages/adm.js", function() {
+           console.log("ADM Script Loaded");
+            callback();
+        });
+    } else if (company.id == 4) {
 			$.getScript("/js/pages/portion-pac.js", function(){
 				console.log("Portion Pac Script Loaded");
 				callback();
@@ -91,11 +101,6 @@ function appSetup(company,callback) {
 		} else if(company.id == 3) {
 			$.getScript("/js/pages/nourish.js", function(){
 				console.log("Nourish Script Loaded");
-				callback();
-			});
-		}	else if(company.id == 7) {
-			getScripts(["/js/pages/gopicnic.js", "/js/pages/shipments.js"], function () {
-				console.log("GoPicnic Scripts Loaded");
 				callback();
 			});
 		} else if (company.id == 1) {
