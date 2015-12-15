@@ -18,9 +18,22 @@ if (!empty($user_token)) {
 
         $data = $array['Body']['MessageParts']['InventTransAPP']['InventTrans'];
 
+        if ($row['Company'] == 6) { //Energems Filter
+            if ((substr($item['ItemId'], 0, 3) == "END") && ($item['CompanyId'] === "usp") && ($item['Qty'] != null) && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null) && ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
+                $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
+                    'ReferenceId' => $item['InventTransRefId'],
+                    'Qty' => number_format($item['Qty'], 2, ".", ","),
+                    'UOM' => $item['InventUnitId'],
+                    'Lot' => $item['InventBatchId'],
+                    'Date' => $item['DatePhysical'],
+                    'ItemId' => $item['ItemId'],
+                    'TransType' => $item['InventTransType']
+                );
+            }
 
-        foreach ($data as $item) {
-            if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['CompanyId'] === "usp") && ($item['Qty'] != null) && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null)  &&  ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
+        } else { //ADM
+            foreach ($data as $item) {
+                if ((substr($item['ItemId'], 0, 3) == "ADM") && ($item['CompanyId'] === "usp") && ($item['Qty'] != null) && ($item['InventTransRefId'] != null) && ($item['InventBatchId'] != null) && ($item['DatePhysical'] != null) && ($item['DatePhysical'] > $start_date) && ($item['DatePhysical'] < $end_date)) {
                     $inv_trans['data'][$item['ItemId']][$item['InventTransType']][] = array(
                         'ReferenceId' => $item['InventTransRefId'],
                         'Qty' => number_format($item['Qty'], 2, ".", ","),
@@ -31,9 +44,9 @@ if (!empty($user_token)) {
                         'TransType' => $item['InventTransType']
                     );
 
+                }
             }
         }
-
         $inv_trans['count'] = count($inv_trans['data']);
     }
 
