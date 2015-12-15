@@ -84,7 +84,7 @@ function appSetup(company,callback) {
 				callback();
 			});
     } else if(company.id == 6) {
-			getScripts(["/js/pages/energems.js"], function () {
+			getScripts(["/js/pages/energems.js", "/js/pages/shipments"], function () {
 				console.log("Energems Scripts Loaded");
 				callback();
 			});
