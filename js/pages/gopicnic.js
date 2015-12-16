@@ -65,7 +65,7 @@ function shippingData(user_token) {
 				jQuery.each(psId, function (z, det) {
 					if(typeof det.Lot != "undefined") {
 						$("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpirationDate + '</td><td>' + det.Delivered + '</td><td>' + det.UOM + '</td></tr>');
-					shipSubtotal += det.Delivered;
+					shipSubtotal += parseInt(det.Delivered, 10);
 					}
 				});
 				$("#shipments_list tfoot").append('<tr><td colspan="2">Subtotal</td><td>' + shipSubtotal + '</td> </tr>');
