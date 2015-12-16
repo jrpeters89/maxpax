@@ -172,7 +172,7 @@
                 <div class="col-xs-10">
                     <h1 class="page-header">Inventory Transactions</h1>
                 </div>
-                <div class="col-xs-2" style="...">
+                <div class="col-xs-2" style="text-align: right">
                     <a download="inv_trans.xls" onclick="return ExcellentExport.excel(this, 'inv_trans_list', 'Inventory Transactions');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
                 </div>
             </div>
@@ -254,7 +254,7 @@
   		</div>
 		<div>
 			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="shipStartDatePicker" class="datepicker"></p>
-			<p style="display:inline-block">End Date: <input type="text" id="shipwEndDatePicker" class="datepicker"></p>
+			<p style="display:inline-block">End Date: <input type="text" id="shipEndDatePicker" class="datepicker"></p>
 			<p style="display: inline-block;margin: 1em"><button onclick="refreshShipmentDates(user_token)">Refresh</button> </p>
 		</div>
   	    <div id="shipments_list" class="table-responsive">
