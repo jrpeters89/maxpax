@@ -45,10 +45,11 @@
             <li id="aging_link" class="menu_1"><a id="aging" href="#" data-link="aging">AR Aging</a></li>
             <li id="documents_link" class="documents"><a id="documents" href="#" data-link="documents">Documents</a></li>
             <li id="inventory_link" class="menu_3 menu_4 menu_6 menu_7"><a id="inventory" href="#" data-link="inventory">Inventory</a></li>
-            <li id="production_link" class="menu_3 menu_6"><a id="production" href="#" data-link="production">Production</a></li>
+            <li id="production_link" class="menu_3"><a id="production" href="#" data-link="production">Production</a></li>
             <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a></li>
             <li id="shipments_link" class="menu_6 menu_7"><a id="shipments" href="#" data-link="shipments">Shipments</a></li>
             <li id="inv_trans_link" class="menu_5 menu_6"><a id="transactions" href="#" data-link="transactions">Transactions</a> </li>
+			  <li id="prod_trans_link" class="menu_6"><a id="prod_transactions" href="#"  data-link="prod_transactions">Production</a> </li>
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
             <li><a id="logout" href="#" data-link="logout" class="visible-xs">Logout</a></li>
           </ul>
@@ -186,6 +187,27 @@
         </div>
         <p id="no_inv_trans_results" style="display:none;">No inventory transactions found</p>
     </div>
+
+	<div id="prod_trans_container" class="page_container container company_6">
+		<div class="row">
+			<div class="col-xs-10">
+				<h1 class="page-header">Production Transactions</h1>
+			</div>
+			<div class="col-xs-2" style="...">
+				<a download="prod_trans.xls" onclick="return ExcellentExport.excel(this, 'prod_trans_list', 'Production Transactions');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+			</div>
+		</div>
+		<div>
+			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="prodStartDatePicker" class="datepicker"></p>
+			<p style="display:inline-block">End Date: <input type="text" id="prodEndDatePicker" class="datepicker"></p>
+			<p style="display: inline-block;margin: 1em"><button onclick="refreshInvTransDates(user_token)">Refresh</button> </p>
+		</div>
+
+		<div id="prod_trans_list" class="table-responsive">
+			Loading...
+		</div>
+		<p id="no_prod_trans_results" style="display:none;">No production transactions found</p>
+	</div>
 
 	<div id="production_container" class="page_container container company_3">
 		<div class="row">
