@@ -53,9 +53,8 @@ if (!empty($user_token)) {
                         'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
                     );
 
-                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
-                    $num_format = number_format($shipments['data'][$item['PackingSlipId']]['Subtotal'], 2, ".", ",");
-                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] = $num_format;
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += number_format(intval($item['Quantity']), 2, ".", ",");
+
                 }
             }
         }
