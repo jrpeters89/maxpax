@@ -66,7 +66,7 @@ function shippingData(user_token) {
 				jQuery.each(psId, function (z, det) {
 					if(typeof det.Lot != "undefined") {
 						$("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpirationDate + '</td><td>' + det.Delivered + '</td><td>' + det.UOM + '</td></tr>');
-					psId.Subtotal += parseInt(det.Delivered, 10);
+					//psId.Subtotal += parseInt(det.Delivered, 10);
 					}
 				});
 				$("#slip_id_" + psId.PackingSlipId + "_lot tfoot").append('<tr><td></td><td><strong>Subtotal</strong></td><td><strong>' + psId.Subtotal + '</strong></td><td></td></tr>');
