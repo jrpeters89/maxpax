@@ -49,7 +49,7 @@ if (!empty($user_token)) {
                     $shipments['data'][$item['PackingSlipId']][] = array(
                         'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
                         'ExpirationDate' => ($item['ExpirationDate'] != null ? $item['ExpirationDate'] : ""),
-                        'Delivered' => ($item['Quantity'] != null ? ['Quantity'] : ""),
+                        'Delivered' => ($item['Quantity'] != null ? $item['Quantity'] : ""),
                         'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
                     );
                 }
