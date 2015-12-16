@@ -201,3 +201,91 @@ function refreshShipmentDates(user_token) {
 		}
 	});
 }
+
+function productionTransactions(user_token) {
+	$("#prod_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#prod_trans_container_container").show();
+	var today = new Date();
+	var dd = 1;
+	var mm = today.getMonth() + 1;
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd;
+	}
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+
+	var startDate = yyyy + '-' + mm + '-' + dd;
+	var endDate;
+	if (mm == 12) {
+		endDate = (yyyy + 1) + '-01-' + dd;
+	} else {
+		mm = mm + 1;
+		if (mm < 10) {
+			mm = '0' + mm;
+		}
+		endDate = yyyy + '-' + mm + '-' + dd;
+	}
+	//var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
+	var startDateTxt = document.getElementById("prodStartDatePicker");
+	var endDateTxt = document.getElementById("prodEndDatePicker");
+	startDateTxt.value = startDate;
+	endDateTxt.value = endDate;
+	$('#prodStartDatePicker').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$('#prodEndDatePicker').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+		var prodTrans = jQuery.parseJSON(result);
+		if (prodTrans.count > 0) {
+			$("#prod_trans_list").html('');
+			jQuery.each(prodTrans.data, function (x, psId) {
+				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + psId.TransDate + '</td><td>' + x + '</td> <td>' + psId.Item + '</td><td>' + psId.Description + '</td></tr></tbody><tfoot></tfoot></table>');
+				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+				jQuery.each(psId, function (z, det) {
+					if(typeof det.Lot != "undefined") {
+						$("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
+					}
+				});
+			});
+			// if(typeof shipments.total != "undefined") {
+			// 	$("#inventory_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+inventory.total.quantity+'</td><td></td><td class="text_right">'+inventory.total.case+'</td><td></td><td class="text_right">'+inventory.total.pallet+'</td></tr>');
+			// }
+			$.bootstrapSortable(false);
+		} else {
+			$("#prod_trans_list").html("No Production Transactions Available");
+		}
+	});
+}
+
+function refreshProdTransDates(user_token) {
+	$("#prod_trans_list").html('');
+	$("#prod_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#prod_trans_container").show();
+	var startDateTxt = document.getElementById("prodStartDatePicker");
+	var endDateTxt = document.getElementById("prodEndDatePicker");
+	$.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+		var prodTrans = jQuery.parseJSON(result);
+		if (prodTrans.count > 0) {
+			$("#prod_trans_list").html('');
+			jQuery.each(prodTrans.data, function (x, psId) {
+				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + psId.TransDate + '</td><td>' + x + '</td> <td>' + psId.Item + '</td><td>' + psId.Description + '</td></tr></tbody><tfoot></tfoot></table>');
+				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+				jQuery.each(psId, function (z, det) {
+					if(typeof det.Lot != "undefined") {
+						$("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
+					}
+				});
+			});
+			// if(typeof shipments.total != "undefined") {
+			// 	$("#inventory_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+inventory.total.quantity+'</td><td></td><td class="text_right">'+inventory.total.case+'</td><td></td><td class="text_right">'+inventory.total.pallet+'</td></tr>');
+			// }
+			$.bootstrapSortable(false);
+		} else {
+			$("#prod_trans_list").html("No Productions Transactions Available");
+		}
+	});
+}
