@@ -242,12 +242,13 @@ function productionTransactions(user_token) {
 		var prodTrans = jQuery.parseJSON(result);
 		if (prodTrans.count > 0) {
 			$("#prod_trans_list").html('');
-			jQuery.each(prodTrans.data, function (x, psId) {
-				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + psId.TransDate + '</td><td>' + x + '</td> <td>' + psId.ItemNumber + '</td><td>' + psId.Description + '</td></tr></tbody><tfoot></tfoot></table>');
-				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
-				jQuery.each(psId, function (z, det) {
+			jQuery.each(prodTrans.data, function (x, prodNum) {
+				$("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + prodNum.TransDate + '</td><td>' + x + '</td> <td>' + prodNum.ItemNumber + '</td><td>' + prodNum.Description + '</td></tr></tbody><tfoot></tfoot></table>');
+				$("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '_lot" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+				jQuery.each(prodNum, function (z, det) {
 					if(typeof det.Lot != "undefined") {
-						$("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
+
+						$("#prod_num_" + prodNum.Production + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
 					}
 				});
 			});
@@ -271,12 +272,13 @@ function refreshProdTransDates(user_token) {
 		var prodTrans = jQuery.parseJSON(result);
 		if (prodTrans.count > 0) {
 			$("#prod_trans_list").html('');
-			jQuery.each(prodTrans.data, function (x, psId) {
-				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + psId.TransDate + '</td><td>' + x + '</td> <td>' + psId.ItemNumber + '</td><td>' + psId.Description + '</td></tr></tbody><tfoot></tfoot></table>');
-				$("#prod_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
-				jQuery.each(psId, function (z, det) {
+			jQuery.each(prodTrans.data, function (x, prodNum) {
+				$("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + prodNum.TransDate + '</td><td>' + x + '</td> <td>' + prodNum.ItemNumber + '</td><td>' + prodNum.Description + '</td></tr></tbody><tfoot></tfoot></table>');
+				$("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '_lot" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+				jQuery.each(prodNum, function (z, det) {
 					if(typeof det.Lot != "undefined") {
-						$("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
+
+						$("#prod_num_" + prodNum.Production + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
 					}
 				});
 			});
