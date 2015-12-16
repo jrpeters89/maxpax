@@ -69,7 +69,7 @@ function shippingData(user_token) {
 					shipSubtotal += parseInt(det.Delivered, 10);
 					}
 				});
-				$("#slip_id_" + psId.PackingSlipId + "_lot tfoot").append('<tr><td colspan="2" style="text-align: right">Subtotal</td><td>' + shipSubtotal + '</td> </tr>');
+				$("#slip_id_" + psId.PackingSlipId + "_lot tfoot").append('<tr><td></td><td>Subtotal</td><td>' + shipSubtotal + '</td><td></td></tr>');
 			});
 
 			// if(typeof shipments.total != "undefined") {
@@ -102,7 +102,7 @@ function refreshShipmentDates(user_token) {
 						shipSubtotal += parseInt(det.Delivered, 10);
 					}
 				});
-				$("#slip_id_" + psId.PackingSlipId + "_lot tfoot").append('<tr><td colspan="2" style="text-align: right">Subtotal</td><td>' + shipSubtotal + '</td> </tr>');
+				$("#slip_id_" + psId.PackingSlipId + "_lot tfoot").append('<tr><td></td><td>Subtotal</td><td>' + shipSubtotal + '</td><td></td></tr>');
 			});
 			// if(typeof shipments.total != "undefined") {
 			// 	$("#inventory_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+inventory.total.quantity+'</td><td></td><td class="text_right">'+inventory.total.case+'</td><td></td><td class="text_right">'+inventory.total.pallet+'</td></tr>');
