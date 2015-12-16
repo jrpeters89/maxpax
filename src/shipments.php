@@ -53,7 +53,7 @@ if (!empty($user_token)) {
                         'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
                     );
 
-                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += (int)$item['Quantity'];
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
                 }
             }
         }
