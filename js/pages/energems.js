@@ -137,14 +137,14 @@ function shippingData(user_token) {
 		endDate = yyyy + '-' + mm + '-' + dd;
 	}
 	//var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
-	var startDateTxt = document.getElementById("goPicnicStartDatePicker");
-	var endDateTxt = document.getElementById("goPicnicEndDatePicker");
+	var startDateTxt = document.getElementById("shipStartDatePicker");
+	var endDateTxt = document.getElementById("shipEndDatePicker");
 	startDateTxt.value = startDate;
 	endDateTxt.value = endDate;
-	$('#goPicnicStartDatePicker').datepicker({
+	$('#shipStartDatePicker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
-	$('#goPicnicEndDatePicker').datepicker({
+	$('#shipEndDatePicker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
 	$.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
@@ -172,12 +172,12 @@ function shippingData(user_token) {
 		}
 	});
 }
-function refreshGoPicnicDates(user_token) {
+function refreshShipmentDates(user_token) {
 	$("#shipments_list").html('');
 	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#shipments_container").show();
-	var startDateTxt = document.getElementById("goPicnicStartDatePicker");
-	var endDateTxt = document.getElementById("goPicnicEndDatePicker");
+	var startDateTxt = document.getElementById("shipStartDatePicker");
+	var endDateTxt = document.getElementById("shipEndDatePicker");
 	$.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
 		var shipments = jQuery.parseJSON(result);
 		if (shipments.count > 0) {
