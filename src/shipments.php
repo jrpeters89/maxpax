@@ -52,6 +52,8 @@ if (!empty($user_token)) {
                         'Delivered' => ($item['Quantity'] != null ? number_format($item['Quantity'], 2, ".", ",") : ""),
                         'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
                     );
+
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += (int)$item['Quantity'];
                 }
             }
         }
