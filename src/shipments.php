@@ -54,6 +54,8 @@ if (!empty($user_token)) {
                     );
 
                     $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
+                    $num_format = number_format($shipments['data'][$item['PackingSlipId']]['Subtotal'], 2, ".", ",");
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] = $num_format;
                 }
             }
         }
