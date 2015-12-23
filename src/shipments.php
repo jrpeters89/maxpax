@@ -34,6 +34,8 @@ if (!empty($user_token)) {
                         'Delivered' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
                         'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
                     );
+
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
                 }
             }
         } else { //AMD filter
