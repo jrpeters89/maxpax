@@ -12,6 +12,8 @@
 #navbar .nav>li {
   display:none;
 }
+
+#navbar ul li:hover ul {display:block;}
 .sales_header {
   font-size: 14pt;
   font-weight: bold;
