@@ -13,7 +13,14 @@
   display:none;
 }
 
-#navbar ul li:hover ul {display:block;}
+nav ul ul {
+  display: none;
+}
+
+nav ul li:hover > ul {
+  display: block;
+}
+
 .sales_header {
   font-size: 14pt;
   font-weight: bold;
