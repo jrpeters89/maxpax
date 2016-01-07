@@ -82,7 +82,13 @@ function appSetup(company, callback) {
     }
 
     if (company.id > 0) {
-        if (company.id == 7) {
+        if (company.id == 99) {
+            getScripts(["/js/pages/internal.js"], function() {
+               console.log("Internal Scripts Loaded");
+                callback();
+            });
+        }
+        else if (company.id == 7) {
             getScripts(["/js/pages/gopicnic.js"], function () {
                 console.log("GoPicnic Scripts Loaded");
                 callback();
