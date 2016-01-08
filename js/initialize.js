@@ -76,6 +76,9 @@ function appSetup(company, callback) {
     $(".menu_6").fadeOut();
     $(".menu_7").fadeOut();
     $(".menu_" + company.id).fadeIn();
+
+    console.log("Documents is " + company.documents);
+
     if (company.documents > 0) {
         $(".documents").fadeIn();
     } else {
