@@ -48,6 +48,7 @@ function changePage(page) {
 function companyInfo(user_token, company_id) {
     $.get("/src/company.php?user_token=" + user_token + "&company_id=" + company_id, function (result) {
         var company = jQuery.parseJSON(result);
+        console.log("Company Id returned is " + company.id);
         $("#company_logo").html('<img src="images/' + company.logo + '_logo.png" style="height: 20px; width: 162px;" />');
         if (company.active == true) {
             appSetup(company, function () {
