@@ -46,6 +46,7 @@ function changePage(page) {
 }
 
 function companyInfo(user_token, company_id) {
+    console.log("Company Id is " + company_id);
     $.get("/src/company.php?user_token=" + user_token + "&company_id=" + company_id, function (result) {
         var company = jQuery.parseJSON(result);
         console.log("Company Id returned is " + company.id);
