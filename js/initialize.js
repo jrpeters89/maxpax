@@ -24,7 +24,7 @@ function changePage(page) {
             $("#tab_list").addClass("active");
             opensalesCheck(user_token);
         } else if (page == "documents") {
-            documentList(user_token, company.id);
+            documentList(user_token);
         } else if (page == "user") {
             userList(user_token);
         } else if (page == "aging") {
