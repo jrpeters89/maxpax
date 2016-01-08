@@ -8,7 +8,9 @@ $act = $_GET[act];
 $company_id = $_GET[company_id];
 
 if(!empty($user_token)) {
-	if($company_id == '') {
+	//if($company_id == '') {
+	switch($company_id){
+		case 1:
 		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
 		$result = mysqli_query($conn, "SELECT `id`,`company_name`,`logo_path`,`default_page`,`documents` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
@@ -24,7 +26,10 @@ if(!empty($user_token)) {
 		} else {
 			//$company['active'] = false;
 		}
-	} else {
+		break;
+
+		default:
+	//} else {
 		if ($act == "list") {
 			$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 			$result = mysqli_query($conn, "SELECT `company`,`company_name` FROM `users` LEFT JOIN `companies` ON `users`.`company` = `companies`.`id` WHERE `token`='$user_token'") or die(mysqli_error($conn));
