@@ -1,5 +1,5 @@
 $("body").on("click", "#main_menu li ul li a", function (event) {
-    getScript("/js/initialize.js");
+
     companyInfo(' ', 1);
     $("sales_link").addClass("menu_99");
     appSetup(99,function () {
