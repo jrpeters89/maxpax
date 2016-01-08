@@ -5,7 +5,7 @@ include("C:/inetpub/protected/database_connect.php");
 $user_token = $_GET[user_token];
 $company = array();
 $act = $_GET[act];
-$company_id = $_GET[$company_id];
+$company_id = $_GET[company_id];
 
 if(!empty($user_token)) {
 	if(!empty($company_id)) {
