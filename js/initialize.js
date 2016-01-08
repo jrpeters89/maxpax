@@ -82,7 +82,9 @@ function appSetup(company, callback) {
     if (company.documents > 0) {
         $(".documents").fadeIn();
     } else {
-        $(".documents, #documents_container").remove();
+        //$(".documents, #documents_container").remove();
+        $(".documents").fadeOut();
+        $("#documents_container").fadeOut();
     }
     if (company.access > 0) {
         $.getScript("/js/pages/users.js", function () {
