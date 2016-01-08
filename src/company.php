@@ -8,7 +8,7 @@ $act = $_GET[act];
 $company_id = $_GET[company_id];
 
 if(!empty($user_token)) {
-	if($company_id == 2) {
+	if($company_id != '') {
 		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
 		$result = mysqli_query($conn, "SELECT `id`,`company_name`,`logo_path`,`default_page`,`documents` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
