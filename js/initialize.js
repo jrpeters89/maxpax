@@ -1,3 +1,5 @@
+var hold_company_id;
+
 $("body").on("click", "#main_menu li a", function (event) {
     event.preventDefault();
     var page = $(this).data("link");
@@ -24,7 +26,7 @@ function changePage(page) {
             $("#tab_list").addClass("active");
             opensalesCheck(user_token);
         } else if (page == "documents") {
-            documentList(user_token);
+            documentList(user_token, hold_company_id);
         } else if (page == "user") {
             userList(user_token);
         } else if (page == "aging") {
@@ -47,6 +49,7 @@ function changePage(page) {
 
 function companyInfo(user_token, company_id) {
     console.log("Company Id is " + company_id);
+    hold_company_id = company_id;
     $.get("/src/company.php?user_token=" + user_token + "&company_id=" + company_id, function (result) {
         var company = jQuery.parseJSON(result);
         console.log("Company Id returned is " + company.id);
