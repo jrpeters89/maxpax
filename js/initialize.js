@@ -45,8 +45,8 @@ function changePage(page) {
     }
 }
 
-function companyInfo(user_token) {
-    $.get("/src/company.php?user_token=" + user_token, function (result) {
+function companyInfo(user_token, internal) {
+    $.get("/src/company.php?user_token=" + user_token + "&internal=" + internal, function (result) {
         var company = jQuery.parseJSON(result);
         $("#company_logo").html('<img src="images/' + company.logo + '_logo.png" style="height: 20px; width: 162px;" />');
         if (company.active == true) {
