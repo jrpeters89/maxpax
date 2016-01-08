@@ -22,7 +22,7 @@ if(!empty($user_token)) {
 			$company['default_page'] = $row['default_page'];
 			$company['documents'] = $row['documents'];
 		} else {
-			$company['active'] = false;
+			//$company['active'] = false;
 		}
 	} else {
 		if ($act == "list") {
