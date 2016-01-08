@@ -4,8 +4,8 @@ $("body").on("click", "#main_menu li ul li a", function (event) {
 
 });
 
-function updateInternal(user_token) {
+function updateInternal(user_token, company_id) {
     console.log("Internal Button Clicked");
-    companyInfo(user_token, 1);
+    companyInfo(user_token, company_id);
 
 }
