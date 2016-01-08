@@ -68,6 +68,13 @@ function companyInfo(user_token, company_id) {
 function appSetup(company, callback) {
 
     var callback_active = false;
+    $(".menu_1").fadeOut();
+    $(".menu_2").fadeOut();
+    $(".menu_3").fadeOut();
+    $(".menu_4").fadeOut();
+    $(".menu_5").fadeOut();
+    $(".menu_6").fadeOut();
+    $(".menu_7").fadeOut();
     $(".menu_" + company.id).fadeIn();
     if (company.documents > 0) {
         $(".documents").fadeIn();
