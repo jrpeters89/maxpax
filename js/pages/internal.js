@@ -10,3 +10,7 @@ function updateInternal(user_token, company_id) {
     companyInfo(user_token, company_id);
 
 }
+
+function updateInternalDocuments(user_token, company_id) {
+    documentList(user_token, company_id);
+}
