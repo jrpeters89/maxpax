@@ -11,13 +11,13 @@ if(!empty($user_token)) {
 	if(!empty($company_id)) {
 		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
-		$result = mysqli_query($conn, "SELECT `access_level`,`company`,`company_name`,`logo_path`,`default_page`,`documents` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
+		$result = mysqli_query($conn, "SELECT `id`,`company_name`,`logo_path`,`default_page`,`documents` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_array($result);
 			$company['active'] = true;
-			$company['id'] = $row['company'];
+			$company['id'] = $row['id'];
 			$company['name'] = $row['company_name'];
-			$company['access'] = $row['access_level'];
+			$company['access'] = 1;
 			$company['logo'] = (!empty($row['logo_path']) ? $row['logo_path'] : "maxpax");
 			$company['default_page'] = $row['default_page'];
 			$company['documents'] = $row['documents'];
