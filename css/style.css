@@ -138,3 +138,10 @@ font-size: 18pt;
 #inventory_list tfoot td {
   font-weight: bold;
 }
+.internal_button_link {
+  background: transparent;
+  outline: none;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden
+}
