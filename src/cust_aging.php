@@ -9,7 +9,7 @@ $company = $_GET['company'];
 
 $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 $result = mysqli_query($conn, "SELECT `access_level` FROM `users` LEFT JOIN `companies` ON `users`.`company` = `companies`.`id` WHERE `token`='$user_token'") or die(mysqli_error($conn));
-$internal_user = mysqli_query($conn, "SELECT `access_level` FROM `users` WHERE `token` = '$user_token'");
+$internal_user = mysqli_query($conn, "SELECT `access_level` FROM `users` WHERE `token` = '$user_token'") or die(mysqli_error($conn));
 if(mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
   $xml = simplexml_load_file("../Data/CustAging/custAging.xml");
   $json = json_encode($xml);
