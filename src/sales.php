@@ -11,7 +11,7 @@ if(!empty($user_token)) {
 	$result = mysqli_query($conn, "SELECT `access_level`,`company` FROM `users` WHERE `token`='$user_token'") or die(mysqli_error($conn));
 	if(mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_array($result);
-		if($row[access_level] > 0 || $row[company] == 1) {
+		if($row[access_level] > 0 || $row[company] == 1 || $row[company] == 99) {
 			$sales[active] = true;
 			$xml = simplexml_load_file("../Data/mtd_ytd_sales.xml");
 			$json = json_encode($xml);
