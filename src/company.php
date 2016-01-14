@@ -70,13 +70,23 @@ if (!empty($user_token)) {
                 $result = mysqli_query($conn, "SELECT `access_level`,`company`,`company_name`,`logo_path`,`default_page`,`documents` FROM `users` LEFT JOIN `companies` ON `users`.`company` = `companies`.`id` WHERE `token`='$user_token'") or die(mysqli_error($conn));
                 if (mysqli_num_rows($result) > 0) {
                     $row = mysqli_fetch_array($result);
-                    $company['active'] = true;
-                    $company['id'] = $row['company'];
-                    $company['name'] = $row['company_name'];
-                    $company['access'] = $row['access_level'];
-                    $company['logo'] = (!empty($row['logo_path']) ? $row['logo_path'] : "maxpax");
-                    $company['default_page'] = $row['default_page'];
-                    $company['documents'] = $row['documents'];
+                    if($row['company'] == 99) {
+                        $company['active'] = true;
+                        $company['id'] = 1;
+                        $company['name'] = 'MaxPax LLC';
+                        $company['access'] = $row['access_level'];
+                        $company['logo'] = (!empty($row['logo_path']) ? $row['logo_path'] : "maxpax");
+                        $company['default_page'] = 'sales';
+                        $company['documents'] = $row['documents'];
+                    } else {
+                        $company['active'] = true;
+                        $company['id'] = $row['company'];
+                        $company['name'] = $row['company_name'];
+                        $company['access'] = $row['access_level'];
+                        $company['logo'] = (!empty($row['logo_path']) ? $row['logo_path'] : "maxpax");
+                        $company['default_page'] = $row['default_page'];
+                        $company['documents'] = $row['documents'];
+                    }
                 } else {
                     $company['active'] = false;
                 }
