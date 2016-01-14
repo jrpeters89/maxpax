@@ -100,8 +100,9 @@ function appSetup(company, callback) {
 
     if (company.id > 0) {
         if (company.id == 99) {
-            getScripts(["/js/pages/internal.js", "/js/pages/sales.js"], function() {
+            getScripts(["/js/pages/internal.js", "/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function() {
                console.log("Internal Scripts Loaded");
+                console.log("Sales Scripts Loaded");
                 callback();
             });
         }
