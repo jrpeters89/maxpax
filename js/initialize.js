@@ -100,9 +100,12 @@ function appSetup(company, callback) {
 
     if (company.id > 0) {
         if (company.id == 99) {
-            getScripts(["/js/pages/internal.js", "/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function() {
-               console.log("Internal Scripts Loaded");
-               callback();
+            $.getScript("/js/jquery.flot.js", function () { //Load Main Chart JS First
+                console.log("Flot Charts Loaded");
+                getScripts(["/js/pages/internal.js", "/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function () {
+                    console.log("Internal Scripts Loaded");
+                    callback();
+                });
             });
         }
         else if (company.id == 7) {
