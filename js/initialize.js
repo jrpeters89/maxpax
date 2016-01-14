@@ -100,7 +100,7 @@ function appSetup(company, callback) {
 
     if (company.id > 0) {
         if (company.id == 99) {
-            getScripts(["/js/pages/internal.js"], function() {
+            getScripts(["/js/pages/internal.js", "/js/pages/sales.js"], function() {
                console.log("Internal Scripts Loaded");
                 callback();
             });
