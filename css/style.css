@@ -21,6 +21,10 @@ nav ul li:hover > ul {
   display: block;
 }
 
+nav ul li ul:hover > a {
+  background-color: #9acfea;
+}
+
 .sales_header {
   font-size: 14pt;
   font-weight: bold;
