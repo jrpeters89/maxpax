@@ -21,7 +21,7 @@ nav ul li:hover > ul {
   display: block;
 }
 
-nav ul li ul li:hover > a {
+nav ul li li:hover {
   background-color: #9acfea;
 }
 
