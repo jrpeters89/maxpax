@@ -1,7 +1,7 @@
-function inventoryCheck(user_token) {
+function inventoryCheck(user_token, company_id) {
 	$("#inventory_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#inventory_container").show();
-	$.get("/src/inventory.php?act=list&user_token="+user_token,function(result) {
+	$.get("/src/inventory.php?act=list&user_token="+user_token+"&company_id="+company_id,function(result) {
 		var inventory = jQuery.parseJSON(result);
 		if(inventory.count > 0) {
 			$("#inventory_list").html('<h5><i>"CS" - Customer-supplied (owned by Energems)</i></h5><table class="table sortable"><thead><tr><th class="width_100" data-defaultsort="asc">Class</th><th class="width_180">Item #</th><th>Product Name</th><th>Batch #</th><th class="width_100">Exp. Date</th><th class="text_right">Quantity</th><th>UOM</th><th>Location</th></tr></thead><tbody></tbody></table>');

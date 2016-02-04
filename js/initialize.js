@@ -20,7 +20,7 @@ function changePage(page) {
         if (page == "production") {
             productionCheck(user_token);
         } else if (page == "inventory") {
-            inventoryCheck(user_token);
+            inventoryCheck(user_token, hold_company_id);
         } else if (page == "opensales") {
             $("#opensales_tabs li").removeClass("active");
             $("#tab_list").addClass("active");
