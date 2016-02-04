@@ -15,7 +15,7 @@ function inventoryCheck(user_token, company_id) {
 	});
 }
 
-function inventoryTransactions(user_token) {
+function inventoryTransactions(user_token, company_id) {
 	$("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#inv_trans_container").show();
 	var today = new Date();
@@ -52,7 +52,7 @@ function inventoryTransactions(user_token) {
 		dateFormat: 'yy-mm-dd'
 	});
 	//$('#endDatePicker').datepicker("option", "dateFormat", "yy-mm-dd");
-	$.get("/src/inv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+	$.get("/src/inv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
 		var inventory = jQuery.parseJSON(result);
 		if (inventory.count > 0) {
 			$("#inv_trans_list").html('');

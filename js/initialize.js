@@ -37,7 +37,7 @@ function changePage(page) {
             shippingData(user_token);
         } else if (page == "inv_trans") {
             //$("#inv_trans_link").addClass("active");
-            inventoryTransactions(user_token);
+            inventoryTransactions(user_token, hold_company_id);
         } else if (page == "prod_trans") {
             productionTransactions(user_token);
         } else {
