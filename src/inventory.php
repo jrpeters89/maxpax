@@ -93,7 +93,7 @@ if(!empty($user_token)) {
 							'PalletNum' => $pallet_num,
 							'Pallet' => number_format($pallet,2,".",","),
 							'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
-							'ProdDate' => (!empty($inv['ProdDate']) ? $inv['ProdDate'] : "")
+							'ProdDate' => (!empty($inv['prodDate']) ? $inv['prodDate'] : "")
 						);
 						$items[$inv['ItemId']] = $i;
 						$i++;
