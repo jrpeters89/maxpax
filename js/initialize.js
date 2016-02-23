@@ -34,7 +34,7 @@ function changePage(page) {
         } else if (page == "sales") {
             salesData(user_token);
         } else if (page == "shipments") {
-            shippingData(user_token);
+            shippingData(user_token, hold_company_id);
         } else if (page == "inv_trans") {
             //$("#inv_trans_link").addClass("active");
             inventoryTransactions(user_token, hold_company_id);

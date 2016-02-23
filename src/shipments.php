@@ -5,6 +5,7 @@ include("C:/inetpub/protected/database_connect.php");
 $user_token = $_GET[user_token];
 $start_date = $_GET[start_date];
 $end_date = $_GET[end_date];
+$company_id = $_GET[company_id];
 
 if (!empty($user_token)) {
     switch ($company_id) {

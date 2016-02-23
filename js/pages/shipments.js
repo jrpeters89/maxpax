@@ -1,4 +1,8 @@
-function shippingData(user_token) {
+var hold_company_id;
+
+function shippingData(user_token, company_id) {
+    hold_company_id = company_id;
+
     $("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#shipments_container").show();
     var today = new Date();
@@ -36,7 +40,7 @@ function shippingData(user_token) {
     $('#goPicnicEndDatePicker').datepicker({
         dateFormat: 'yy-mm-dd'
     });
-    $.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+    $.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" +company_id, function (result) {
         var shipments = jQuery.parseJSON(result);
         if (shipments.count > 0) {
             $("#shipments_list").html('');
@@ -67,7 +71,7 @@ function refreshGoPicnicDates(user_token) {
     $("#shipments_container").show();
     var startDateTxt = document.getElementById("goPicnicStartDatePicker");
     var endDateTxt = document.getElementById("goPicnicEndDatePicker");
-    $.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+    $.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + hold_company_id, function (result) {
         var shipments = jQuery.parseJSON(result);
         if (shipments.count > 0) {
             $("#shipments_list").html('');
