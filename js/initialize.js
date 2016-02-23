@@ -78,6 +78,7 @@ function appSetup(company, callback) {
     $(".menu_5").fadeOut();
     $(".menu_6").fadeOut();
     $(".menu_7").fadeOut();
+    $(".menu_8").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
     console.log("Documents is " + company.documents);
@@ -106,6 +107,11 @@ function appSetup(company, callback) {
                     console.log("Internal Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 8) {
+            getScripts(["/js/pages/wf-young.js"], function () {
+                console.log("WF Young Scripts Loaded");
+                callback();
             });
         }
         else if (company.id == 7) {
