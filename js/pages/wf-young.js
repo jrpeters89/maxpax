@@ -14,11 +14,12 @@ function shippingData(user_token) {
 
     var startDate = yyyy + '-' + mm + '-' + dd;
     var endDate;
-    if (mm == 12) {
+    var new_mm;
+    new_mm = today.getMonth() + 2;
+    if (new_mm == 13) {
         endDate = (yyyy + 1) + '-01-' + dd;
     } else {
-        var new_mm;
-        new_mm = mm + 1;
+
         if (new_mm < 10) {
             new_mm = '0' + new_mm;
         }
