@@ -5,9 +5,9 @@ function shippingData(user_token) {
     var startDay = 1;
     var startMonth = today.getMonth() + 1;
     var startYear = today.getFullYear();
-  /*  if (dd < 10) {
-        dd = '0' + dd;
-    }*/
+    if (startDay < 10) {
+        startDay = '0' + startDay;
+    }
     if (startMonth < 10) {
         startMonth = '0' + startMonth;
     }
