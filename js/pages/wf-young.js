@@ -17,11 +17,12 @@ function shippingData(user_token) {
     if (mm == 12) {
         endDate = (yyyy + 1) + '-01-' + dd;
     } else {
-        mm = mm + 1;
-        if (mm < 10) {
-            mm = '0' + mm;
+        var new_mm;
+        new_mm = mm + 1;
+        if (new_mm < 10) {
+            new_mm = '0' + new_mm;
         }
-        endDate = yyyy + '-' + mm + '-' + dd;
+        endDate = yyyy + '-' + new_mm + '-' + dd;
     }
     //var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
     var startDateTxt = document.getElementById("shipStartDatePicker");
