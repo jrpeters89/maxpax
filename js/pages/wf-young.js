@@ -2,28 +2,28 @@ function shippingData(user_token) {
     $("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#shipments_container").show();
     var today = new Date();
-    var dd = 1;
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    if (dd < 10) {
+    var startDay = 1;
+    var startMonth = today.getMonth() + 1;
+    var startYear = today.getFullYear();
+  /*  if (dd < 10) {
         dd = '0' + dd;
+    }*/
+    if (startMonth < 10) {
+        startMonth = '0' + startMonth;
     }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
+    var startDate = startYear + '-' + startMonth + '-' + startDay;
 
-    var startDate = yyyy + '-' + mm + '-' + dd;
     var endDate;
-    var new_mm;
-    new_mm = today.getMonth() + 2;
-    if (new_mm == 13) {
-        endDate = (yyyy + 1) + '-01-' + dd;
+    var endMonth;
+    endMonth = today.getMonth() + 2;
+    if (endMonth == 13) {
+        endDate = (startYear + 1) + '-01-' + startDay;
     } else {
 
-        if (new_mm < 10) {
-            new_mm = '0' + new_mm;
+        if (endMonth < 10) {
+            endMonth = '0' + endMonth;
         }
-        endDate = yyyy + '-' + new_mm + '-' + dd;
+        endDate = startYear + '-' + endMonth + '-' + startDay;
     }
     //var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
     var startDateTxt = document.getElementById("shipStartDatePicker");
