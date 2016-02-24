@@ -41,7 +41,7 @@ function changePage(page) {
         } else if (page == "prod_trans") {
             productionTransactions(user_token);
         } else if (page == "recv_trans") {
-            receivingTransactions(user_token, hold_company_i);
+            receivingTransactions(user_token, hold_company_id);
         } else {
 
             //Do Nothing
