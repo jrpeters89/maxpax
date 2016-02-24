@@ -319,14 +319,14 @@ function receivingTransactions(user_token, company_id) {
 		endDate = startYear + '-' + endMonth + '-' + startDay;
 	}
 	//var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
-	var startDateTxt = document.getElementById("shipStartDatePicker");
-	var endDateTxt = document.getElementById("shipEndDatePicker");
+	var startDateTxt = document.getElementById("recvStartDatePicker");
+	var endDateTxt = document.getElementById("recvEndDatePicker");
 	startDateTxt.value = startDate;
 	endDateTxt.value = endDate;
-	$('#shipStartDatePicker').datepicker({
+	$('#recvStartDatePicker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
-	$('#shipEndDatePicker').datepicker({
+	$('#recvEndDatePicker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
 	$.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
@@ -351,11 +351,11 @@ function receivingTransactions(user_token, company_id) {
 	});
 }
 function refreshRecvTransDates(user_token) {
-	$("#shipments_list").html('');
-	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
-	$("#shipments_container").show();
-	var startDateTxt = document.getElementById("shipStartDatePicker");
-	var endDateTxt = document.getElementById("shipEndDatePicker");
+	$("#recv_trans_list").html('');
+	$("#recv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#recv_trans_container").show();
+	var startDateTxt = document.getElementById("recvStartDatePicker");
+	var endDateTxt = document.getElementById("recvEndDatePicker");
 	$.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
 		var receipt = jQuery.parseJSON(result);
 		if (receipt.count > 0) {
