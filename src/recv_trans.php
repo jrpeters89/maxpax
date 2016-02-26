@@ -35,7 +35,7 @@ if (!empty($user_token)) {
         $data = $array['Body']['MessageParts']['MAX_ReceiptTransAPP']['MAX_ReceiptTransTmp'];
         if ($row['company'] == 6) { //Energems Filter
             foreach ($data as $item) {
-                if (($item['CompanyName'] === "US Packaging LLC") && ($item['PurchaseOrder'] === "USP-V000330") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
+                if (($item['CompanyName'] === "US Packaging LLC") && ($item['VendorAccount'] === "USP-V000309") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
@@ -51,7 +51,7 @@ if (!empty($user_token)) {
             }
         } elseif ($row['company'] == 3) { //Nourish Snacks
             foreach ($data as $item) {
-                if (($item['CompanyName'] === "US Packaging LLC") && ($item['PurchaseOrder'] === "USP-V000240") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
+                if (($item['CompanyName'] === "US Packaging LLC") && ($item['VendorAccount'] === "USP-V000240") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
