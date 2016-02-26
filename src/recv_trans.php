@@ -46,7 +46,7 @@ if (!empty($user_token)) {
                         'ItemNumber' => ($item['Item'] != null ? $item['Item'] : ""),
                         'Description' => ($item['Description'] != null ? $item['Description'] : ""),
                         'Received' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
-                        'Date' => ($item['PhysicalDate'] != null ? $item['PhysicalDate'] : ""),
+                        'Date' => ($item['DatePhysical'] != null ? $item['DatePhysical'] : ""),
                         'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
                         'Quantity' => ($item['Quantity'] != null ? $item['Quantity'] : "")
                     );
@@ -66,7 +66,7 @@ if (!empty($user_token)) {
                         'ItemNumber' => ($item['Item'] != null ? $item['Item'] : ""),
                         'Description' => ($item['Description'] != null ? $item['Description'] : ""),
                         'Received' => ($item['Quantity'] != null ? $item['Quantity'] : ""),
-                        'Date' => ($item['PhysicalDate'] != null ? $item['PhysicalDate'] : ""),
+                        'Date' => ($item['DatePhysical'] != null ? $item['DatePhysical'] : ""),
                         'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
                         'Quantity' => ($item['Quantity'] != null ? $item['Quantity'] : "")
                     );
