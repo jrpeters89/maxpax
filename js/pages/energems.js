@@ -355,7 +355,7 @@ function refreshRecvTransDates(user_token) {
 	$("#recv_trans_container").show();
 	var startDateTxt = document.getElementById("recvStartDatePicker");
 	var endDateTxt = document.getElementById("recvEndDatePicker");
-	$.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
+	$.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + hold_company_id, function (result) {
 		var receipt = jQuery.parseJSON(result);
 		if (receipt.count > 0) {
 			$("#recv_trans_list").html('');
