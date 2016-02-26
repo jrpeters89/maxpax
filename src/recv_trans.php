@@ -39,14 +39,18 @@ if (!empty($user_token)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
-                    $receipt['data'][$item['PackingSlipId']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
 
                     $receipt['data'][$item['PackingSlipId']][] = array(
+                        'PurchaseOrder' => ($item['PurchaseOrder'] != null ? $item['PurchaseOrder'] : ""),
+                        'LineNumber' => ($item['LineNumber'] != null ? $item['LineNumber'] : ""),
+                        'ItemNumber' => ($item['Item'] != null ? $item['Item'] : ""),
+                        'Description' => ($item['Description'] != null ? $item['Description'] : ""),
+                        'Received' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
+                        'Date' => ($item['PhysicalDate'] != null ? $item['PhysicalDate'] : ""),
                         'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
-                        'Delivered' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
+                        'Quantity' => ($item['Quantity'] != null ? $item['Quantity'] : "")
                     );
 
-                    $receipt['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
                 }
             }
         } elseif ($row['company'] == 3) { //Nourish Snacks
@@ -55,12 +59,16 @@ if (!empty($user_token)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
-                    $receipt['data'][$item['PackingSlipId']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
 
                     $receipt['data'][$item['PackingSlipId']][] = array(
+                        'PurchaseOrder' => ($item['PurchaseOrder'] != null ? $item['PurchaseOrder'] : ""),
+                        'LineNumber' => ($item['LineNumber'] != null ? $item['LineNumber'] : ""),
+                        'ItemNumber' => ($item['Item'] != null ? $item['Item'] : ""),
+                        'Description' => ($item['Description'] != null ? $item['Description'] : ""),
+                        'Received' => ($item['Quantity'] != null ? $item['Quantity'] : ""),
+                        'Date' => ($item['PhysicalDate'] != null ? $item['PhysicalDate'] : ""),
                         'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
-                        'Delivered' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
-
+                        'Quantity' => ($item['Quantity'] != null ? $item['Quantity'] : "")
                     );
 
                     $receipt['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
