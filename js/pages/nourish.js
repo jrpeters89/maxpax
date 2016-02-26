@@ -214,7 +214,7 @@ function receivingTransactions(user_token, company_id) {
 			});
 			$.bootstrapSortable(false);
 		} else {
-			$("#shipments_list").html("No Shipments Available");
+			$("#recv_trans_list_list").html("No Receiving Transactions Available");
 		}
 	});
 }
@@ -240,7 +240,7 @@ function refreshRecvTransDates(user_token) {
 			});
 			$.bootstrapSortable(false);
 		} else {
-			$("#shipments_list").html("No Shipments Available");
+			$("#recv_trans_list_list").html("No Receiving Transactions Available");
 		}
 	});
 }
