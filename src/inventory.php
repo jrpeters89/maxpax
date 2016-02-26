@@ -105,7 +105,7 @@ if(!empty($user_token)) {
 							$inventory['data'][$items[$inv['ItemId']]]['Pallet'] = (!empty($inventory['data'][$items[$inv['ItemId']]]['PalletNum']) ? number_format((str_replace(",", "", $inventory['data'][$items[$inv['ItemId']]]['AvailPhysical']) / $inventory['data'][$items[$inv['ItemId']]]['PalletNum']), 2, ".", ",") : 0);
 						}
 					}
-				} else {
+				} elseif (empty($inv['prodDate'])) {
 					$quantity = (!empty($inv['AvailPhysical']) ? $inv['AvailPhysical'] : 0);
 					$case_num = (!empty($inv['Case']) ? $inv['Case'] : 0);
 					$case = (!empty($inv['Case']) ? ($inv['AvailPhysical'] / $inv['Case']) : 0);
