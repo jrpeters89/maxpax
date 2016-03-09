@@ -52,7 +52,7 @@ function packagingCheck(user_token, company_id) {
 		if(inventory.count > 0) {
 			$("#packaging_inventory_list").html('<table class="table sortable"><thead><tr><th class="width_100" data-defaultsort="asc">Class</th><th class="width_180">Item #</th><th>Product Name</th><th>Batch #</th><th class="width_100">Exp. Date</th><th class="text_right">Quantity</th><th>UOM</th><th>Location</th></tr></thead><tbody></tbody></table>');
 			jQuery.each( inventory.data, function( i, inv ) {
-				jQuery.each(inv, function (item, id) {
+				jQuery.each(inv, function (id, item) {
 
 
 				$("#packaging_inventory_list tbody").append('<tr><td class="width_100">'+id.ItemGroupId+'</td><td class="width_180">'+id.ItemId+'</td><td>'+id.ItemName+'</td><td>'+id.BatchNumber+'</td><td>'+id.expDate+'</td><td class="text_right">'+id.AvailPhysical+'</td><td>'+id.BOMUnitId+'</td><td>'+id.Location+'</td></tr>');

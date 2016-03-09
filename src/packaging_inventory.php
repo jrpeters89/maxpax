@@ -33,7 +33,7 @@ if(!empty($user_token)) {
             foreach($data as $inv) {
                 if(substr($inv['ItemId'], 0, 3) == "PAC" && $inv['CompanyName'] == "MaxPax LLC" && ($inv['ItemGroupId'] == "LB" || $inv['ItemGroupId'] == "PM")) {
 
-                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']] = array(
+                    $inventory['data'][$inv['ItemId']] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
                         'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
