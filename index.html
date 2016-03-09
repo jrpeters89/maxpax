@@ -49,6 +49,7 @@
             <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a></li>
             <li id="shipments_link" class="menu_3 menu_6 menu_7 menu_8"><a id="shipments" href="#" data-link="shipments">Shipments</a></li>
             <li id="inv_trans_link" class="menu_5 menu_6"><a id="inv_trans" href="#" data-link="inv_trans">Transactions</a> </li>
+			  <li id="inv_quarantine_link" class="menu-4"><a id="inv_quarantine" href="#" data-link="inv_quarantine">Quarantine</a> </li>
 			  <li id="prod_trans_link" class="menu_6"><a id="prod_trans" href="#"  data-link="prod_trans">Production</a> </li>
 			  <li id="recv_trans_link" class="menu_3 menu_6"><a id="recv_trans" href="#" data-link="recv_trans">Receiving</a> </li>
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
@@ -185,6 +186,20 @@
 	    </div>
 	    <p id="no_inv_results" style="display:none;">No inventory found</p>
     </div>
+	<div id="inv_quarantine_container" class="page_container company_4">
+		<div class="row">
+			<div class="col-xs-10">
+				<h1 class="page_header">FG Inv Quarantine</h1>
+			</div>
+			<div class="col-xs-2" style="text-align: right;">
+				<a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'inv_quarantine_list', 'FG Inv Quarantine');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+			</div>
+		</div>
+		<div id="inv_quarantine_list" class="table-responsive">
+			Loading...
+		</div>
+		<p id="no_inv_quarantine_results" style="display:none;">No FG Inv Quarantine found</p>
+	</div>
     <div id="inv_trans_container" class="page_container container company_5">
             <div class="row">
                 <div class="col-xs-10">
