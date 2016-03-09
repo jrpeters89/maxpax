@@ -31,7 +31,8 @@ if(!empty($user_token)) {
 
         if($row['company'] == 4) {	//PortionPac - Inventory Filter
             foreach($data as $inv) {
-                if(substr($inv['ItemId'], 0, 3) == "PAC") {
+                //if(substr($inv['ItemId'], 0, 3) == "PAC") {
+                if($inv['CompanyName'] == "MaxPax LLC"){
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
