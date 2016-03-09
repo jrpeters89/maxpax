@@ -40,6 +40,8 @@ function changePage(page) {
             inventoryTransactions(user_token, hold_company_id);
         } else if (page == "inv_quarantine") {
             invQuarantineCheck(user_token, hold_company_id);
+        } else if (page == "packaging_inventory") {
+            packagingCheck(user_token, hold_company_id);
         } else if (page == "prod_trans") {
             productionTransactions(user_token);
         } else if (page == "recv_trans") {
