@@ -55,7 +55,7 @@ function packagingCheck(user_token, company_id) {
 				jQuery.each(inv, function (item, id) {
 
 
-				$("#packaging_inventory_list tbody").append('<tr><td class="width_100">'+i.ItemGroupId+'</td><td class="width_180">'+i.ItemId+'</td><td>'+i.ItemName+'</td><td>'+i.BatchNumber+'</td><td>'+i.expDate+'</td><td class="text_right">'+i.AvailPhysical+'</td><td>'+i.BOMUnitId+'</td><td>'+i.Location+'</td></tr>');
+				$("#packaging_inventory_list tbody").append('<tr><td class="width_100">'+id.ItemGroupId+'</td><td class="width_180">'+id.ItemId+'</td><td>'+id.ItemName+'</td><td>'+id.BatchNumber+'</td><td>'+id.expDate+'</td><td class="text_right">'+id.AvailPhysical+'</td><td>'+id.BOMUnitId+'</td><td>'+id.Location+'</td></tr>');
 
 				});
 			})
