@@ -22,6 +22,8 @@ function inventoryCheck(user_token) {
 function productionCheck(user_token) {
 	$("#production_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#production_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Production</h1>');
 	$.get("/src/production.php?act=list&user_token="+user_token,function(result) {
 		var production = jQuery.parseJSON(result);
 		if(production.count > 0) {
@@ -48,6 +50,8 @@ function opensalesCheck(user_token,type) {
 	type = (typeof type !== "undefined" ? type : "list");
 	$("#opensales_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#opensales_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Open Sales</h1>');
 	$.get("/src/open_sales.php?type="+type+"&user_token="+user_token,function(result) {
 		var sales = jQuery.parseJSON(result);
 		if(sales.count > 0) {
@@ -77,6 +81,8 @@ function opensalesCheck(user_token,type) {
 function shippingData(user_token) {
 	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#shipments_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Shipments</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;
@@ -165,6 +171,8 @@ function receivingTransactions(user_token, company_id) {
 	hold_company_id = company_id;
 	$("#recv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#recv_trans_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Receiving Transactions</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;
