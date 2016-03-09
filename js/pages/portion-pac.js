@@ -47,7 +47,7 @@ function packagingCheck(user_token, company_id) {
 	$("#packaging_inventory_container").show();
 	$(".col-xs-10").html('');
 	$(".col-xs-10").html('<h1 class="page_header">Packaging Inv On-Hand</h1>');
-	$.get("/src/packaging_inventory.php?act=list&user_token="+user_token+"&company_id"+company_id,function(result) {
+	$.get("/src/packaging_inventory.php?act=list&user_token="+user_token+"&company_id="+company_id,function(result) {
 		var inventory = jQuery.parseJSON(result);
 		if(inventory.count > 0) {
 			$("#packaging_inventory_list").html('<table class="table sortable"><thead><tr><th class="width_100" data-defaultsort="asc">Class</th><th class="width_180">Item #</th><th>Product Name</th><th>Batch #</th><th class="width_100">Exp. Date</th><th class="text_right">Quantity</th><th>UOM</th><th>Location</th></tr></thead><tbody></tbody></table>');

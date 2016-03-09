@@ -31,8 +31,7 @@ if(!empty($user_token)) {
 
         if($row['company'] == 4) {	//PortionPac - Inventory Filter
             foreach($data as $inv) {
-                //if(substr($inv['ItemId'], 0, 3) == "PAC") {
-                //if($inv['CompanyName'] == "MaxPax LLC"){
+                if(substr($inv['ItemId'], 0, 3) == "PAC" && $inv['CompanyName'] == "MaxPax LLC" && ($inv['ItemGroupId'] == "LB" || $inv['ItemGroupId'] == "PM")) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -47,7 +46,7 @@ if(!empty($user_token)) {
                         'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
                     );
                 }
-            //}
+            }
         }
 
         $inventory['count'] = count($inventory['data']);
