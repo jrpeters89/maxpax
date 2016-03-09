@@ -43,7 +43,7 @@ function invQuarantineCheck(user_token, company_id) {
 }
 
 function packagingCheck(user_token, company_id) {
-	$("#packaing_inventory_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#packaging_inventory_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#packaging_inventory_container").show();
 	$(".col-xs-10").html('');
 	$(".col-xs-10").html('<h1 class="page_header">Packaging Inv On-Hand</h1>');
