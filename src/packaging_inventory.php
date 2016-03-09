@@ -29,10 +29,9 @@ if(!empty($user_token)) {
         $array = json_decode($json,TRUE);
         $data = $array['Body']['MessageParts']['MAX_InventOnhand']['MAX_InventOnhandTmp'];
 
-        if($row['company'] == 4) {	//GoPicnic - Inventory Filter
+        if($row['company'] == 4) {	//PortionPac - Inventory Filter
             foreach($data as $inv) {
-                //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "PAC" ) {
+                if(substr($inv['ItemId'], 0, 3) == "PAC") {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
