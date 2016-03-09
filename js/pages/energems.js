@@ -22,6 +22,8 @@ function inventoryCheck(user_token, company_id) {
 function inventoryTransactions(user_token, company_id) {
 	$("#inv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#inv_trans_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Inventory Transactions</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;
@@ -121,6 +123,8 @@ function shippingData(user_token, company_id) {
 	hold_company_id = company_id;
 	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#shipments_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Shipments</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;
@@ -208,6 +212,8 @@ function refreshShipmentDates(user_token) {
 function productionTransactions(user_token) {
 	$("#prod_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#prod_trans_container_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Production</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;
@@ -296,6 +302,8 @@ function receivingTransactions(user_token, company_id) {
 	hold_company_id = company_id;
 	$("#recv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#recv_trans_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Receiving Transactions</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;

@@ -20,6 +20,8 @@ function inventoryCheck(user_token, company_id) {
 function shippingData(user_token) {
 	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#shipments_container").show();
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">Shipments</h1>');
 	var today = new Date();
 	var startDay = 1;
 	var startMonth = today.getMonth() + 1;
