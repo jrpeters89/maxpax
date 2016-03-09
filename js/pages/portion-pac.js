@@ -23,8 +23,8 @@ function inventoryCheck(user_token, company_id) {
 function invQuarantineCheck(user_token, company_id) {
 	$("#inv_quarantine_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#inv_quarantine_container").show();
-	/*$(".col-xs-10").html('');
-	$(".col-xs-10").html('<h1 class="page_header">FG Inv On-Hand</h1>');*/
+	$(".col-xs-10").html('');
+	$(".col-xs-10").html('<h1 class="page_header">FG Inv Quarantine</h1>');
 	$.get("/src/inv_quarantine.php?act=list&user_token="+user_token+"&company_id="+company_id,function(result) {
 		var inventory = jQuery.parseJSON(result);
 		if(inventory.count > 0) {
