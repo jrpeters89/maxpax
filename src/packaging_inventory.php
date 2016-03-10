@@ -33,19 +33,19 @@ if(!empty($user_token)) {
             foreach($data as $inv) {
                 if(substr($inv['ItemId'], 0, 3) == "PAC" && $inv['CompanyName'] == "MaxPax LLC" && ($inv['ItemGroupId'] == "LB" || $inv['ItemGroupId'] == "PM")) {
 
-                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']] = array(
-                        'ItemId' => $inv['ItemId'],
-                        'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
-                        'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
-                        'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
-                        'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
-                        'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
-                        'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
-                        'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
-                        'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : ""),
-                        'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
-                        'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
-                    );
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['ItemId'] = ($inv['ItemId'] != null ? $inv['ItemId'] : "");
+
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['AvailPhysical'] = ($inv['AvailPhysical'] != null) ? number_format($inv['AvailPhysical'],0,".",",") : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['BatchNumber'] = ($inv['BatchNumber'] != null) ? $inv['BatchNumber'] : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['Location'] = ($inv['Location'] != null) ? $inv['AvailPhysical'] : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['expDate'] = ($inv['expDate'] != null) ? $inv['expDate'] : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['ItemName'] = ($inv['ItemName'] != null) ? $inv['ItemName'] : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['ItemGroupId'] = ($inv['ItemGroupId'] != null) ? $inv['ItemGroupId'] : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['BOMUnitId'] = ($inv['BOMUnitId'] != null) ? $inv['BOMUnitId'] : "";
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['Case'] = (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : "");
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['SellUOM'] = (!empty($inv['SellUOM']) ? $inv['SellUOM'] : "");
+                    $inventory['data'][$inv['ItemGroupId']][$inv['ItemId']]['Pallet'] = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0);
+
                 }
             }
         }
