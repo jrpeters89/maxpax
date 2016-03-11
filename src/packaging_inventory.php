@@ -45,6 +45,9 @@ if(!empty($user_token)) {
                     $inventory['data'][$inv['ItemId']]['Case'] = (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : "");
                     $inventory['data'][$inv['ItemId']]['SellUOM'] = (!empty($inv['SellUOM']) ? $inv['SellUOM'] : "");
                     $inventory['data'][$inv['ItemId']]['Pallet'] = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0);
+                    $inventory['data'][$inv['ItemId']][] = array (
+
+                    );
 
                 }
             }

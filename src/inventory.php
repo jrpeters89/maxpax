@@ -73,7 +73,7 @@ if(!empty($user_token)) {
 			$today = date("Y-m-d", strtotime('-2 days', strtotime(date("Y-m-d"))));
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(empty($inv['prodDate']) || ($inv['prodDate'] >= $today)) {
+				if(empty($inv['prodDate']) || ($inv['prodDate'] < $today)) {
 					$quantity = (!empty($inv['AvailPhysical']) ? $inv['AvailPhysical'] : 0);
 					$case_num = (!empty($inv['Case']) ? $inv['Case'] : 0);
 					$case = (!empty($inv['Case']) ? ($inv['AvailPhysical'] / $inv['Case']) : 0);
