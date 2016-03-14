@@ -42,8 +42,10 @@ if(!empty($user_token)) {
                         'expDate' => ($inv['expDate'] != null) ? $inv['expDate'] : "N/A",
                         'AvailPhysical' => ($inv['AvailPhysical'] != null) ? number_format($inv['AvailPhysical'],0,".",",") : "",
                         'BOMUnitId' => ($inv['BOMUnitId'] != null) ? $inv['BOMUnitId'] : "",
-                        'Location' => ($inv['Location'] != null) ? $inv['AvailPhysical'] : ""
+                        'Location' => ($inv['Location'] != null) ? $inv['Location'] : ""
                     );
+
+                    $inventory['data'][$inv['ItemId']]['Subtotal'] += intval($inv['AvailPhysical']);
                 }
             }
         }
