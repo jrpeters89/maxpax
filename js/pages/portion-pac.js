@@ -55,7 +55,7 @@ function packagingCheck(user_token, company_id) {
 				$("#inventory_list_table").append('<tr><td>' + inv.ItemGroupId + '</td><td>' + inv.ItemId + '</td><td>' + inv.ItemName + '</td><td></td><td></td><td></td><td></td></tr>');
 				//$("#packaging_inventory_list tbody").append('<tr><td class="width_100">'+inv.ItemGroupId+'</td><td class="width_180">'+inv.ItemId+'</td><td>'+inv.ItemName+'</td><td>'+inv.BatchNumber+'</td><td>'+inv.expDate+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td>'+inv.Location+'</td></tr>');
 				jQuery.each(inv, function(x, item) {
-					//$("#inventory_list_table").append('<tr><td></td><td></td><td>' + item.BatchNumber + '</td><td></td><td></td><td></td><td></td></tr>')
+					$("#inventory_list_table tbody").append('<tr><td></td><td></td><td>' + item.BatchNumber + '</td><td></td><td></td><td></td><td></td></tr>')
 				});
 			})
 			$.bootstrapSortable(false);
