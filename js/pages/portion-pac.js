@@ -58,7 +58,7 @@ function packagingCheck(user_token, company_id) {
 						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td></td><td></td><td>' + item.BatchNumber + '</td><td>' + item.expDate + '</td><td>' + item.AvailPhysical + '</td><td>' + item.BOMUnitId +'</td><td>' + item.Location +'</td></tr>');
 					}
 				});
-				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td></td><td></td><td></td><td><strong>Subtotal</strong></td><td><strong>' + item.Subtotal + '</strong></td><td></td></tr>');
+				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td></td><td></td><td></td><td><strong>Subtotal</strong></td><td><strong>' + inv.Subtotal + '</strong></td><td></td></tr>');
 
 			});
 			$.bootstrapSortable(false);
