@@ -52,13 +52,13 @@ function packagingCheck(user_token, company_id) {
 		if(inventory.count > 0) {
 			$("#packaging_inventory_list").html('');
 			jQuery.each( inventory.data, function( i, inv ) {
-				$("#packaging_inventory_list").append('<div id="inventory_list_' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_100"></th><th class="width_100"></th><th class="width_180">Batch #</th><th class="width_100">Exp. Date</th><th>Quantity</th><th>UOM</th><th>Location</th></tr><tr><td><strong>' + inv.ItemGroupId + '</strong></td><td><strong>' + inv.ItemId + '</td><td><strong>' + inv.ItemName + '</strong></td><td></td><td></td><td></td><td></td></tr></thead><tbody></tbody><tfoot></tfoot></table></div>');
+				$("#packaging_inventory_list").append('<div id="inventory_list_' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_100"></th><th class="width_100"></th><th class="width_180">Batch #</th><th class="width_100">Exp. Date</th><th class="width_100">Quantity</th><th class="width_100">UOM</th><th class="width_100">Location</th></tr><tr ><td class="width_100"><strong>' + inv.ItemGroupId + '</strong></td><td class="width_100"><strong>' + inv.ItemId + '</td><td class="width_180"><strong>' + inv.ItemName + '</strong></td><td class="width_100"></td><td class="width_100"></td><td class="width_100"></td><td class="width_100"></td></tr></thead><tbody></tbody><tfoot></tfoot></table></div>');
 				jQuery.each(inv, function(x, item) {
 					if (typeof item.BatchNumber != "undefined") {
-						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td></td><td></td><td>' + item.BatchNumber + '</td><td>' + item.expDate + '</td><td>' + item.AvailPhysical + '</td><td>' + item.BOMUnitId +'</td><td>' + item.Location +'</td></tr>');
+						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td class="width_100"></td><td class="width_100"></td><td class="width_180">' + item.BatchNumber + '</td><td class="width_100">' + item.expDate + '</td><td class="width_100">' + item.AvailPhysical + '</td><td class="width_100">' + item.BOMUnitId +'</td><td class="width_100">' + item.Location +'</td></tr>');
 					}
 				});
-				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td></td><td></td><td></td><td><strong>Subtotal</strong></td><td><strong>' + inv.Subtotal + '</strong></td><td></td><td></td></tr>');
+				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td class="width_100"></td><td class="width_100"></td><td class="width_180"></td><td class="width_100"><strong>Subtotal</strong></td><td class="width_100"><strong>' + inv.Subtotal + '</strong></td><td class="width_100"></td><td class="width_100"></td></tr>');
 
 			});
 			$.bootstrapSortable(false);
