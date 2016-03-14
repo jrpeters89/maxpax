@@ -34,21 +34,16 @@ if(!empty($user_token)) {
                 if(substr($inv['ItemId'], 0, 3) == "PAC" && $inv['CompanyName'] == "MaxPax LLC" && ($inv['ItemGroupId'] == "LB" || $inv['ItemGroupId'] == "PM")) {
 
                     $inventory['data'][$inv['ItemId']]['ItemId'] = ($inv['ItemId'] != null ? $inv['ItemId'] : "");
-
-                    $inventory['data'][$inv['ItemId']]['AvailPhysical'] = ($inv['AvailPhysical'] != null) ? number_format($inv['AvailPhysical'],0,".",",") : "";
-                    $inventory['data'][$inv['ItemId']]['BatchNumber'] = ($inv['BatchNumber'] != null) ? $inv['BatchNumber'] : "";
-                    $inventory['data'][$inv['ItemId']]['Location'] = ($inv['Location'] != null) ? $inv['AvailPhysical'] : "";
-                    $inventory['data'][$inv['ItemId']]['expDate'] = ($inv['expDate'] != null) ? $inv['expDate'] : "";
-                    $inventory['data'][$inv['ItemId']]['ItemName'] = ($inv['ItemName'] != null) ? $inv['ItemName'] : "";
                     $inventory['data'][$inv['ItemId']]['ItemGroupId'] = ($inv['ItemGroupId'] != null) ? $inv['ItemGroupId'] : "";
-                    $inventory['data'][$inv['ItemId']]['BOMUnitId'] = ($inv['BOMUnitId'] != null) ? $inv['BOMUnitId'] : "";
-                    $inventory['data'][$inv['ItemId']]['Case'] = (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : "");
-                    $inventory['data'][$inv['ItemId']]['SellUOM'] = (!empty($inv['SellUOM']) ? $inv['SellUOM'] : "");
-                    $inventory['data'][$inv['ItemId']]['Pallet'] = (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0);
+                    $inventory['data'][$inv['ItemId']]['ItemName'] = ($inv['ItemName'] != null) ? $inv['ItemName'] : "";
+
                     $inventory['data'][$inv['ItemId']][] = array (
-
+                        'BatchNumber' => ($inv['BatchNumber'] != null) ? $inv['BatchNumber'] : "",
+                        'expDate' => ($inv['expDate'] != null) ? $inv['expDate'] : "N/A",
+                        'AvailPhysical' => ($inv['AvailPhysical'] != null) ? number_format($inv['AvailPhysical'],0,".",",") : "",
+                        'BOMUnitId' => ($inv['BOMUnitId'] != null) ? $inv['BOMUnitId'] : "",
+                        'Location' => ($inv['Location'] != null) ? $inv['AvailPhysical'] : ""
                     );
-
                 }
             }
         }
