@@ -52,9 +52,7 @@ function packagingCheck(user_token, company_id) {
 		if(inventory.count > 0) {
 			$("#packaging_inventory_list").html('');
 			jQuery.each( inventory.data, function( i, inv ) {
-				$("#packaging_inventory_list").append('<div id="inventory_list' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_100" data-defaultsort="asc"></th><th class="width_180"></th><th>Batch #</th><th class="width_100">Exp. Date</th><th class="text_right">Quantity</th><th>UOM</th><th>Location</th></tr></thead><tr><td>' + inv.ItemGroupId + '</td><td>' + inv.ItemId + '</td><td>' + inv.ItemName + '</td><td></td><td></td><td></td><td></td></tr><tbody></tbody></table></div>');
-				//$("#inventory_list_table_" + inv.ItemId + " tbody").append('<tr><td>' + inv.ItemGroupId + '</td><td>' + inv.ItemId + '</td><td>' + inv.ItemName + '</td><td></td><td></td><td></td><td></td></tr>');
-				//$("#packaging_inventory_list tbody").append('<tr><td class="width_100">'+inv.ItemGroupId+'</td><td class="width_180">'+inv.ItemId+'</td><td>'+inv.ItemName+'</td><td>'+inv.BatchNumber+'</td><td>'+inv.expDate+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td>'+inv.Location+'</td></tr>');
+				$("#packaging_inventory_list").append('<div id="inventory_list_' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_100" data-defaultsort="asc"></th><th class="width_180"></th><th>Batch #</th><th class="width_100">Exp. Date</th><th class="text_right">Quantity</th><th>UOM</th><th>Location</th></tr><tr><td>' + inv.ItemGroupId + '</td><td>' + inv.ItemId + '</td><td>' + inv.ItemName + '</td><td></td><td></td><td></td><td></td></tr></thead><tbody></tbody></table></div>');
 				jQuery.each(inv, function(x, item) {
 					if (typeof item.BatchNumber != undefined) {
 						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td></td><td></td><td>' + item.BatchNumber + '</td><td></td><td></td><td></td><td></td></tr>');
