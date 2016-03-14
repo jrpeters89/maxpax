@@ -136,6 +136,9 @@ font-size: 18pt;
 .width_180 {
   min-width: 180px;
 }
+.width_350 {
+  min_width: 350px;
+}
 .text_right {
   text-align: right;
 }

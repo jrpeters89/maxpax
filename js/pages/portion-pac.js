@@ -52,13 +52,13 @@ function packagingCheck(user_token, company_id) {
 		if(inventory.count > 0) {
 			$("#packaging_inventory_list").html('');
 			jQuery.each( inventory.data, function( i, inv ) {
-				$("#packaging_inventory_list").append('<div id="inventory_list_' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_130"></th><th class="width_130"></th><th class="width_180">Batch #</th><th class="width_130">Exp. Date</th><th class="width_130">Quantity</th><th class="width_130">UOM</th><th class="width_130">Location</th></tr><tr ><td class="width_130"><strong>' + inv.ItemGroupId + '</strong></td><td class="width_130"><strong>' + inv.ItemId + '</td><td class="width_180"><strong>' + inv.ItemName + '</strong></td><td class="width_130"></td><td class="width_130"></td><td class="width_130"></td><td class="width_130"></td></tr></thead><tbody></tbody><tfoot></tfoot></table></div>');
+				$("#packaging_inventory_list").append('<div id="inventory_list_' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_130"></th><th class="width_130"></th><th class="width_350">Batch #</th><th class="width_130">Exp. Date</th><th class="width_130">Quantity</th><th class="width_130">UOM</th><th class="width_130">Location</th></tr><tr ><td class="width_130"><strong>' + inv.ItemGroupId + '</strong></td><td class="width_130"><strong>' + inv.ItemId + '</td><td class="width_350"><strong>' + inv.ItemName + '</strong></td><td class="width_130"></td><td class="width_130"></td><td class="width_130"></td><td class="width_130"></td></tr></thead><tbody></tbody><tfoot></tfoot></table></div>');
 				jQuery.each(inv, function(x, item) {
 					if (typeof item.BatchNumber != "undefined") {
-						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td class="width_130"></td><td class="width_130"></td><td class="width_180">' + item.BatchNumber + '</td><td class="width_130">' + item.expDate + '</td><td class="width_130">' + item.AvailPhysical + '</td><td class="width_130">' + item.BOMUnitId +'</td><td class="width_130">' + item.Location +'</td></tr>');
+						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td class="width_130"></td><td class="width_130"></td><td class="width_350">' + item.BatchNumber + '</td><td class="width_130">' + item.expDate + '</td><td class="width_130">' + item.AvailPhysical + '</td><td class="width_130">' + item.BOMUnitId +'</td><td class="width_130">' + item.Location +'</td></tr>');
 					}
 				});
-				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td class="width_130"></td><td class="width_130"></td><td class="width_180"></td><td class="width_130"><strong>Subtotal</strong></td><td class="width_130"><strong>' + inv.Subtotal + '</strong></td><td class="width_130"></td><td class="width_130"></td></tr>');
+				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td class="width_130"></td><td class="width_130"></td><td class="width_350"></td><td class="width_130"><strong>Subtotal</strong></td><td class="width_130"><strong>' + inv.Subtotal + '</strong></td><td class="width_130"></td><td class="width_130"></td></tr>');
 
 			});
 			$.bootstrapSortable(false);
