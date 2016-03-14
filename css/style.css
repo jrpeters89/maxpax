@@ -137,7 +137,7 @@ font-size: 18pt;
   min-width: 180px;
 }
 .width_350 {
-  min_width: 350px !important;
+  min-width: 350px !important;
 }
 .text_right {
   text-align: right;
