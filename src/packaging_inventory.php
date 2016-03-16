@@ -48,6 +48,7 @@ if(!empty($user_token)) {
                     $inventory['data'][$inv['ItemId']]['Subtotal'] += intval($inv['AvailPhysical']);
                 }
             }
+            $inventory['data'][$inv['ItemId']]['Subtotal'] = number_format($inventory['data'][$inv['ItemId']]['Subtotal'],0,".",",");
         }
 
         $inventory['count'] = count($inventory['data']);
