@@ -107,6 +107,81 @@ function agingChart(user_token,company) {
 	});
 }
 
+function invAdjData(user_token, company_id) {
+	$("#inv_adj_detail").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#inv_adj_detail").show();
+	var today = new Date();
+	var startDay = 1;
+	var startMonth = today.getMonth() + 1;
+	var startYear = today.getFullYear();
+	if (startDay < 10) {
+		startDay = '0' + startDay;
+	}
+	if (startMonth < 10) {
+		startMonth = '0' + startMonth;
+	}
+	var startDate = startYear + '-' + startMonth + '-' + startDay;
+
+	var endDate;
+	var endMonth;
+	endMonth = today.getMonth() + 2;
+	if (endMonth == 13) {
+		endDate = (startYear + 1) + '-01-' + startDay;
+	} else {
+
+		if (endMonth < 10) {
+			endMonth = '0' + endMonth;
+		}
+		endDate = startYear + '-' + endMonth + '-' + startDay;
+	}
+	//var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
+	var startDateTxt = document.getElementById("invAdjStartDatePicker");
+	var endDateTxt = document.getElementById("invAdjEndDatePicker");
+	startDateTxt.value = startDate;
+	endDateTxt.value = endDate;
+	$('#invAdjStartDatePicker').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$('#invAdjEndDatePicker').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company_id="+company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
+		var inv_adj = jQuery.parseJSON(result);
+		console.log(inv_adj);
+		if (-1 > 0) {
+
+		} else {
+			$("#inv_adj_detail").html('');
+			$("#inv_adj_detail").html('<center><h4 style="margin-top: 20px;">No Data Found</h4></center>')
+		}
+	});
+}
+
+function refreshInvAdjDates(user_token) {
+	$("#inv_adj_detail").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#inv_adj_detail").show();
+	var startDateTxt = document.getElementById("invAdjStartDatePicker");
+	var endDateTxt = document.getElementById("invAdjEndDatePicker");
+	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company_id="+company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
+		var inv_adj = jQuery.parseJSON(result);
+		console.log(inv_adj);
+		if (-1 > 0) {
+
+		} else {
+			$("#inv_adj_detail").html('');
+			$("#inv_adj_detail").html('<center><h4 style="margin-top: 20px;">No Data Found</h4></center>')
+		}
+	});
+}
+
+$("body").on("click",".inv_adj_tab",function(event) {
+	event.preventDefault();
+	var company = $(this).data("tab");
+	$("#inv_adj_tabs li").removeClass("active");
+	$("#inv_adj_company_"+company).addClass("active");
+	invAdjData(user_token,company);
+});
+
 $("body").on("click",".aging_tab",function(event) {
 	event.preventDefault();
 	var company = $(this).data("tab");

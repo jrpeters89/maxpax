@@ -53,6 +53,7 @@
 			  <li id="packaging_inventory_link" class="menu_4"><a id="packaging_inventory" href="#" data-link="packaging_inventory">Packaging</a> </li>
 			  <li id="prod_trans_link" class="menu_6"><a id="prod_trans" href="#"  data-link="prod_trans">Production</a> </li>
 			  <li id="recv_trans_link" class="menu_3 menu_6"><a id="recv_trans" href="#" data-link="recv_trans">Receiving</a> </li>
+			  <li id="inv_adj_link" class="menu_1 menu_99"><a id="inv_adj" href="#" data-link="inv_adj">Adjustments</a> </li>
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
 			  <li class="menu_99">
 				  <a>Customers</a>
@@ -163,6 +164,22 @@
         <center>Loading...</center>
       </div>
     </div>
+
+	<div id="inv_adj_container" class="page_container container company_1">
+		<h1 class="page_header">Inventory Adjustments</h1>
+		<div>
+			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="invAdjStartDatePicker" class="datepicker"></p>
+			<p style="display:inline-block">End Date: <input type="text" id="invAdjEndDatePicker" class="datepicker"></p>
+			<p style="display: inline-block;margin: 1em"><button onclick="refreshInvAdjDates(user_token)">Refresh</button> </p>
+		</div>
+		<ul id="inv_adj_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+			<li id="inv_adj_company_1" role="presentation" class="active"><a href="#" class="inv_adj_tab" data-tab="1">MaxPax LLC</a></li>
+			<li id="inv_adj_company_2" role="presentation"><a href="#" class="inv_adj_tab" data-tab="2">US Packaging LLC</a></li>
+		</ul>
+		<div id="inv_adj_detail">
+			<center>Loading...</center>
+		</div>
+	</div>
 
     <div id="documents_container" class="page_container container">
 	    <h1 class="page_header">QC Docs</h1>

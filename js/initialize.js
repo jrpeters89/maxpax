@@ -46,6 +46,8 @@ function changePage(page) {
             productionTransactions(user_token);
         } else if (page == "recv_trans") {
             receivingTransactions(user_token, hold_company_id);
+        } else if (page == "inv_adj"){
+            invAdjData(user_token, hold_company_id);
         } else {
 
             //Do Nothing
