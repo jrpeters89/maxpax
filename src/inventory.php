@@ -14,6 +14,8 @@ if(!empty($user_token)) {
 		case 5:
 		case 6:
 		case 7:
+	    case 8:
+		case 9:
 			$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 			$result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 			break;
@@ -29,7 +31,26 @@ if(!empty($user_token)) {
 		$array = json_decode($json,TRUE);
 		$data = $array['Body']['MessageParts']['MAX_InventOnhand']['MAX_InventOnhandTmp'];
 
-		if($row['company'] == 7) {	//GoPicnic - Inventory Filter
+		if($row['company'] == 9) { //Novis Works
+			foreach($data as $inv) {
+				//Item # = NOU
+				if(substr($inv['ItemId'], 0, 3) == "NOV" && $inv['CompanyName'] == "MaxPax LLC") {
+					$inventory['data'][] = array(
+						'ItemId' => $inv['ItemId'],
+						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
+						'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
+						'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
+						'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
+						'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
+						'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
+						'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
+						'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : ""),
+						'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
+						'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
+					);
+				}
+			}
+		} elseif($row['company'] == 7) {	//GoPicnic - Inventory Filter
 			foreach($data as $inv) {
 				//Item # = NOU
 				if(substr($inv['ItemId'], 0, 3) == "GPB" && $inv['CompanyName'] == "US Packaging LLC") {
