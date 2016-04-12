@@ -87,6 +87,7 @@ function appSetup(company, callback) {
     $(".menu_6").fadeOut();
     $(".menu_7").fadeOut();
     $(".menu_8").fadeOut();
+    $(".menu_9").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
     console.log("Documents is " + company.documents);
@@ -115,6 +116,11 @@ function appSetup(company, callback) {
                     console.log("Internal Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 9) {
+            getScripts(["/js/pages/novis-works.js"], function () {
+                console.log("Novis Works Scripts Loaded");
+                callback();
             });
         } else if (company.id == 8) {
             getScripts(["/js/pages/wf-young.js"], function () {
