@@ -78,7 +78,8 @@ function opensalesCheck(user_token,type) {
 	});
 }
 
-function shippingData(user_token) {
+function shippingData(user_token, company_id) {
+	hold_company_id = company_id;
 	$("#shipments_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#shipments_container").show();
 	$(".col-xs-10").html('');
@@ -118,7 +119,7 @@ function shippingData(user_token) {
 	$('#shipEndDatePicker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
-	$.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+	$.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
 		var shipments = jQuery.parseJSON(result);
 		if (shipments.count > 0) {
 			$("#shipments_list").html('');
@@ -145,7 +146,7 @@ function refreshShipmentDates(user_token) {
 	$("#shipments_container").show();
 	var startDateTxt = document.getElementById("shipStartDatePicker");
 	var endDateTxt = document.getElementById("shipEndDatePicker");
-	$.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+	$.get("/src/shipments.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value  + "&company_id=" + hold_company_id, function (result) {
 		var shipments = jQuery.parseJSON(result);
 		if (shipments.count > 0) {
 			$("#shipments_list").html('');
@@ -213,7 +214,7 @@ function receivingTransactions(user_token, company_id) {
 		if (receipt.count > 0) {
 			$("#recv_trans_list").html('');
 			jQuery.each(receipt.data, function (x, psId) {
-				$("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//safewayfs02/Shared/Docs-USP/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
+				$("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-USP/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
 				$("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
 				jQuery.each(psId, function (z, det) {
 					if(typeof det.Lot != "undefined") {
@@ -239,7 +240,7 @@ function refreshRecvTransDates(user_token) {
 		if (receipt.count > 0) {
 			$("#recv_trans_list").html('');
 			jQuery.each(receipt.data, function (x, psId) {
-				$("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//safewayfs02/Shared/Docs-USP/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
+				$("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-USP/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
 				$("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
 				jQuery.each(psId, function (z, det) {
 					if(typeof det.Lot != "undefined") {

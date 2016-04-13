@@ -4,6 +4,7 @@ include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
 $company_id = $_GET[company_id];
+$tab = $_GET[tab];
 
 $files = array();
 
@@ -16,33 +17,64 @@ if(!empty($user_token)) {
 		case 5:
 		case 6:
 		case 7:
+		case 8:
+		case 9:
 		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
-		$result = mysqli_query($conn, "SELECT `documents`,`doc_path` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
+		$result = mysqli_query($conn, "SELECT `id`,`documents`,`doc_path` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_array($result);
 			if ($row['documents'] > 0) {
-				$files['active'] = true;
-
-				if (!empty($row['doc_path'])) {
-					$dir = $row['doc_path'];
-
-					$list = scandir($dir);
-
-					foreach ($list as $key => $file) {
-						$path = pathinfo($file);
-						$files['list'][$key]['name'] = $path["filename"];
-						if ($path["extension"] == "xls" || $path["extension"] == "xlsx" || $path["extension"] == "xlsm") {
-							$ext = "excel";
-						} else if ($path["extension"] == "pdf") {
-							$ext = "pdf";
-						} else {
-							$ext = "text";
+				if($row['id'] == 9) {
+					$files['active'] = true;
+					if (!empty($row['doc_path'])) {
+						if ($tab == 'coas') {
+							$dir = $row['doc_path'] . '/completed COAs';
+						} else if ($tab == 'batch') {
+							$dir = $row['doc_path'] . '/FINISHED BATCH TICKETS';
 						}
-						$files['list'][$key]['ext'] = $ext;
-						$files['list'][$key]['url'] = "/src/file.php?loc=" . $dir . "/" . $file . "&user_token=" . $user_token;
+						$list = scandir($dir);
+
+						foreach ($list as $key => $file) {
+							$path = pathinfo($file);
+							$files['list'][$key]['name'] = $path["filename"];
+							if ($path["extension"] == "xls" || $path["extension"] == "xlsx" || $path["extension"] == "xlsm") {
+								$ext = "excel";
+							} else if ($path["extension"] == "pdf") {
+								$ext = "pdf";
+							} else {
+								$ext = "text";
+							}
+							$files['list'][$key]['ext'] = $ext;
+							$files['list'][$key]['url'] = "/src/file.php?loc=" . $dir . "/" . $file . "&user_token=" . $user_token;
+						}
+					} else {
+						$files['active'] = false;
 					}
+
 				} else {
-					$files['active'] = false;
+					$files['active'] = true;
+
+					if (!empty($row['doc_path'])) {
+						$dir = $row['doc_path'];
+
+						$list = scandir($dir);
+
+						foreach ($list as $key => $file) {
+							$path = pathinfo($file);
+							$files['list'][$key]['name'] = $path["filename"];
+							if ($path["extension"] == "xls" || $path["extension"] == "xlsx" || $path["extension"] == "xlsm") {
+								$ext = "excel";
+							} else if ($path["extension"] == "pdf") {
+								$ext = "pdf";
+							} else {
+								$ext = "text";
+							}
+							$files['list'][$key]['ext'] = $ext;
+							$files['list'][$key]['url'] = "/src/file.php?loc=" . $dir . "/" . $file . "&user_token=" . $user_token;
+						}
+					} else {
+						$files['active'] = false;
+					}
 				}
 			} else {
 				$files['active'] = false;

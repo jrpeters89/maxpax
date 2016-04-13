@@ -48,6 +48,10 @@ function changePage(page) {
             receivingTransactions(user_token, hold_company_id);
         } else if (page == "inv_adj"){
             invAdjData(user_token, hold_company_id);
+        } else if (page == "coas") {
+            coasList(user_token, hold_company_id);
+        } else if (page == "batch_tickets") {
+            batchTicketsList(user_token, hold_company_id);
         } else {
 
             //Do Nothing
