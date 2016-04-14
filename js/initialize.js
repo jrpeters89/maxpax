@@ -52,6 +52,8 @@ function changePage(page) {
             coasList(user_token, hold_company_id);
         } else if (page == "batch_tickets") {
             batchTicketsList(user_token, hold_company_id);
+        } else if (page == "open_purchase") {
+            openPurchase(user_token, hold_company_id);
         } else {
 
             //Do Nothing
