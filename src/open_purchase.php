@@ -34,7 +34,7 @@ if(!empty($user_token)) {
         if ($row['company'] == 3) { //Nourish Snacks
             foreach ($data as $purch) {
                 //Item # = NOU
-                if ($purch['VendAccount'] == "MAX-V000167" && $purch['CompanyName'] == "MaxPax LLC") {
+                if ($purch['VendAccount'] == "USP-V000240" && $purch['CompanyName'] == "US Packaging LLC") {
                     $purchase['data'][] = array(
                         'PurchaseOrder' => $purch['PurchId'],
                         'LineNumber' => $purch['LineNumber'],
