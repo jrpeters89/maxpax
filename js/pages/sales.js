@@ -1,3 +1,4 @@
+var hold_company_id;
 function salesData(user_token) {
 	$("#sales_container").show();
 	$.get("/src/sales.php?user_token="+user_token,function(result) {
@@ -108,7 +109,9 @@ function agingChart(user_token,company) {
 }
 
 function invAdjData(user_token, company_id) {
+	hold_company_id = company_id;
 	$("#inv_adj_detail").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	if(typeof company_id == "undefined") { company_id = "1"; }
 	$("#inv_adj_detail").show();
 	var today = new Date();
 	var startDay = 1;
@@ -145,11 +148,21 @@ function invAdjData(user_token, company_id) {
 	$('#invAdjEndDatePicker').datepicker({
 		dateFormat: 'yy-mm-dd'
 	});
-	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company_id="+company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
+	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company="+company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
 		var inv_adj = jQuery.parseJSON(result);
-		console.log(inv_adj);
-		if (-1 > 0) {
-
+		if (inv_adj.count > 0) {
+			$("#inv_adj_detail").html('');
+			jQuery.each(inv_adj.data, function (x, item) {
+				$("#inv_adj_detail").append('<div id="item_' + item.Item +'" class="table-responsive"><table id="item_table_' + item.Item +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
+				$("#inv_adj_detail").append('<div id="item_' + item.Item + '_line" class="table-responsive"><table id="item_table_' + item.Item + '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
+				jQuery.each(item, function(y, line) {
+					if(typeof line.Date != "undefined") {
+						$("#item_" + item.Item + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + parseFloat(line.Amount).toFixed(2) + '</td></tr>');
+					}
+				});
+				$("#item_" + item.Item + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + parseFloat(item.Subtotal).toFixed(2) + '</strong></td></tr>')
+			});
+			$.bootstrapSortable(false);
 		} else {
 			$("#inv_adj_detail").html('');
 			$("#inv_adj_detail").html('<center><h4 style="margin-top: 20px;">No Data Found</h4></center>')
@@ -162,11 +175,21 @@ function refreshInvAdjDates(user_token) {
 	$("#inv_adj_detail").show();
 	var startDateTxt = document.getElementById("invAdjStartDatePicker");
 	var endDateTxt = document.getElementById("invAdjEndDatePicker");
-	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company_id="+company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
+	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company="+hold_company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
 		var inv_adj = jQuery.parseJSON(result);
-		console.log(inv_adj);
-		if (-1 > 0) {
-
+		if (inv_adj.count > 0) {
+			$("#inv_adj_detail").html('');
+			jQuery.each(inv_adj.data, function (x, item) {
+				$("#inv_adj_detail").append('<div id="item_' + item.Item +'" class="table-responsive"><table id="item_table_' + item.Item +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
+				$("#inv_adj_detail").append('<div id="item_' + item.Item + '_line" class="table-responsive"><table id="item_table_' + item.Item + '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
+				jQuery.each(item, function(y, line) {
+					if(typeof line.Date != "undefined") {
+						$("#item_" + item.Item + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + parseFloat(line.Amount).toFixed(2) + '</td></tr>');
+					}
+				});
+				$("#item_" + item.Item + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + parseFloat(item.Subtotal).toFixed(2) + '</strong></td></tr>')
+			});
+			$.bootstrapSortable(false);
 		} else {
 			$("#inv_adj_detail").html('');
 			$("#inv_adj_detail").html('<center><h4 style="margin-top: 20px;">No Data Found</h4></center>')
@@ -177,6 +200,7 @@ function refreshInvAdjDates(user_token) {
 $("body").on("click",".inv_adj_tab",function(event) {
 	event.preventDefault();
 	var company = $(this).data("tab");
+	console.log(company);
 	$("#inv_adj_tabs li").removeClass("active");
 	$("#inv_adj_company_"+company).addClass("active");
 	invAdjData(user_token,company);
@@ -185,6 +209,7 @@ $("body").on("click",".inv_adj_tab",function(event) {
 $("body").on("click",".aging_tab",function(event) {
 	event.preventDefault();
 	var company = $(this).data("tab");
+	console.log(company);
 	$("#aging_tabs li").removeClass("active");
 	$("#tab_company_"+company).addClass("active");
 	agingChart(user_token,company);
