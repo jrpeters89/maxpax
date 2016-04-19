@@ -25,6 +25,8 @@ if (mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
         $company_name = "max";
     }
 
+    $total = 0;
+
     foreach ($data as $item) {
         if (($item['SubledgerVoucherDataAreaId'] === $company_name) && ($item['AccountingDate'] >= $start_date) && ($item['AccountingDate'] <= $end_date)) {
             $inv_adj['data'][$item['Item']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
@@ -39,11 +41,11 @@ if (mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
             );
 
             $inv_adj['data'][$item['Item']]['Subtotal'] += round(floatval($item['AccountingCurrencyAmount']),2);
-            //$inv_adj['data'][$item['Item']]['Subtotal'] += floatval(number_format($item['AccountingCurrencyAmount'],2,".",","));
             $inv_adj['data'][$item['Item']]['SubtotalString'] = number_format($inv_adj['data'][$item['Item']]['Subtotal'],2,".",",");
+
+            $inv_adj['Total'] += round(floatval($item['AccountingCurrencyAmount']),2);
         }
-
-
+        
     }
 
     $inv_adj['count'] = count($inv_adj['data']);

@@ -161,8 +161,9 @@ function invAdjData(user_token, company_id) {
 						$("#item_" + itemString[0] + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + (line.Amount) + '</td></tr>');
 					}
 				});
-				$("#item_" + itemString[0] + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + item.SubtotalString + '</strong></td></tr>')
+				$("#item_" + itemString[0] + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + item.SubtotalString + '</strong></td></tr>');
 			});
+			$("#inv_adj_detail").append('<div class="table-responsive"><table class="table sortable"><tr><td class="width_180"></td><td class="width_180"></td><td class="width_180"><strong>Grand Total</strong></td><td class="width_180 text_right"><strong>' + inv_adj.Total + '</strong></td></tr></table></div>');
 			$.bootstrapSortable(false);
 		} else {
 			$("#inv_adj_detail").html('');
@@ -189,8 +190,9 @@ function refreshInvAdjDates(user_token) {
 						$("#item_" + itemString[0] + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + (line.Amount) + '</td></tr>');
 					}
 				});
-				$("#item_" + itemString[0] + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + item.SubtotalString + '</strong></td></tr>')
+				$("#item_" + itemString[0] + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + item.SubtotalString + '</strong></td></tr>');
 			});
+			$("#inv_adj_detail").append('<div class="table-responsive"><table class="table sortable"><tr><td class="width_180"></td><td class="width_180"></td><td class="width_180"><strong>Grand Total</strong></td><td class="width_180 text_right"><strong>' + inv_adj.Total + '</strong></td></tr></table></div>');
 			$.bootstrapSortable(false);
 		} else {
 			$("#inv_adj_detail").html('');

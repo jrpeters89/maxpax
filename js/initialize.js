@@ -94,6 +94,7 @@ function appSetup(company, callback) {
     $(".menu_7").fadeOut();
     $(".menu_8").fadeOut();
     $(".menu_9").fadeOut();
+    $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
     console.log("Documents is " + company.documents);
@@ -120,6 +121,14 @@ function appSetup(company, callback) {
                 console.log("Flot Charts Loaded");
                 getScripts(["/js/pages/internal.js", "/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function () {
                     console.log("Internal Scripts Loaded");
+                    callback();
+                });
+            });
+        } else if (company.id == 98) {
+            $.getScript("/js/jquery.flot.js", function () { //Load Main Chart JS First
+                console.log("Flot Charts Loaded");
+                getScripts(["/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function () {
+                    console.log("Sales Scripts Loaded");
                     callback();
                 });
             });
