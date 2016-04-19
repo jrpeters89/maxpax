@@ -153,14 +153,15 @@ function invAdjData(user_token, company_id) {
 		if (inv_adj.count > 0) {
 			$("#inv_adj_detail").html('');
 			jQuery.each(inv_adj.data, function (x, item) {
-				$("#inv_adj_detail").append('<div id="item_' + item.Item +'" class="table-responsive"><table id="item_table_' + item.Item +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
-				$("#inv_adj_detail").append('<div id="item_' + item.Item + '_line" class="table-responsive"><table id="item_table_' + item.Item + '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
+				var itemString = item.Item.split(".");
+				$("#inv_adj_detail").append('<div id="item_' + itemString[0] +'" class="table-responsive"><table id="item_table_' + itemString[0] +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
+				$("#inv_adj_detail").append('<div id="item_' + itemString[0] + '_line" class="table-responsive"><table id="item_table_' + itemString[0]+ '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
 				jQuery.each(item, function(y, line) {
-					if(typeof line.Date != "undefined") {
-						$("#item_" + item.Item + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + parseFloat(line.Amount).toFixed(2) + '</td></tr>');
+					if(typeof line.Amount != "undefined") {
+						$("#item_" + itemString[0] + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + (line.Amount) + '</td></tr>');
 					}
 				});
-				$("#item_" + item.Item + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + parseFloat(item.Subtotal).toFixed(2) + '</strong></td></tr>')
+				$("#item_" + itemString[0] + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + item.SubtotalString + '</strong></td></tr>')
 			});
 			$.bootstrapSortable(false);
 		} else {
@@ -180,14 +181,15 @@ function refreshInvAdjDates(user_token) {
 		if (inv_adj.count > 0) {
 			$("#inv_adj_detail").html('');
 			jQuery.each(inv_adj.data, function (x, item) {
-				$("#inv_adj_detail").append('<div id="item_' + item.Item +'" class="table-responsive"><table id="item_table_' + item.Item +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
-				$("#inv_adj_detail").append('<div id="item_' + item.Item + '_line" class="table-responsive"><table id="item_table_' + item.Item + '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
+				var itemString = item.Item.split(".");
+				$("#inv_adj_detail").append('<div id="item_' + itemString[0] +'" class="table-responsive"><table id="item_table_' + itemString[0] +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
+				$("#inv_adj_detail").append('<div id="item_' + itemString[0] + '_line" class="table-responsive"><table id="item_table_' + itemString[0]+ '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
 				jQuery.each(item, function(y, line) {
-					if(typeof line.Date != "undefined") {
-						$("#item_" + item.Item + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + parseFloat(line.Amount).toFixed(2) + '</td></tr>');
+					if(typeof line.Amount != "undefined") {
+						$("#item_" + itemString[0] + "_line tbody").append('<tr><td>' + line.Date + '</td><td>' + line.User + '</td><td>' + line.Voucher + '</td><td class="text_right">' + (line.Amount) + '</td></tr>');
 					}
 				});
-				$("#item_" + item.Item + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + parseFloat(item.Subtotal).toFixed(2) + '</strong></td></tr>')
+				$("#item_" + itemString[0] + "_line tfoot").append('<tr><td></td><td></td><td><strong>Subtotal<strong</td><td class="text_right"><strong>' + item.SubtotalString + '</strong></td></tr>')
 			});
 			$.bootstrapSortable(false);
 		} else {

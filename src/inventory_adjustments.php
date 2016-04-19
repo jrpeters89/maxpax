@@ -38,9 +38,12 @@ if (mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
                 'Amount' => ($item['AccountingCurrencyAmount'] != null ? number_format($item['AccountingCurrencyAmount'],2,".",",") : ""),
             );
 
-            $inv_adj['data'][$item['Item']]['Subtotal'] += number_format($item['AccountingCurrencyAmount'],2,".",",");
-
+            $inv_adj['data'][$item['Item']]['Subtotal'] += round(floatval($item['AccountingCurrencyAmount']),2);
+            //$inv_adj['data'][$item['Item']]['Subtotal'] += floatval(number_format($item['AccountingCurrencyAmount'],2,".",","));
+            $inv_adj['data'][$item['Item']]['SubtotalString'] = number_format($inv_adj['data'][$item['Item']]['Subtotal'],2,".",",");
         }
+
+
     }
 
     $inv_adj['count'] = count($inv_adj['data']);
