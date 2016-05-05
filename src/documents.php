@@ -23,7 +23,7 @@ if(!empty($user_token)) {
 		$result = mysqli_query($conn, "SELECT `id`,`documents`,`doc_path` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_array($result);
-			if ($row['documents'] > 0) {
+			if ($row['documents'] > 0 || ($row['documents'] == 0 && $row['id'] == 9)) {
 				if($row['id'] == 9) {
 					$files['active'] = true;
 					if (!empty($row['doc_path'])) {

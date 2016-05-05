@@ -54,6 +54,8 @@ function changePage(page) {
             batchTicketsList(user_token, hold_company_id);
         } else if (page == "open_purchase") {
             openPurchase(user_token, hold_company_id);
+        } else if (page == "hershey") {
+            hershey(user_token, hold_company_id);
         } else {
 
             //Do Nothing
@@ -67,6 +69,7 @@ function companyInfo(user_token, company_id) {
     $.get("/src/company.php?user_token=" + user_token + "&company_id=" + company_id, function (result) {
         var company = jQuery.parseJSON(result);
         console.log("Company Id returned is " + company.id);
+        hold_company_id = company.id;
         $("#company_logo").html('<img src="images/' + company.logo + '_logo.png" style="height: 20px; width: 162px;" />');
         if (company.active == true) {
             appSetup(company, function () {
@@ -127,7 +130,7 @@ function appSetup(company, callback) {
         } else if (company.id == 98) {
             $.getScript("/js/jquery.flot.js", function () { //Load Main Chart JS First
                 console.log("Flot Charts Loaded");
-                getScripts(["/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js"], function () {
+                getScripts(["/js/pages/sales.js", "/js/jquery.flot.resize.js", "/js/jquery.flot.time.js", "/js/jquery.flot.axislabels.js", "js/pages/hershey.js"], function () {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });

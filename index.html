@@ -57,6 +57,7 @@
 			  <li id="coas_link" class="menu_9"><a id="coas" href="#" data-link="coas">COAS</a> </li>
 			  <li id="batch_tickets_link" class="menu_9"><a id="batch_tickets" href="#" data-link="batch_tickets">Batch Tickets</a> </li>
 			  <li id="open_purchase_link" class="menu_3"><a id="open_purchase" href="#" data-link="open_purchase">Open Purchase</a> </li>
+			  <li id="hershey_link" class="menu_98"><a id="hershey" href="#" data-link="hershey">Hershey</a> </li>
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
 			  <li class="menu_99">
 				  <a>Customers</a>
@@ -184,6 +185,19 @@
 		</ul>
 		<div id="inv_adj_detail">
 			<center>Loading...</center>
+		</div>
+	</div>
+
+	<div id="hershey_container" class="page_container container company_98">
+		<h1 class="page_header">Hershey</h1>
+		<div>
+			<p style="display: inline-block;margin:1em;">Start Date: <input type="text" id="hersheyStartDatePicker" class="datepicker"> </p>
+			<p style="display: inline-block;margin: 1 em">End Date: <input type="text" id="hersheyEndDatePicker" class="datepicker"> </p>
+			<p style="display: inline-block; margin: 1em;"><button onclick="refreshHersheyDates(user_token)">Refresh</button> </p>
+			<div id="hershey_list">
+
+			</div>
+			<p id="no_hershey_results" style="display:none;">No records found</p>
 		</div>
 	</div>
 
@@ -396,7 +410,58 @@
 		    Loading...
 	    </div>
     </div>
-
+	<div id="editHershey" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Edit Hershey Label</h4>
+				</div>
+				<div class="modal-body">
+					<form id="edit_hershey_form">
+						<div class="form-group">
+							<label for="transaction_date">Transaction Date</label>
+							<input type="text" class="form-control datepicker" id="edit_transaction_date" name="transaction_date" placeholder="Transaction Date">
+						</div>
+						<div class="form-group">
+							<label for="lic_plate">Lic Plate #</label>
+							<input type="text" class="form-control" id="edit_lic_plate" name="lic_plate" placeholder="Lic Plate #">
+						</div>
+						<div class="form-group">
+							<input type="hidden" class="form-control" id="edit_timestamp" name="timestamp">
+						</div>
+						<div class="form-group">
+							<label for="item">Item #</label>
+							<input type="text" class="form-control" id="edit_item" name="item" placeholder="Item #">
+						</div>
+						<div class="form-group">
+							<label for="batch">Batch #</label>
+							<input type="text" class="form-control" id="edit_batch" name="batch" placeholder="Batch #">
+						</div>
+						<div class="form-group">
+							<label for="production">Production #</label>
+							<input type="text" class="form-control" id="edit_production" name="production" placeholder="Production #">
+						</div>
+						<div class="form-group">
+							<label for="quantity">Quantity</label>
+							<input type="text" class="form-control" id="edit_quantity" name="quantity" placeholder="Quantity".
+						</div>
+						<div class="form-group" style="display:none;">
+							<input type="text" id="edit_uom_denominator" name="uom_denominator">
+						</div>
+						<div class="form-group">
+							<label for="uom">UOM</label>
+							<input type="text" class="form-control" id="edit_uom" name="uom" placeholder="UOM">
+						</div>
+						<div class="form-group" style="display: none;">
+							<input type="hidden" id="edit_file" name="file">
+						</div>
+						<button id="update_hershey" class="btn btn-block btn-success" type="submit">Update</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="newUser" class="modal fade admin_container">
 		<div class="modal-dialog">
 			<div class="modal-content">

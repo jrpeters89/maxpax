@@ -202,7 +202,9 @@ function coasList(user_token, company_id) {
     $("#coas_container").show();
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">COAs</h1>');
+    console.log(company_id); 
     $.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id + "&tab=coas",function(result) {
+
         var documents = jQuery.parseJSON(result);
         if(documents.active == true) {
             $("#coas_list").html("");
