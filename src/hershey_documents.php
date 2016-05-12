@@ -13,6 +13,11 @@ $end_date_string = str_replace("-", "", $end_date);
 
 $dir = '//sw-apps-01/Hersh/Processed';
 //$list = scandir('//sw-apps-01/Hersh/Processed');
+
+function cmp($a, $b) {
+    return strcmp($a['TransactionDate'], $b['TransactionDate']);
+}
+
 if(is_dir($dir)) {
     if($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
@@ -31,6 +36,7 @@ if(is_dir($dir)) {
                     $hershey['data'][$file]['Item'] = $data['MaterialNumber'];
                     $hershey['data'][$file]['Batch'] = $data['BatchNumber'];
                     $hershey['data'][$file]['Production'] = $data['ProdId'];
+                    $hershey['data'][$file]['Description'] = $data['Description'];
                     $hershey['data'][$file]['Qty'] = $data['QtyGood'];
                     $hershey['data'][$file]['UOMDenominator'] = $data['UOMDenominator'];
                     $hershey['data'][$file]['UOM'] = $data['UOM'];
@@ -39,6 +45,8 @@ if(is_dir($dir)) {
                 }
             }
         }
+
+        //usort($hershey, "cmp");
     }
 }
 

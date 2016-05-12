@@ -10,10 +10,12 @@ $timestamp = $request[2]->value;
 $item = $request[3]->value;
 $batch = $request[4]->value;
 $production = $request[5]->value;
-$qty = $request[6]->value;
-$uom_denominator = $request[7]->value;
-$uom = stripslashes($request[8]->value);
-$file = stripslashes($request[9]->value);
+$description = $request[6]->value;
+$qty = $request[7]->value;
+$uom_denominator = $request[8]->value;
+$uom = stripslashes($request[9]->value);
+$file = stripslashes($request[10]->value);
+$save = $request[11]->value;
 
 $dir = '//sw-apps-01/Hersh';
 
@@ -25,11 +27,16 @@ if(is_dir($dir)) {
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->MaterialNumber = $item;
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->MAX_LicensePlateNumber = $lic_plate;
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->ProdId = $production;
+        $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->Description = $description;
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->QtyGood = $qty;
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->TransDate = $transaction_date;
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->UOMDenominator = $uom_denominator;
         $xml->Body->MessageParts->MAX_ProdJournalProd->ProdJournalProd->UOM = $uom;
-        $xml->asXML($dir . "/" . $file);
+        if($save == "true") {
+            $xml->asXML($dir . "/" . $file);
+        } else {
+            $xml->asXML($dir . "/Processed/" . $file);
+        }
     }
 }
 

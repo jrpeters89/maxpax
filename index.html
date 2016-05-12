@@ -189,13 +189,20 @@
 	</div>
 
 	<div id="hershey_container" class="page_container container company_98">
-		<h1 class="page_header">Hershey</h1>
+		<div class="row">
+			<div class="col-xs-10">
+				<h1 class="page_header">Hershey</h1>
+			</div>
+			<div class="col-xs-2" style="text-align: right;">
+				<a download="hershey.xls" onclick="return ExcellentExport.excel(this, 'hershey_list', 'Hershey');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
+			</div>
+		</div>
 		<div>
 			<p style="display: inline-block;margin:1em;">Start Date: <input type="text" id="hersheyStartDatePicker" class="datepicker"> </p>
-			<p style="display: inline-block;margin: 1 em">End Date: <input type="text" id="hersheyEndDatePicker" class="datepicker"> </p>
+			<p style="display: inline-block;margin: 1em">End Date: <input type="text" id="hersheyEndDatePicker" class="datepicker"> </p>
 			<p style="display: inline-block; margin: 1em;"><button onclick="refreshHersheyDates(user_token)">Refresh</button> </p>
-			<div id="hershey_list">
-
+			<div id="hershey_list" class="table-responsive">
+				Loading...
 			</div>
 			<p id="no_hershey_results" style="display:none;">No records found</p>
 		</div>
@@ -410,59 +417,8 @@
 		    Loading...
 	    </div>
     </div>
-	<div id="editHershey" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Edit Hershey Label</h4>
-				</div>
-				<div class="modal-body">
-					<form id="edit_hershey_form">
-						<div class="form-group">
-							<label for="transaction_date">Transaction Date</label>
-							<input type="text" class="form-control datepicker" id="edit_transaction_date" name="transaction_date" placeholder="Transaction Date">
-						</div>
-						<div class="form-group">
-							<label for="lic_plate">Lic Plate #</label>
-							<input type="text" class="form-control" id="edit_lic_plate" name="lic_plate" placeholder="Lic Plate #">
-						</div>
-						<div class="form-group">
-							<input type="hidden" class="form-control" id="edit_timestamp" name="timestamp">
-						</div>
-						<div class="form-group">
-							<label for="item">Item #</label>
-							<input type="text" class="form-control" id="edit_item" name="item" placeholder="Item #">
-						</div>
-						<div class="form-group">
-							<label for="batch">Batch #</label>
-							<input type="text" class="form-control" id="edit_batch" name="batch" placeholder="Batch #">
-						</div>
-						<div class="form-group">
-							<label for="production">Production #</label>
-							<input type="text" class="form-control" id="edit_production" name="production" placeholder="Production #">
-						</div>
-						<div class="form-group">
-							<label for="quantity">Quantity</label>
-							<input type="text" class="form-control" id="edit_quantity" name="quantity" placeholder="Quantity".
-						</div>
-						<div class="form-group" style="display:none;">
-							<input type="text" id="edit_uom_denominator" name="uom_denominator">
-						</div>
-						<div class="form-group">
-							<label for="uom">UOM</label>
-							<input type="text" class="form-control" id="edit_uom" name="uom" placeholder="UOM">
-						</div>
-						<div class="form-group" style="display: none;">
-							<input type="hidden" id="edit_file" name="file">
-						</div>
-						<button id="update_hershey" class="btn btn-block btn-success" type="submit">Update</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="newUser" class="modal fade admin_container">
+
+	<div id="newUser" class="modal fade admin_container" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -554,6 +510,65 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
+	<div id="editHershey" class="modal fade admin_container" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Edit Hershey Label</h4>
+				</div>
+				<div class="modal-body">
+					<form id="edit_hershey_form">
+						<div class="form-group">
+							<label for="transaction_date">Transaction Date</label>
+							<input type="text" class="form-control datepicker" id="edit_transaction_date" name="transaction_date" placeholder="Transaction Date">
+						</div>
+						<div class="form-group">
+							<label for="lic_plate">Lic Plate #</label>
+							<input type="text" class="form-control" id="edit_lic_plate" name="lic_plate" placeholder="Lic Plate #">
+						</div>
+						<div class="form-group">
+							<input type="hidden" class="form-control" id="edit_timestamp" name="timestamp">
+						</div>
+						<div class="form-group">
+							<label for="item">Item #</label>
+							<input type="text" class="form-control" id="edit_item" name="item" placeholder="Item #">
+						</div>
+						<div class="form-group">
+							<label for="description">Description</label>
+							<input type="text" class="form-control" id="edit_description" name="description" placeholder="Description">
+						</div>
+						<div class="form-group">
+							<label for="batch">Batch #</label>
+							<input type="text" class="form-control" id="edit_batch" name="batch" placeholder="Batch #">
+						</div>
+						<div class="form-group">
+							<label for="production">Production #</label>
+							<input type="text" class="form-control" id="edit_production" name="production" placeholder="Production #">
+						</div>
+						<div class="form-group">
+							<label for="quantity">Quantity</label>
+							<input type="text" class="form-control" id="edit_quantity" name="quantity" placeholder="Quantity">
+						</div>
+						<div class="form-group" style="display:none;">
+							<input type="text" id="edit_uom_denominator" name="uom_denominator">
+						</div>
+						<div class="form-group">
+							<label for="uom">UOM</label>
+							<input type="text" class="form-control" id="edit_uom" name="uom" placeholder="UOM">
+						</div>
+						<div class="form-group" style="display: none;">
+							<input type="hidden" id="edit_file" name="file">
+							<input type="hidden" id="edit_save" name="save">
+						</div>
+						<button id="save_hershey" class="btn btn-block btn-success" type="submit">Save & Print</button>
+						<button id="update_hershey" class="btn btn-block btn-success" type="submit">Update</button>
+						<button id="delete_hershey" class="btn btn-block btn-success" type="submit">Delete</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
