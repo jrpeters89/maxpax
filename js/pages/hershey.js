@@ -1,7 +1,9 @@
 var hold_company_id;
+var hold_user_token;
 
 function hershey(user_token, company_id) {
     hold_company_id = company_id;
+    hold_user_token = user_token;
 
     $('#edit_transaction_date').datepicker({
         dateFormat: 'yy-mm-dd'
@@ -110,7 +112,8 @@ $("body").on("click", "#save_hershey", function (event) {
             console.log(result);
         });
         $("#editHershey").modal("hide");
-        location.reload();
+        refreshHersheyDates(hold_user_token);
+        //location.reload();
     }
 });
 
@@ -127,7 +130,8 @@ $("body").on("click", "#update_hershey", function (event) {
             console.log(result);
         });
         $("#editHershey").modal("hide");
-        location.reload();
+        refreshHersheyDates(hold_user_token);
+        //location.reload();
     }
 });
 
@@ -145,7 +149,8 @@ $("body").on("click", "#delete_hershey", function (event) {
             console.log(result);
         });
         $("#editHershey").modal("hide");
-        location.reload();
+        refreshHersheyDates(hold_user_token);
+        //location.reload();
     } else {
 
     }
