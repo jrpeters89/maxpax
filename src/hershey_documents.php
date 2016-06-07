@@ -21,7 +21,7 @@ function cmp($a, $b) {
 if(is_dir($dir)) {
     if($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-            if((substr($file, 0, 8) >= $start_date_string) && (substr($file, 0, 8) <= $end_date_string)) {
+            if((substr($file, 0, 8) >= $start_date_string) && (substr($file, 0, 8) <= $end_date_string) && (substr($file, -3) != 'wip')) {
                 //$hershey[$file] = $file;
                 $xml = simplexml_load_file($dir . "/" .$file);
                 $json = json_encode($xml);
@@ -29,7 +29,7 @@ if(is_dir($dir)) {
                 //$hershey[$file] = $file;
                 $data = $array['Body']['MessageParts']['MAX_ProdJournalProd']['ProdJournalProd'];
                 //$hershey[$file] = $data;
-                if($data['MaterialNumber'] != null) {
+                //if($data['MaterialNumber'] != null) {
                     $hershey['data'][$file]['TransactionDate'] = $data['TransDate'];
                     $hershey['data'][$file]['LicPlate'] = $data['MAX_LicensePlateNumber'];
                     $hershey['data'][$file]['TimeStamp'] = $data['CreateTimeStamp'];
@@ -42,7 +42,7 @@ if(is_dir($dir)) {
                     $hershey['data'][$file]['UOM'] = $data['UOM'];
                     $hershey['data'][$file]['file'] = $file;
                     $hershey[count]++;
-                }
+                //}
             }
         }
 
