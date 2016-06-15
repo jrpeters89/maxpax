@@ -58,6 +58,7 @@
 			  <li id="batch_tickets_link" class="menu_9"><a id="batch_tickets" href="#" data-link="batch_tickets">Batch Tickets</a> </li>
 			  <li id="open_purchase_link" class="menu_3"><a id="open_purchase" href="#" data-link="open_purchase">Open Purchase</a> </li>
 			  <li id="hershey_link" class="menu_98"><a id="hershey" href="#" data-link="hershey">Hershey</a> </li>
+			  <li id="raf_link" class="menu_98"><a id="raf" href="#" data-link="raf">RAF</a> </li>
             <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
 			  <li class="menu_99">
 				  <a>Customers</a>
@@ -389,6 +390,21 @@
 	    </div>
 	    <p id="no_opensales_results" style="display:none;">No sales found</p>
     </div>
+
+	<div id="raf_container" class="page_container container company_3">
+		<div class="row">
+			<div class="col-xs-10">
+				<h1 class="page_header">RAF</h1>
+			</div>
+			<div class="col-xs-2" style="text-align:right;">
+				<a download="raf.xls" onclick="return ExcellentExport.excel(this, 'raf_list', 'RAF');" class="btn btn-success" style="margin-top:20px;">Excel</a>
+			</div>
+			<ul id="raf_tabs" class="nav nav-tabs nav-justified" style="margin-bottom:10px;">
+				<li id="tab_raf" role="presentation" class="active"><a href="#" class="raf_tab" data-tab="raf">MAX</a> </li>
+				<li id="tab_ship" role="presentation" class="active"><a href="#" class="raf_tab" data-tab="ship">USP</a> </li>
+			</ul>
+		</div>
+	</div>
 
     <div id="shipments_container" class="page_container container company_7">
   		<div class="row">
