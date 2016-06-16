@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no">
@@ -13,605 +13,718 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet" >
-    <link href="css/bootstrap-sortable.css" rel="stylesheet" >
-    <link href="css/style.css?v=1.0" rel="stylesheet" >
-      <link href="css/datepicker.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-sortable.css" rel="stylesheet">
+    <link href="css/style.css?v=1.0" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body id="app_body" style="display:none;">
+</head>
+<body id="app_body" style="display:none;">
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#" id="company_logo"></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" id="company_logo"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul id="main_menu" class="nav navbar-nav">
-            <!-- Add new menu items here -->
-            <li id="sales_link" class="menu_1 menu_99"><a id="sales" href="#" data-link="sales">Sales</a></li>
-            <li id="aging_link" class="menu_1 menu_99"><a id="aging" href="#" data-link="aging">AR Aging</a></li>
-            <li id="documents_link" class="documents"><a id="documents" href="#" data-link="documents">Documents</a></li>
-            <li id="inventory_link" class="menu_3 menu_4 menu_6 menu_7 menu_9"><a id="inventory" href="#" data-link="inventory">Inventory</a></li>
-            <li id="production_link" class="menu_3"><a id="production" href="#" data-link="production">Production</a></li>
-            <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a></li>
-            <li id="shipments_link" class="menu_3 menu_6 menu_7 menu_8 menu_9"><a id="shipments" href="#" data-link="shipments">Shipments</a></li>
-            <li id="inv_trans_link" class="menu_5 menu_6"><a id="inv_trans" href="#" data-link="inv_trans">Transactions</a> </li>
-			  <li id="inv_quarantine_link" class="menu_4"><a id="inv_quarantine" href="#" data-link="inv_quarantine">Quarantine</a> </li>
-			  <li id="packaging_inventory_link" class="menu_4"><a id="packaging_inventory" href="#" data-link="packaging_inventory">Packaging</a> </li>
-			  <li id="prod_trans_link" class="menu_6"><a id="prod_trans" href="#"  data-link="prod_trans">Production</a> </li>
-			  <li id="recv_trans_link" class="menu_3 menu_6 menu_7 menu_9"><a id="recv_trans" href="#" data-link="recv_trans">Receiving</a> </li>
-			  <li id="inv_adj_link" class="menu_1 menu_98"><a id="inv_adj" href="#" data-link="inv_adj">Inv Gain/Loss</a> </li>
-			  <li id="coas_link" class="menu_9"><a id="coas" href="#" data-link="coas">COAS</a> </li>
-			  <li id="batch_tickets_link" class="menu_9"><a id="batch_tickets" href="#" data-link="batch_tickets">Batch Tickets</a> </li>
-			  <li id="open_purchase_link" class="menu_3"><a id="open_purchase" href="#" data-link="open_purchase">Open Purchase</a> </li>
-			  <li id="hershey_link" class="menu_98"><a id="hershey" href="#" data-link="hershey">Hershey</a> </li>
-			  <li id="raf_link" class="menu_98"><a id="raf" href="#" data-link="raf">RAF</a> </li>
-            <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
-			  <li class="menu_99">
-				  <a>Customers</a>
-				  <ul class="nav">
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 1)">MaxPax LLC</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 98)">MAX/USP Internal</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 2)">Valspar</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 3)">Nourish Snacks</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 4)">Portion Pac</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 5)">ADM</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 6)">Energems</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 7)">GoPicnic</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 8)">WF Young</button></li>
-					  <li class="menu_99"><button class="internal_button_link" onclick="updateInternal(user_token, 9)">Novis Works</button></li>
+            <ul id="main_menu" class="nav navbar-nav">
+                <!-- Add new menu items here -->
+                <li id="sales_link" class="menu_1 menu_99"><a id="sales" href="#" data-link="sales">Sales</a></li>
+                <li id="aging_link" class="menu_1 menu_99"><a id="aging" href="#" data-link="aging">AR Aging</a></li>
+                <li id="documents_link" class="documents"><a id="documents" href="#" data-link="documents">Documents</a>
+                </li>
+                <li id="inventory_link" class="menu_3 menu_4 menu_6 menu_7 menu_9"><a id="inventory" href="#"
+                                                                                      data-link="inventory">Inventory</a>
+                </li>
+                <li id="production_link" class="menu_3"><a id="production" href="#"
+                                                           data-link="production">Production</a></li>
+                <li id="opensales_link" class="menu_3"><a id="opensales" href="#" data-link="opensales">Open Sales</a>
+                </li>
+                <li id="shipments_link" class="menu_3 menu_6 menu_7 menu_8 menu_9"><a id="shipments" href="#"
+                                                                                      data-link="shipments">Shipments</a>
+                </li>
+                <li id="inv_trans_link" class="menu_5 menu_6"><a id="inv_trans" href="#" data-link="inv_trans">Transactions</a>
+                </li>
+                <li id="inv_quarantine_link" class="menu_4"><a id="inv_quarantine" href="#" data-link="inv_quarantine">Quarantine</a>
+                </li>
+                <li id="packaging_inventory_link" class="menu_4"><a id="packaging_inventory" href="#"
+                                                                    data-link="packaging_inventory">Packaging</a></li>
+                <li id="prod_trans_link" class="menu_6"><a id="prod_trans" href="#"
+                                                           data-link="prod_trans">Production</a></li>
+                <li id="recv_trans_link" class="menu_3 menu_6 menu_7 menu_9"><a id="recv_trans" href="#"
+                                                                                data-link="recv_trans">Receiving</a>
+                </li>
+                <li id="inv_adj_link" class="menu_1 menu_98"><a id="inv_adj" href="#" data-link="inv_adj">Inv
+                    Gain/Loss</a></li>
+                <li id="coas_link" class="menu_9"><a id="coas" href="#" data-link="coas">COAS</a></li>
+                <li id="batch_tickets_link" class="menu_9"><a id="batch_tickets" href="#" data-link="batch_tickets">Batch
+                    Tickets</a></li>
+                <li id="open_purchase_link" class="menu_3"><a id="open_purchase" href="#" data-link="open_purchase">Open
+                    Purchase</a></li>
+                <li id="hershey_link" class="menu_98"><a id="hershey" href="#" data-link="hershey">Hershey</a></li>
+                <li id="raf_link" class="menu_98"><a id="raf" href="#" data-link="raf">RAF</a></li>
+                <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
+                <li class="menu_99">
+                    <a>Customers</a>
+                    <ul class="nav">
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 1)">MaxPax LLC
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 98)">MAX/USP
+                                Internal
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 2)">Valspar
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 3)">Nourish
+                                Snacks
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 4)">Portion Pac
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 5)">ADM</button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 6)">Energems
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 7)">GoPicnic
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 8)">WF Young
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 9)">Novis Works
+                            </button>
+                        </li>
 
-				  </ul>
-			  </li>
-            <li><a id="logout" href="#" data-link="logout" class="visible-xs">Logout</a></li>
-          </ul>
-          <a id="logout_btn" href="#" class="btn btn-primary pull-right hidden-xs logout" style="margin-top: 8px;">Logout</a>
+                    </ul>
+                </li>
+                <li><a id="logout" href="#" data-link="logout" class="visible-xs">Logout</a></li>
+            </ul>
+            <a id="logout_btn" href="#" class="btn btn-primary pull-right hidden-xs logout" style="margin-top: 8px;">Logout</a>
         </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-	<div id="internal_container" class="container company_99">
-		"Dropdown list goes here"
-	</div>
-
-    <div id="sales_container" class="page_container container company_1">
-
-  		<h1 class="page_header">Sales Dashboard</h1>
-
-  		<div class="panel panel-default">
-  			<div class="panel-heading sales_header">
-  				MTD Sales - <span class="cur_month">MONTH</span>
-  				<p class="month_range">Date Range</p>
-  			</div>
-  			<div id="mtd_sales" class="panel-body">
-  				<table class="table">
-  					<thead>
-  						<tr>
-  							<th></th>
-  							<th class="cur_year">YYYY</th>
-  							<th class="prev_year">YYYY</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td class="company_name">MaxPax</td>
-  							<td id="cur_mtd_0">--</td>
-  							<td id="past_mtd_0">--</td>
-  						</tr>
-  						<tr>
-  							<td class="company_name">US Packaging</td>
-  							<td id="cur_mtd_1">--</td>
-  							<td id="past_mtd_1">--</td>
-  						</tr>
-  						<tr class="total_row">
-  							<td></td>
-  							<td id="cur_mtd_total">--</td>
-  							<td id="past_mtd_total">--</td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-
-  		<div class="panel panel-default">
-  			<div class="panel-heading sales_header">
-  				YTD Sales
-  			</div>
-  			<div id="ytd_sales" class="panel-body">
-  				<table class="table">
-  					<thead>
-  						<tr>
-  							<th></th>
-  							<th class="cur_year">YYYY</th>
-  							<th class="prev_year">YYYY</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td class="company_name">MaxPax</td>
-  							<td id="cur_ytd_0">--</td>
-  							<td id="past_ytd_0">--</td>
-  						</tr>
-  						<tr>
-  							<td class="company_name">US Packaging</td>
-  							<td id="cur_ytd_1">--</td>
-  							<td id="past_ytd_1">--</td>
-  						</tr>
-  						<tr class="total_row">
-  							<td></td>
-  							<td id="cur_ytd_total">--</td>
-  							<td id="past_ytd_total">--</td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-    </div> <!-- /container -->
-
-    <div id="aging_container" class="page_container container company_1">
-      <h1 class="page_header">AR Aging Summary</h1>
-      <ul id="aging_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
-        <li id="tab_company_1" role="presentation" class="active"><a href="#" class="aging_tab" data-tab="1">MaxPax LLC</a></li>
-        <li id="tab_company_2" role="presentation"><a href="#" class="aging_tab" data-tab="2">US Packaging LLC</a></li>
-      </ul>
-      <div id="chart_box" style="width: 100%; height: 300px; margin-top: 10px;"></div>
-      <div id="aging_detail">
-        <center>Loading...</center>
-      </div>
     </div>
+</nav>
 
-	<div id="inv_adj_container" class="page_container container company_98">
-		<h1 class="page_header">Inventory Gain/Loss</h1>
-		<div>
-			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="invAdjStartDatePicker" class="datepicker"></p>
-			<p style="display:inline-block">End Date: <input type="text" id="invAdjEndDatePicker" class="datepicker"></p>
-			<p style="display: inline-block;margin: 1em"><button onclick="refreshInvAdjDates(user_token)">Refresh</button> </p>
-		</div>
-		<ul id="inv_adj_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
-			<li id="inv_adj_company_1" role="presentation" class="active"><a href="#" class="inv_adj_tab" data-tab="1">MaxPax LLC</a></li>
-			<li id="inv_adj_company_2" role="presentation"><a href="#" class="inv_adj_tab" data-tab="2">US Packaging LLC</a></li>
-		</ul>
-		<div id="inv_adj_detail">
-			<center>Loading...</center>
-		</div>
-	</div>
+<div id="internal_container" class="container company_99">
+    "Dropdown list goes here"
+</div>
 
-	<div id="hershey_container" class="page_container container company_98">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page_header">Hershey</h1>
-			</div>
-			<div class="col-xs-2" style="text-align: right;">
-				<a download="hershey.xls" onclick="return ExcellentExport.excel(this, 'hershey_list', 'Hershey');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-			</div>
-		</div>
-		<div>
-			<p style="display: inline-block;margin:1em;">Start Date: <input type="text" id="hersheyStartDatePicker" class="datepicker"> </p>
-			<p style="display: inline-block;margin: 1em">End Date: <input type="text" id="hersheyEndDatePicker" class="datepicker"> </p>
-			<p style="display: inline-block; margin: 1em;"><button onclick="refreshHersheyDates(user_token)">Refresh</button> </p>
-			<div id="hershey_list" class="table-responsive">
-				Loading...
-			</div>
-			<p id="no_hershey_results" style="display:none;">No records found</p>
-		</div>
-	</div>
+<div id="sales_container" class="page_container container company_1">
 
-    <div id="documents_container" class="page_container container">
-	    <h1 class="page_header">QC Docs</h1>
-	    <input id="search-docs" class="form-control" type="text" placeholder="Search Documents" style="display: none; margin-bottom: 10px;" />
-	    <div id="document_list" class="list-group">
-		    Loading...
-	    </div>
-	    <p id="no_doc_results" style="display:none;">No documents found</p>
-    </div>
+    <h1 class="page_header">Sales Dashboard</h1>
 
-	<div id="coas_container" class="page_container container">
-		<h1 class="page_header">COAs</h1>
-		<input id="search-coas" class="form-control" type="text" placeholder="Search COAS" style="display:none; margin-bottom: 10px" />
-		<div id="coas_list" class="list-group">
-			Loading...
-		</div>
-		<p id="no_coas_results" style="display: none;">No coas found</p>
-	</div>
-
-	<div id="batch_tickets_container" class="page_container container">
-		<h1 class="page_header">Batch Tickets</h1>
-		<input id="search-batch-tickets" class="form-control" type="text" placeholder="Search Batch Tickets" style="display:none; margin-bottom: 10px" />
-		<div id="batch_tickets_list" class="list-group">
-			Loading...
-		</div>
-		<p id="no_batch_tickets_results" style="display: none;">No batch tickets found</p>
-	</div>
-
-	<div id="inventory_container" class="page_container container company_3 company_4 company_6 company_7">
-		<div class="row">
-		    <div class="col-xs-10">
-			    <h1 class="page_header">On-Hand Inventory</h1>
-		    </div>
-		    <div class="col-xs-2" style="text-align: right;">
-		    	<a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'inventory_list', 'Inventory');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-		    </div>
-		</div>
-	    <div id="inventory_list" class="table-responsive">
-		    Loading...
-	    </div>
-	    <p id="no_inv_results" style="display:none;">No inventory found</p>
-    </div>
-
-	<div id="open_purchase_container" class="page_container container company_3">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page_header">Open Purchase</h1>
-			</div>
-			<div class="col-xs-2" style="text-align: right;">
-				<a download="open_purchase.xls" onclick="return ExcellentExport.excel(this, 'open_purchase_list', 'Open Purchase');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-			</div>
-		</div>
-		<div id="open_purchase_list" class="table-responsive">
-			Loading...
-		</div>
-		<p id="no_open_purchase_results" style="display:none;">No open purchases found</p>
-	</div>
-
-	<div id="inv_quarantine_container" class="page_container container company_4">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page_header">FG Inv Quarantine</h1>
-			</div>
-			<div class="col-xs-2" style="text-align: right;">
-				<a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'inv_quarantine_list', 'FG Inv Quarantine');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-			</div>
-		</div>
-		<div id="inv_quarantine_list" class="table-responsive">
-			Loading...
-		</div>
-		<p id="no_inv_quarantine_results" style="display:none;">No FG Inv Quarantine found</p>
-	</div>
-	<div id="packaging_inventory_container" class="page_container container company_4">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page_header">Packaging Inv On-Hand</h1>
-			</div>
-			<div class="col-xs-2" style="text-align: right;">
-				<a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'packaging_inventory_list', 'Packaging Inv On-Hand');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-			</div>
-		</div>
-		<div id="packaging_inventory_list" class="table-responsive">
-			Loading...
-		</div>
-		<p id="packaging_inventory_results" style="display:none;">No Packaging Inv found</p>
-	</div>
-    <div id="inv_trans_container" class="page_container container company_5">
-            <div class="row">
-                <div class="col-xs-10">
-                    <h1 class="page-header">Inventory Transactions</h1>
-                </div>
-                <div class="col-xs-2" style="text-align: right">
-                    <a download="inv_trans.xls" onclick="return ExcellentExport.excel(this, 'inv_trans_list', 'Inventory Transactions');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-                </div>
-            </div>
-        <div>
-            <p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="startDatePicker" class="datepicker"></p>
-            <p style="display:inline-block">End Date: <input type="text" id="endDatePicker" class="datepicker"></p>
-            <p style="display: inline-block;margin: 1em"><button onclick="refreshInvTransDates(user_token)">Refresh</button> </p>
+    <div class="panel panel-default">
+        <div class="panel-heading sales_header">
+            MTD Sales - <span class="cur_month">MONTH</span>
+            <p class="month_range">Date Range</p>
         </div>
+        <div id="mtd_sales" class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="cur_year">YYYY</th>
+                    <th class="prev_year">YYYY</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="company_name">MaxPax</td>
+                    <td id="cur_mtd_0">--</td>
+                    <td id="past_mtd_0">--</td>
+                </tr>
+                <tr>
+                    <td class="company_name">US Packaging</td>
+                    <td id="cur_mtd_1">--</td>
+                    <td id="past_mtd_1">--</td>
+                </tr>
+                <tr class="total_row">
+                    <td></td>
+                    <td id="cur_mtd_total">--</td>
+                    <td id="past_mtd_total">--</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <div id="inv_trans_list" class="table-responsive">
+    <div class="panel panel-default">
+        <div class="panel-heading sales_header">
+            YTD Sales
+        </div>
+        <div id="ytd_sales" class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="cur_year">YYYY</th>
+                    <th class="prev_year">YYYY</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="company_name">MaxPax</td>
+                    <td id="cur_ytd_0">--</td>
+                    <td id="past_ytd_0">--</td>
+                </tr>
+                <tr>
+                    <td class="company_name">US Packaging</td>
+                    <td id="cur_ytd_1">--</td>
+                    <td id="past_ytd_1">--</td>
+                </tr>
+                <tr class="total_row">
+                    <td></td>
+                    <td id="cur_ytd_total">--</td>
+                    <td id="past_ytd_total">--</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> <!-- /container -->
+
+<div id="aging_container" class="page_container container company_1">
+    <h1 class="page_header">AR Aging Summary</h1>
+    <ul id="aging_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+        <li id="tab_company_1" role="presentation" class="active"><a href="#" class="aging_tab" data-tab="1">MaxPax
+            LLC</a></li>
+        <li id="tab_company_2" role="presentation"><a href="#" class="aging_tab" data-tab="2">US Packaging LLC</a></li>
+    </ul>
+    <div id="chart_box" style="width: 100%; height: 300px; margin-top: 10px;"></div>
+    <div id="aging_detail">
+        <center>Loading...</center>
+    </div>
+</div>
+
+<div id="inv_adj_container" class="page_container container company_98">
+    <h1 class="page_header">Inventory Gain/Loss</h1>
+    <div>
+        <p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="invAdjStartDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display:inline-block">End Date: <input type="text" id="invAdjEndDatePicker" class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">
+            <button onclick="refreshInvAdjDates(user_token)">Refresh</button>
+        </p>
+    </div>
+    <ul id="inv_adj_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+        <li id="inv_adj_company_1" role="presentation" class="active"><a href="#" class="inv_adj_tab" data-tab="1">MaxPax
+            LLC</a></li>
+        <li id="inv_adj_company_2" role="presentation"><a href="#" class="inv_adj_tab" data-tab="2">US Packaging LLC</a>
+        </li>
+    </ul>
+    <div id="inv_adj_detail">
+        <center>Loading...</center>
+    </div>
+</div>
+
+<div id="hershey_container" class="page_container container company_98">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Hershey</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="hershey.xls" onclick="return ExcellentExport.excel(this, 'hershey_list', 'Hershey');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div>
+        <p style="display: inline-block;margin:1em;">Start Date: <input type="text" id="hersheyStartDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">End Date: <input type="text" id="hersheyEndDatePicker"
+                                                                      class="datepicker"></p>
+        <p style="display: inline-block; margin: 1em;">
+            <button onclick="refreshHersheyDates(user_token)">Refresh</button>
+        </p>
+        <div id="hershey_list" class="table-responsive">
             Loading...
         </div>
-        <p id="no_inv_trans_results" style="display:none;">No inventory transactions found</p>
+        <p id="no_hershey_results" style="display:none;">No records found</p>
+    </div>
+</div>
+
+<div id="documents_container" class="page_container container">
+    <h1 class="page_header">QC Docs</h1>
+    <input id="search-docs" class="form-control" type="text" placeholder="Search Documents"
+           style="display: none; margin-bottom: 10px;"/>
+    <div id="document_list" class="list-group">
+        Loading...
+    </div>
+    <p id="no_doc_results" style="display:none;">No documents found</p>
+</div>
+
+<div id="coas_container" class="page_container container">
+    <h1 class="page_header">COAs</h1>
+    <input id="search-coas" class="form-control" type="text" placeholder="Search COAS"
+           style="display:none; margin-bottom: 10px"/>
+    <div id="coas_list" class="list-group">
+        Loading...
+    </div>
+    <p id="no_coas_results" style="display: none;">No coas found</p>
+</div>
+
+<div id="batch_tickets_container" class="page_container container">
+    <h1 class="page_header">Batch Tickets</h1>
+    <input id="search-batch-tickets" class="form-control" type="text" placeholder="Search Batch Tickets"
+           style="display:none; margin-bottom: 10px"/>
+    <div id="batch_tickets_list" class="list-group">
+        Loading...
+    </div>
+    <p id="no_batch_tickets_results" style="display: none;">No batch tickets found</p>
+</div>
+
+<div id="inventory_container" class="page_container container company_3 company_4 company_6 company_7">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">On-Hand Inventory</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'inventory_list', 'Inventory');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div id="inventory_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_inv_results" style="display:none;">No inventory found</p>
+</div>
+
+<div id="open_purchase_container" class="page_container container company_3">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Open Purchase</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="open_purchase.xls"
+               onclick="return ExcellentExport.excel(this, 'open_purchase_list', 'Open Purchase');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div id="open_purchase_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_open_purchase_results" style="display:none;">No open purchases found</p>
+</div>
+
+<div id="inv_quarantine_container" class="page_container container company_4">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">FG Inv Quarantine</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="inventory.xls"
+               onclick="return ExcellentExport.excel(this, 'inv_quarantine_list', 'FG Inv Quarantine');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div id="inv_quarantine_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_inv_quarantine_results" style="display:none;">No FG Inv Quarantine found</p>
+</div>
+<div id="packaging_inventory_container" class="page_container container company_4">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Packaging Inv On-Hand</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="inventory.xls"
+               onclick="return ExcellentExport.excel(this, 'packaging_inventory_list', 'Packaging Inv On-Hand');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div id="packaging_inventory_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="packaging_inventory_results" style="display:none;">No Packaging Inv found</p>
+</div>
+<div id="inv_trans_container" class="page_container container company_5">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page-header">Inventory Transactions</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right">
+            <a download="inv_trans.xls"
+               onclick="return ExcellentExport.excel(this, 'inv_trans_list', 'Inventory Transactions');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div>
+        <p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="startDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display:inline-block">End Date: <input type="text" id="endDatePicker" class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">
+            <button onclick="refreshInvTransDates(user_token)">Refresh</button>
+        </p>
     </div>
 
-	<div id="prod_trans_container" class="page_container container company_6">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page-header">Production Transactions</h1>
-			</div>
-			<div class="col-xs-2" style="text-align: right">
-				<a download="prod_trans.xls" onclick="return ExcellentExport.excel(this, 'prod_trans_list', 'Production Transactions');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-			</div>
-		</div>
-		<div>
-			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="prodStartDatePicker" class="datepicker"></p>
-			<p style="display:inline-block">End Date: <input type="text" id="prodEndDatePicker" class="datepicker"></p>
-			<p style="display: inline-block;margin: 1em"><button onclick="refreshProdTransDates(user_token)">Refresh</button> </p>
-		</div>
+    <div id="inv_trans_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_inv_trans_results" style="display:none;">No inventory transactions found</p>
+</div>
 
-		<div id="prod_trans_list" class="table-responsive">
-			Loading...
-		</div>
-		<p id="no_prod_trans_results" style="display:none;">No production transactions found</p>
-	</div>
-
-	<div id="recv_trans_container" class="page_container container company_6">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page-header">Receiving Transactions</h1>
-			</div>
-			<div class="col-xs-2" style="text-align: right">
-				<a download="recv_trans.xls" onclick="return ExcellentExport.excel(this, 'recv_trans_list', 'Receiving Transactions');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-			</div>
-		</div>
-		<div>
-			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="recvStartDatePicker" class="datepicker"></p>
-			<p style="display:inline-block">End Date: <input type="text" id="recvEndDatePicker" class="datepicker"></p>
-			<p style="display: inline-block;margin: 1em"><button onclick="refreshRecvTransDates(user_token)">Refresh</button> </p>
-		</div>
-
-		<div id="recv_trans_list" class="table-responsive">
-			Loading...
-		</div>
-		<p id="no_recv_trans_results" style="display:none;">No receiving transactions found</p>
-	</div>
-
-	<div id="production_container" class="page_container container company_3">
-		<div class="row">
-		    <div class="col-xs-10">
-			    <h1 class="page_header">Production</h1>
-		    </div>
-		    <div class="col-xs-2" style="text-align: right;">
-		    	<a download="production.xls" onclick="return ExcellentExport.excel(this, 'production_list', 'Production');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-		    </div>
-		</div>
-	    <div id="production_list" class="table-responsive">
-		    Loading...
-	    </div>
-	    <p id="no_prod_results" style="display:none;">No items found</p>
+<div id="prod_trans_container" class="page_container container company_6">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page-header">Production Transactions</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right">
+            <a download="prod_trans.xls"
+               onclick="return ExcellentExport.excel(this, 'prod_trans_list', 'Production Transactions');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div>
+        <p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="prodStartDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display:inline-block">End Date: <input type="text" id="prodEndDatePicker" class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">
+            <button onclick="refreshProdTransDates(user_token)">Refresh</button>
+        </p>
     </div>
 
-	<div id="opensales_container" class="page_container container company_3">
-		<div class="row">
-		    <div class="col-xs-10">
-			    <h1 class="page_header">Open Sales</h1>
-		    </div>
-		    <div class="col-xs-2" style="text-align: right;">
-		    	<a download="opensales.xls" onclick="return ExcellentExport.excel(this, 'opensales_list', 'Open Sales');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-		    </div>
-		</div>
-	    <ul id="opensales_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
-			<li id="tab_list" role="presentation" class="active"><a href="#" class="opensales_tab" data-tab="list">By Customer Ref</a></li>
-			<li id="tab_items" role="presentation"><a href="#" class="opensales_tab" data-tab="items">By Item</a></li>
-		</ul>
-	    <div id="opensales_list" class="table-responsive">
-		    Loading...
-	    </div>
-	    <p id="no_opensales_results" style="display:none;">No sales found</p>
+    <div id="prod_trans_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_prod_trans_results" style="display:none;">No production transactions found</p>
+</div>
+
+<div id="recv_trans_container" class="page_container container company_6">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page-header">Receiving Transactions</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right">
+            <a download="recv_trans.xls"
+               onclick="return ExcellentExport.excel(this, 'recv_trans_list', 'Receiving Transactions');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div>
+        <p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="recvStartDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display:inline-block">End Date: <input type="text" id="recvEndDatePicker" class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">
+            <button onclick="refreshRecvTransDates(user_token)">Refresh</button>
+        </p>
     </div>
 
-	<div id="raf_container" class="page_container container company_3">
-		<div class="row">
-			<div class="col-xs-10">
-				<h1 class="page_header">RAF</h1>
-			</div>
-			<div class="col-xs-2" style="text-align:right;">
-				<a download="raf.xls" onclick="return ExcellentExport.excel(this, 'raf_list', 'RAF');" class="btn btn-success" style="margin-top:20px;">Excel</a>
-			</div>
-			<ul id="raf_tabs" class="nav nav-tabs nav-justified" style="margin-bottom:10px;">
-				<li id="tab_raf" role="presentation" class="active"><a href="#" class="raf_tab" data-tab="raf">MAX</a> </li>
-				<li id="tab_ship" role="presentation" class="active"><a href="#" class="raf_tab" data-tab="ship">USP</a> </li>
-			</ul>
-		</div>
-	</div>
-
-    <div id="shipments_container" class="page_container container company_7">
-  		<div class="row">
-  		    <div class="col-xs-10">
-  			    <h1 class="page_header">Shipments</h1>
-  		    </div>
-  		    <div class="col-xs-2" style="text-align: right;">
-  		    	<a download="shipments.xls" onclick="return ExcellentExport.excel(this, 'shipments_list', 'Shipments');" class="btn btn-success" style="margin-top: 20px;">Excel</a>
-  		    </div>
-  		</div>
-		<div>
-			<p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="shipStartDatePicker" class="datepicker"></p>
-			<p style="display:inline-block">End Date: <input type="text" id="shipEndDatePicker" class="datepicker"></p>
-			<p style="display: inline-block;margin: 1em"><button onclick="refreshShipmentDates(user_token)">Refresh</button> </p>
-		</div>
-  	    <div id="shipments_list" class="table-responsive">
-  		    Loading...
-  	    </div>
-  	    <p id="no_ship_results" style="display:none;">No Shipments found</p>
-      </div>
-
-    <div id="user_container" class="page_container container admin_container">
-	    <h1 class="page_header" style="display:inline-block;">Users</h1>
-	    <button id="new_user" class="btn btn-success pull-right" style="margin-top: 17px;">Add New User</button>
-	    <div id="user_list" class="list-group">
-		    Loading...
-	    </div>
+    <div id="recv_trans_list" class="table-responsive">
+        Loading...
     </div>
+    <p id="no_recv_trans_results" style="display:none;">No receiving transactions found</p>
+</div>
 
-	<div id="newUser" class="modal fade admin_container" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">New User</h4>
-				</div>
-				<div class="modal-body">
-					<form id="new_user_form">
-						<div class="form-group">
-							<label for="first_name">First Name</label>
-							<input type="text" class="form-control" id="user_first" name="first_name" placeholder="First name">
-						</div>
-						<div class="form-group">
-							<label for="last_name">Last Name</label>
-							<input type="text" class="form-control" id="user_last" name="last_name" placeholder="Last name">
-						</div>
-						<div class="form-group">
-							<label for="email_addr">Email address</label>
-							<input type="email" class="form-control" id="user_email" name="email_addr" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label for="user_pass">Password</label>
-							<input type="password" class="form-control" id="user_pass" name="user_pass" placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label for="company_id">Company</label>
-							<select id="company_id" name="company_id" class="form-control company_list" data-loaded="false">
-								<option>Loading...</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="access_level">Access Level</label>
-							<select id="access_level" name="access_level" class="form-control" data-loaded="false">
-								<option value="0">Basic User</option>
-								<option value="1">Admin User</option>
-							</select>
-						</div>
-						<button id="new_user_submit" class="btn btn-block btn-success" type="submit">Add User</button>
-					</form>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+<div id="production_container" class="page_container container company_3">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Production</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="production.xls" onclick="return ExcellentExport.excel(this, 'production_list', 'Production');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div id="production_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_prod_results" style="display:none;">No items found</p>
+</div>
 
-	<div id="updateUser" class="modal fade admin_container">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Update User</h4>
-				</div>
-				<div class="modal-body">
-					<form id="update_user_form">
-						<input id="update_user_id" type="hidden" name="user_id" value="0" />
-						<div class="form-group">
-							<label for="first_name">First Name</label>
-							<input type="text" class="form-control" id="user_first_update" name="first_name" placeholder="First name">
-						</div>
-						<div class="form-group">
-							<label for="last_name">Last Name</label>
-							<input type="text" class="form-control" id="user_last_update" name="last_name" placeholder="Last name">
-						</div>
-						<div class="form-group">
-							<label for="email_addr">Email address</label>
-							<input type="email" class="form-control" id="user_email_update" name="email_addr" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label for="user_pass">Change Password</label>
-							<input type="password" class="form-control" id="user_pass_update" name="user_pass" placeholder="Password">
-						</div>
-						<div class="form-group">
-							<label for="company_id">Company</label>
-							<select id="company_id_update" name="company_id" class="form-control company_list" data-loaded="false">
-								<option>Loading...</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="access_level">Access Level</label>
-							<select id="access_level_update" name="access_level" class="form-control" data-loaded="false">
-								<option value="0">Basic User</option>
-								<option value="1">Admin User</option>
-							</select>
-						</div>
-						<button id="update_user_submit" class="btn btn-block btn-success" type="submit">Update User</button>
-						<button id="delete_user" class="btn btn-block btn-danger btn-sm" type="button">Delete User</button>
-					</form>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+<div id="opensales_container" class="page_container container company_3">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Open Sales</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="opensales.xls" onclick="return ExcellentExport.excel(this, 'opensales_list', 'Open Sales');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <ul id="opensales_tabs" class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+        <li id="tab_list" role="presentation" class="active"><a href="#" class="opensales_tab" data-tab="list">By
+            Customer Ref</a></li>
+        <li id="tab_items" role="presentation"><a href="#" class="opensales_tab" data-tab="items">By Item</a></li>
+    </ul>
+    <div id="opensales_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_opensales_results" style="display:none;">No sales found</p>
+</div>
 
-	<div id="editHershey" class="modal fade admin_container" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Edit Hershey Label</h4>
-				</div>
-				<div class="modal-body">
-					<form id="edit_hershey_form">
-						<div class="form-group">
-							<label for="transaction_date">Transaction Date</label>
-							<input type="text" class="form-control datepicker" id="edit_transaction_date" name="transaction_date" placeholder="Transaction Date">
-						</div>
-						<div class="form-group">
-							<label for="lic_plate">Lic Plate #</label>
-							<input type="text" class="form-control" id="edit_lic_plate" name="lic_plate" placeholder="Lic Plate #">
-						</div>
-						<div class="form-group">
-							<input type="hidden" class="form-control" id="edit_timestamp" name="timestamp">
-						</div>
-						<div class="form-group">
-							<label for="item">Item #</label>
-							<input type="text" class="form-control" id="edit_item" name="item" placeholder="Item #">
-						</div>
-						<div class="form-group">
-							<label for="description">Description</label>
-							<input type="text" class="form-control" id="edit_description" name="description" placeholder="Description">
-						</div>
-						<div class="form-group">
-							<label for="batch">Batch #</label>
-							<input type="text" class="form-control" id="edit_batch" name="batch" placeholder="Batch #">
-						</div>
-						<div class="form-group">
-							<label for="production">Production #</label>
-							<input type="text" class="form-control" id="edit_production" name="production" placeholder="Production #">
-						</div>
-						<div class="form-group">
-							<label for="quantity">Quantity</label>
-							<input type="text" class="form-control" id="edit_quantity" name="quantity" placeholder="Quantity">
-						</div>
-						<div class="form-group" style="display:none;">
-							<input type="text" id="edit_uom_denominator" name="uom_denominator">
-						</div>
-						<div class="form-group">
-							<label for="uom">UOM</label>
-							<input type="text" class="form-control" id="edit_uom" name="uom" placeholder="UOM">
-						</div>
-						<div class="form-group" style="display: none;">
-							<input type="hidden" id="edit_file" name="file">
-							<input type="hidden" id="edit_save" name="save">
-						</div>
-						<button id="save_hershey" class="btn btn-block btn-success" type="submit">Save & Print</button>
-						<button id="update_hershey" class="btn btn-block btn-success" type="submit">Update</button>
-						<button id="delete_hershey" class="btn btn-block btn-success" type="submit">Delete</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="raf_container" class="page_container container company_98">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">RAF</h1>
+        </div>
+        <div class="col-xs-2" style="text-align:right;">
+            <a download="raf.xls" onclick="return ExcellentExport.excel(this, 'raf_list', 'RAF');"
+               class="btn btn-success" style="margin-top:20px;">Excel</a>
+        </div>
+    </div>
+    <ul id="raf_tabs" class="nav nav-tabs nav-justified" style="margin-bottom:10px;">
+        <li id="tab_raf" role="presentation" class="active"><a href="#" class="raf_tab" data-tab="raf">MAX</a></li>
+        <li id="tab_ship" role="presentation"><a href="#" class="raf_tab" data-tab="ship">USP</a></li>
+    </ul>
+    <div id="raf_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_raf_results" style="display:none;">No items found</p>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/cookies.min.js"></script>
-    <script src="js/initialize.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script src="js/numeral.min.js"></script>
-    <script src="js/bootstrap-sortable.js"></script>
-    <script src="js/excellentexport.min.js"></script>
-    <!--<script src="js/bootstrap-datepicker.js"></script>-->
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script>
-        var user_token = "";
-        var company_list = false;
-        user_token = Cookies.get("user_token");
-        if (typeof user_token != 'undefined') {
-            $("#app_body").show();
-            companyInfo(user_token);
-        } else {
-            window.location.href = "login.html";
-        }
+</div>
 
-    </script>
-  </body>
+<div id="shipments_container" class="page_container container company_7">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Shipments</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="shipments.xls" onclick="return ExcellentExport.excel(this, 'shipments_list', 'Shipments');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div>
+        <p style="display:inline-block;margin: 1em;">Start Date: <input type="text" id="shipStartDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display:inline-block">End Date: <input type="text" id="shipEndDatePicker" class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">
+            <button onclick="refreshShipmentDates(user_token)">Refresh</button>
+        </p>
+    </div>
+    <div id="shipments_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_ship_results" style="display:none;">No Shipments found</p>
+</div>
+
+<div id="user_container" class="page_container container admin_container">
+    <h1 class="page_header" style="display:inline-block;">Users</h1>
+    <button id="new_user" class="btn btn-success pull-right" style="margin-top: 17px;">Add New User</button>
+    <div id="user_list" class="list-group">
+        Loading...
+    </div>
+</div>
+
+<div id="newUser" class="modal fade admin_container" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">New User</h4>
+            </div>
+            <div class="modal-body">
+                <form id="new_user_form">
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="user_first" name="first_name"
+                               placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="user_last" name="last_name" placeholder="Last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_addr">Email address</label>
+                        <input type="email" class="form-control" id="user_email" name="email_addr"
+                               placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_pass">Password</label>
+                        <input type="password" class="form-control" id="user_pass" name="user_pass"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="company_id">Company</label>
+                        <select id="company_id" name="company_id" class="form-control company_list" data-loaded="false">
+                            <option>Loading...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="access_level">Access Level</label>
+                        <select id="access_level" name="access_level" class="form-control" data-loaded="false">
+                            <option value="0">Basic User</option>
+                            <option value="1">Admin User</option>
+                        </select>
+                    </div>
+                    <button id="new_user_submit" class="btn btn-block btn-success" type="submit">Add User</button>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="updateUser" class="modal fade admin_container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Update User</h4>
+            </div>
+            <div class="modal-body">
+                <form id="update_user_form">
+                    <input id="update_user_id" type="hidden" name="user_id" value="0"/>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="user_first_update" name="first_name"
+                               placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="user_last_update" name="last_name"
+                               placeholder="Last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_addr">Email address</label>
+                        <input type="email" class="form-control" id="user_email_update" name="email_addr"
+                               placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_pass">Change Password</label>
+                        <input type="password" class="form-control" id="user_pass_update" name="user_pass"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="company_id">Company</label>
+                        <select id="company_id_update" name="company_id" class="form-control company_list"
+                                data-loaded="false">
+                            <option>Loading...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="access_level">Access Level</label>
+                        <select id="access_level_update" name="access_level" class="form-control" data-loaded="false">
+                            <option value="0">Basic User</option>
+                            <option value="1">Admin User</option>
+                        </select>
+                    </div>
+                    <button id="update_user_submit" class="btn btn-block btn-success" type="submit">Update User</button>
+                    <button id="delete_user" class="btn btn-block btn-danger btn-sm" type="button">Delete User</button>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="editHershey" class="modal fade admin_container" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Hershey Label</h4>
+            </div>
+            <div class="modal-body">
+                <form id="edit_hershey_form">
+                    <div class="form-group">
+                        <label for="transaction_date">Transaction Date</label>
+                        <input type="text" class="form-control datepicker" id="edit_transaction_date"
+                               name="transaction_date" placeholder="Transaction Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="lic_plate">Lic Plate #</label>
+                        <input type="text" class="form-control" id="edit_lic_plate" name="lic_plate"
+                               placeholder="Lic Plate #">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="edit_timestamp" name="timestamp">
+                    </div>
+                    <div class="form-group">
+                        <label for="item">Item #</label>
+                        <input type="text" class="form-control" id="edit_item" name="item" placeholder="Item #">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="edit_description" name="description"
+                               placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="batch">Batch #</label>
+                        <input type="text" class="form-control" id="edit_batch" name="batch" placeholder="Batch #">
+                    </div>
+                    <div class="form-group">
+                        <label for="production">Production #</label>
+                        <input type="text" class="form-control" id="edit_production" name="production"
+                               placeholder="Production #">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text" class="form-control" id="edit_quantity" name="quantity"
+                               placeholder="Quantity">
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <input type="text" id="edit_uom_denominator" name="uom_denominator">
+                    </div>
+                    <div class="form-group">
+                        <label for="uom">UOM</label>
+                        <input type="text" class="form-control" id="edit_uom" name="uom" placeholder="UOM">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input type="hidden" id="edit_file" name="file">
+                        <input type="hidden" id="edit_save" name="save">
+                    </div>
+                    <button id="save_hershey" class="btn btn-block btn-success" type="submit">Save & Print</button>
+                    <button id="update_hershey" class="btn btn-block btn-success" type="submit">Update</button>
+                    <button id="delete_hershey" class="btn btn-block btn-success" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/cookies.min.js"></script>
+<script src="js/initialize.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/numeral.min.js"></script>
+<script src="js/bootstrap-sortable.js"></script>
+<script src="js/excellentexport.min.js"></script>
+<!--<script src="js/bootstrap-datepicker.js"></script>-->
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    var user_token = "";
+    var company_list = false;
+    user_token = Cookies.get("user_token");
+    if (typeof user_token != 'undefined') {
+        $("#app_body").show();
+        companyInfo(user_token);
+    } else {
+        window.location.href = "login.html";
+    }
+
+</script>
+</body>
 </html>

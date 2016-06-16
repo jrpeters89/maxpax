@@ -155,3 +155,11 @@ $("body").on("click", "#delete_hershey", function (event) {
 
     }
 });
+
+$("body").on("click",".raf_tab",function(event) {
+    event.preventDefault();
+    var type = $(this).data("tab");
+    $("#raf_tabs li").removeClass("active");
+    $("#tab_"+type).addClass("active");
+    opensalesCheck(user_token,type);
+});
