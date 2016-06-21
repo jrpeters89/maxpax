@@ -99,7 +99,7 @@ if(!empty($user_token)) {
 					$case = (!empty($inv['Case']) ? ($inv['AvailPhysical'] / $inv['Case']) : 0);
 					$pallet_num = (!empty($inv['Pallet']) ? $inv['Pallet'] : 0);
 					$pallet = (!empty($inv['Pallet']) ? ($inv['AvailPhysical'] / $inv['Pallet']) : 0);
-					if (substr($inv['ItemId'], 0, 3) == "PAC" && $inv['Location'] != "RAF" && $inv['CompanyName'] == "MaxPax LLC") {
+					if (substr($inv['ItemId'], 0, 3) == "PAC" && substr($inv['ItemId'], 0, 5) != "PAC-L" && substr($inv['ItemId'], 0, 5) != "PAC-K" && substr($inv['ItemId'], 0, 5) != "PAC-B" && $inv['Location'] != "RAF" && $inv['Location'] != "QUARANTINE" && $inv['CompanyName'] == "MaxPax LLC" && $inv['ItemGroupId'] = "FG") {
 						$qty_total = $qty_total + $quantity;
 						$case_total = $case_total + $case;
 						$pallet_total = $pallet_total + $pallet;
@@ -115,7 +115,8 @@ if(!empty($user_token)) {
 								'PalletNum' => $pallet_num,
 								'Pallet' => number_format($pallet, 2, ".", ","),
 								'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
-								'ProdDate' => (!empty($inv['prodDate']) ? $inv['prodDate'] : "")
+								'ProdDate' => (!empty($inv['prodDate']) ? $inv['prodDate'] : ""),
+								'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : "")
 							);
 							$items[$inv['ItemId']] = $i;
 							$i++;

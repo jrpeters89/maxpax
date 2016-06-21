@@ -161,5 +161,33 @@ $("body").on("click",".raf_tab",function(event) {
     var type = $(this).data("tab");
     $("#raf_tabs li").removeClass("active");
     $("#tab_"+type).addClass("active");
-    opensalesCheck(user_token,type);
+    rafCheck(user_token,type);
 });
+
+function rafCheck(user_token, type) {
+    type = (typeof type !== "undefined" ? type : "list");
+    $("#raf_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#raf_container").show();
+    $(".col-xs-10").html('');
+    $(".col-xs-10").html('<h1 class="page_header">RAF</h1>');
+    $.get("/src/raf.php?type="+type+"&user_token="+user_token,function(result) {
+        var raf = jQuery.parseJSON(result);
+        if(raf.count > 0) {
+            $("#raf_list").html("");
+            //if(type == "raf") {
+                $("#raf_list").html('<table class="table sortable"><thead><tr><th>Location</th><th class="width_180">Item #</th><th class="width_180 ">Batch #</th> <th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th class="text_right">Case</th><th>Sell UOM</th><th class="text_right">Pallet</th><th class="width_180">Prod Date</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+                jQuery.each( raf.data, function( i, inv ) {
+                    $("#raf_list tbody").append('<tr><td class="width_180">' + inv.Location + '</td><td class="width_120">'+inv.ItemId+'</td><td class="width_180">'+inv.BatchNumber+'</td><td>'+inv.ItemName+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td class="text_right">'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td class="text_right">'+inv.Pallet+'</td><td>'+inv.ProdDate+'</td></tr>');
+                });
+                if(typeof raf.total != "undefined") {
+                    $("#raf_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+raf.total.quantity+'</td><td></td><td class="text_right">'+raf.total.case+'</td><td></td><td class="text_right">'+raf.total.pallet+'</td></tr>');
+                }
+                $.bootstrapSortable(false);
+            //} else {
+
+           // }
+        } else {
+            $("#raf_list").html("No Items Available");
+        }
+    });
+}

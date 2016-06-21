@@ -25,6 +25,10 @@ function changePage(page) {
             $("#opensales_tabs li").removeClass("active");
             $("#tab_list").addClass("active");
             opensalesCheck(user_token);
+        } else if (page == "raf") {
+            $("#raf_tabs li").removeClass("active");
+            $("#tab_raf").addClass("active");
+            rafCheck(user_token, "raf");
         } else if (page == "documents") {
             documentList(user_token, hold_company_id);
         } else if (page == "user") {
