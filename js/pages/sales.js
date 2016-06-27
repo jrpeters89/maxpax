@@ -153,7 +153,8 @@ function invAdjData(user_token, company_id) {
 		if (inv_adj.count > 0) {
 			$("#inv_adj_detail").html('');
 			jQuery.each(inv_adj.data, function (x, item) {
-				var itemString = item.Item.split(".");
+				//var itemString = item.Item.split(".");
+				var itemString = item.Item.split(/[\.|\/]+/);
 				$("#inv_adj_detail").append('<div id="item_' + itemString[0] +'" class="table-responsive"><table id="item_table_' + itemString[0] +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
 				$("#inv_adj_detail").append('<div id="item_' + itemString[0] + '_line" class="table-responsive"><table id="item_table_' + itemString[0]+ '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
 				jQuery.each(item, function(y, line) {
@@ -182,7 +183,8 @@ function refreshInvAdjDates(user_token) {
 		if (inv_adj.count > 0) {
 			$("#inv_adj_detail").html('');
 			jQuery.each(inv_adj.data, function (x, item) {
-				var itemString = item.Item.split(".");
+				//var itemString = item.Item.split(".");
+				var itemString = item.Item.split(/[\.|\/]+/);
 				$("#inv_adj_detail").append('<div id="item_' + itemString[0] +'" class="table-responsive"><table id="item_table_' + itemString[0] +'" class="table_sortable"><thead></thead><tbody><tr><td><strong>' + item.Item + ' / ' + item.Name + ' / ' + item.ItemGroup + '</strong></td></tr></tbody><tfoot></tfoot></table></div>');
 				$("#inv_adj_detail").append('<div id="item_' + itemString[0] + '_line" class="table-responsive"><table id="item_table_' + itemString[0]+ '_line" class="table sortable"><thead><tr><th class="width_180">Date</th><th class="width_180">User</th><th class="width_180">Voucher</th><th class="width_180 text_right">Amount</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>')
 				jQuery.each(item, function(y, line) {

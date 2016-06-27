@@ -50,16 +50,11 @@ function packagingCheck(user_token, company_id) {
 	$.get("/src/packaging_inventory.php?act=list&user_token="+user_token+"&company_id="+company_id,function(result) {
 		var inventory = jQuery.parseJSON(result);
 		if(inventory.count > 0) {
-			$("#packaging_inventory_list").html('');
+			$("#packaging_inventory_list").html('<table class="table sortable"><thead><tr><th class="width_130">ID</th><th class="width_130">Name</th><th class="width_130">Quantity</th></th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
 			jQuery.each( inventory.data, function( i, inv ) {
-				$("#packaging_inventory_list").append('<div id="inventory_list_' + inv.ItemId +'" class="table-responsive"><table id="inventory_list_table_' + inv.ItemId +'" class="table sortable"><thead><tr><th class="width_130"></th><th class="width_130"></th><th class="width_350">Batch #</th><th class="width_130">Exp. Date</th><th class="width_130">Quantity</th><th class="width_130">UOM</th><th class="width_130">Location</th></tr><tr ><td class="width_130"><strong>' + inv.ItemGroupId + '</strong></td><td class="width_130"><strong>' + inv.ItemId + '</td><td class="width_350"><strong>' + inv.ItemName + '</strong></td><td class="width_130"></td><td class="width_130"></td><td class="width_130"></td><td class="width_130"></td></tr></thead><tbody></tbody><tfoot></tfoot></table></div>');
-				jQuery.each(inv, function(x, item) {
-					if (typeof item.BatchNumber != "undefined") {
-						$("#inventory_list_" + inv.ItemId + " tbody").append('<tr><td class="width_130"></td><td class="width_130"></td><td class="width_350">' + item.BatchNumber + '</td><td class="width_130">' + item.expDate + '</td><td class="width_130">' + item.AvailPhysical + '</td><td class="width_130">' + item.BOMUnitId +'</td><td class="width_130">' + item.Location +'</td></tr>');
-					}
-				});
-				$("#inventory_list_" + inv.ItemId + " tfoot").append('<tr><td class="width_130"></td><td class="width_130"></td><td class="width_350"></td><td class="width_130"><strong>Subtotal</strong></td><td class="width_130"><strong>' + inv.Subtotal + '</strong></td><td class="width_130"></td><td class="width_130"></td></tr>');
-
+				if(typeof inv.ItemId != "undefined") {
+					$("#packaging_inventory_list tbody").append('<tr><td class="width_130">' + inv.ItemId + '</td><td class="width_350">' + inv.ItemName + '</td><td class="width_130">' + inv.Subtotal + '</td></td></tr>');
+				}
 			});
 			$.bootstrapSortable(false);
 		} else {
