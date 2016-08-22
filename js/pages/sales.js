@@ -176,6 +176,12 @@ function invAdjData(user_token, company_id) {
 function refreshInvAdjDates(user_token) {
 	$("#inv_adj_detail").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#inv_adj_detail").show();
+	$('#invAdjStartDatePicker').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
+	$('#invAdjEndDatePicker').datepicker({
+		dateFormat: 'yy-mm-dd'
+	});
 	var startDateTxt = document.getElementById("invAdjStartDatePicker");
 	var endDateTxt = document.getElementById("invAdjEndDatePicker");
 	$.get("/src/inventory_adjustments.php?user_token="+user_token+"&company="+hold_company_id + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value,function(result) {
