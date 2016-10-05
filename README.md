@@ -1,2 +1,0 @@
-# maxpax
-MaxPax reporting application
