@@ -48,6 +48,24 @@ if(!empty($user_token)) {
                 }
             }
         }
+
+        else if ($row['company'] == 4) { //Portion Pac
+            foreach ($data as $purch) {
+                //Item # = NOU
+                if ($purch['VendAccount'] == "USP-00240" && $purch['CompanyName'] == "US Packaging LLC") {
+                    $purchase['data'][] = array(
+                        'PurchaseOrder' => $purch['PurchId'],
+                        'LineNumber' => $purch['LineNumber'],
+                        'ItemNumber' => $purch['ItemId'],
+                        'Description' => $purch['Name'],
+                        'DeliveryDate' => $purch['DeliveryDate'],
+                        'OrderQuantity' => $purch['PurchQty'],
+                        'DeliverRemainder' => $purch['RemainPurchPhysical'],
+                        'Unit' => $purch['PurchUnit']
+                    );
+                }
+            }
+        }
         $purchase['count'] = count($purchase['data']);
     } else {
             $purchase['count'] = 0;
