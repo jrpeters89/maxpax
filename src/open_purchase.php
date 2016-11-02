@@ -52,7 +52,7 @@ if(!empty($user_token)) {
         else if ($row['company'] == 4) { //Portion Pac
             foreach ($data as $purch) {
                 //Item # = NOU
-                if (($purch['ItemNumber'] == "PAC-L" || $purch['ItemNumber'] = "PAC-K") && $purch['CompanyName'] == "MaxPax LLC") {
+                if ((substr($purch['ItemNumber'], 0, 5) == "PAC-L" || substr($purch['ItemNumber'], 0, 5) == "PAC-K") && $purch['CompanyName'] == "MaxPax LLC") {
                     $purchase['data'][] = array(
                         'PurchaseOrder' => $purch['PurchId'],
                         'LineNumber' => $purch['LineNumber'],
