@@ -31,6 +31,7 @@ if (is_dir($dir)) {
                 $data = $array['Body']['MessageParts']['MAX_ProdJournalProd']['ProdJournalProd'];
                 //$hershey[$file] = $data;
                 //if($data['MaterialNumber'] != null) {
+                $lic_plate = $data['MAX_LicensePlateNumber'];
                 $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
                 $result = mysqli_query($conn, "SELECT * FROM `hershey` WHERE `lic_plate`='$lic_plate'") or die(mysqli_error($conn));
