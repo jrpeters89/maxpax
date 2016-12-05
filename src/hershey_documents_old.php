@@ -14,30 +14,22 @@ $end_date_string = str_replace("-", "", $end_date);
 $dir = '//sw-apps-01/Hersh/Processed';
 //$list = scandir('//sw-apps-01/Hersh/Processed');
 
-function cmp($a, $b)
-{
+function cmp($a, $b) {
     return strcmp($a['TransactionDate'], $b['TransactionDate']);
 }
 
-if (is_dir($dir)) {
-    if ($dh = opendir($dir)) {
+if(is_dir($dir)) {
+    if($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
-            if ((substr($file, 0, 8) >= $start_date_string) && (substr($file, 0, 8) <= $end_date_string)) { //&& (substr($file, -3) != 'wip')) {
+            if((substr($file, 0, 8) >= $start_date_string) && (substr($file, 0, 8) <= $end_date_string) && (substr($file, -3) != 'wip')) {
                 //$hershey[$file] = $file;
-                $xml = simplexml_load_file($dir . "/" . $file);
+                $xml = simplexml_load_file($dir . "/" .$file);
                 $json = json_encode($xml);
-                $array = json_decode($json, TRUE);
+                $array = json_decode($json,TRUE);
                 //$hershey[$file] = $file;
                 $data = $array['Body']['MessageParts']['MAX_ProdJournalProd']['ProdJournalProd'];
                 //$hershey[$file] = $data;
                 //if($data['MaterialNumber'] != null) {
-                $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
-                $lic_plate = $data['MAX_LicensePlateNumber'];
-                $result = mysqli_query($conn, "SELECT `lic_plate` FROM `hershey` WHERE `lic_plate`='$lic_plate'") or die(mysqli_error($conn));
-                if (mysqli_num_rows($result) > 0) {
-
-                } else {
-                    $result = mysqli_query($conn, "INSERT INTO `hershey` (lic_plate) VALUES ('$lic_plate')");
                     $hershey['data'][$file]['TransactionDate'] = $data['TransDate'];
                     $hershey['data'][$file]['LicPlate'] = $data['MAX_LicensePlateNumber'];
                     $hershey['data'][$file]['TimeStamp'] = $data['CreateTimeStamp'];
@@ -50,7 +42,6 @@ if (is_dir($dir)) {
                     $hershey['data'][$file]['UOM'] = $data['UOM'];
                     $hershey['data'][$file]['file'] = $file;
                     $hershey[count]++;
-                }
                 //}
             }
         }
