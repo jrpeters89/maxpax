@@ -36,16 +36,16 @@ if (is_dir($dir)) {
                 $result = mysqli_query($conn, "SELECT * FROM `hershey` WHERE `lic_plate`='$lic_plate'") or die(mysqli_error($conn));
                 if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_assoc($result)) {
-                        $hershey['data'][$file]['TransactionDate'] = $row['transaction_date'];
-                        $hershey['data'][$file]['LicPlate'] = $row['lic_plate'];
-                        $hershey['data'][$file]['TimeStamp'] = $row['create_time_stamp'];
-                        $hershey['data'][$file]['Item'] = $row['item'];
-                        $hershey['data'][$file]['Batch'] = $row['batch'];
-                        $hershey['data'][$file]['Production'] = $row['production'];
-                        $hershey['data'][$file]['Description'] = $row['description'];
-                        $hershey['data'][$file]['Qty'] = $row['qty'];
-                        $hershey['data'][$file]['UOMDenominator'] = $row['uom_denominator'];
-                        $hershey['data'][$file]['UOM'] = $row['uom'];
+                        $hershey['data'][$file]['TransactionDate'] = $row["transaction_date"];
+                        $hershey['data'][$file]['LicPlate'] = $row["lic_plate"];
+                        $hershey['data'][$file]['TimeStamp'] = $row["create_time_stamp"];
+                        $hershey['data'][$file]['Item'] = $row["item"];
+                        $hershey['data'][$file]['Batch'] = $row["batch"];
+                        $hershey['data'][$file]['Production'] = $row["production"];
+                        $hershey['data'][$file]['Description'] = $row["description"];
+                        $hershey['data'][$file]['Qty'] = $row["qty"];
+                        $hershey['data'][$file]['UOMDenominator'] = $row["uom_denominator"];
+                        $hershey['data'][$file]['UOM'] = $row["uom"];
                         $hershey['data'][$file]['file'] = $file;
                         $hershey[count]++;
                     }
