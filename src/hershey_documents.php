@@ -35,7 +35,7 @@ if (is_dir($dir)) {
 
                 $result = mysqli_query($conn, "SELECT * FROM `hershey` WHERE `lic_plate`='$lic_plate'") or die(mysqli_error($conn));
                 if (mysqli_num_rows($result) > 0) {
-                    while($row = $result->fetch_assoc()) {
+                    while($row = mysqli_fetch_assoc($result)) {
                         $hershey['data'][$file]['TransactionDate'] = $row['transaction_date'];
                         $hershey['data'][$file]['LicPlate'] = $row['lic_plate'];
                         $hershey['data'][$file]['TimeStamp'] = $row['create_time_stamp'];
@@ -77,7 +77,7 @@ if (is_dir($dir)) {
                     $hershey['data'][$file]['file'] = $file;
                     $hershey[count]++;
                 }
-                mysqli_close($conn);
+                //mysqli_close($conn);
                 //}
             }
         }
