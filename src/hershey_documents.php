@@ -32,12 +32,38 @@ if (is_dir($dir)) {
                 //$hershey[$file] = $data;
                 //if($data['MaterialNumber'] != null) {
                 $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
-                $lic_plate = $data['MAX_LicensePlateNumber'];
-                $result = mysqli_query($conn, "SELECT `lic_plate` FROM `hershey` WHERE `lic_plate`='$lic_plate'") or die(mysqli_error($conn));
-                if (mysqli_num_rows($result) > 0) {
 
+                $result = mysqli_query($conn, "SELECT * FROM `hershey` WHERE `lic_plate`='$lic_plate'") or die(mysqli_error($conn));
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $hershey['data'][$file]['TransactionDate'] = $row['transaction_date'];
+                        $hershey['data'][$file]['LicPlate'] = $row['lic_plate'];
+                        $hershey['data'][$file]['TimeStamp'] = $row['create_time_stamp'];
+                        $hershey['data'][$file]['Item'] = $row['item'];
+                        $hershey['data'][$file]['Batch'] = $row['batch'];
+                        $hershey['data'][$file]['Production'] = $row['production'];
+                        $hershey['data'][$file]['Description'] = $row['description'];
+                        $hershey['data'][$file]['Qty'] = $row['qty'];
+                        $hershey['data'][$file]['UOMDenominator'] = $row['uom_denominator'];
+                        $hershey['data'][$file]['UOM'] = $row['uom'];
+                        $hershey['data'][$file]['file'] = $file;
+                        $hershey[count]++;
+                    }
                 } else {
-                    $result = mysqli_query($conn, "INSERT INTO `hershey` (lic_plate) VALUES ('$lic_plate')");
+                    $trans_date = $data['TransDate'];
+                    $lic_plate = $data['MAX_LicensePlateNumber'];
+                    $create_time_stamp = $data['CreateTimeStamp'];
+                    $item = $data['MaterialNumber'];
+                    $batch = $data['BatchNumber'];
+                    $production = $data['ProdId'];
+                    $description = $data['Description'];
+                    $qty = $data['QtyGood'];
+                    $uom_denominator = $data['UOMDenominator'];
+                    $uom = $data['UOM'];
+
+                    $result = mysqli_query($conn, "INSERT INTO `hershey` (transaction_date, lic_plate, create_time_stamp, item, batch, production, description, qty, uom_denominator, uom) 
+                      VALUES ('$trans_date' , '$lic_plate' , '$create_time_stamp' , '$item' , '$batch' , '$production' , '$description' , '$qty' , '$uom_denominator' , '$uom')");
+
                     $hershey['data'][$file]['TransactionDate'] = $data['TransDate'];
                     $hershey['data'][$file]['LicPlate'] = $data['MAX_LicensePlateNumber'];
                     $hershey['data'][$file]['TimeStamp'] = $data['CreateTimeStamp'];
@@ -51,6 +77,7 @@ if (is_dir($dir)) {
                     $hershey['data'][$file]['file'] = $file;
                     $hershey[count]++;
                 }
+                mysqli_close($conn);
                 //}
             }
         }
