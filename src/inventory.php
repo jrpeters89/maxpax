@@ -34,7 +34,7 @@ if(!empty($user_token)) {
 		if($row['company'] == 9) { //Novis Works
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(substr($inv['ItemId'], 0, 3) == "NOV" && $inv['CompanyName'] == "MaxPax LLC") {
+				if(substr($inv['ItemId'], 0, 3) == "NOV" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME") {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
 						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -53,7 +53,7 @@ if(!empty($user_token)) {
 		} elseif($row['company'] == 7) {	//GoPicnic - Inventory Filter
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(substr($inv['ItemId'], 0, 3) == "GPB" && $inv['CompanyName'] == "US Packaging LLC") {
+				if(substr($inv['ItemId'], 0, 3) == "GPB" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
 						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -72,7 +72,7 @@ if(!empty($user_token)) {
 		} else if($row['company'] == 6) {	//Energems - Inventory Filter
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(substr($inv['ItemId'], 0, 3) == "ENE" && $inv['CompanyName'] == "US Packaging LLC") {
+				if(substr($inv['ItemId'], 0, 3) == "ENE" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
 						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -99,7 +99,7 @@ if(!empty($user_token)) {
 					$case = (!empty($inv['Case']) ? ($inv['AvailPhysical'] / $inv['Case']) : 0);
 					$pallet_num = (!empty($inv['Pallet']) ? $inv['Pallet'] : 0);
 					$pallet = (!empty($inv['Pallet']) ? ($inv['AvailPhysical'] / $inv['Pallet']) : 0);
-					if (substr($inv['ItemId'], 0, 3) == "PAC" && substr($inv['ItemId'], 0, 5) != "PAC-L" && substr($inv['ItemId'], 0, 5) != "PAC-K" && substr($inv['ItemId'], 0, 5) != "PAC-B" && $inv['Location'] != "RAF" && $inv['Location'] != "QUARANTINE" && $inv['CompanyName'] == "MaxPax LLC" && $inv['ItemGroupId'] = "FG") {
+					if (substr($inv['ItemId'], 0, 3) == "PAC" && substr($inv['ItemId'], 0, 5) != "PAC-L" && substr($inv['ItemId'], 0, 5) != "PAC-K" && substr($inv['ItemId'], 0, 5) != "PAC-B" && $inv['Location'] != "RAF" && $inv['Location'] != "QUARANTINE" && $inv['CompanyName'] == "MaxPax LLC" && $inv['ItemGroupId'] == "FG" && $inv['Location'] != "CONSUME") {
 						$qty_total = $qty_total + $quantity;
 						$case_total = $case_total + $case;
 						$pallet_total = $pallet_total + $pallet;
