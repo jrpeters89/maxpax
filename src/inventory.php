@@ -135,7 +135,7 @@ if(!empty($user_token)) {
 		} else {	// Nourish Snacks - Inventory Filter
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(substr($inv['ItemId'], 0, 3) == "NOU") {
+				if(substr($inv['ItemId'], 0, 3) == "NOU" && $inv['Location'] != "CONSUME") {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
 						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
