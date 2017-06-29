@@ -101,6 +101,8 @@ function appSetup(company, callback) {
     $(".menu_7").fadeOut();
     $(".menu_8").fadeOut();
     $(".menu_9").fadeOut();
+    $(".menu_10").fadeOut();
+    $(".menu_11").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -139,7 +141,20 @@ function appSetup(company, callback) {
                     callback();
                 });
             });
-        } else if (company.id == 9) {
+        } else if (company.id == 11) {
+            getScripts(["/js/pages/treehouse.js"], function () {
+                console.log("TreeHouse Scripts Loaded");
+                callback();
+            });
+        }
+        
+        else if (company.id == 10) {
+            getScripts(["/js/pages/earthy.js"], function () {
+                console.log("Earthy Scripts Loaded");
+                callback();
+            });
+        }
+        else if (company.id == 9) {
             getScripts(["/js/pages/novis-works.js"], function () {
                 console.log("Novis Works Scripts Loaded");
                 callback();
