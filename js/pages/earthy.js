@@ -229,3 +229,93 @@ function refreshRecvTransDates(user_token) {
         }
     });
 }
+
+
+function productionTransactions(user_token) {
+    $("#prod_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#prod_trans_container_container").show();
+    $(".col-xs-10").html('');
+    $(".col-xs-10").html('<h1 class="page_header">Production</h1>');
+    var today = new Date();
+    var startDay = 1;
+    var startMonth = today.getMonth() + 1;
+    var startYear = today.getFullYear();
+    if (startDay < 10) {
+        startDay = '0' + startDay;
+    }
+    if (startMonth < 10) {
+        startMonth = '0' + startMonth;
+    }
+    var startDate = startYear + '-' + startMonth + '-' + startDay;
+
+    var endDate;
+    var endMonth;
+    endMonth = today.getMonth() + 2;
+    if (endMonth == 13) {
+        endDate = (startYear + 1) + '-01-' + startDay;
+    } else {
+
+        if (endMonth < 10) {
+            endMonth = '0' + endMonth;
+        }
+        endDate = startYear + '-' + endMonth + '-' + startDay;
+    }
+    //var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
+    var startDateTxt = document.getElementById("prodStartDatePicker");
+    var endDateTxt = document.getElementById("prodEndDatePicker");
+    startDateTxt.value = startDate;
+    endDateTxt.value = endDate;
+    $('#prodStartDatePicker').datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+    $('#prodEndDatePicker').datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+    $.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+        var prodTrans = jQuery.parseJSON(result);
+        if (prodTrans.count > 0) {
+            $("#prod_trans_list").html('');
+            jQuery.each(prodTrans.data, function (x, prodNum) {
+                $("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + prodNum.TransDate + '</td><td>' + x + '</td> <td>' + prodNum.ItemNumber + '</td><td>' + prodNum.Description + '</td></tr></tbody><tfoot></tfoot></table>');
+                $("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '_lot" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+                jQuery.each(prodNum, function (z, det) {
+                    if(typeof det.Lot != "undefined") {
+
+                        $("#prod_num_" + prodNum.Production + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
+                    }
+                });
+            });
+            $.bootstrapSortable(false);
+        } else {
+            $("#prod_trans_list").html("No Production Transactions Available");
+        }
+    });
+}
+
+function refreshProdTransDates(user_token) {
+    $("#prod_trans_list").html('');
+    $("#prod_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#prod_trans_container").show();
+    var startDateTxt = document.getElementById("prodStartDatePicker");
+    var endDateTxt = document.getElementById("prodEndDatePicker");
+    $.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+        var prodTrans = jQuery.parseJSON(result);
+        if (prodTrans.count > 0) {
+            $("#prod_trans_list").html('');
+            jQuery.each(prodTrans.data, function (x, prodNum) {
+                $("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'" class="table sortable"><thead><tr><th class="width_180">Prod Date</th><th>Production #</th><th>Item #</th><th>Description</th></tr></thead><tbody><tr><td class="width_180">' + prodNum.TransDate + '</td><td>' + x + '</td> <td>' + prodNum.ItemNumber + '</td><td>' + prodNum.Description + '</td></tr></tbody><tfoot></tfoot></table>');
+                $("#prod_trans_list").append('<div id="prod_num_' + prodNum.Production + '_lot" class="table-responsive"><table id="prod_num_table_' + prodNum.Production +'_lot" class="table sortable"><thead><tr><th>Lot #</th><th>Exp. Date</th><th>Good Qty</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+                jQuery.each(prodNum, function (z, det) {
+                    if(typeof det.Lot != "undefined") {
+
+                        $("#prod_num_" + prodNum.Production + "_lot tbody").append('<tr><td>' + det.Lot + '</td><td>' + det.ExpDate + '</td><td>' + det.GoodQuantity + '</td><</tr>');
+                    }
+                });
+            });
+
+            $.bootstrapSortable(false);
+        } else {
+            $("#prod_trans_list").html("No Productions Transactions Available");
+        }
+    });
+}
