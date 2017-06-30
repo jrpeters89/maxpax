@@ -32,7 +32,7 @@ if (!empty($user_token)) {
                     );
                 }
             }
-        } elseif ($row['company'] == 6) { //Energems Filter
+        } elseif ($row['company'] == 10) { //Energems Filter
             foreach ($data as $item) {
                 if ((substr($item['ItemNumber'], 0, 3) == "ETY") && ($item['CompanyName'] === "MaxPax LLC") && ($item['TransDate'] > $start_date) && ($item['TransDate'] < $end_date)) {
                     $prod_trans['data'][$item['Production']]['Production'] = ($item['Production'] != null ? $item['Production'] : "");
