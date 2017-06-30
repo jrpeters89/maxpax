@@ -54,6 +54,26 @@ if (!empty($user_token)) {
                     $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
                 }
             }
+        } elseif ($row['company'] == 10) { //Earthy Filter
+            foreach ($data as $item) {
+                if (($item['CompanyName'] === "MaxPax LLC") && ($item['CustomerNumber'] === "MAX-C000070") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
+                    $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['SalesOrder'] = ($item['SalesOrder'] != null ? $item['SalesOrder'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['CustomerRef'] = ($item['CustomerRef'] != null ? $item['CustomerRef'] : "");
+
+                    $shipments['data'][$item['PackingSlipId']][] = array(
+                        'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
+                        'ExpirationDate' => ($item['ExpirationDate'] != null ? $item['ExpirationDate'] : ""),
+                        'Delivered' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
+                        'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
+                    );
+
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
+                }
+            }
         } elseif ($row['company'] == 6) { //Energems Filter
             foreach ($data as $item) {
                 if (($item['CompanyName'] === "US Packaging LLC") && ($item['CustomerNumber'] === "USP-C000042") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
