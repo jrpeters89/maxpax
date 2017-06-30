@@ -32,8 +32,21 @@ if (!empty($user_token)) {
                     );
                 }
             }
-        } else {
-            //any additional filters in the future
+        } elseif ($row['company'] == 6) { //Energems Filter
+            foreach ($data as $item) {
+                if ((substr($item['ItemNumber'], 0, 3) == "ETY") && ($item['CompanyName'] === "MaxPax LLC") && ($item['TransDate'] > $start_date) && ($item['TransDate'] < $end_date)) {
+                    $prod_trans['data'][$item['Production']]['Production'] = ($item['Production'] != null ? $item['Production'] : "");
+                    $prod_trans['data'][$item['Production']]['TransDate'] = ($item['TransDate'] != null ? $item['TransDate'] : "");
+                    $prod_trans['data'][$item['Production']]['ItemNumber'] = ($item['ItemNumber'] != null ? $item['ItemNumber'] : "");
+                    $prod_trans['data'][$item['Production']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
+
+                    $prod_trans['data'][$item['Production']][] = array(
+                        'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
+                        'ExpDate' => ($item['ExpDate'] != null ? $item['ExpDate'] : ""),
+                        'GoodQuantity' =>($item['GoodQuantity'] != null ? $item['GoodQuantity'] : "")
+                    );
+                }
+            }
         }
 
         $prod_trans['count'] = count($prod_trans['data']);
