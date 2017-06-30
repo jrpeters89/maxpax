@@ -23,6 +23,14 @@ function inventoryCheck(user_token, company_id) {
     });
 }
 
+$("body").on("click",".opensales_tab",function(event) {
+    event.preventDefault();
+    var type = $(this).data("tab");
+    $("#opensales_tabs li").removeClass("active");
+    $("#tab_"+type).addClass("active");
+    opensalesCheck(user_token,type);
+});
+
 function opensalesCheck(user_token,type) {
     type = (typeof type !== "undefined" ? type : "list");
     $("#opensales_list").html('<div id="loading"><img src="images/spin.gif" /></div>');

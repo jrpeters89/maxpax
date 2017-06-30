@@ -10,7 +10,7 @@ $data = $array['Body']['MessageParts']['MAX_SalesOpenLines']['CustSalesOpenLines
 if($type == "items") {
 
 	foreach($data as $sale) {
-		if($sale['CustAccount'] == "USP-C000041") {
+		if($sale['CustAccount'] == "USP-C000041" || $sale['CustAccount'] == "MAX-C000070" || $sale['CustAccount'] == "USP-C000065") {
 
 			$sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
 			$remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
@@ -36,7 +36,7 @@ if($type == "items") {
 } else {
 
 	foreach($data as $sale) {
-		if($sale['CustAccount'] == "USP-C000041") {
+		if($sale['CustAccount'] == "USP-C000041"  || $sale['CustAccount'] == "MAX-C000070" || $sale['CustAccount'] == "USP-C000065") {
 
 			$sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
 			$remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
