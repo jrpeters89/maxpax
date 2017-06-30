@@ -29,8 +29,8 @@ if(!empty($user_token)) {
 						
 						if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 							
-							$first_sql = mysql_escape_string($first);
-							$last_sql = mysql_escape_string($last);
+							$first_sql = mysqli_escape_string($first);
+							$last_sql = mysqli_escape_string($last);
 							$pass_sql = md5($pass);
 							
 							$result = mysqli_query($conn, "INSERT INTO `users` (`id`,`first`,`last`,`email`,`pass`,`company`,`access_level`,`token`) VALUES (NULL,'$first_sql','$last_sql','$email','$pass_sql','$company_id','$access_level','')") or die(mysqli_error($conn));
