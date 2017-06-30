@@ -20,6 +20,8 @@ if (!empty($user_token)) {
         case 7:
         case 8:
         case 9:
+        case 10:
+        case 11:
             $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
             $result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
             break;
