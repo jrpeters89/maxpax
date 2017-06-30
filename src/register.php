@@ -92,8 +92,8 @@ if(!empty($user_token)) {
 		
 		if(!empty($email) && !empty($first) && !empty($last) && $user_id > 0) {
 			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				$first_sql = mysql_escape_string($first);
-				$last_sql = mysql_escape_string($last);
+				$first_sql = mysqli_escape_string($first);
+				$last_sql = mysqli_escape_string($last);
 				if(!empty($pass)) {
 					$pass_sql = md5($pass);
 					$pass_change = ",`pass`='$pass_sql'";
