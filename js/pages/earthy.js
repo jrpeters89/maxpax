@@ -234,7 +234,8 @@ function refreshRecvTransDates(user_token) {
 }
 
 
-function productionTransactions(user_token) {
+function productionTransactions(user_token, company_id) {
+    hold_company_id = company_id;
     $("#prod_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#prod_trans_container_container").show();
     $(".col-xs-10").html('');
@@ -274,7 +275,7 @@ function productionTransactions(user_token) {
     $('#prodEndDatePicker').datepicker({
         dateFormat: 'yy-mm-dd'
     });
-    $.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+    $.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value  + "&company_id=" + company_id, function (result) {
         var prodTrans = jQuery.parseJSON(result);
         if (prodTrans.count > 0) {
             $("#prod_trans_list").html('');
@@ -301,7 +302,7 @@ function refreshProdTransDates(user_token) {
     $("#prod_trans_container").show();
     var startDateTxt = document.getElementById("prodStartDatePicker");
     var endDateTxt = document.getElementById("prodEndDatePicker");
-    $.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value, function (result) {
+    $.get("/src/prod_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + hold_company_id, function (result) {
         var prodTrans = jQuery.parseJSON(result);
         if (prodTrans.count > 0) {
             $("#prod_trans_list").html('');
