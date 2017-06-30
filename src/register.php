@@ -33,7 +33,7 @@ if(!empty($user_token)) {
 							$last_sql = mysqli_escape_string($last);
 							$pass_sql = md5($pass);
 							
-							$result = mysqli_query($conn, "INSERT INTO `users` (`id`,`first`,`last`,`email`,`pass`,`company`,`access_level`,`token`) VALUES (NULL,'$first_sql','$last_sql','$email','$pass_sql','$company_id','$access_level','')") or die(mysqli_error($conn));
+							$result = mysqli_query($conn, "INSERT INTO `users` (`id`,`first`,`last`,`email`,`pass`,`company`,`access_level`,`token`) VALUES (NULL,'$first','$last','$email','$pass_sql','$company_id','$access_level','')") or die(mysqli_error($conn));
 							
 							$user_id = mysqli_insert_id($conn);
 							if($user_id > 0) {
@@ -102,7 +102,7 @@ if(!empty($user_token)) {
 				}
 				
 				$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
-				$result = mysqli_query($conn, "UPDATE `users` SET `first`='$first_sql',`last`='$last_sql',`email`='$email',`company`='$company_id',`access_level`='$access_level' $pass_change WHERE `id`='$user_id'") or die(mysqli_error($conn));
+				$result = mysqli_query($conn, "UPDATE `users` SET `first`='$first',`last`='$last',`email`='$email',`company`='$company_id',`access_level`='$access_level' $pass_change WHERE `id`='$user_id'") or die(mysqli_error($conn));
 				
 				if(mysqli_affected_rows($conn)) {
 					$register[success] = true;
