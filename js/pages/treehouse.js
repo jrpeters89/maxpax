@@ -4,7 +4,7 @@ function inventoryCheck(user_token, company_id) {
     $("#inventory_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inventory_container").show();
     $(".col-xs-10").html('');
-    $(".col-xs-10").html('<h1 class="page_header">FG Inv On-Hand</h1>');
+    $(".col-xs-10").html('<h1 class="page_header">On-Hand Inventory</h1>');
     $.get("/src/inventory.php?act=list&user_token=" + user_token + "&company_id=" + company_id, function (result) {
         var inventory = jQuery.parseJSON(result);
         if (inventory.count > 0) {
@@ -17,7 +17,7 @@ function inventoryCheck(user_token, company_id) {
             }
             $.bootstrapSortable(false);
         } else {
-            $("#inventory_list").html("No FG Inv On-hand Available");
+            $("#inventory_list").html("No On-Hand Inventory Available");
         }
     });
 }
