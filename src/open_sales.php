@@ -10,7 +10,7 @@ $data = $array['Body']['MessageParts']['MAX_SalesOpenLines']['CustSalesOpenLines
 if($type == "items") {
 
 	foreach($data as $sale) {
-		if($sale['CustAccount'] == "USP-C000041" || $sale['CustAccount'] == "MAX-C000070" || $sale['CustAccount'] == "USP-C000065") {
+		if($sale['CustAccount'] == "USP-C000041") {
 
 			$sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
 			$remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
@@ -30,13 +30,33 @@ if($type == "items") {
 				'Remainder' => number_format($remaining,0,".",","),
 				'DeliveryAddress' => (!empty($sale['DeliveryAddress']) ? $sale['DeliveryAddress'] : "")
 			);
-		}
+		} elseif ($sale['CustAccount'] == "MAX-C000070") {
+
+            $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+            $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+            $shipped = ($sales_qty - $remaining);
+
+            if(empty($opensales['data'][$sale['ItemId']])) {
+                $opensales['data'][$sale['ItemId']]['description'] = $sale['ItemName'];
+            }
+
+            $opensales['data'][$sale['ItemId']]['data'][] = array (
+                'CustomerRef' => $sale['CustomerRef'],
+                'SalesId' => $sale['SalesId'],
+                'CustName' => $sale['CustName'],
+                'SalesUnit' => $sale['SalesUnit'],
+                'SalesQty' => number_format($sales_qty,0,".",","),
+                'Shipped' => number_format($shipped,0,".",","),
+                'Remainder' => number_format($remaining,0,".",","),
+                'DeliveryAddress' => (!empty($sale['DeliveryAddress']) ? $sale['DeliveryAddress'] : "")
+            );
+        }
 	}
 
 } else {
 
 	foreach($data as $sale) {
-		if($sale['CustAccount'] == "USP-C000041"  || $sale['CustAccount'] == "MAX-C000070" || $sale['CustAccount'] == "USP-C000065") {
+		if($sale['CustAccount'] == "USP-C000041") {
 
 			$sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
 			$remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
@@ -52,7 +72,27 @@ if($type == "items") {
 				'Shipped' => number_format($shipped,0,".",","),
 				'Remainder' => number_format($remaining,0,".",",")
 			);
-		}
+		} elseif ($sale['CustAccount'] == "MAX-C000070") {
+
+            $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+            $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+            $shipped = ($sales_qty - $remaining);
+
+            if(empty($opensales['data'][$sale['ItemId']])) {
+                $opensales['data'][$sale['ItemId']]['description'] = $sale['ItemName'];
+            }
+
+            $opensales['data'][$sale['ItemId']]['data'][] = array (
+                'CustomerRef' => $sale['CustomerRef'],
+                'SalesId' => $sale['SalesId'],
+                'CustName' => $sale['CustName'],
+                'SalesUnit' => $sale['SalesUnit'],
+                'SalesQty' => number_format($sales_qty,0,".",","),
+                'Shipped' => number_format($shipped,0,".",","),
+                'Remainder' => number_format($remaining,0,".",","),
+                'DeliveryAddress' => (!empty($sale['DeliveryAddress']) ? $sale['DeliveryAddress'] : "")
+            );
+        }
 	}
 
 }
