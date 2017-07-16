@@ -52,7 +52,7 @@ function opensalesCheck(user_token,type) {
 	$("#opensales_container").show();
 	$(".col-xs-10").html('');
 	$(".col-xs-10").html('<h1 class="page_header">Open Sales</h1>');
-	$.get("/src/open_sales.php?type="+type+"&user_token="+user_token,function(result) {
+	$.get("/src/open_sales.php?type="+type+"&user_token="+user_token+"&company_id="+hold_company_id,function(result) {
 		var sales = jQuery.parseJSON(result);
 		if(sales.count > 0) {
 			$("#opensales_list").html("");
