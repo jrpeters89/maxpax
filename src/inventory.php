@@ -18,6 +18,7 @@ if(!empty($user_token)) {
 		case 9:
         case 10:
         case 11:
+        case 12:
 			$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 			$result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 			break;
@@ -75,6 +76,25 @@ if(!empty($user_token)) {
             foreach($data as $inv) {
                 //Item # = NOU
                 if(substr($inv['ItemId'], 0, 3) == "THF" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                    $inventory['data'][] = array(
+                        'ItemId' => $inv['ItemId'],
+                        'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
+                        'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
+                        'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
+                        'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
+                        'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
+                        'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
+                        'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
+                        'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : ""),
+                        'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
+                        'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
+                    );
+                }
+            }
+        } elseif($row['company'] == 12) { //Ferrara
+            foreach($data as $inv) {
+                //Item # = NOU
+                if(substr($inv['ItemId'], 0, 3) == "FER" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),

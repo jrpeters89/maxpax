@@ -18,6 +18,7 @@ if (!empty($user_token)) {
         case 9:
         case 10:
         case 11:
+        case 12:
             $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
             $result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
             break;
@@ -109,6 +110,30 @@ if (!empty($user_token)) {
                         );
                     }
                 }
+            } elseif ($row['company'] == 12) { //Ferrara Filter
+                foreach ($data as $sale) {
+                    if ($sale['CustAccount'] == "USP-C000066") {
+
+                        $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+                        $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+                        $shipped = ($sales_qty - $remaining);
+
+                        if (empty($opensales['data'][$sale['ItemId']])) {
+                            $opensales['data'][$sale['ItemId']]['description'] = $sale['ItemName'];
+                        }
+
+                        $opensales['data'][$sale['ItemId']]['data'][] = array(
+                            'CustomerRef' => $sale['CustomerRef'],
+                            'SalesId' => $sale['SalesId'],
+                            'CustName' => $sale['CustName'],
+                            'SalesUnit' => $sale['SalesUnit'],
+                            'SalesQty' => number_format($sales_qty, 0, ".", ","),
+                            'Shipped' => number_format($shipped, 0, ".", ","),
+                            'Remainder' => number_format($remaining, 0, ".", ","),
+                            'DeliveryAddress' => (!empty($sale['DeliveryAddress']) ? $sale['DeliveryAddress'] : "")
+                        );
+                    }
+                }
             }
 
         } else {
@@ -155,6 +180,26 @@ if (!empty($user_token)) {
             } else if ($row['company'] == 11) { //Treehouse
                 foreach ($data as $sale) {
                     if ($sale['CustAccount'] == "USP-C000065") {
+
+                        $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+                        $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+                        $shipped = ($sales_qty - $remaining);
+
+                        $opensales['data'][] = array(
+                            'CustomerRef' => $sale['CustomerRef'],
+                            'SalesId' => $sale['SalesId'],
+                            'ItemId' => $sale['ItemId'],
+                            'ItemName' => $sale['ItemName'],
+                            'SalesUnit' => $sale['SalesUnit'],
+                            'SalesQty' => number_format($sales_qty, 0, ".", ","),
+                            'Shipped' => number_format($shipped, 0, ".", ","),
+                            'Remainder' => number_format($remaining, 0, ".", ",")
+                        );
+                    }
+                }
+            } else if ($row['company'] == 12) { //Ferrara
+                foreach ($data as $sale) {
+                    if ($sale['CustAccount'] == "USP-C000066") {
 
                         $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
                         $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
