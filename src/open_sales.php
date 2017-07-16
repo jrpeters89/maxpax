@@ -112,56 +112,65 @@ if (!empty($user_token)) {
             }
 
         } else {
+            if ($row['company'] == 3) { //Nourish Snacks
+                foreach ($data as $sale) {
+                    if ($sale['CustAccount'] == "USP-C000041") {
 
-            foreach ($data as $sale) {
-                if ($sale['CustAccount'] == "USP-C000041") {
+                        $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+                        $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+                        $shipped = ($sales_qty - $remaining);
 
-                    $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
-                    $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
-                    $shipped = ($sales_qty - $remaining);
+                        $opensales['data'][] = array(
+                            'CustomerRef' => $sale['CustomerRef'],
+                            'SalesId' => $sale['SalesId'],
+                            'ItemId' => $sale['ItemId'],
+                            'ItemName' => $sale['ItemName'],
+                            'SalesUnit' => $sale['SalesUnit'],
+                            'SalesQty' => number_format($sales_qty, 0, ".", ","),
+                            'Shipped' => number_format($shipped, 0, ".", ","),
+                            'Remainder' => number_format($remaining, 0, ".", ",")
+                        );
+                    }
+                }
+            } else if ($row['company'] == 3) { //Earthy
+                foreach ($data as $sale) {
+                    if ($sale['CustAccount'] == "MAX-C000070") {
 
-                    $opensales['data'][] = array(
-                        'CustomerRef' => $sale['CustomerRef'],
-                        'SalesId' => $sale['SalesId'],
-                        'ItemId' => $sale['ItemId'],
-                        'ItemName' => $sale['ItemName'],
-                        'SalesUnit' => $sale['SalesUnit'],
-                        'SalesQty' => number_format($sales_qty, 0, ".", ","),
-                        'Shipped' => number_format($shipped, 0, ".", ","),
-                        'Remainder' => number_format($remaining, 0, ".", ",")
-                    );
-                } elseif ($sale['CustAccount'] == "MAX-C000070") {
+                        $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+                        $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+                        $shipped = ($sales_qty - $remaining);
 
-                    $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
-                    $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
-                    $shipped = ($sales_qty - $remaining);
+                        $opensales['data'][] = array(
+                            'CustomerRef' => $sale['CustomerRef'],
+                            'SalesId' => $sale['SalesId'],
+                            'ItemId' => $sale['ItemId'],
+                            'ItemName' => $sale['ItemName'],
+                            'SalesUnit' => $sale['SalesUnit'],
+                            'SalesQty' => number_format($sales_qty, 0, ".", ","),
+                            'Shipped' => number_format($shipped, 0, ".", ","),
+                            'Remainder' => number_format($remaining, 0, ".", ",")
+                        );
+                    }
+                }
+            } else if ($row['company'] == 11) { //Treehouse
+                foreach ($data as $sale) {
+                    if ($sale['CustAccount'] == "USP-C000065") {
 
-                    $opensales['data'][] = array(
-                        'CustomerRef' => $sale['CustomerRef'],
-                        'SalesId' => $sale['SalesId'],
-                        'ItemId' => $sale['ItemId'],
-                        'ItemName' => $sale['ItemName'],
-                        'SalesUnit' => $sale['SalesUnit'],
-                        'SalesQty' => number_format($sales_qty, 0, ".", ","),
-                        'Shipped' => number_format($shipped, 0, ".", ","),
-                        'Remainder' => number_format($remaining, 0, ".", ",")
-                    );
-                } elseif ($sale['CustAccount'] == "USP-C000065") {
+                        $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
+                        $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
+                        $shipped = ($sales_qty - $remaining);
 
-                    $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
-                    $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
-                    $shipped = ($sales_qty - $remaining);
-
-                    $opensales['data'][] = array(
-                        'CustomerRef' => $sale['CustomerRef'],
-                        'SalesId' => $sale['SalesId'],
-                        'ItemId' => $sale['ItemId'],
-                        'ItemName' => $sale['ItemName'],
-                        'SalesUnit' => $sale['SalesUnit'],
-                        'SalesQty' => number_format($sales_qty, 0, ".", ","),
-                        'Shipped' => number_format($shipped, 0, ".", ","),
-                        'Remainder' => number_format($remaining, 0, ".", ",")
-                    );
+                        $opensales['data'][] = array(
+                            'CustomerRef' => $sale['CustomerRef'],
+                            'SalesId' => $sale['SalesId'],
+                            'ItemId' => $sale['ItemId'],
+                            'ItemName' => $sale['ItemName'],
+                            'SalesUnit' => $sale['SalesUnit'],
+                            'SalesQty' => number_format($sales_qty, 0, ".", ","),
+                            'Shipped' => number_format($shipped, 0, ".", ","),
+                            'Remainder' => number_format($remaining, 0, ".", ",")
+                        );
+                    }
                 }
             }
 
