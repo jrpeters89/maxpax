@@ -132,7 +132,7 @@ if (!empty($user_token)) {
                         );
                     }
                 }
-            } else if ($row['company'] == 3) { //Earthy
+            } else if ($row['company'] == 10) { //Earthy
                 foreach ($data as $sale) {
                     if ($sale['CustAccount'] == "MAX-C000070") {
 
