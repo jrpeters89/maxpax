@@ -17,11 +17,7 @@ $uom = stripslashes($request[9]->value);
 $file = stripslashes($request[10]->value);
 $save = $request[11]->value;
 
-$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
-
-$result = mysqli_query($conn, "UPDATE `hershey` SET transaction_date = $transaction_date, lic_date = '$lic_plate', `timestamp` = $timestamp, item = `$item`, description = `$description`, batch = `$batch`, production = `$production`, qty = $qty, uom_denominator = `$uom_denominator`, uom = `$uom`  where lic_plate = `$lic_plate`") or die(mysqli_error($conn));
-
-/**$dir = '//sw-apps-01/Hersh';
+$dir = '//sw-apps-01/Hersh';
 
 if(is_dir($dir)) {
     if($dh = opendir($dir)) {
@@ -44,6 +40,6 @@ if(is_dir($dir)) {
     }
 }
 
-header('Location: http://reports.maxpaxllc.com');**/
+header('Location: http://reports.maxpaxllc.com');
 
 echo json_encode($result);
