@@ -16,7 +16,7 @@ $dir = '//sw-apps-01/Hersh/Processed';
 
 function cmp($a, $b)
 {
-    return strcmp($a['TransactionDate'], $b['TransactionDate']);
+    return strcmp($a['TransDate'], $b['TransDate']);
 }
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
