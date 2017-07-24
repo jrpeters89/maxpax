@@ -43,7 +43,7 @@ if (!empty($user_token)) {
         }
 
     }
-    usort($hershey, "cmp");
+
     /**if (is_dir($dir)) {
         if ($dh = opendir($dir)) {
             while (($file = readdir($dh)) !== false) {
