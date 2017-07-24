@@ -21,19 +21,21 @@ function cmp($a, $b)
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
-    $result = mysqli_query($conn, "SELECT * FROM `hersheylabel` WHERE `transaction_date` > $start_date or `transaction_date` < $end_date") or die(mysqli_error($conn));
+    $result = mysqli_query($conn, "SELECT * FROM `hersheylabel` WHERE `TransDate` > $start_date or `TransDate` < $end_date") or die(mysqli_error($conn));
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $hershey['data'][$lic_plate]['TransactionDate'] = $row["transaction_date"];
-            $hershey['data'][$lic_plate]['LicPlate'] = $row["lic_plate"];
-            $hershey['data'][$lic_plate]['TimeStamp'] = $row["create_time_stamp"];
-            $hershey['data'][$lic_plate]['Item'] = $row["item"];
-            $hershey['data'][$lic_plate]['Batch'] = $row["batch"];
-            $hershey['data'][$lic_plate]['Production'] = $row["production"];
-            $hershey['data'][$lic_plate]['Description'] = $row["description"];
-            $hershey['data'][$lic_plate]['Qty'] = $row["qty"];
-            $hershey['data'][$lic_plate]['UOMDenominator'] = $row["uom_denominator"];
-            $hershey['data'][$lic_plate]['UOM'] = $row["uom"];
+            $hershey['data'][$lic_plate]['TransDate'] = $row["TransDate"];
+            $hershey['data'][$lic_plate]['LicPlate'] = $row["MAX_LicensePlateNumber"];
+            $hershey['data'][$lic_plate]['Batch'] = $row["BatchNumber"];
+            $hershey['data'][$lic_plate]['ProdId'] = $row["ProdId"];
+            $hershey['data'][$lic_plate]['Description'] = $row["Description"];
+            $hershey['data'][$lic_plate]['QtyGood'] = $row["QtyGood"];
+            $hershey['data'][$lic_plate]['UOMDenominator'] = $row["UOMDenominator"];
+            $hershey['data'][$lic_plate]['UOM'] = $row["UOM"];
+            $hershey['data'][$lic_plate]['InventTransId'] = $row['InventTransId'];
+            $hershey['data'][$lic_plate]['JournalId'] = $row['JournalId'];
+            $hershey['data'][$lic_plate]['MaterialNumber'] = $row['MaterialNumber'];
+            $hershey['data'][$lic_plate]['Id'] = $row['Id'];
             //$hershey['data'][$lic_plate]['file'] = $file;
             $hershey[count]++;
         }
