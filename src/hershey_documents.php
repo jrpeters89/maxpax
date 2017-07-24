@@ -41,6 +41,7 @@ if (!empty($user_token)) {
             //$hershey['data'][$lic_plate]['file'] = $file;
             $hershey[count]++;
         }
+        usort($hershey, "cmp");
     }
 
     /**if (is_dir($dir)) {
