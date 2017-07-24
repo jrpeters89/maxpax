@@ -24,9 +24,11 @@ if (!empty($user_token)) {
     $result = mysqli_query($conn, "SELECT * FROM `hersheylabel` WHERE `TransDate` > $start_date or `TransDate` < $end_date") or die(mysqli_error($conn));
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+            $lic_plate = $row["MAX_LicensePlateNumber"];
+
             $hershey['data'][$lic_plate]['TransDate'] = $row["TransDate"];
             $hershey['data'][$lic_plate]['LicPlate'] = $row["MAX_LicensePlateNumber"];
-            $hershey['data'][$lic_plate]['Batch'] = $row["BatchNumber"];
+            $hershey['data'][$lic_plate]['BatchNumber'] = $row["BatchNumber"];
             $hershey['data'][$lic_plate]['ProdId'] = $row["ProdId"];
             $hershey['data'][$lic_plate]['Description'] = $row["Description"];
             $hershey['data'][$lic_plate]['QtyGood'] = $row["QtyGood"];
