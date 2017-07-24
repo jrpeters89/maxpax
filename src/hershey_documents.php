@@ -21,7 +21,7 @@ function cmp($a, $b)
 if (!empty($user_token)) {
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
-    $result = mysqli_query($conn, "SELECT * FROM `hersheylabel` WHERE `TransDate` > '$start_date' and `TransDate` < ''$end_date''") or die(mysqli_error($conn));
+    $result = mysqli_query($conn, "SELECT * FROM `hersheylabel` WHERE `TransDate` > '$start_date' and `TransDate` < '$end_date'") or die(mysqli_error($conn));
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $lic_plate = $row["MAX_LicensePlateNumber"];
