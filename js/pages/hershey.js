@@ -55,15 +55,6 @@ function hershey(user_token, company_id) {
             jQuery.each(hershey.data, function(x, data) {
                 $("#hershey_data tbody").append('<tr><td>' + data.TransDate +'</td><td><a href="' + data.Id + '" id="' + data.Id + '" class="edit_hershey" data-TransDate="' + data.TransDate + '" data-LicPlate="' + data.MAX_LicensePlateNumber + '" data-BatchNumber="' + data.BatchNumber + '" data-ProdId="' + data.ProdId + '" data-Description="' + data.Description + '" data-QtyGood="' + data.QtyGood + '" data-UOMDenominator="' + data.UOMDenominator + '" data-UOM="' + data.UOM + '">' + data.LicPlate + '</a></td><td>' + data.MaterialNumber + '</td><td>' + data.BatchNumber + '</td><td>' + data.ProdId + '</td><td>' + data.Description + '</td><td>' + data.QtyGood +'</td><td>' + data.UOM +'</td></tr>');
             });
-            console.log($(this).data('TransDate'));
-            console.log($(this).data('LicPlate'));
-            console.log($(this).data('MaterialNumber'));
-            console.log($(this).data('BatchNumber'));
-            console.log($(this).data('ProdId'));
-            console.log($(this).data('QtyGood'));
-            console.log($(this).data('Description'));
-            console.log($(this).data('UOMDenominator'));
-            console.log($(this).data('UOM'));
         } else {
             $("#hershey_list").html("No Records Available");
         }
