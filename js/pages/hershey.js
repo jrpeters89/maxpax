@@ -85,15 +85,24 @@ function refreshHersheyDates (user_token) {
 $("body").on("click", ".edit_hershey", function(event) {
    event.preventDefault();
     $("#EditTransDate").val($(this).data('TransDate'));
+    console.log($(this).data('TransDate'));
     $("#EditLicPlate").val($(this).data('LicPlate'));
+    console.log($(this).data('LicPlate'));
     //$("#edit_timestamp").val($(this).data('timestamp'));
     $("#EditMaterialNumber").val($(this).data('MaterialNumber'));
+    console.log($(this).data('MaterialNumber'));
     $("#EditBatchNumber").val($(this).data('BatchNumber'));
+    console.log($(this).data('BatchNumber'));
     $("#EditProdId").val($(this).data('ProdId'));
+    console.log($(this).data('ProdId'));
     $("#EditQtyGood").val($(this).data('QtyGood'));
+    console.log($(this).data('QtyGood'));
     $("#EditDescription").val($(this).data('Description'));
+    console.log($(this).data('Description'));
     $("#EditUOMDenominator").val($(this).data('UOMDenominator'));
+    console.log($(this).data('UOMDenominator'));
     $("#EditUOM").val($(this).data('UOM'));
+    console.log($(this).data('UOM'));
     //$("#edit_file").val($(this).data('file'));
     $("#editHershey").modal("show");
 });
