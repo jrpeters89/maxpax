@@ -10,7 +10,7 @@ $lic_plate = $request[1]->value;
 
 $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
-$result = mysqli_query($conn, "DELETE FROM `hershey` where lic_plate = `$lic_plate`") or die(mysqli_error($conn));
+$result = mysqli_query($conn, "DELETE FROM `hersheylabel` where MAX_LicensePlateNumber = `$lic_plate`") or die(mysqli_error($conn));
 
 /**$file = stripslashes($request[10]->value);
 
