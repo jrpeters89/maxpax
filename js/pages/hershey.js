@@ -82,7 +82,7 @@ function refreshHersheyDates (user_token) {
     });
 }
 
-$("body").on("click", "#edit_hershey", function(event) {
+$("body").on("click", ".edit_hershey", function(event) {
    event.preventDefault();
     $("#EditTransDate").val($(this).data('TransDate'));
     $("#EditLicPlate").val($(this).data('LicPlate'));
