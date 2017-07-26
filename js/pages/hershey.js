@@ -84,17 +84,17 @@ function refreshHersheyDates (user_token) {
 
 $("body").on("click", ".edit_hershey", function(event) {
    event.preventDefault();
-    $("#edit_transaction_date").val($(this).data('transactiondate'));
-    $("#edit_lic_plate").val($(this).data('licplate'));
-    $("#edit_timestamp").val($(this).data('timestamp'));
-    $("#edit_item").val($(this).data('item'));
-    $("#edit_batch").val($(this).data('batch'));
-    $("#edit_production").val($(this).data('production'));
-    $("#edit_quantity").val($(this).data('quantity'));
-    $("#edit_description").val($(this).data('description'));
-    $("#edit_uom_denominator").val($(this).data('uomdenominator'));
-    $("#edit_uom").val($(this).data('uom'));
-    $("#edit_file").val($(this).data('file'));
+    $("#EditTransDate").val($(this).data('TransDate'));
+    $("#EditLicPlate").val($(this).data('LicPlate'));
+    //$("#edit_timestamp").val($(this).data('timestamp'));
+    $("#EditMaterialNumber").val($(this).data('MaterialNumber'));
+    $("#EditBatchNumber").val($(this).data('BatchNumber'));
+    $("#EditProdId").val($(this).data('ProdId'));
+    $("#EditQtyGood").val($(this).data('QtyGood'));
+    $("#EditDescription").val($(this).data('Description'));
+    $("#EditUOMDenominator").val($(this).data('UOMDenominator'));
+    $("#EditUOM").val($(this).data('UOM'));
+    //$("#edit_file").val($(this).data('file'));
     $("#editHershey").modal("show");
 });
 
@@ -102,7 +102,7 @@ $("body").on("click", ".edit_hershey", function(event) {
 $("body").on("click", "#save_hershey", function (event) {
 
    event.preventDefault();
-    if(isNaN($("#edit_quantity").val())) {
+    if(isNaN($("#EditQtyGood").val())) {
         alert("Quantity is not a valid number")
     } else {
         $("#edit_save").val("true");
@@ -120,7 +120,7 @@ $("body").on("click", "#save_hershey", function (event) {
 $("body").on("click", "#update_hershey", function (event) {
 
     event.preventDefault();
-    if(isNaN($("#edit_quantity").val())) {
+    if(isNaN($("#EditQtyGood").val())) {
         alert("Quantity is not a valid number")
     } else {
         $("#edit_save").val("false");
