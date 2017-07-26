@@ -84,8 +84,8 @@ function refreshHersheyDates (user_token) {
 
 $("body").on("click", ".edit_hershey", function(event) {
    event.preventDefault();
-    $("#EditTransDate").val($(this).data('TransDate'));
-    console.log($(this).data('TransDate'));
+    $("#EditTransDate").val($(this).data('trans-date'));
+    console.log($(this).data('trans-date'));
     $("#EditLicPlate").val($(this).data('LicPlate'));
     console.log($(this).data('LicPlate'));
     //$("#edit_timestamp").val($(this).data('timestamp'));
