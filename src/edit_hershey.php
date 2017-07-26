@@ -19,7 +19,7 @@ $save = $request[11]->value;
 
 $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 
-$result = mysqli_query($conn, "UPDATE `hersheylabel` SET `TransDate` = $transaction_date, `MAX_LicensePlateNumber` = '$lic_plate', `MaterialNumber` = '$item', `Description` = '$description', `BatchNumber` = '$batch', `ProdId` = '$production', `QtyGood` = $qty, `UOMDenominator` = '$uom_denominator', `UOM` = '$uom', PrintStatus = 0  where `MAX_LicensePlateNumber` = '$lic_plate'") or die(mysqli_error($conn));
+$result = mysqli_query($conn, "UPDATE `hersheylabel` SET `TransDate` = '$transaction_date', `MAX_LicensePlateNumber` = '$lic_plate', `MaterialNumber` = '$item', `Description` = '$description', `BatchNumber` = '$batch', `ProdId` = '$production', `QtyGood` = $qty, `UOMDenominator` = '$uom_denominator', `UOM` = '$uom', PrintStatus = 0  where `MAX_LicensePlateNumber` = '$lic_plate'") or die(mysqli_error($conn));
 
 /**$dir = '//sw-apps-01/Hersh';
 
