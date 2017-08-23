@@ -89,7 +89,7 @@ if (!empty($user_token)) {
                 }
             } elseif ($row['company'] == 13) { //Adeo
                 foreach ($data as $sale) {
-                    if ($sale['CustAccount'] == "MAX-C000067") {
+                    if ($sale['CustAccount'] == "USP-C000067") {
 
                         $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
                         $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
@@ -202,9 +202,9 @@ if (!empty($user_token)) {
                         );
                     }
                 }
-            } else if ($row['company'] == 13) { //Earthy
+            } else if ($row['company'] == 13) { //Adeo
                 foreach ($data as $sale) {
-                    if ($sale['CustAccount'] == "MAX-C000067") {
+                    if ($sale['CustAccount'] == "USP-C000067") {
 
                         $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
                         $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
