@@ -80,7 +80,7 @@ if (!empty($user_token)) {
             }
         } elseif ($row['company'] == 13) { //Adeo
             foreach ($data as $item) {
-                if (($item['CompanyName'] === "MaxPax LLC") && ($item['VendorAccount'] === "MAX-V000510") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
+                if (($item['CompanyName'] === "US Packaging LLC") && ($item['VendorAccount'] === "USP-V000510") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
