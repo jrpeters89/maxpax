@@ -106,6 +106,7 @@ function appSetup(company, callback) {
     $(".menu_10").fadeOut();
     $(".menu_11").fadeOut();
     $(".menu_12").fadeOut();
+    $(".menu_13").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -143,6 +144,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 13) {
+            getScripts(["/js/pages/adeo.js"], function () {
+                console.log("Adeo Scripts Loaded");
+                callback();
             });
         } else if (company.id == 12) {
             getScripts(["/js/pages/ferrara.js"], function () {
