@@ -326,6 +326,31 @@
     </div>
 </div>
 
+<div id="receiving_container" class="page_container container company_98">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Receiving</h1>
+        </div>
+        <div class="col-xs-2" style="text-align: right;">
+            <a download="receiving.xls" onclick="return ExcellentExport.excel(this, 'receiving_list', 'Receiving');"
+               class="btn btn-success" style="margin-top: 20px;">Excel</a>
+        </div>
+    </div>
+    <div>
+        <p style="display: inline-block;margin:1em;">Start Date: <input type="text" id="receivingStartDatePicker"
+                                                                        class="datepicker"></p>
+        <p style="display: inline-block;margin: 1em">End Date: <input type="text" id="receivingEndDatePicker"
+                                                                      class="datepicker"></p>
+        <p style="display: inline-block; margin: 1em;">
+            <button onclick="refreshReceivingDates(user_token)">Refresh</button>
+        </p>
+        <div id="receiving_list" class="table-responsive">
+            Loading...
+        </div>
+        <p id="no_receiving_results" style="display:none;">No records found</p>
+    </div>
+</div>
+
 <div id="documents_container" class="page_container container">
     <h1 class="page_header">QC Docs</h1>
     <input id="search-docs" class="form-control" type="text" placeholder="Search Documents"
@@ -751,6 +776,69 @@
                     <button id="save_hershey" class="btn btn-block btn-success" type="submit">Save & Print</button>
                     <button id="update_hershey" class="btn btn-block btn-success" type="submit">Update</button>
                     <button id="delete_hershey" class="btn btn-block btn-success" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editReceiving" class="modal fade admin_container" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Receiving Label</h4>
+            </div>
+            <div class="modal-body">
+                <form id="edit_receiving_form">
+
+                    <div class="form-group">
+                        <label for="BatchNumber">Batch #</label>
+                        <input type="text" class="form-control" id="EditReceivingBatchNumber" name="ReceivingBatchNumber" placeholder="Batch #">
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input type="text" class="form-control" id="EditReceivingDescription" name="ReceivingDescription"
+                               placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="Item">Item #</label>
+                        <input type="text" class="form-control" id="EditItem" name="Item" placeholder="Item #">
+                    </div>
+                    <div class="form-group">
+                        <label for="PackingSlipId">Packing Slip ID</label>
+                        <input type="text" class="form-control" id="EditPackingSlipId" name="PackingSlipId" placeholder="Packing Slip Id">
+                    </div>
+                    <div class="form-group">
+                        <label for="Quantity">Quantity</label>
+                        <input type="text" class="form-control" id="EditQuantity" name="Quantity"
+                               placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="PurchaseOrder">Purchase Order</label>
+                        <input type="text" class="form-control" id="EditPurchaseOrder" name="PurchaseOrder" placeholder="Purchase Order">
+                    </div>
+                    <div class="form-group">
+                        <label for="LineNumber">Line Number</label>
+                        <input type="text" class="form-control" id="EditLineNumber" name="LineNumber" placeholder="Line Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="ReceiptDate">Receipt Date</label>
+                        <input type="text" class="form-control datepicker" id="EditReceiptDate"
+                               name="ReceiptDate" placeholder="Receipt Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="VendorAccount">Vendor Account</label>
+                        <input type="text" class="form-control" id="EditVendorAccount" name="VendorAccount" placeholder="Vendor Account">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input type="hidden" id="edit_receiving_file" name="file">
+                        <input type="hidden" id="edit_receiving_save" name="save">
+                    </div>
+                    <button id="save_receiving" class="btn btn-block btn-success" type="submit">Save & Print</button>
+                    <button id="update_receiving" class="btn btn-block btn-success" type="submit">Update</button>
+                    <button id="delete_receiving" class="btn btn-block btn-success" type="submit">Delete</button>
                 </form>
             </div>
         </div>

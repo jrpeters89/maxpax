@@ -60,6 +60,8 @@ function changePage(page) {
             openPurchase(user_token, hold_company_id);
         } else if (page == "hershey") {
             hershey(user_token, hold_company_id);
+        } else if (page == "receiving") {
+            receiving(user_token, hold_company_id);
         } else if (page == "historical_sales") {
             historicalSalesData(user_token, hold_company_id);
         } else {
