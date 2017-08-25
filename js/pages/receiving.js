@@ -85,6 +85,7 @@ function refreshReceivingDates (user_token) {
 $("body").on("click", ".edit_receiving", function(event) {
     event.preventDefault();
     $("#EditReceivingBatchNumber").val($(this).data('batch_number'));
+    console.log($(this).data('batch_number'));
     $("#EditReceivingDescription").val($(this).data('description'));
     $("#EditItem").val($(this).data('item'));
     $("#EditPackingSlipId").val($(this).data('packing_slip_id'));
