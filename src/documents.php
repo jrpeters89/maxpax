@@ -19,6 +19,10 @@ if(!empty($user_token)) {
 		case 7:
 		case 8:
 		case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
 		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 		$result = mysqli_query($conn, "SELECT `id`,`documents`,`doc_path` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 		if (mysqli_num_rows($result) > 0) {

@@ -84,44 +84,33 @@ function refreshReceivingDates (user_token) {
 
 $("body").on("click", ".edit_receiving", function(event) {
     event.preventDefault();
-    $("#EditTransDate").val($(this).data('trans-date'));
-    console.log($(this).data('trans-date'));
-    $("#EditLicPlate").val($(this).data('lic-plate'));
-    console.log($(this).data('lic-plate'));
-    //$("#edit_timestamp").val($(this).data('timestamp'));
-    $("#EditMaterialNumber").val($(this).data('material-number'));
-    console.log($(this).data('material-number'));
-    $("#EditBatchNumber").val($(this).data('batch-number'));
-    console.log($(this).data('batch-number'));
-    $("#EditProdId").val($(this).data('prod-id'));
-    console.log($(this).data('prod-id'));
-    $("#EditQtyGood").val($(this).data('qty-good'));
-    console.log($(this).data('qty-good'));
-    $("#EditDescription").val($(this).data('description'));
-    console.log($(this).data('description'));
-    $("#EditUOMDenominator").val($(this).data('uom-denominator'));
-    console.log($(this).data('uom-denominator'));
-    $("#EditUOM").val($(this).data('uom'));
-    console.log($(this).data('uom'));
-    //$("#edit_file").val($(this).data('file'));
-    $("#editHershey").modal("show");
+    $("#EditReceivingBatchNumber").val($(this).data('batch_number'));
+    $("#EditReceivingDescription").val($(this).data('description'));
+    $("#EditItem").val($(this).data('item'));
+    $("#EditPackingSlipId").val($(this).data('packing_slip_id'));
+    $("#EditQuantity").val($(this).data('quantity'));
+    $("#EditPurchaseOrder").val($(this).data('purchase_order'));
+    $("#EditLineNumber").val($(this).data('line_number'));
+    $("#EditReceiptDate").val($(this).data('receipt_date'));
+    $("#EditVendorAccount").val($(this).data('vendor_account'));
+    $("#editReceiving").modal("show");
 });
 
 //$("#edit_hershey_form").submit(function(event) {
 $("body").on("click", "#save_receiving", function (event) {
 
     event.preventDefault();
-    if(isNaN($("#EditQtyGood").val())) {
+    if(isNaN($("#EditQuantity").val())) {
         alert("Quantity is not a valid number")
     } else {
-        $("#edit_save").val("true");
-        var data = JSON.stringify(jQuery('#edit_hershey_form').serializeArray());
+        $("#edit_receiving_save").val("true");
+        var data = JSON.stringify(jQuery('#edit_receiving_form').serializeArray());
         console.log(data);
-        $.post('/src/edit_hershey.php', data, function (result) {
+        $.post('/src/edit_receiving.php', data, function (result) {
             console.log(result);
         });
-        $("#editHershey").modal("hide");
-        refreshHersheyDates(hold_user_token);
+        $("#editReceiving").modal("hide");
+        refreshReceivingDates(hold_user_token);
         //location.reload();
     }
 });
@@ -129,17 +118,17 @@ $("body").on("click", "#save_receiving", function (event) {
 $("body").on("click", "#update_receiving", function (event) {
 
     event.preventDefault();
-    if(isNaN($("#EditQtyGood").val())) {
+    if(isNaN($("#EditQuantity").val())) {
         alert("Quantity is not a valid number")
     } else {
         $("#edit_save").val("false");
-        var data = JSON.stringify(jQuery('#edit_hershey_form').serializeArray());
+        var data = JSON.stringify(jQuery('#edit_receiving_form').serializeArray());
         console.log(data);
-        $.post('/src/edit_hershey.php', data, function (result) {
+        $.post('/src/edit_receiving.php', data, function (result) {
             console.log(result);
         });
-        $("#editHershey").modal("hide");
-        refreshHersheyDates(hold_user_token);
+        $("#editReceiving").modal("hide");
+        refreshReceivingDates(hold_user_token);
         //location.reload();
     }
 });
@@ -151,14 +140,14 @@ $("body").on("click", "#delete_receiving", function (event) {
 
     if(c == true)
     {
-        $("#edit_save").val("false");
-        var data = JSON.stringify(jQuery('#edit_hershey_form').serializeArray());
+        $("#edit_receiving_save").val("false");
+        var data = JSON.stringify(jQuery('#edit_receiving_form').serializeArray());
         console.log(data);
-        $.post('/src/delete_hershey.php', data, function (result) {
+        $.post('/src/delete_receiving.php', data, function (result) {
             console.log(result);
         });
-        $("#editHershey").modal("hide");
-        refreshHersheyDates(hold_user_token);
+        $("#editReceiving").modal("hide");
+        refreshReceivingDates(hold_user_token);
         //location.reload();
     } else {
 
