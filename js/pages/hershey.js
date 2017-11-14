@@ -174,7 +174,7 @@ $("body").on("click",".raf_tab",function(event) {
 });
 
 function rafCheck(user_token, type) {
-    type = (typeof type !== "undefined" ? type : "list");
+    type = (typeof type !== "undefined" ? type : "raf");
     $("#raf_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#raf_container").show();
     $(".col-xs-10").html('');
