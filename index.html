@@ -79,6 +79,7 @@
                 <li id="receiving_link" class="menu_98"><a id="receiving" href="#" data-link="receiving">Receiving</a></li>
 
                 <li id="raf_link" class="menu_98"><a id="raf" href="#" data-link="raf">RAF</a></li>
+                <li id="prod_raf_link" class="menu_98"><a id="prod_raf" href="#" data-link="raf">Production</a></li>
                 <li id="user_link" class="admin"><a id="users" href="#" data-link="user">Users</a></li>
                 <li class="menu_99">
                     <a>Customers</a>
@@ -582,6 +583,27 @@
 
 </div>
 
+<div id="prod_raf_container" class="page_container container company_98">
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page_header">Production Order Status</h1>
+        </div>
+        <div class="col-xs-2" style="text-align:right;">
+            <a download="prod_raf.xls" onclick="return ExcellentExport.excel(this, 'prod_raf_list', 'Production RAF');"
+               class="btn btn-success" style="margin-top:20px;">Excel</a>
+        </div>
+    </div>
+    <ul id="prod_raf_tabs" class="nav nav-tabs nav-justified" style="margin-bottom:10px;">
+        <li id="prod_tab_raf" role="presentation" class="active"><a href="#" class="raf_tab" data-tab="raf">MAX</a></li>
+        <li id="prod_tab_ship" role="presentation"><a href="#" class="raf_tab" data-tab="ship">USP</a></li>
+    </ul>
+    <div id="prod_raf_list" class="table-responsive">
+        Loading...
+    </div>
+    <p id="no_prod_raf_results" style="display:none;">No items found</p>
+
+</div>
+
 <div id="shipments_container" class="page_container container company_7 company_10 company_11 company_12">
     <div class="row">
         <div class="col-xs-10">
@@ -794,7 +816,9 @@
                 <form id="edit_receiving_form">
 
                     <div class="form-group">
-                        <label for="BatchNumber">Batch #</label>
+                        <label for="
+
+                     BatchNumber">Batch #</label>
                         <input type="text" class="form-control" id="EditReceivingBatchNumber" name="ReceivingBatchNumber" placeholder="Batch #">
                     </div>
                     <div class="form-group">
