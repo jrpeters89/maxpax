@@ -209,20 +209,21 @@ $("body").on("click",".prod_raf_tab",function(event) {
     prodRafCheck(user_token,type);
 });
 
-function prodRafCheck(user_token, type) {
-    type = (typeof type !== "undefined" ? type : "list");
+function prodRafCheck(user_token, company_id) {
+    hold_company_id = company_id;
+    if (typeof company_id == "undefined") { company_id = "1"; }
     $("#prod_raf_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#prod_raf_container").show();
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">Production Order Status</h1>');
-    $.get("/src/prod_raf.php?type="+type+"&user_token="+user_token,function(result) {
+    $.get("/src/prod_raf.php?company="+company_id+"&user_token="+user_token,function(result) {
         var raf = jQuery.parseJSON(result);
         if(raf.count > 0) {
             $("#prod_raf_list").html("");
             //if(type == "raf") {
             $("#prod_raf_list").html('<table class="table sortable"><thead><tr><th>Location</th><th class="width_180">Item #</th><th class="width_180 ">Batch #</th> <th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th class="text_right">Case</th><th>Sell UOM</th><th class="text_right">Pallet</th><th class="width_180">Prod Date</th></tr></thead><tbody></tbody><tfoot></foot></table>');
             jQuery.each( raf.data, function( i, inv ) {
-                $("#prod_raf_list tbody").append('<tr><td class="width_180">' + inv.Location + '</td><td class="width_120">'+inv.ItemId+'</td><td class="width_180">'+inv.BatchNumber+'</td><td>'+inv.ItemName+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td class="text_right">'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td class="text_right">'+inv.Pallet+'</td><td>'+inv.ProdDate+'</td></tr>');
+                $("#prod_raf_list tbody").append('<tr><td class="width_180">' + inv.Location + '</td><td class="width_120">'+inv.ItemId+'</td><td class="width_180">'+inv.BatchNumber+'</td><td>'+inv.Name+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td class="text_right">'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td class="text_right">'+inv.Pallet+'</td><td>'+inv.ProdDate+'</td></tr>');
             });
             if(typeof raf.total != "undefined") {
                 $("#prod_raf_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+raf.total.quantity+'</td><td></td><td class="text_right">'+raf.total.case+'</td><td></td><td class="text_right">'+raf.total.pallet+'</td></tr>');
