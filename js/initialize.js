@@ -29,6 +29,10 @@ function changePage(page) {
             $("#raf_tabs li").removeClass("active");
             $("#tab_raf").addClass("active");
             rafCheck(user_token, "raf");
+        } else if (page == "prod_raf") {
+            $("#prod_raf_tabs li").removeClass("active");
+            $("#prod_tab_raf").addClass("active");
+            prodRafCheck(user_token, "raf");
         } else if (page == "documents") {
             documentList(user_token, hold_company_id);
         } else if (page == "user") {
