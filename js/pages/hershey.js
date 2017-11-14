@@ -205,7 +205,7 @@ $("body").on("click",".prod_raf_tab",function(event) {
     event.preventDefault();
     var type = $(this).data("tab");
     $("#prod_raf_tabs li").removeClass("active");
-    $("#tab_"+type).addClass("active");
+    $("#prod_tab_"+type).addClass("active");
     prodRafCheck(user_token,type);
 });
 
