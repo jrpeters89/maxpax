@@ -203,10 +203,10 @@ function rafCheck(user_token, type) {
 
 $("body").on("click",".prod_raf_tab",function(event) {
     event.preventDefault();
-    var type = $(this).data("tab");
+    var company = $(this).data("tab");
     $("#prod_raf_tabs li").removeClass("active");
-    $("#prod_tab_"+type).addClass("active");
-    prodRafCheck(user_token,type);
+    $("#prod_raf_company_"+company).addClass("active");
+    prodRafCheck(user_token,company);
 });
 
 function prodRafCheck(user_token, company_id) {
