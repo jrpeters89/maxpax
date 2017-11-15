@@ -31,6 +31,11 @@ if (mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
             $inv_adj['data'][$item['ItemId']]['Name'] = ($item['Name'] != null ? $item['Name'] : "");
 
             $inv_adj['data'][$item['ItemId']][] = array(
+                'ProdId' => ($item['ProdId'] != null ? $item['ProdId'] : ""),
+                'ProdStatus' => ($item['ProdStatus'] != null ? $item['ProdStatus'] : ""),
+                'QtySched' => ($item['QtySched'] != null ? $item['QtySched'] : ""),
+                'RemainInventPhysical' => ($item['RemainInventPhysical'] != null ? $item['RemainInventPhysical'] : 0),
+                'Notes' => ($item['Notes'] != null ? $item['Notes'] : ""),
                 'FirstRAFDate' => ($item['FirstRAFDate'] != null ? $item['FirstRAFDate'] : ""),
             );
 

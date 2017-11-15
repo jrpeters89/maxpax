@@ -221,9 +221,9 @@ function prodRafCheck(user_token, company_id) {
         if(raf.count > 0) {
             $("#prod_raf_list").html("");
             //if(type == "raf") {
-            $("#prod_raf_list").html('<table class="table sortable"><thead><tr><th>Location</th><th class="width_180">Item #</th><th class="width_180 ">Batch #</th> <th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th class="text_right">Case</th><th>Sell UOM</th><th class="text_right">Pallet</th><th class="width_180">Prod Date</th></tr></thead><tbody></tbody><tfoot></foot></table>');
+            $("#prod_raf_list").html('<table class="table sortable"><thead><tr><th>Production ID</th><th class="width_180">Item ID</th><th class="width_180 ">Name</th> <th>Production Status</th><th class="text_right">Quantity Scheduled</th><th>Remaining Physical Inventory</th><th class="text_right">Notes</th><th>First RAF Date</th></tr></thead><tbody></tbody><tfoot></foot></table>');
             jQuery.each( raf.data, function( i, inv ) {
-                $("#prod_raf_list tbody").append('<tr><td class="width_180">' + inv.Location + '</td><td class="width_120">'+inv.ItemId+'</td><td class="width_180">'+inv.BatchNumber+'</td><td>'+inv.Name+'</td><td class="text_right">'+inv.AvailPhysical+'</td><td>'+inv.BOMUnitId+'</td><td class="text_right">'+inv.Case+'</td><td>'+inv.SellUOM+'</td><td class="text_right">'+inv.Pallet+'</td><td>'+inv.ProdDate+'</td></tr>');
+                $("#prod_raf_list tbody").append('<tr><td class="width_180">' + inv.ProdId + '</td><td class="width_120">'+inv.ItemId+'</td><td class="width_180">'+inv.Name+'</td><td>'+inv.ProdStatus+'</td><td class="text_right">'+inv.QtySched+'</td><td>'+inv.RemainInventPhysical+'</td><td class="text_right">'+inv.Notes+'</td><td>'+inv.FirstRAFDate+'</td></tr>');
             });
             if(typeof raf.total != "undefined") {
                 $("#prod_raf_list tfoot").append('<tr><td colspan="2">TOTAL</td><td class="text_right">'+raf.total.quantity+'</td><td></td><td class="text_right">'+raf.total.case+'</td><td></td><td class="text_right">'+raf.total.pallet+'</td></tr>');
