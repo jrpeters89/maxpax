@@ -27,15 +27,15 @@ if (mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
 
     foreach ($data as $item) {
         if (($item['CompanyName'] === $company_name) ) {
-            $inv_adj['data'][$item['ItemId']]['ItemId'] = ($item['ItemId'] != null ? $item['ItemId'] : "");
-            $inv_adj['data'][$item['ItemId']]['Name'] = ($item['Name'] != null ? $item['Name'] : "");
+            $inv_adj['data'][$item['ProdId']]['ItemId'] = ($item['ItemId'] != null ? $item['ItemId'] : "");
+            $inv_adj['data'][$item['ProdId']]['Name'] = ($item['Name'] != null ? $item['Name'] : "");
 
-            $inv_adj['data'][$item['ItemId']]['ProdId'] = ($item['ProdId'] != null ? $item['ProdId'] : "");
-            $inv_adj['data'][$item['ItemId']]['ProdStatus'] = ($item['ProdStatus'] != null ? $item['ProdStatus'] : "");
-            $inv_adj['data'][$item['ItemId']]['QtySched'] = ($item['QtySched'] != null ? $item['QtySched'] : "");
-            $inv_adj['data'][$item['ItemId']]['RemainInventPhysical'] = ($item['RemainInventPhysical'] != null ? $item['RemainInventPhysical'] : 0);
-            $inv_adj['data'][$item['ItemId']]['Notes'] = ($item['Notes'] != null ? $item['Notes'] : "");
-            $inv_adj['data'][$item['ItemId']]['FirstRAFDate'] = ($item['FirstRAFDate'] != null ? $item['FirstRAFDate'] : "");
+            $inv_adj['data'][$item['ProdId']]['ProdId'] = ($item['ProdId'] != null ? $item['ProdId'] : "");
+            $inv_adj['data'][$item['ProdId']]['ProdStatus'] = ($item['ProdStatus'] != null ? $item['ProdStatus'] : "");
+            $inv_adj['data'][$item['ProdId']]['QtySched'] = ($item['QtySched'] != null ? $item['QtySched'] : "");
+            $inv_adj['data'][$item['ProdId']]['RemainInventPhysical'] = ($item['RemainInventPhysical'] != null ? $item['RemainInventPhysical'] : 0);
+            $inv_adj['data'][$item['ProdId']]['Notes'] = ($item['Notes'] != null ? $item['Notes'] : "");
+            $inv_adj['data'][$item['ProdId']]['FirstRAFDate'] = ($item['FirstRAFDate'] != null ? $item['FirstRAFDate'] : "");
 
 
             /*$inv_adj['data'][$item['Item']]['Subtotal'] += round(floatval($item['AccountingCurrencyAmount']),2);
