@@ -35,7 +35,7 @@ if (mysqli_num_rows($result) > 0 || mysqli_num_rows($internal_user) > 0) {
             $inv_adj['data'][$item['ProdId']]['QtySched'] = ($item['QtySched'] != null ? $item['QtySched'] : "");
             $inv_adj['data'][$item['ProdId']]['RemainInventPhysical'] = ($item['RemainInventPhysical'] != null ? $item['RemainInventPhysical'] : 0);
             $inv_adj['data'][$item['ProdId']]['Notes'] = ($item['Notes'] != null ? $item['Notes'] : "");
-            $inv_adj['data'][$item['ProdId']]['FirstRAFDate'] = ($item['FirstRAFDate'] != null ? $item['FirstRAFDate'] : "");
+            $inv_adj['data'][$item['ProdId']]['FirstRAFDate'] = ($item['FirstRAFDate'] != null ? date('Y-m-d', strtotime($item['FirstRAFDate'])) : "");
 
 
             /*$inv_adj['data'][$item['Item']]['Subtotal'] += round(floatval($item['AccountingCurrencyAmount']),2);
