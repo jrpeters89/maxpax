@@ -25,7 +25,7 @@ function salesData(user_token) {
 }
 
 function historicalSalesData(user_token) {
-    $("#sales_container").show();
+    $("#historical_sales_container").show();
     $.get("/src/historical_sales.php?user_token="+user_token,function(result) {
         var sales = jQuery.parseJSON(result);
         if(sales.active == true) {
