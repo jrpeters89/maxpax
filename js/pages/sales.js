@@ -25,8 +25,8 @@ function salesData(user_token) {
 }
 
 function historicalSalesData(user_token) {
-	$("#historical_sales_container").html('');
-	$("#historical_sales_container").html('<div id="loading"><img src="images/spin.gif" /></div>');
+	$("#historical_mtd_sales").html('');
+	$("#historical_mtd_sales").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#historical_sales_container").show();
     $.get("/src/historical_sales.php?user_token="+user_token,function(result) {
         var sales = jQuery.parseJSON(result);
