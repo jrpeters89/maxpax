@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+/*header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
