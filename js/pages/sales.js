@@ -51,6 +51,11 @@ function historicalSalesData(user_token) {
     });
 }
 
+function refreshHistoricalSalesData(periodObject) {
+	var period = periodObject.value;
+	console.log("The historical sales select worked. The period is " + period);
+}
+
 function agingChart(user_token,company) {
 	$("#chart_box").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#aging_detail").html('<center>Loading...</center>');

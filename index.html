@@ -234,6 +234,22 @@
 
     <div class="panel panel-default">
         <div class="panel-heading historical_sales_header">
+            <div class="form-group">
+                <select class="form-control" id="historical_sales_period_select" onchange="refreshHistoricalSalesData(this);">
+                    <option value="1">January 2017</option>
+                    <option value="2">February 2017</option>
+                    <option value="3">March 2017</option>
+                    <option value="4">April 2017</option>
+                    <option value="5">May 2017</option>
+                    <option value="6">June 2017</option>
+                    <option value="7">July 2017</option>
+                    <option value="8">August 2017</option>
+                    <option value="9">September 2017</option>
+                    <option value="10">October 2017</option>
+                    <option value="11">November 2017</option>
+                    <option value="12">December 2017</option>
+                </select>
+            </div>
             MTD Sales - <span class="cur_month">MONTH</span>
             <p class="month_range">Date Range</p>
         </div>
