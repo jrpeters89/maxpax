@@ -234,6 +234,9 @@
 
     <div class="panel panel-default">
         <div class="panel-heading historical_sales_header">
+
+            MTD Sales - <span class="cur_month">MONTH</span>
+            <p class="month_range">Date Range</p>
             <div class="form-group">
                 <select class="form-control" id="historical_sales_period_select" onchange="refreshHistoricalSalesData(this);">
                     <option value="1">January 2017</option>
@@ -250,8 +253,6 @@
                     <option value="12">December 2017</option>
                 </select>
             </div>
-            MTD Sales - <span class="cur_month">MONTH</span>
-            <p class="month_range">Date Range</p>
         </div>
         <div id="historical_mtd_sales" class="panel-body">
             <table class="table">
