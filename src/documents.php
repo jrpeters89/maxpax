@@ -32,7 +32,7 @@ if(!empty($user_token)) {
 					$files['active'] = true;
 					if (!empty($row['doc_path'])) {
 						if ($tab == 'coas') {
-							$dir = $row['doc_path'] . '/Completed COAs 2017';
+							$dir = $row['doc_path'] . '/Completed COAs 2018';
 						} else if ($tab == 'batch') {
 							$dir = $row['doc_path'] . '/FINISHED BATCH TICKETS';
 						}
