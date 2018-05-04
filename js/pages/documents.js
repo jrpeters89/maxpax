@@ -16,7 +16,7 @@ function documentList(user_token, company_id) {
 				});
 				$("#search-docs").fadeIn();
 			} else {
-			    console.log(documents);
+			    console.log(documents.list);
 				$("#document_list").html("No Documents Available");
 			}
 		} else {
