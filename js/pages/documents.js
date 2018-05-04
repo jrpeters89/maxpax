@@ -2,13 +2,10 @@ function documentList(user_token, company_id) {
 	$("#document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#documents_container").show();
 	$.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
-		console.log(company_id);
 		var documents = jQuery.parseJSON(result);
-		console.log(result);
 		if(documents.active == true) {
 			$("#document_list").html("");
 			if(typeof documents.list != 'undefined') {
-			    console.log(documents.list);
 				jQuery.each( documents.list, function( i, val ) {
 					if(i > 1) { //Skip "." and ".."
 						$("#document_list").append('<a href="'+val.url+'" class="list-group-item" target="_blank"><i class="fa fa-file-'+val.ext+'-o"></i>&nbsp;&nbsp;<span class="doc_name">'+val.name+'</span></a>');
@@ -16,7 +13,6 @@ function documentList(user_token, company_id) {
 				});
 				$("#search-docs").fadeIn();
 			} else {
-			    console.log(documents.list);
 				$("#document_list").html("No Documents Available");
 			}
 		} else {
