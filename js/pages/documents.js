@@ -2,7 +2,9 @@ function documentList(user_token, company_id) {
 	$("#document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
 	$("#documents_container").show();
 	$.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
+		console.log(company_id);
 		var documents = jQuery.parseJSON(result);
+		console.log(result);
 		if(documents.active == true) {
 			$("#document_list").html("");
 			if(typeof documents.list != 'undefined') {
