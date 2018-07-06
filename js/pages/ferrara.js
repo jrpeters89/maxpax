@@ -332,7 +332,6 @@ function opensalesCheck(user_token,type) {
 }
 
 function usageDocumentList(user_token, company_id) {
-    console.log("entering usage reports documents function");
     $("#usage_document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#usage_reports_container").show();
 
@@ -393,6 +392,71 @@ $("#usage_search-docs").keyup(function () {
         }
         else {
             $('#no_usage_doc_results').hide();
+        }
+    }
+});
+
+function shippingDocumentList(user_token, company_id) {
+    $("#shipping_document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#shipping_schedule_container").show();
+
+    /*$.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
+        console.log("inside usage reports documents function");
+        var documents = jQuery.parseJSON(result);
+        if(documents.active == true) {
+            $("#usage_document_list").html("");
+            if(typeof documents.list != 'undefined') {
+                jQuery.each( documents.list, function( i, val ) {
+                    if(i > 1) { //Skip "." and ".."
+                        $("#usage_document_list").append('<a href="'+val.url+'" class="list-group-item" target="_blank"><i class="fa fa-file-'+val.ext+'-o"></i>&nbsp;&nbsp;<span class="doc_name">'+val.name+'</span></a>');
+                    }
+                });
+                $("#usage_search-docs").fadeIn();
+            } else {
+                $("#usage_document_list").html("No Documents Available");
+            }
+        } else {
+            $("#usage_document_list").html("No Documents Available");
+        }
+    });*/
+}
+
+$("#shipping_search-docs").keyup(function () {
+    var searchTerm = $("#shipping_search-docs").val();
+
+    if(searchTerm == "" || searchTerm == undefined) {
+        $("#shipping_document_list a").removeClass('out').addClass('in').show();
+    } else {
+        var listItem = $('#shipping_document_list').children('a');
+
+        var searchSplit = searchTerm;
+
+        //extends :contains to be case insensitive
+        $.extend($.expr[':'], {
+            'containsi': function(elem, i, match, array)
+            {
+                return (elem.textContent || elem.innerText || '').toLowerCase()
+                    .indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+        });
+
+        $("#shipping_document_list a span.doc_name").not(":containsi('" + searchSplit + "')").each(function(e)   {
+            $(this).closest("a").addClass('out').removeClass('in').fadeOut();
+        });
+
+        $("#shipping_document_list a span.doc_name:containsi('" + searchSplit + "')").each(function(e) {
+            $(this).closest("a").removeClass('out').addClass('in').fadeIn('slow');
+        });
+
+        var calCount = $('#shipping_document_list .in').length;
+        //$('.list-count').text(jobCount + ' items');
+
+        //shows empty state text when no jobs found
+        if(calCount == '0') {
+            $('#no_shipping_doc_results').fadeIn();
+        }
+        else {
+            $('#no_shipping_doc_results').hide();
         }
     }
 });/**
