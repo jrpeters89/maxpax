@@ -68,7 +68,8 @@ function changePage(page) {
             receiving(user_token, hold_company_id);
         } else if (page == "historical_sales") {
             historicalSalesData(user_token, hold_company_id);
-        } else if(page == "usage_reports") {
+        } else if (page == "usage_reports") {
+            console.log("entering usage reports documents function");
             usageDocumentList(user_token, hold_company_id);
         } else {
 
