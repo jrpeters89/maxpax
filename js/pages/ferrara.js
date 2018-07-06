@@ -329,6 +329,69 @@ function opensalesCheck(user_token,type) {
             $("#opensales_list").html("No Inventory Available");
         }
     });
-}/**
+}
+
+function usageDocumentList(user_token, company_id) {
+    $("#usage_document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#usage_reports_container").show();
+    $.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
+        var documents = jQuery.parseJSON(result);
+        if(documents.active == true) {
+            $("#usage_document_list").html("");
+            if(typeof documents.list != 'undefined') {
+                jQuery.each( documents.list, function( i, val ) {
+                    if(i > 1) { //Skip "." and ".."
+                        $("#uage_document_list").append('<a href="'+val.url+'" class="list-group-item" target="_blank"><i class="fa fa-file-'+val.ext+'-o"></i>&nbsp;&nbsp;<span class="doc_name">'+val.name+'</span></a>');
+                    }
+                });
+                $("#uage_search-docs").fadeIn();
+            } else {
+                $("#usage_document_list").html("No Documents Available");
+            }
+        } else {
+            $("#usage_document_list").html("No Documents Available");
+        }
+    });
+}
+
+$("#usage_search-docs").keyup(function () {
+    var searchTerm = $("#usage_search-docs").val();
+
+    if(searchTerm == "" || searchTerm == undefined) {
+        $("#usage_document_list a").removeClass('out').addClass('in').show();
+    } else {
+        var listItem = $('#usage_document_list').children('a');
+
+        var searchSplit = searchTerm;
+
+        //extends :contains to be case insensitive
+        $.extend($.expr[':'], {
+            'containsi': function(elem, i, match, array)
+            {
+                return (elem.textContent || elem.innerText || '').toLowerCase()
+                    .indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+        });
+
+        $("#usage_document_list a span.doc_name").not(":containsi('" + searchSplit + "')").each(function(e)   {
+            $(this).closest("a").addClass('out').removeClass('in').fadeOut();
+        });
+
+        $("#usage_document_list a span.doc_name:containsi('" + searchSplit + "')").each(function(e) {
+            $(this).closest("a").removeClass('out').addClass('in').fadeIn('slow');
+        });
+
+        var calCount = $('#usage_document_list .in').length;
+        //$('.list-count').text(jobCount + ' items');
+
+        //shows empty state text when no jobs found
+        if(calCount == '0') {
+            $('#no_usage_doc_results').fadeIn();
+        }
+        else {
+            $('#no_usage_doc_results').hide();
+        }
+    }
+});/**
  * Created by christophercole on 7/16/17.
  */
