@@ -335,7 +335,7 @@ function usageDocumentList(user_token, company_id) {
     $("#usage_document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#usage_reports_container").show();
 
-    /*$.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
+    $.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
         console.log("inside usage reports documents function");
         var documents = jQuery.parseJSON(result);
         if(documents.active == true) {
@@ -353,7 +353,7 @@ function usageDocumentList(user_token, company_id) {
         } else {
             $("#usage_document_list").html("No Documents Available");
         }
-    });*/
+    });
 }
 
 $("#usage_search-docs").keyup(function () {

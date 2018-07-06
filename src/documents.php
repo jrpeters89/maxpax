@@ -28,7 +28,26 @@ if(!empty($user_token)) {
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_array($result);
 			if ($row['documents'] > 0 || ($row['documents'] == 0 && $row['id'] == 9)) {
-				if($row['id'] == 9) {
+			    if ($row['id'] == 12) {
+			        $files['active'] = true;
+			        $dir = '//sw-fs-02/Shared/Docs-USP/CUSTOMERS/Ferrara/usage';
+
+			        $list = scandir($dir);
+
+                    foreach ($list as $key => $file) {
+                        $path = pathinfo($file);
+                        $files['list'][$key]['name'] = $path["filename"];
+                        if ($path["extension"] == "xls" || $path["extension"] == "xlsx" || $path["extension"] == "xlsm") {
+                            $ext = "excel";
+                        } else if ($path["extension"] == "pdf") {
+                            $ext = "pdf";
+                        } else {
+                            $ext = "text";
+                        }
+                        $files['list'][$key]['ext'] = $ext;
+                        $files['list'][$key]['url'] = "/src/file.php?loc=" . $dir . "/" . $file . "&user_token=" . $user_token;
+                    }
+                } else if($row['id'] == 9) {
 					$files['active'] = true;
 					if (!empty($row['doc_path'])) {
 						if ($tab == 'coas') {
