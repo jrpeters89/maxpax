@@ -332,9 +332,10 @@ function opensalesCheck(user_token,type) {
 }
 
 function usageDocumentList(user_token, company_id) {
+    console.log("entering usage reports documents function");
     $("#usage_document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#usage_reports_container").show();
-    console.log("entering usage reports documents function");
+
     /*$.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id,function(result) {
         console.log("inside usage reports documents function");
         var documents = jQuery.parseJSON(result);
