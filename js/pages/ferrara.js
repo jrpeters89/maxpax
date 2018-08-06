@@ -20,6 +20,34 @@ function inventoryCheck(user_token, company_id) {
     });
 }
 
+function coasList(user_token, company_id) {
+    hold_company_id = company_id;
+    $("#coas_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#coas_container").show();
+    $(".col-xs-10").html('');
+    $(".col-xs-10").html('<h1 class="page_header">COAs</h1>');
+    console.log(company_id);
+    $.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id + "&tab=coas",function(result) {
+
+        var documents = jQuery.parseJSON(result);
+        if(documents.active == true) {
+            $("#coas_list").html("");
+            if(typeof documents.list != 'undefined') {
+                jQuery.each( documents.list, function( i, val ) {
+                    if(i > 1) { //Skip "." and ".."
+                        $("#coas_list").append('<a href="'+val.url+'" class="list-group-item" target="_blank"><i class="fa fa-file-'+val.ext+'-o"></i>&nbsp;&nbsp;<span class="doc_name">'+val.name+'</span></a>');
+                    }
+                });
+                $("#search-coas").fadeIn();
+            } else {
+                $("#coas_list").html("No Documents Available");
+            }
+        } else {
+            $("#coas_list").html("No Documents Available");
+        }
+    });
+}
+
 
 $("body").on("click",".opensales_tab",function(event) {
     event.preventDefault();

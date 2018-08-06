@@ -51,9 +51,33 @@ function historicalSalesData(user_token) {
     });
 }
 
-function refreshHistoricalSalesData(periodObject) {
+function refreshHistoricalSalesData(user_token, periodObject) {
 	var period = periodObject.value;
 	console.log("The historical sales select worked. The period is " + period);
+    $("#historical_mtd_sales").html('');
+    $("#historical_mtd_sales").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#historical_sales_container").show();
+    $.get("/src/historical_sales.php?user_token="+user_token+"&period="+period,function(result) {
+        var sales = jQuery.parseJSON(result);
+        if(sales.active == true) {
+            $(".cur_month").html(sales.month_name);
+            $(".cur_year").html(sales.cur_year);
+            $(".prev_year").html(sales.prev_year);
+            $(".month_range").html(sales.month_range);
+            $("#historical_cur_mtd_0").html("$"+sales[0].cur_mtd);
+            $("#cur_ytd_0").html("$"+sales[0].cur_ytd);
+            $("#past_mtd_0").html("$"+sales[0].prev_mtd);
+            $("#past_ytd_0").html("$"+sales[0].prev_ytd);
+            $("#cur_mtd_1").html("$"+sales[1].cur_mtd);
+            $("#cur_ytd_1").html("$"+sales[1].cur_ytd);
+            $("#past_mtd_1").html("$"+sales[1].prev_mtd);
+            $("#past_ytd_1").html("$"+sales[1].prev_ytd);
+            $("#cur_mtd_total").html("$"+sales.cur_mtd_total);
+            $("#past_mtd_total").html("$"+sales.past_mtd_total);
+            $("#cur_ytd_total").html("$"+sales.cur_ytd_total);
+            $("#past_ytd_total").html("$"+sales.past_ytd_total);
+        }
+    });
 }
 
 function agingChart(user_token,company) {
