@@ -148,7 +148,7 @@ function refreshShipmentDates(user_token) {
     });
 }
 
-function getReceiptData(user_token, company_id) {
+function getReceiptsData(user_token, company_id) {
     hold_company_id = company_id;
     $("#receipts_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#receipts_container").show();
