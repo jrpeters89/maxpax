@@ -73,6 +73,8 @@ function changePage(page) {
         } else if (page == "shipping_schedule") {
             shippingDocumentList(user_token, hold_company_id)
         } else if (page == "receipts") {
+            $(".page_container").hide();
+            $("#" + page + "_container").show();
             receivingTransactions(user_token, hold_company_id);
         } else {
 
