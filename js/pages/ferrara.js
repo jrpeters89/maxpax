@@ -149,8 +149,9 @@ function refreshShipmentDates(user_token) {
 }
 
 function getReceipts(user_token, company_id) {
-    hold_company_id = company_id;
     console.log("company id");
+    hold_company_id = company_id;
+
     $("#receipts_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     console.log("spinner");
     $("#receipts_container").show();
