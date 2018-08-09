@@ -74,7 +74,7 @@ function changePage(page) {
             shippingDocumentList(user_token, hold_company_id)
         } else if (page == "receipts") {
             $(".page_container").hide();
-            $("#" + page + "_container").show();
+            $("#recv_trans_container").show();
             receivingTransactions(user_token, hold_company_id);
         } else {
 
