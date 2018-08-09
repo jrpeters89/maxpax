@@ -148,10 +148,10 @@ function refreshShipmentDates(user_token) {
     });
 }
 
-function getReceiptsData(user_token, company_id) {
+function receivingTransactions(user_token, company_id) {
     hold_company_id = company_id;
-    $("#receipts_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
-    $("#receipts_container").show();
+    $("#recv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#recv_trans_container").show();
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">Receipts</h1>');
     var today = new Date();
@@ -179,23 +179,23 @@ function getReceiptsData(user_token, company_id) {
         endDate = startYear + '-' + endMonth + '-' + startDay;
     }
     //var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
-    var startDateTxt = document.getElementById("receiptsStartDatePicker");
-    var endDateTxt = document.getElementById("receiptsEndDatePicker");
+    var startDateTxt = document.getElementById("recvStartDatePicker");
+    var endDateTxt = document.getElementById("recvEndDatePicker");
     startDateTxt.value = startDate;
     endDateTxt.value = endDate;
-    $('#receiptsStartDatePicker').datepicker({
+    $('#recvStartDatePicker').datepicker({
         dateFormat: 'yy-mm-dd'
     });
-    $('#receiptsEndDatePicker').datepicker({
+    $('#recvEndDatePicker').datepicker({
         dateFormat: 'yy-mm-dd'
     });
     $.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
         var receipt = jQuery.parseJSON(result);
         if (receipt.count > 0) {
-            $("#receipts_list").html('');
+            $("#recv_trans_list").html('');
             jQuery.each(receipt.data, function (x, psId) {
-                $("#receipts_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-USP/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
-                $("#receipts_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+                $("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-MAX/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
+                $("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
                 jQuery.each(psId, function (z, det) {
                     if(typeof det.Lot != "undefined") {
                         $("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.PurchaseOrder + '</td><td>' + det.LineNumber + '</td><td>' + det.ItemNumber + '</td><td>' + det.Description + '</td><td>' + det.Received + '</td><td>' + det.Date + '</td><td>' + det.Lot + '</td><td>' + det.Quantity + '</td></tr>');
@@ -205,25 +205,25 @@ function getReceiptsData(user_token, company_id) {
             });
             $.bootstrapSortable(false);
         } else {
-            $("#receipts_list").html("No Receipts Available");
+            $("#recv_trans_list").html("No Receiving Transactions Available");
         }
     });
 }
-function refreshReceiptsTransDates(user_token) {
-    $("#receipts_list").html('');
-    $("#receipts_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
-    $("#receipts_container").show();
-    var startDateTxt = document.getElementById("receciptsStartDatePicker");
-    var endDateTxt = document.getElementById("receiptsEndDatePicker");
+function refreshRecvTransDates(user_token) {
+    $("#recv_trans_list").html('');
+    $("#recv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#recv_trans_container").show();
+    var startDateTxt = document.getElementById("recvStartDatePicker");
+    var endDateTxt = document.getElementById("recvEndDatePicker");
     $.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + hold_company_id, function (result) {
         var receipt = jQuery.parseJSON(result);
         if (receipt.count > 0) {
-            $("#receipts_list").html('');
+            $("#recv_trans_list").html('');
             jQuery.each(receipt.data, function (x, psId) {
-                $("#receipts_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-USP/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
-                $("#receipts_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
+                $("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId + '" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-MAX/PO/' + x + '&user_token=' + user_token + '">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
+                $("#recv_trans_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId + '_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
                 jQuery.each(psId, function (z, det) {
-                    if(typeof det.Lot != "undefined") {
+                    if (typeof det.Lot != "undefined") {
                         $("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.PurchaseOrder + '</td><td>' + det.LineNumber + '</td><td>' + det.ItemNumber + '</td><td>' + det.Description + '</td><td>' + det.Received + '</td><td>' + det.Date + '</td><td>' + det.Lot + '</td><td>' + det.Quantity + '</td></tr>');
                     }
                 });
@@ -231,11 +231,10 @@ function refreshReceiptsTransDates(user_token) {
             });
             $.bootstrapSortable(false);
         } else {
-            $("#receipts_list").html("No ReceiptsAvailable");
+            $("#recv_trans_list").html("No Receiving Transactions Available");
         }
     });
 }
-
 
 function productionTransactions(user_token, company_id) {
     hold_company_id = company_id;

@@ -73,7 +73,7 @@ function changePage(page) {
         } else if (page == "shipping_schedule") {
             shippingDocumentList(user_token, hold_company_id)
         } else if (page == "receipts") {
-            getReceiptsData(user_token, hold_company_id);
+            receivingTransactions(user_token, hold_company_id);
         } else {
 
             //Do Nothing
