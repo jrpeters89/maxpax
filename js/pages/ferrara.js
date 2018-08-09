@@ -150,10 +150,14 @@ function refreshShipmentDates(user_token) {
 
 function getReceipts(user_token, company_id) {
     hold_company_id = company_id;
+    console.log("company id");
     $("#receipts_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    console.log("spinner");
     $("#receipts_container").show();
+    console.log("show container");
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">Receipts</h1>');
+    console.log("title");
     var today = new Date();
     var startDay = 1;
     var startMonth = today.getMonth() + 1;
@@ -178,6 +182,7 @@ function getReceipts(user_token, company_id) {
         }
         endDate = startYear + '-' + endMonth + '-' + startDay;
     }
+    console.log("build date");
     //var endDate  = yyyy + '-' + (mm + 1) +'-' + dd;
     var startDateTxt = document.getElementById("receiptsStartDatePicker");
     var endDateTxt = document.getElementById("receiptsEndDatePicker");
@@ -189,15 +194,19 @@ function getReceipts(user_token, company_id) {
     $('#receiptsEndDatePicker').datepicker({
         dateFormat: 'yy-mm-dd'
     });
+    console.log("start date picker");
     $.get("/src/recv_trans.php?act=list&user_token=" + user_token + "&start_date=" + startDateTxt.value + "&end_date=" + endDateTxt.value + "&company_id=" + company_id, function (result) {
+        console.log("recv trans php");
         var receipt = jQuery.parseJSON(result);
         if (receipt.count > 0) {
+            console.log("more than zero returned");
             $("#receipts_list").html('');
             jQuery.each(receipt.data, function (x, psId) {
                 $("#receipts_list").append('<div id="slip_id_' + psId.PackingSlipId + '" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'" class="table sortable"><thead><tr><th class="width_180">Product Receipt #</th><th class="width_180">Receipt Date</th></tr></thead><tbody><tr><td class="width_180"><a href="/src/shipments_file.php?loc=//sw-fs-02/Shared/Docs-MAX/PO/' + x +'&user_token=' + user_token +'">' + x + '</a></td><td>' + psId.ReceiptDate + '</td> </tr></tbody><tfoot></tfoot></table>');
                 $("#receipts_list").append('<div id="slip_id_' + psId.PackingSlipId + '_lot" class="table-responsive"><table id="slip_id_table_' + psId.PackingSlipId +'_lot" class="table sortable"><thead><tr><th class="width_150">Purchase Order #</th><th class="width_120">Line #</th><th class="width_180">Item #</th><th class="width_180"> Description</th><th class="width_120">Received</th><th class="width_120">Date</th><th class="width_150">Lot #</th><th class="width_150">Quantity</th></tr></thead><tbody></tbody><tfoot></tfoot></table> </div>');
                 jQuery.each(psId, function (z, det) {
                     if(typeof det.Lot != "undefined") {
+                        console.log("start printing");
                         $("#slip_id_" + psId.PackingSlipId + "_lot tbody").append('<tr><td>' + det.PurchaseOrder + '</td><td>' + det.LineNumber + '</td><td>' + det.ItemNumber + '</td><td>' + det.Description + '</td><td>' + det.Received + '</td><td>' + det.Date + '</td><td>' + det.Lot + '</td><td>' + det.Quantity + '</td></tr>');
                     }
                 });
@@ -206,6 +215,7 @@ function getReceipts(user_token, company_id) {
             $.bootstrapSortable(false);
         } else {
             $("#receipts_list").html("No Receiving Transactions Available");
+            console.log("");
         }
     });
 }
