@@ -218,7 +218,7 @@ function appSetup(company, callback) {
             });
         } else if (company.id == 2) {
             $.getScript("/js/pages/sherwin-williams.js", function () {
-                console.log("Nourish Script Loaded");
+                console.log("Sherwin Williams Script Loaded");
                 callback();
             });
         } else if (company.id == 1) {
