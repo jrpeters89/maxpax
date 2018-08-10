@@ -58,7 +58,7 @@ if (!empty($user_token)) {
                     $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
                 }
             }
-        } elseif ($row['company'] == 10) { //Earthy Filter
+        } elseif ($row['company'] == 11) { //Treehouse Filter
             foreach ($data as $item) {
                 if (($item['CompanyName'] === "MaxPax LLC") && ($item['CustomerNumber'] === "MAX-C000070") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
                     $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
