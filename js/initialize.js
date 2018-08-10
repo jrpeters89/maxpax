@@ -41,7 +41,7 @@ function changePage(page) {
             agingChart(user_token);
         } else if (page == "sales") {
             salesData(user_token);
-        } else if (page == "shipments") {
+        } else if (page === "shipments") {
             shippingData(user_token, hold_company_id);
         } else if (page == "inv_trans") {
             //$("#inv_trans_link").addClass("active");
