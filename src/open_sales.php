@@ -113,7 +113,7 @@ if (!empty($user_token)) {
                 }
             } elseif ($row['company'] == 11) { //Treehouse Filter
                 foreach ($data as $sale) {
-                    if ($sale['CustAccount'] == "USP-C000065") {
+                    if ($sale['CustAccount'] == "USP-C000065" || $sale['CustAccount'] == "USP-C000070") {
 
                         $sales_qty = (!empty($sale['SalesQty']) ? $sale['SalesQty'] : 0);
                         $remaining = (!empty($sale['RemainSalesPhysical']) ? $sale['RemainSalesPhysical'] : 0);
