@@ -217,7 +217,7 @@ function appSetup(company, callback) {
                 callback();
             });
         } else if (company.id == 2) {
-            $.getScript("/js/pages/sherwin-williams.js", function () {
+            getScripts(["/js/pages/sherwin-williams.js"], function () {
                 console.log("Sherwin Williams Script Loaded");
                 callback();
             });
