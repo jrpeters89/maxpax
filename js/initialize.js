@@ -216,6 +216,11 @@ function appSetup(company, callback) {
                 console.log("Nourish Script Loaded");
                 callback();
             });
+        } else if (company.id == 2) {
+            $.getScript("/js/pages/sherwin-williams.js", function () {
+                console.log("Nourish Script Loaded");
+                callback();
+            });
         } else if (company.id == 1) {
             $.getScript("/js/jquery.flot.js", function () { //Load Main Chart JS First
                 console.log("Flot Charts Loaded");
