@@ -95,7 +95,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 11) { //Treehouse
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "THF" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if((substr($inv['ItemId'], 0, 3) == "THF" || substr($inv['ItemId'], 0, 3) == "BVF") && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
