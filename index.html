@@ -550,31 +550,6 @@
     </div>
     <p id="no_recv_trans_results" style="display:none;">No receiving transactions found</p>
 </div>
-<div id="receipts_container" class="page_container container company_12">
-    <div class="row">
-        <div class="col-xs-10">
-            <h1 class="page-header">Receipts</h1>
-        </div>
-        <div class="col-xs-2" style="text-align: right;">
-            <a download="receipts.xls" onclick="return ExcellentExport.excel(this, 'receipts_list', 'Receipts');"
-               class="btn btn-success" style="margin-top: 20px;">Excel</a>
-        </div>
-    </div>
-    <div>
-        <p style="display: inline-block;margin: 1em;">Start Date: <input type="text" id="receiptsStartDatePicker"
-        class="datepicker"></p>
-        <p style="display: inline-block;">End Date: <input type="text" id="receiptsEndDatePicker" class="datepicker"></p>
-        <p style="display: inline-block;margin: 1em">
-            <button onclick="refreshReceipts(user_token)">Refresh</button>
-        </p>
-    </div>
-    <div id="receipts_list" class="table-responsive">
-        Loading...
-    </div>
-    <p id="no_receipts_results" style="display: none;">No receipts found</p>
-</div>
-
-
 <div id="production_container" class="page_container container company_3">
     <div class="row">
         <div class="col-xs-10">
