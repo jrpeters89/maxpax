@@ -100,7 +100,7 @@ if (!empty($user_token)) {
             }
         } elseif ($row['company'] == 12) { //Ferrara Filter
             foreach ($data as $item) {
-                if (($item['CompanyName'] === "US Packaging LLC") && ($item['VendorAccount'] === "USP-V000439") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
+                if (($item['CompanyName'] === "US Packaging LLC") && ($item['VendorAccount'] === "USP-V000481") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
