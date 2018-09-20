@@ -117,6 +117,7 @@ function appSetup(company, callback) {
     $(".menu_11").fadeOut();
     $(".menu_12").fadeOut();
     $(".menu_13").fadeOut();
+    $(".menu_14").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -154,6 +155,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 14) {
+            getScripts(["/js/pages/butterface-brands.js"], function () {
+                console.log("Butterface Brands Scripts Loaded");
+                callback();
             });
         } else if (company.id == 13) {
             getScripts(["/js/pages/adeo.js"], function () {
