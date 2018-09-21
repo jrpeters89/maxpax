@@ -114,7 +114,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 14) { //Butterface Brands
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "BFB" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "BFB" && $inv['CompanyName'] == "US Packaging LLC") {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
