@@ -118,6 +118,8 @@ function appSetup(company, callback) {
     $(".menu_12").fadeOut();
     $(".menu_13").fadeOut();
     $(".menu_14").fadeOut();
+    $(".menu_15").fadeOut();
+    $(".menu_16").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -155,6 +157,16 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 16) {
+            getScripts(["/js/pages/bay-valley-foods.js"], function () {
+                console.log("Bay Valley Foods Scripts Loaded");
+                callback();
+            });
+        } else if (company.id == 15) {
+            getScripts(["/js/pages/strategia.js"], function () {
+                console.log("Strategia Scripts Loaded");
+                callback();
             });
         } else if (company.id == 14) {
             getScripts(["/js/pages/butterface-brands.js"], function () {

@@ -23,6 +23,8 @@ if (!empty($user_token)) {
         case 12:
         case 13:
         case 14:
+        case 15:
+        case 16:
             $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
             $result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
             break;
@@ -59,7 +61,7 @@ if (!empty($user_token)) {
                     $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
                 }
             }
-        } elseif ($row['company'] == 11) { //Treehouse Filter
+        }  elseif ($row['company'] == 11) { //Treehouse Filter
             foreach ($data as $item) {
                 if (($item['CompanyName'] === "US Packaging LLC") && ($item['CustomerNumber'] === "USP-C000065" || $item['CustomerNumber'] === "USP-C000070") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
                     $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
@@ -82,6 +84,46 @@ if (!empty($user_token)) {
         } elseif ($row['company'] == 13) { //Adeo
             foreach ($data as $item) {
                 if (($item['CompanyName'] === "US Packaging LLC") && ($item['CustomerNumber'] === "USP-C000067") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
+                    $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['SalesOrder'] = ($item['SalesOrder'] != null ? $item['SalesOrder'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['CustomerRef'] = ($item['CustomerRef'] != null ? $item['CustomerRef'] : "");
+
+                    $shipments['data'][$item['PackingSlipId']][] = array(
+                        'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
+                        'ExpirationDate' => ($item['ExpirationDate'] != null ? $item['ExpirationDate'] : ""),
+                        'Delivered' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
+                        'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
+                    );
+
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
+                }
+            }
+        } elseif ($row['company'] == 15) { //Strategia Foods Brand Filter
+            foreach ($data as $item) {
+                if (($item['CompanyName'] === "MaxPax LLC") && ($item['CustomerNumber'] === "MAX-C000089") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
+                    $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['Description'] = ($item['Description'] != null ? $item['Description'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['SalesOrder'] = ($item['SalesOrder'] != null ? $item['SalesOrder'] : "");
+                    $shipments['data'][$item['PackingSlipId']]['CustomerRef'] = ($item['CustomerRef'] != null ? $item['CustomerRef'] : "");
+
+                    $shipments['data'][$item['PackingSlipId']][] = array(
+                        'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
+                        'ExpirationDate' => ($item['ExpirationDate'] != null ? $item['ExpirationDate'] : ""),
+                        'Delivered' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
+                        'UOM' => ($item['Unit'] != null ? $item['Unit'] : "")
+                    );
+
+                    $shipments['data'][$item['PackingSlipId']]['Subtotal'] += intval($item['Quantity']);
+                }
+            }
+        } elseif ($row['company'] == 16) { //Bay Valley Foods Brand Filter
+            foreach ($data as $item) {
+                if (($item['CompanyName'] === "US Packaging LLC") && ($item['CustomerNumber'] === "USP-C000070") && ($item['ShipDate'] >= $start_date) && ($item['ShipDate'] <= $end_date)) {
                     $shipments['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $shipments['data'][$item['PackingSlipId']]['ShipDate'] = ($item['ShipDate'] != null ? $item['ShipDate'] : "");
                     $shipments['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
