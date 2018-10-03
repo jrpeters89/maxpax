@@ -16,7 +16,7 @@ if (!empty($user_token)) {
                     header('Content-Description: File Transfer');
                     header('Content-Type: application/octet-stream');
                     //header('Content-Disposition: attachment; filename=' . basename($filename[0]));
-                    header("Content-Disposition: attachment; filename*=us-ascii'en-us'".urlencode($filename[0]));
+                    header('Content-Disposition: attachment; filename*=us-ascii\'en-us\''.urlencode($filename[0]));
                     header('Expires: 0');
                     header('Cache-Control: must-revalidate');
                     header('Pragma: public');
