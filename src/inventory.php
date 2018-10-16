@@ -153,7 +153,7 @@ if(!empty($user_token)) {
                     );
                 }
             }
-        } elseif($row['company'] == 15) { //SW Fulfillment
+        } elseif($row['company'] == 17) { //SW Fulfillment
             foreach($data as $inv) {
                 if($inv['CompanyName'] == "Sherwin-Williams") {
                     $inventory['data'][] = array(
