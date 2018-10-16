@@ -120,6 +120,7 @@ function appSetup(company, callback) {
     $(".menu_14").fadeOut();
     $(".menu_15").fadeOut();
     $(".menu_16").fadeOut();
+    $(".menu_17").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -157,6 +158,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 17) {
+            getScripts(["/js/pages/sw-fulfillment.js"], function () {
+                console.log("SW Fulfillment Scripts Loaded");
+                callback();
             });
         } else if (company.id == 16) {
             getScripts(["/js/pages/bay-valley-foods.js"], function () {
