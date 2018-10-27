@@ -155,7 +155,7 @@ if(!empty($user_token)) {
             }
         } elseif($row['company'] == 17) { //SW Fulfillment
             foreach($data as $inv) {
-                if($inv['CompanyName'] == "Sherwin-Williams") {
+                if($inv['CompanyName'] == "Maxpax Fulfillment") {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
