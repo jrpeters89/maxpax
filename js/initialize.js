@@ -70,6 +70,8 @@ function changePage(page) {
             historicalSalesData(user_token, hold_company_id);
         } else if (page == "usage_reports") {
             usageDocumentList(user_token, hold_company_id);
+        } else if (page == "prod_reports") {
+            prodReportsDocumentList(user_token, hold_company_id);
         } else if (page == "shipping_schedule") {
             shippingDocumentList(user_token, hold_company_id)
         } else {

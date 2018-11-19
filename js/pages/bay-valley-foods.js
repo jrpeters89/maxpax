@@ -197,3 +197,67 @@ function refreshShipmentDates(user_token) {
         }
     });
 }
+
+function prodReportsDocumentList(user_token, company_id) {
+    $("#prod_reports_document_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#prod_reports_container").show();
+
+    $.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id + "&tab=usage",function(result) {
+        var documents = jQuery.parseJSON(result);
+        if(documents.active == true) {
+            $("#prod_reports_document_list").html("");
+            if(typeof documents.list != 'undefined') {
+                jQuery.each( documents.list, function( i, val ) {
+                    if(i > 1) { //Skip "." and ".."
+                        $("#prod_reports_document_list").append('<a href="'+val.url+'" class="list-group-item" target="_blank"><i class="fa fa-file-'+val.ext+'-o"></i>&nbsp;&nbsp;<span class="doc_name">'+val.name+'</span></a>');
+                    }
+                });
+                $("#prod_reports_search-docs").fadeIn();
+            } else {
+                $("#prod_reports_document_list").html("No Documents Available");
+            }
+        } else {
+            $("#prod_reports_document_list").html("No Documents Available");
+        }
+    });
+}
+
+$("#prod_reports_search-docs").keyup(function () {
+    var searchTerm = $("#prod_reports_search-docs").val();
+
+    if(searchTerm == "" || searchTerm == undefined) {
+        $("#prod_reports_document_list a").removeClass('out').addClass('in').show();
+    } else {
+        var listItem = $('#prod_reports_document_list').children('a');
+
+        var searchSplit = searchTerm;
+
+        //extends :contains to be case insensitive
+        $.extend($.expr[':'], {
+            'containsi': function(elem, i, match, array)
+            {
+                return (elem.textContent || elem.innerText || '').toLowerCase()
+                    .indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+        });
+
+        $("#prod_reports_document_list a span.doc_name").not(":containsi('" + searchSplit + "')").each(function(e)   {
+            $(this).closest("a").addClass('out').removeClass('in').fadeOut();
+        });
+
+        $("#prod_reports_document_list a span.doc_name:containsi('" + searchSplit + "')").each(function(e) {
+            $(this).closest("a").removeClass('out').addClass('in').fadeIn('slow');
+        });
+
+        var calCount = $('#prod_reports_document_list .in').length;
+        //$('.list-count').text(jobCount + ' items');
+
+        //shows empty state text when no jobs found
+        if(calCount == '0') {
+            $('#no_prod_reports_doc_results').fadeIn();
+        }
+        else {
+            $('#no_prod_reports_doc_results').hide();
+        }
+    }
+});
