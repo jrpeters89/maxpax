@@ -163,7 +163,7 @@ if(!empty($user_token)) {
 						if ($tab == 'coas') {
 							$dir = $row['doc_path'] . '/Completed COAs 2018';
 						} else if ($tab == 'batch') {
-							$dir = $row['doc_path'] . '/FINISHED BATCH TICKETS';
+							$dir = $row['doc_path'] . '/FINISHED BATCH TICKETS 2018';
 						}
 						$list = scandir($dir);
 
