@@ -144,7 +144,7 @@ if (!empty($user_token)) {
             }
         } elseif ($row['company'] == 17) { //SW Fulfillment Filter
             foreach ($data as $item) {
-                if (($item['CompanyName'] === "Maxpax Fulfillment")) {
+                if (($item['CompanyName'] === "Maxpax Fulfillment") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
