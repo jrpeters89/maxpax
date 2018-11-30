@@ -4,7 +4,9 @@ include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
 $company_id = $_GET[company_id];
-$part_number = $_GET[$part_number];
+if(isset($_GET[$part_number])) {
+    $part_number = $_GET[part_number];
+}
 
 if(!empty($user_token)) {
 	switch ($company_id) {
