@@ -30,7 +30,7 @@ function refreshInventoryCheck(user_token) {
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">On-Hand Inventory</h1>');
     console.log(partNumberTxt.value);
-    $.get("/src/inventory.php?act=list&user_token="+user_token+"&company_id="+company_id+"&part_number"+partNumberTxt.value,function(result) {
+    $.get("/src/inventory.php?act=list&user_token="+user_token+"&company_id="+hold_company_id+"&part_number"+partNumberTxt.value,function(result) {
         var inventory = jQuery.parseJSON(result);
         if(inventory.count > 0) {
             $("#inventory_list").html('<table class="table sortable"><thead><tr><th class="width_180">Item #</th><th>Product Name</th><th class="text_right">Quantity</th><th>UOM</th><th>Location</th></tr></thead><tbody></tbody></table>');
