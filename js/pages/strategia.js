@@ -3,6 +3,7 @@ var hold_company_id;
 function inventoryCheck(user_token, company_id) {
     hold_company_id = company_id;
     $("#inventory_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#part_number_container").hide();
     $("#inventory_container").show();
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">On-Hand Inventory</h1>');
