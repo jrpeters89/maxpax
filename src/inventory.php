@@ -155,7 +155,7 @@ if(!empty($user_token)) {
                 }
             }
         } elseif($row['company'] == 17) { //SW Fulfillment
-            if (!empty($part_number)) {
+            if ($part_number !== NULL) {
                 foreach ($data as $inv) {
                     /*if ($inv['CompanyName'] === "Maxpax Fulfillment" && $inv['ItemId'] == $part_number) {
                         $inventory['data'][] = array(
