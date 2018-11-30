@@ -2,6 +2,7 @@ var hold_company_id;
 
 function inventoryCheck(user_token, company_id) {
     hold_company_id = company_id;
+    $("#part_number_container").show();
     $("#inventory_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#inventory_container").show();
     $(".col-xs-10").html('');
@@ -18,6 +19,10 @@ function inventoryCheck(user_token, company_id) {
             $("#inventory_list").html("No Inventory Available");
         }
     });
+}
+
+function refreshInventoryCheck(user_token) {
+
 }
 
 function receivingTransactions(user_token, company_id) {

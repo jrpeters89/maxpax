@@ -440,6 +440,12 @@
         <div class="col-xs-10">
             <h1 class="page_header">On-Hand Inventory</h1>
         </div>
+        <div id="part_number_container" style="display: none;">
+            <p style="margin: 1em;">Part #: <input type="text" id="inventoryPartNumberInput"></p>
+            <p style="margin: 1em">
+                <button onclick="refreshInventoryCheck(user_token)">Search</button>
+            </p>
+        </div>
         <div class="col-xs-2" style="text-align: right;">
             <a download="inventory.xls" onclick="return ExcellentExport.excel(this, 'inventory_list', 'Inventory');"
                class="btn btn-success" style="margin-top: 20px;">Excel</a>
