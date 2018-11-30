@@ -4,6 +4,7 @@ include("C:/inetpub/protected/database_connect.php");
 
 $user_token = $_GET[user_token];
 $company_id = $_GET[company_id];
+$part_number = $_GET[$part_number];
 
 if(!empty($user_token)) {
 	switch ($company_id) {
@@ -154,21 +155,42 @@ if(!empty($user_token)) {
                 }
             }
         } elseif($row['company'] == 17) { //SW Fulfillment
-            foreach($data as $inv) {
-                if($inv['CompanyName'] == "Maxpax Fulfillment") {
-                    $inventory['data'][] = array(
-                        'ItemId' => $inv['ItemId'],
-                        'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
-                        'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
-                        'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
-                        'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
-                        'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
-                        'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
-                        'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
-                        'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical']/$inv['Case']),0,".",",") : ""),
-                        'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
-                        'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical']/$inv['Pallet']),0,".",",") : 0)
-                    );
+            if (isset($part_number)) {
+                foreach ($data as $inv) {
+                    if ($inv['CompanyName'] == "Maxpax Fulfillment" && $inv["ItemId"] == $part_number) {
+                        $inventory['data'][] = array(
+                            'ItemId' => $inv['ItemId'],
+                            'AvailPhysical' => number_format($inv['AvailPhysical'], 0, ".", ","),
+                            'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
+                            'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
+                            'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
+                            'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
+                            'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
+                            'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
+                            'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical'] / $inv['Case']), 0, ".", ",") : ""),
+                            'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
+                            'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical'] / $inv['Pallet']), 0, ".", ",") : 0)
+                        );
+                    }
+                }
+
+            } else {
+                foreach ($data as $inv) {
+                    if ($inv['CompanyName'] == "Maxpax Fulfillment") {
+                        $inventory['data'][] = array(
+                            'ItemId' => $inv['ItemId'],
+                            'AvailPhysical' => number_format($inv['AvailPhysical'], 0, ".", ","),
+                            'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
+                            'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
+                            'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
+                            'ItemName' => (!empty($inv['ItemName']) ? $inv['ItemName'] : ""),
+                            'ItemGroupId' => (!empty($inv['ItemGroupId']) ? $inv['ItemGroupId'] : ""),
+                            'BOMUnitId' => (!empty($inv['BOMUnitId']) ? $inv['BOMUnitId'] : ""),
+                            'Case' => (!empty($inv['Case']) ? number_format(($inv['AvailPhysical'] / $inv['Case']), 0, ".", ",") : ""),
+                            'SellUOM' => (!empty($inv['SellUOM']) ? $inv['SellUOM'] : ""),
+                            'Pallet' => (!empty($inv['Pallet']) ? number_format(($inv['AvailPhysical'] / $inv['Pallet']), 0, ".", ",") : 0)
+                        );
+                    }
                 }
             }
         }   elseif($row['company'] == 14) { //Butterface Brands
