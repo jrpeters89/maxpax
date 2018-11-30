@@ -157,7 +157,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 17) { //SW Fulfillment
             if (isset($part_number)) {
                 foreach ($data as $inv) {
-                    if ($inv['CompanyName'] == "Maxpax Fulfillment" && $inv["ItemId"] == $part_number) {
+                    if ($inv['CompanyName'] === "Maxpax Fulfillment" && $inv["ItemId"] === $part_number) {
                         $inventory['data'][] = array(
                             'ItemId' => $inv['ItemId'],
                             'AvailPhysical' => number_format($inv['AvailPhysical'], 0, ".", ","),
@@ -176,7 +176,7 @@ if(!empty($user_token)) {
 
             } else {
                 foreach ($data as $inv) {
-                    if ($inv['CompanyName'] == "Maxpax Fulfillment") {
+                    if ($inv['CompanyName'] === "Maxpax Fulfillment") {
                         $inventory['data'][] = array(
                             'ItemId' => $inv['ItemId'],
                             'AvailPhysical' => number_format($inv['AvailPhysical'], 0, ".", ","),
