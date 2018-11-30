@@ -29,6 +29,7 @@ function refreshInventoryCheck(user_token) {
     $("#inventory_container").show();
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">On-Hand Inventory</h1>');
+    console.log(partNumberTxt.value);
     $.get("/src/inventory.php?act=list&user_token="+user_token+"&company_id="+company_id+"&part_number"+partNumberTxt.value,function(result) {
         var inventory = jQuery.parseJSON(result);
         if(inventory.count > 0) {
