@@ -27,6 +27,7 @@ if (!empty($user_token)) {
         case 15:
         case 16:
         case 17:
+        case 18:
         case 98:
 
             $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
