@@ -123,6 +123,7 @@ function appSetup(company, callback) {
     $(".menu_15").fadeOut();
     $(".menu_16").fadeOut();
     $(".menu_17").fadeOut();
+    $(".menu_18").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -160,6 +161,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 18) {
+            getScripts(["/js/pages/positive-pretzel.js"], function () {
+                console.log("Positive Pretzel Scripts Loaded");
+                callback();
             });
         } else if (company.id == 17) {
             getScripts(["/js/pages/sw-fulfillment.js"], function () {
