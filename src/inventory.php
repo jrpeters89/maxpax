@@ -203,7 +203,9 @@ if(!empty($user_token)) {
                     if ($inv['CompanyName'] === "Maxpax Fulfillment") {
                         $inventory['data'][] = array(
                             'ItemId' => $inv['ItemId'],
-                            'AvailPhysical' => number_format($inv['AvailPhysical'], 0, ".", ","),
+                            'OnOrder' => number_format($inv['OnOrder'], 0, ".", ","),
+                            'AvailPhysical' => (number_format($inv['PhysicalInvent'], 0, ".", ",") - number_format($inv['OnOrder'], 0, ".", ",")),
+                            'OnHand' => number_format($inv['PhysicalInvent'], 0, ".", ","),
                             'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
                             'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
                             'expDate' => (!empty($inv['expDate']) ? date("m/d/y", strtotime($inv['expDate'])) : "N/A"),
