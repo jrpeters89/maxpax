@@ -183,7 +183,7 @@ if(!empty($user_token)) {
                         $inventory['data'][] = array(
                             'ItemId' => $inv['ItemId'],
                             'OnOrder' => number_format($inv['OnOrder'], 0, ".", ","),
-                            'AvailPhysical' => (number_format($inv['PhysicalInvent'], 0, ".", ",") - number_format($inv['OnOrder'], 0, ".", ",")),
+                            'AvailPhysical' => number_format($inv['PhysicalInvent'] - $inv['OnOrder'], 0, ".", ","),
                             'OnHand' => number_format($inv['PhysicalInvent'], 0, ".", ","),
                             'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
                             'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
@@ -204,7 +204,7 @@ if(!empty($user_token)) {
                         $inventory['data'][] = array(
                             'ItemId' => $inv['ItemId'],
                             'OnOrder' => number_format($inv['OnOrder'], 0, ".", ","),
-                            'AvailPhysical' => (number_format($inv['PhysicalInvent'], 0, ".", ",") - number_format($inv['OnOrder'], 0, ".", ",")),
+                            'AvailPhysical' => number_format($inv['PhysicalInvent'] - $inv['OnOrder'], 0, ".", ","),
                             'OnHand' => number_format($inv['PhysicalInvent'], 0, ".", ","),
                             'BatchNumber' => (!empty($inv['BatchNumber']) ? $inv['BatchNumber'] : ""),
                             'Location' => (!empty($inv['Location']) ? $inv['Location'] : ""),
