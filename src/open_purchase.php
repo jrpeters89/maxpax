@@ -16,6 +16,15 @@ if(!empty($user_token)) {
         case 7:
         case 8:
         case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
             $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
             $result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
             break;
@@ -53,6 +62,24 @@ if(!empty($user_token)) {
             foreach ($data as $purch) {
                 //Item # = NOU
                 if (((substr($purch['ItemId'], 0, 5) == "PAC-L" || substr($purch['ItemId'], 0, 5) == "PAC-K"))){//&& $purch['CompanyName'] == "MaxPax LLC") {
+                    $purchase['data'][] = array(
+                        'PurchaseOrder' => $purch['PurchId'],
+                        'LineNumber' => $purch['LineNumber'],
+                        'ItemNumber' => $purch['ItemId'],
+                        'Description' => $purch['Name'],
+                        'DeliveryDate' => $purch['DeliveryDate'],
+                        'OrderQuantity' => $purch['PurchQty'],
+                        'DeliverRemainder' => $purch['RemainPurchPhysical'],
+                        'Unit' => $purch['PurchUnit']
+                    );
+                }
+            }
+        }
+
+        else if ($row['company'] == 17) { //SW Fulfillmetn
+            foreach ($data as $purch) {
+                //Item # = NOU
+                if (($purch['CompanyName'] == "Maxpax Fulfillment") && ($purch['PurchStatus'] == "Backorder")){//&& $purch['CompanyName'] == "MaxPax LLC") {
                     $purchase['data'][] = array(
                         'PurchaseOrder' => $purch['PurchId'],
                         'LineNumber' => $purch['LineNumber'],
