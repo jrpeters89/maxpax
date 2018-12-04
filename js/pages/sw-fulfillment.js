@@ -44,6 +44,25 @@ function refreshInventoryCheck(user_token) {
     });
 }
 
+function openPurchase(user_token, company_id) {
+    $("#open_purchase_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#open_purchase_container").show();
+    $(".col-xs-10").html('');
+    $(".col-xs-10").html('<h1 class="page_header">Open PO: Label/Pack</h1>');
+    $.get("/src/open_purchase.php?act=list&user_token=" + user_token + "&company_id=" + company_id, function (result) {
+        var open_purchase = jQuery.parseJSON(result);
+        if (open_purchase.count > 0) {
+            $("#open_purchase_list").html('<table class="table sortable"><thead><tr><th class="width_180" data-defaultsort="asc">Purchase Order</th><th class="width_100">Line #</th><th>Item Number</th><th>Description</th><th class="width_100">Delivery Date</th><th>Order Quantity</th><th>Deliver Remainder</th><th>Unit</th></tr></thead><tbody></tbody></table>');
+            jQuery.each(open_purchase.data, function (p, purch) {
+                $("#open_purchase_list tbody").append('<tr><td class="width_180">' + purch.PurchaseOrder + '</td><td class="width_100">' + purch.LineNumber + '</td><td>' + purch.ItemNumber + '</td><td>' + purch.Description + '</td><td>' + purch.DeliveryDate + '</td><td>' + purch.OrderQuantity + '</td><td>' + purch.DeliverRemainder + '</td><td>' + purch.Unit + '</td></tr>');
+            });
+            $.bootstrapSortable(false);
+        } else {
+            $("#open_purchase_list").html("No Open Purchase Available");
+        }
+    });
+}
+
 function receivingTransactions(user_token, company_id) {
     hold_company_id = company_id;
     $("#recv_trans_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
@@ -132,21 +151,3 @@ function refreshRecvTransDates(user_token) {
     });
 }
 
-function openPurchase(user_token, company_id) {
-    $("#open_purchase_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
-    $("#open_purchase_container").show();
-    $(".col-xs-10").html('');
-    $(".col-xs-10").html('<h1 class="page_header">Open PO: ASNs</h1>');
-    $.get("/src/open_purchase.php?act=list&user_token=" + user_token + "&company_id=" + company_id, function (result) {
-        var open_purchase = jQuery.parseJSON(result);
-        if (open_purchase.count > 0) {
-            $("#open_purchase_list").html('<table class="table sortable"><thead><tr><th class="width_180" data-firstsort="asc">Purchase Order</th><th class="width_100">Line #</th><th>Item Number</th><th>Description</th><th class="width_100">Delivery Date</th><th>Order Quantity</th><th>Deliver Remainder</th><th>Unit</th></tr></thead><tbody></tbody></table>');
-            jQuery.each(open_purchase.data, function (p, purch) {
-                $("#open_purchase_list tbody").append('<tr><td class="width_180">' + purch.PurchaseOrder + '</td><td class="width_100">' + purch.LineNumber + '</td><td>' + purch.ItemNumber + '</td><td>' + purch.Description + '</td><td>' + purch.DeliveryDate + '</td><td>' + purch.OrderQuantity + '</td><td>' + purch.DeliverRemainder + '</td><td>' + purch.Unit + '</td></tr>');
-            });
-            $.bootstrapSortable(false);
-        } else {
-            $("#open_purchase_list").html("No Open Purchase Available");
-        }
-    });
-}
