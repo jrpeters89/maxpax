@@ -124,6 +124,8 @@ function appSetup(company, callback) {
     $(".menu_16").fadeOut();
     $(".menu_17").fadeOut();
     $(".menu_18").fadeOut();
+    $(".menu_19").fadeOut();
+    $(".menu_20").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -162,7 +164,17 @@ function appSetup(company, callback) {
                     callback();
                 });
             });
-        } else if (company.id == 18) {
+        } else if (company.id == 20) {
+            getScripts(["/js/pages/amsoil.js"], function () {
+                console.log("Amsoil Products Scripts Loaded");
+                callback();
+            });
+        }  else if (company.id == 19) {
+            getScripts(["/js/pages/v-vax-products.js"], function () {
+                console.log("V-Vax Products Scripts Loaded");
+                callback();
+            });
+        }  else if (company.id == 18) {
             getScripts(["/js/pages/positive-pretzel.js"], function () {
                 console.log("Positive Pretzel Scripts Loaded");
                 callback();
