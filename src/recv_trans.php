@@ -29,6 +29,7 @@ if (!empty($user_token)) {
         case 18:
         case 19:
         case 20:
+        case 21:
             $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
             $result = mysqli_query($conn, "SELECT `id` AS `company` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
             break;
@@ -128,6 +129,26 @@ if (!empty($user_token)) {
         } elseif ($row['company'] == 18) { //Positive Pretzel
             foreach ($data as $item) {
                 if (($item['CompanyName'] === "US Packaging LLC") && ($item['VendorAccount'] === "USP-V000577") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
+                    $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
+                    $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
+                    $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
+
+                    $receipt['data'][$item['PackingSlipId']][] = array(
+                        'PurchaseOrder' => ($item['PurchaseOrder'] != null ? $item['PurchaseOrder'] : ""),
+                        'LineNumber' => ($item['LineNumber'] != null ? $item['LineNumber'] : ""),
+                        'ItemNumber' => ($item['Item'] != null ? $item['Item'] : ""),
+                        'Description' => ($item['Description'] != null ? $item['Description'] : ""),
+                        'Received' => ($item['Quantity'] != null ? intval($item['Quantity']) : ""),
+                        'Date' => ($item['DatePhysical'] != null ? $item['DatePhysical'] : ""),
+                        'Lot' => ($item['BatchNumber'] != null ? $item['BatchNumber'] : ""),
+                        'Quantity' => ($item['Quantity'] != null ? $item['Quantity'] : "")
+                    );
+
+                }
+            }
+        } elseif ($row['company'] == 21) { //Hydrite Chemical
+            foreach ($data as $item) {
+                if (($item['CompanyName'] === "MaxPax LLC") && ($item['VendorAccount'] === "MAX-V000055") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");

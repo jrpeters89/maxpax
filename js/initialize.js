@@ -126,6 +126,7 @@ function appSetup(company, callback) {
     $(".menu_18").fadeOut();
     $(".menu_19").fadeOut();
     $(".menu_20").fadeOut();
+    $(".menu_21").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -163,6 +164,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 21) {
+            getScripts(["/js/pages/hydrite-chemical.js"], function () {
+                console.log("Hydrite Chemical Scripts Loaded");
+                callback();
             });
         } else if (company.id == 20) {
             getScripts(["/js/pages/amsoil.js"], function () {

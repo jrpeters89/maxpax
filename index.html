@@ -47,14 +47,14 @@
                 <li id="aging_link" class="menu_1 menu_99"><a id="aging" href="#" data-link="aging">AR Aging</a></li>
                 <li id="documents_link" class="documents"><a id="documents" href="#" data-link="documents">Documents</a>
                 </li>
-                <li id="inventory_link" class="menu_3 menu_4 menu_6 menu_7 menu_9 menu_10 menu_11 menu_12 menu_13 menu_14 menu_15 menu_16 menu_17 menu_18 menu_19 menu_20"><a id="inventory" href="#"
+                <li id="inventory_link" class="menu_3 menu_4 menu_6 menu_7 menu_9 menu_10 menu_11 menu_12 menu_13 menu_14 menu_15 menu_16 menu_17 menu_18 menu_19 menu_20 menu_21"><a id="inventory" href="#"
                                                                                       data-link="inventory">Inventory</a>
                 </li>
                 <li id="production_link" class="menu_3"><a id="production" href="#"
                                                            data-link="production">Production</a></li>
                 <li id="opensales_link" class="menu_3 menu_10 menu_11 menu_13"><a id="opensales" href="#" data-link="opensales">Open Sales</a>
                 </li>
-                <li id="shipments_link" class="menu_2 menu_4 menu_5 menu_6 menu_7 menu_8 menu_9 menu_10 menu_11 menu_12 menu_13 menu_14 menu_15 menu_16 menu_18 menu_19 menu_20"><a id="shipments" href="#"
+                <li id="shipments_link" class="menu_2 menu_4 menu_5 menu_6 menu_7 menu_8 menu_9 menu_10 menu_11 menu_12 menu_13 menu_14 menu_15 menu_16 menu_18 menu_19 menu_20 menu_21"><a id="shipments" href="#"
                                                                                       data-link="shipments">Shipments</a>
                 </li>
                 <li id="inv_trans_link" class="menu_6"><a id="inv_trans" href="#" data-link="inv_trans">Transactions</a>
@@ -65,7 +65,7 @@
                                                                     data-link="packaging_inventory">Packaging</a></li>
                 <li id="prod_trans_link" class="menu_6 menu_10"><a id="prod_trans" href="#"
                                                            data-link="prod_trans">Production</a></li>
-                <li id="recv_trans_link" class="menu_2 menu_4 menu_5 menu_8 menu_9 menu_11 menu_12 menu_13 menu_14 menu_15 menu_16 menu_17 menu_18 menu_19 menu_20"><a id="recv_trans" href="#"
+                <li id="recv_trans_link" class="menu_2 menu_4 menu_5 menu_8 menu_9 menu_11 menu_12 menu_13 menu_14 menu_15 menu_16 menu_17 menu_18 menu_19 menu_20 menu_21"><a id="recv_trans" href="#"
                                                                                 data-link="recv_trans">Receipts</a>
                 </li>
 
@@ -154,6 +154,10 @@
                         </li>
                         <li class="menu_99">
                             <button class="internal_button_link" onclick="updateInternal(user_token, 20)">Amsoil
+                            </button>
+                        </li>
+                        <li class="menu_99">
+                            <button class="internal_button_link" onclick="updateInternal(user_token, 21)">Hydrite Chemical
                             </button>
                         </li>
                     </ul>
@@ -447,7 +451,7 @@
     <p id="no_batch_tickets_results" style="display: none;">No batch tickets found</p>
 </div>
 
-<div id="inventory_container" class="page_container container company_3 company_4 company_6 company_7 company_10 company_11 company_12 company_14 company_15 company_16 company_17 company_18 company_19 company_20">
+<div id="inventory_container" class="page_container container company_3 company_4 company_6 company_7 company_10 company_11 company_12 company_14 company_15 company_16 company_17 company_18 company_19 company_20 company_21">
     <div class="row">
         <div class="col-xs-10">
             <h1 class="page_header">On-Hand Inventory</h1>
@@ -570,7 +574,7 @@
     <p id="no_prod_trans_results" style="display:none;">No production transactions found</p>
 </div>
 
-<div id="recv_trans_container" class="page_container container company_2 company_6 company_10 company_12 company_14 company_15 company_16 company_17 company_18 company_19 company_20">
+<div id="recv_trans_container" class="page_container container company_2 company_6 company_10 company_12 company_14 company_15 company_16 company_17 company_18 company_19 company_20 company_21">
     <div class="row">
         <div class="col-xs-10">
             <h1 class="page-header">Receiving Transactions</h1>
@@ -674,7 +678,7 @@
 
 </div>
 
-<div id="shipments_container" class="page_container container company_2 company_4 company_5 company_7 company_10 company_11 company_12 company_14 company_15 company_16 company_18 company_19 company_20">
+<div id="shipments_container" class="page_container container company_2 company_4 company_5 company_7 company_10 company_11 company_12 company_14 company_15 company_16 company_18 company_19 company_20 company_21">
     <div class="row">
         <div class="col-xs-10">
             <h1 class="page_header">Shipments</h1>
