@@ -48,7 +48,7 @@ function openPurchase(user_token, company_id) {
     $("#open_purchase_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
     $("#open_purchase_container").show();
     $(".col-xs-10").html('');
-    $(".col-xs-10").html('<h1 class="page_header">Open PO: Label/Pack</h1>');
+    $(".col-xs-10").html('<h1 class="page_header">Open PO: ASNs</h1>');
     $.get("/src/open_purchase.php?act=list&user_token=" + user_token + "&company_id=" + company_id, function (result) {
         var open_purchase = jQuery.parseJSON(result);
         if (open_purchase.count > 0) {
