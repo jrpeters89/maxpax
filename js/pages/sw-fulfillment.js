@@ -70,7 +70,14 @@ function receivingTransactions(user_token, company_id) {
     $(".col-xs-10").html('');
     $(".col-xs-10").html('<h1 class="page_header">Product Receipts</h1>');
     var today = new Date();
-    var startDay = 1;
+    //var startDay = 1;
+    var startDay;
+    var dayOfTheWeek = today.getDay();
+    switch(dayOfTheWeek) {
+        case 0:
+            today.setDate(today.getDate() + 0)
+    }
+
     var startMonth = today.getMonth() + 1;
     var startYear = today.getFullYear();
     if (startDay < 10) {
