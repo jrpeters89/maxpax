@@ -198,3 +198,68 @@ function refreshShipmentDates(user_token) {
         }
     });
 }
+
+function batchTicketsList(user_token, company_id) {
+    $("#batch_tickets_list").html('<div id="loading"><img src="images/spin.gif" /></div>');
+    $("#batch_tickets_container").show();
+    $(".col-xs-10").html('');
+    $(".col-xs-10").html('<h1 class="page_header">Batch Tickets</h1>');
+    $.get("/src/documents.php?user_token=" + user_token + "&company_id=" + company_id + "&tab=batch",function(result) {
+        var documents = jQuery.parseJSON(result);
+        if(documents.active == true) {
+            $("#batch_tickets_list").html("");
+            if(typeof documents.list != 'undefined') {
+                jQuery.each( documents.list, function( i, val ) {
+                    if(i > 1) { //Skip "." and ".."
+                        $("#batch_tickets_list").append('<a href="'+val.url+'" class="list-group-item" target="_blank"><i class="fa fa-file-'+val.ext+'-o"></i>&nbsp;&nbsp;<span class="doc_name">'+val.name+'</span></a>');
+                    }
+                });
+                $("#search-batch-tickets").fadeIn();
+            } else {
+                $("#batch_tickets_list").html("No Documents Available");
+            }
+        } else {
+            $("#batch_tickets_list").html("No Documents Available");
+        }
+    });
+}
+
+$("#search-batch-tickets").keyup(function () {
+    var searchTerm = $("#search-batch-tickets").val();
+
+    if(searchTerm == "" || searchTerm == undefined) {
+        $("#dbatch_tickets_list a").removeClass('out').addClass('in').show();
+    } else {
+        var listItem = $('#batch_tickets_list').children('a');
+
+        var searchSplit = searchTerm;
+
+        //extends :contains to be case insensitive
+        $.extend($.expr[':'], {
+            'containsi': function(elem, i, match, array)
+            {
+                return (elem.textContent || elem.innerText || '').toLowerCase()
+                    .indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+        });
+
+        $("#batch_tickets_list a span.doc_name").not(":containsi('" + searchSplit + "')").each(function(e)   {
+            $(this).closest("a").addClass('out').removeClass('in').fadeOut();
+        });
+
+        $("#batch_tickets_list a span.doc_name:containsi('" + searchSplit + "')").each(function(e) {
+            $(this).closest("a").removeClass('out').addClass('in').fadeIn('slow');
+        });
+
+        var calCount = $('#batch_tickets_list .in').length;
+        //$('.list-count').text(jobCount + ' items');
+
+        //shows empty state text when no jobs found
+        if(calCount == '0') {
+            $('#no_batch_tickets_results').fadeIn();
+        }
+        else {
+            $('#no_batch_tickets_results').hide();
+        }
+    }
+});

@@ -24,11 +24,12 @@ if(!empty($user_token)) {
         case 12:
         case 13:
         case 16:
+        case 21:
 		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBAPP) or die('Could not select database.');
 		$result = mysqli_query($conn, "SELECT `id`,`documents`,`doc_path` FROM `companies` WHERE `id`='$company_id'") or die(mysqli_error($conn));
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_array($result);
-			if ($row['documents'] > 0 || ($row['documents'] == 0 && $row['id'] == 9) || ($row['documents'] == 0 && $row['id'] == 12) || ($row['documents'] == 0 && $row['id'] == 8) || ($row['documents'] == 0) && $row['id'] == 16) {
+			if ($row['documents'] > 0 || ($row['documents'] == 0 && $row['id'] == 9) || ($row['documents'] == 0 && $row['id'] == 12) || ($row['documents'] == 0 && $row['id'] == 8) || ($row['documents'] == 0 && $row['id'] == 16) || ($row['documents'] == 0 && $row['id'] == 21)) {
 			    if ($row['id'] == 12) {
 			        if ($tab == 'usage') {
                         $files['active'] = true;
@@ -185,6 +186,26 @@ if(!empty($user_token)) {
 					}
 
 				} else if($row['id'] == 8) {
+                    $files['active'] = true;
+
+                    if (!empty($row['doc_path'])) {
+                        $dir = $row['doc_path'];
+
+                        $list = scandir($dir);
+
+                        foreach ($list as $key => $file) {
+                            $path = pathinfo($file);
+                            $files['list'][$key]['name'] = $path["filename"];
+                            if ($path["extension"] == "pdf") {
+                                $ext = "pdf";
+                            }
+                            $files['list'][$key]['ext'] = $ext;
+                            $files['list'][$key]['url'] = "/src/file.php?loc=" . $dir . "/" . $file . "&user_token=" . $user_token;
+                        }
+                    } else {
+                        $files['active'] = false;
+                    }
+                } else if($row['id'] == 21) {
                     $files['active'] = true;
 
                     if (!empty($row['doc_path'])) {
