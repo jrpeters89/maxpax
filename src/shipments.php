@@ -41,7 +41,12 @@ if (!empty($user_token)) {
 
         $row = mysqli_fetch_array($result);
 
-        $xml = simplexml_load_file("../Data/ShippingTransactions/ShippingTransactions.xml");
+        if ($company_id === 16) {
+
+            $xml = simplexml_load_file("../Data/ShippingTransactions/ShippingTransactions.xml");
+        } else {
+            $xml = simplexml_load_file("../Data/ShippingTransactions02/ShippingTransactions02.xml");
+        }
         $json = json_encode($xml);
         $array = json_decode($json, TRUE);
 
