@@ -43,9 +43,9 @@ if (!empty($user_token)) {
 
         if ($company_id === 16) {
 
-            $xml = simplexml_load_file("../Data/ShippingTransactions/ShippingTransactions.xml");
-        } else {
             $xml = simplexml_load_file("../Data/ShippingTransactions02/ShippingTransactions02.xml");
+        } else {
+            $xml = simplexml_load_file("../Data/ShippingTransactions/ShippingTransactions.xml");
         }
         $json = json_encode($xml);
         $array = json_decode($json, TRUE);
