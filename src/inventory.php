@@ -49,7 +49,7 @@ if(!empty($user_token)) {
         if($row['company'] == 9) { //Novis Works
 			foreach($data as $inv) {
 				//Item # = NOU
-				if(substr($inv['ItemId'], 0, 3) == "NOV" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME") {
+				if(substr($inv['ItemId'], 0, 3) == "NOV" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
 					$inventory['data'][] = array(
 						'ItemId' => $inv['ItemId'],
 						'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -87,7 +87,7 @@ if(!empty($user_token)) {
 		} elseif($row['company'] == 13) { //Adeo
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "AHS" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "AHS" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -106,7 +106,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 11) { //Treehouse
             foreach($data as $inv) {
                 //Item # = NOU
-                if((substr($inv['ItemId'], 0, 3) == "THF" || substr($inv['ItemId'], 0, 3) == "BVF") && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if((substr($inv['ItemId'], 0, 3) == "THF" || substr($inv['ItemId'], 0, 3) == "BVF") && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -125,7 +125,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 18) { //Positive Pretzel
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "PPI" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "PPI" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -144,7 +144,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 21) { //Hydrite Chemical
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "HYD" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "HYD" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -163,7 +163,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 20) { //Amsoil
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "AMS" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "AMS" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -182,7 +182,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 19) { //V-Vax Products
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "VVP" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "VVP" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -201,7 +201,7 @@ if(!empty($user_token)) {
         }  elseif($row['company'] == 16) { //Bay Valley Foods
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "BVF" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "BVF" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -220,7 +220,7 @@ if(!empty($user_token)) {
         } elseif($row['company'] == 15) { //Strategia
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "STR" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "STR" && $inv['CompanyName'] == "MaxPax LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -282,7 +282,7 @@ if(!empty($user_token)) {
         }   elseif($row['company'] == 14) { //Butterface Brands
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "BFB" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "BFB" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
@@ -301,7 +301,7 @@ if(!empty($user_token)) {
         }  elseif($row['company'] == 12) { //Ferrara
             foreach($data as $inv) {
                 //Item # = NOU
-                if(substr($inv['ItemId'], 0, 3) == "FER" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME") {
+                if(substr($inv['ItemId'], 0, 3) == "FER" && $inv['CompanyName'] == "US Packaging LLC" && $inv['Location'] != "CONSUME" && $inv['AvailPhysical'] > 0) {
                     $inventory['data'][] = array(
                         'ItemId' => $inv['ItemId'],
                         'AvailPhysical' => number_format($inv['AvailPhysical'],0,".",","),
