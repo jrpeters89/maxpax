@@ -148,7 +148,7 @@ if (!empty($user_token)) {
             }
         } elseif ($row['company'] == 21) { //Hydrite Chemical
             foreach ($data as $item) {
-                if (($item['CompanyName'] === "MaxPax LLC") && ($item['VendorAccount'] === "MAX-V000055") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date)) {
+                if (($item['CompanyName'] === "MaxPax LLC") && ($item['VendorAccount'] === "MAX-V000055") && ($item['ReceiptDate'] >= $start_date) && ($item['ReceiptDate'] <= $end_date) && (substr($tem['ItemNumber'], 0, 3) == "HYD")) {
                     $receipt['data'][$item['PackingSlipId']]['PackingSlipId'] = ($item['PackingSlipId'] != null ? $item['PackingSlipId'] : "");
                     $receipt['data'][$item['PackingSlipId']]['ReceiptDate'] = ($item['ReceiptDate'] != null ? $item['ReceiptDate'] : "");
                     $receipt['data'][$item['PackingSlipId']]['Item'] = ($item['Item'] != null ? $item['Item'] : "");
