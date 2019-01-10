@@ -127,6 +127,7 @@ function appSetup(company, callback) {
     $(".menu_19").fadeOut();
     $(".menu_20").fadeOut();
     $(".menu_21").fadeOut();
+    $(".menu_22").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -164,6 +165,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 22) {
+            getScripts(["/js/pages/clown-global.js"], function () {
+                console.log("Clown Global Scripts Loaded");
+                callback();
             });
         } else if (company.id == 21) {
             getScripts(["/js/pages/hydrite-chemical.js"], function () {
