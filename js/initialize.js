@@ -238,8 +238,8 @@ function appSetup(company, callback) {
             });
         }
         else if (company.id == 5) {
-            getScripts(["/js/pages/adm.js"], function () {
-                console.log("ADM Script Loaded");
+            getScripts(["/js/pages/cargill.js"], function () {
+                console.log("Cargill Script Loaded");
                 callback();
             });
         } else if (company.id == 4) {
