@@ -128,6 +128,7 @@ function appSetup(company, callback) {
     $(".menu_20").fadeOut();
     $(".menu_21").fadeOut();
     $(".menu_22").fadeOut();
+    $(".menu_23").fadeOut();
     $(".menu_98").fadeOut();
     $(".menu_" + company.id).fadeIn();
 
@@ -165,6 +166,11 @@ function appSetup(company, callback) {
                     console.log("Sales Scripts Loaded");
                     callback();
                 });
+            });
+        } else if (company.id == 23) {
+            getScripts(["/js/pages/sherwin-williams.js"], function () {
+                console.log("Sherwin Williams Scripts Loaded");
+                callback();
             });
         } else if (company.id == 22) {
             getScripts(["/js/pages/clown-global.js"], function () {
@@ -245,11 +251,6 @@ function appSetup(company, callback) {
         } else if (company.id == 4) {
             getScripts(["/js/pages/portion-pac.js"], function () {
                 console.log("Portion Pac Script Loaded");
-                callback();
-            });
-        } else if (company.id == 2) {
-            getScripts(["/js/pages/sherwin-williams.js"], function () {
-                console.log("Sherwin Williams Script Loaded");
                 callback();
             });
         } else if (company.id == 1) {
